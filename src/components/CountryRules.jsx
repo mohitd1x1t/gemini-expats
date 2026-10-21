@@ -1,8 +1,9 @@
 import React from 'react';
 import { ShieldAlert, AlertTriangle, Scale, VolumeX, Wifi, PhoneCall, Info, Car, Users2 } from 'lucide-react';
 
-export default function CountryRules({ countryData }) {
+export default function CountryRules({ countryData, userProfile }) {
   const laws = countryData.strictRulesAndLaws || [];
+  const isFamily = userProfile?.persona?.toLowerCase().includes('family');
 
   return (
     <div className="space-y-6 animate-fadeIn">
@@ -34,6 +35,36 @@ export default function CountryRules({ countryData }) {
           </div>
         </div>
       </div>
+
+      {/* Family Laws & Child Regulations (Active when Family Mode is On!) */}
+      {isFamily && (
+        <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-500/40 space-y-3">
+          <div className="flex items-center gap-2 font-bold text-indigo-300 text-sm">
+            <ShieldAlert className="w-5 h-5 text-indigo-400" />
+            Family & Child Welfare Regulations in {countryData.name}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-300 pt-1">
+            <div className="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/60 space-y-1">
+              <strong className="text-white block">1. Compulsory Schooling (Schulpflicht):</strong>
+              <p className="text-slate-400 leading-relaxed">
+                School attendance is legally mandatory for children (ages 6–16). Homeschooling is illegal in Germany, and taking children out of school before term ends incurs airport police fines up to €1,000!
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/60 space-y-1">
+              <strong className="text-white block">2. Child Car Seat Mandate:</strong>
+              <p className="text-slate-400 leading-relaxed">
+                By law, children under 12 or under 150 cm must ride in an approved child safety seat (ECE R129 / i-Size). Taxis may refuse to transport children without proper restraint seats.
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/60 space-y-1">
+              <strong className="text-white block">3. Child Benefits (Kindergeld):</strong>
+              <p className="text-slate-400 leading-relaxed">
+                All foreign tax-paying residents with valid residence permits qualify for monthly government child allowances (~€250/mo per child in Germany, Child Benefit in UK).
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Strict Laws Grid */}
       <div className="space-y-3">

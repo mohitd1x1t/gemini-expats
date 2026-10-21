@@ -59,6 +59,36 @@ export default function HealthcareGuide({ countryData, userProfile }) {
         )}
       </div>
 
+      {/* Dedicated Family Healthcare & Pediatric Care Card */}
+      {userProfile.persona.toLowerCase().includes('family') && (
+        <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-500/40 space-y-3">
+          <div className="flex items-center gap-2 font-bold text-indigo-300 text-sm">
+            <HeartPulse className="w-5 h-5 text-indigo-400" />
+            Family Healthcare: Statutory Dependent Co-Insurance & Pediatric Care
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-300 pt-1">
+            <div className="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/60 space-y-1">
+              <strong className="text-white block">1. Free Dependent Co-Insurance:</strong>
+              <p className="text-slate-400 leading-relaxed">
+                In most public systems (TK/Barmer in Germany, NHS in UK, SUS in Brazil), minor children and non-working spouses are automatically co-insured under the working parent's statutory plan at <strong>€0 / R$ 0 extra monthly cost</strong>!
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/60 space-y-1">
+              <strong className="text-white block">2. Dedicated Pediatrician (Kinderarzt):</strong>
+              <p className="text-slate-400 leading-relaxed">
+                Children must be registered with a local pediatrician for mandatory developmental milestone screenings (e.g. *U1 through U9* checkups in Germany) and school health clearances.
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/60 space-y-1">
+              <strong className="text-white block">3. Mandatory School Vaccinations:</strong>
+              <p className="text-slate-400 leading-relaxed">
+                Bring certified pediatric immunization records. Proof of measles vaccination (*Masernschutzgesetz*) is legally mandatory before any child can attend kindergarten (Kita) or school in Europe.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* 3 Pillars: General Practitioner, Prescriptions, Dental Warning */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-2">

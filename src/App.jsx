@@ -94,6 +94,13 @@ export default function App() {
     localStorage.setItem(STORAGE_KEY_API_KEY, newKey);
   };
 
+  const updateGlobalPersona = (newPersona) => {
+    setUserProfile(prev => ({
+      ...prev,
+      persona: newPersona
+    }));
+  };
+
   const toggleTask = (taskId) => {
     setCompletedTasks(prev => ({
       ...prev,
@@ -161,6 +168,7 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         completionStats={completionStats}
+        onUpdatePersona={updateGlobalPersona}
       />
 
       {/* Main Container */}
@@ -189,6 +197,52 @@ export default function App() {
           })}
         </div>
 
+        {/* Global Persona Filter Status Banner */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3.5 px-4 rounded-2xl bg-slate-900/90 border border-indigo-500/30 shadow-md">
+          <div className="flex items-center gap-2.5">
+            <span className="text-lg">
+              {userProfile.persona.includes('family') ? '👨‍👩‍👧‍👦' : userProfile.persona === 'couple' ? '👫' : userProfile.persona.includes('pet') ? '🐾' : '🎒'}
+            </span>
+            <div className="text-xs">
+              <span className="text-slate-400">Global Relocation Filter: </span>
+              <strong className="text-white capitalize">
+                {userProfile.persona.replace('_', ' ')}
+              </strong>
+              <span className="text-indigo-300 ml-1.5 hidden sm:inline">
+                • Synchronized across Budget, Packing, House Hunting, Healthcare & Visas
+              </span>
+            </div>
+          </div>
+
+          {/* Quick 1-Click Global Switcher */}
+          <div className="flex items-center gap-1 self-start sm:self-center">
+            {[
+              { id: 'bachelor', label: 'Bachelor', icon: '🎒' },
+              { id: 'couple', label: 'Couple', icon: '👫' },
+              { id: 'family_kids', label: 'Family with Kids', icon: '👨‍👩‍👧‍👦' },
+              { id: 'family_pets', label: 'With Pets', icon: '🐾' }
+            ].map(p => {
+              const isSelected = userProfile.persona === p.id ||
+                (p.id === 'family_kids' && userProfile.persona === 'family');
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => updateGlobalPersona(p.id)}
+                  className={`px-2.5 py-1 rounded-xl text-[11px] font-bold transition-all border ${
+                    isSelected
+                      ? 'bg-indigo-600 border-indigo-500 text-white shadow-sm'
+                      : 'bg-slate-800/60 border-slate-700/60 text-slate-400 hover:text-white hover:bg-slate-800'
+                  }`}
+                  title={`Switch global report mode to ${p.label}`}
+                >
+                  <span className="mr-1">{p.icon}</span>
+                  <span>{p.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Tab Content Display */}
         {activeTab === 'overview' && (
           <DashboardOverview
@@ -198,6 +252,7 @@ export default function App() {
             onSelectTab={setActiveTab}
             onOpenProfile={() => setIsProfileModalOpen(true)}
             completionStats={completionStats}
+            onUpdatePersona={updateGlobalPersona}
           />
         )}
 
@@ -219,6 +274,7 @@ export default function App() {
             onToggleTask={toggleTask}
             userProfile={userProfile}
             countryData={countryData}
+            onUpdatePersona={updateGlobalPersona}
           />
         )}
 
@@ -227,12 +283,14 @@ export default function App() {
             budgetData={budgetData}
             countryData={countryData}
             userProfile={userProfile}
+            onUpdatePersona={updateGlobalPersona}
           />
         )}
 
         {activeTab === 'rules' && (
           <CountryRules
             countryData={countryData}
+            userProfile={userProfile}
           />
         )}
 

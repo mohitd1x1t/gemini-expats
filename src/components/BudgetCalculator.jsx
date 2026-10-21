@@ -14,36 +14,41 @@ import {
   Clock,
   ArrowRight,
   Check,
-  HelpCircle
+  HelpCircle,
+  Users,
+  Baby,
+  User
 } from 'lucide-react';
 import { COUNTRY_VISA_DETAILS } from '../data/visaData';
 
 export default function BudgetCalculator({
   budgetData,
   countryData,
-  userProfile
+  userProfile,
+  onUpdatePersona
 }) {
-  const isDefaultFamily = userProfile.persona.toLowerCase().includes('family');
-  const [personaType, setPersonaType] = useState(isDefaultFamily ? 'family' : 'bachelor');
+  // Driven 100% by Global Persona!
+  const isFamily = userProfile.persona.toLowerCase().includes('family');
+  const personaType = isFamily ? 'family' : 'bachelor';
 
   // Get active defaults
   const cityDefaults = budgetData?.[personaType] || {
-    rent: 1400,
-    groceries: 400,
-    transport: 80,
-    healthInsurance: 160,
-    utilities: 180,
-    childcare: personaType === 'family' ? 500 : 0,
-    leisure: 350,
-    contingency: 250
+    rent: isFamily ? 2200 : 1200,
+    groceries: isFamily ? 850 : 350,
+    transport: isFamily ? 120 : 50,
+    healthInsurance: isFamily ? 350 : 180,
+    utilities: isFamily ? 300 : 150,
+    childcare: isFamily ? 500 : 0,
+    leisure: isFamily ? 600 : 300,
+    contingency: isFamily ? 400 : 200
   };
 
   const upfrontDefaults = budgetData?.upfrontRelocation || {
-    flights: 700,
-    visaAndApostilles: 400,
-    temporaryStay1Month: 1800,
+    flights: isFamily ? 1800 : 700,
+    visaAndApostilles: isFamily ? 800 : 400,
+    temporaryStay1Month: isFamily ? 2600 : 1600,
     depositRentMultiplier: 2.5,
-    starterFurniture: 1200,
+    starterFurniture: isFamily ? 2200 : 1200,
     miscellaneousSetup: 500
   };
 
@@ -63,24 +68,24 @@ export default function BudgetCalculator({
   const [tempStay, setTempStay] = useState(upfrontDefaults.temporaryStay1Month);
   const [furniture, setFurniture] = useState(upfrontDefaults.starterFurniture);
 
-  // Sync state whenever country, city, or persona switches
+  // Sync state whenever country, city, or global persona changes!
   useEffect(() => {
     const currentCityData = budgetData?.[personaType] || {
-      rent: 1400,
-      groceries: 400,
-      transport: 80,
-      healthInsurance: 160,
-      utilities: 180,
-      childcare: personaType === 'family' ? 500 : 0,
-      leisure: 350,
-      contingency: 250
+      rent: isFamily ? 2200 : 1200,
+      groceries: isFamily ? 850 : 350,
+      transport: isFamily ? 120 : 50,
+      healthInsurance: isFamily ? 350 : 180,
+      utilities: isFamily ? 300 : 150,
+      childcare: isFamily ? 500 : 0,
+      leisure: isFamily ? 600 : 300,
+      contingency: isFamily ? 400 : 200
     };
     const currentUpfront = budgetData?.upfrontRelocation || {
-      flights: 700,
-      visaAndApostilles: 400,
-      temporaryStay1Month: 1800,
+      flights: isFamily ? 1800 : 700,
+      visaAndApostilles: isFamily ? 800 : 400,
+      temporaryStay1Month: isFamily ? 2600 : 1600,
       depositRentMultiplier: 2.5,
-      starterFurniture: 1200,
+      starterFurniture: isFamily ? 2200 : 1200,
       miscellaneousSetup: 500
     };
 
@@ -97,7 +102,7 @@ export default function BudgetCalculator({
     setVisaFees(currentUpfront.visaAndApostilles);
     setTempStay(currentUpfront.temporaryStay1Month);
     setFurniture(currentUpfront.starterFurniture);
-  }, [userProfile.destinationCity, userProfile.destinationCountry, personaType, budgetData]);
+  }, [userProfile.destinationCity, userProfile.destinationCountry, userProfile.persona, budgetData]);
 
   // Visa Process & Fees integration
   const countryVisas = COUNTRY_VISA_DETAILS[countryData.id] || COUNTRY_VISA_DETAILS.germany;
@@ -106,11 +111,18 @@ export default function BudgetCalculator({
 
   useEffect(() => {
     if (countryVisas.primaryVisas.length > 0) {
+      // If family mode, prioritize family visa if exists!
+      if (isFamily) {
+        const famVisa = countryVisas.primaryVisas.find(v => v.category === 'Family' || v.id.includes('family'));
+        if (famVisa) {
+          setSelectedVisaId(famVisa.id);
+          return;
+        }
+      }
       setSelectedVisaId(countryVisas.primaryVisas[0].id);
     }
-  }, [countryData.id]);
+  }, [countryData.id, userProfile.persona]);
 
-  // Handle applying calculated visa fee to upfront budget
   const handleApplyVisaFee = (feeAmount) => {
     setVisaFees(Math.round(feeAmount));
   };
@@ -119,13 +131,13 @@ export default function BudgetCalculator({
   const depositMultiplier = upfrontDefaults.depositRentMultiplier || 2.5;
   const securityDeposit = rent * depositMultiplier;
   const totalUpfrontCost = flights + visaFees + tempStay + securityDeposit + furniture;
-  const totalMonthlyLiving = rent + groceries + transport + healthInsurance + utilities + (personaType === 'family' ? childcare : 0) + leisure + contingency;
+  const totalMonthlyLiving = rent + groceries + transport + healthInsurance + utilities + (isFamily ? childcare : 0) + leisure + contingency;
   const recommendedRunway3Months = (totalMonthlyLiving * 3) + totalUpfrontCost;
 
   const currencySymbol = countryData?.symbol || '€';
   const currencyCode = countryData?.currency || 'EUR';
 
-  // Helper for dynamic slider limits based on base numbers
+  // Dynamic slider limits helper
   const getSliderLimits = (baseValue) => {
     const min = 0;
     const max = Math.max(Math.round(baseValue * 3), 1000);
@@ -135,44 +147,58 @@ export default function BudgetCalculator({
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      {/* Header & Persona Selector */}
+      {/* Header & Global Persona Sync Bar */}
       <div className="p-6 rounded-3xl bg-slate-800/40 border border-slate-700/60 backdrop-blur-md flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1">
             <Calculator className="w-4 h-4" />
-            Cost of Living, Sunk Costs & Visa Budgeting
+            Cost of Living & Relocation Calculator
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white">
             Budget Projections for {userProfile.destinationCity}, {countryData.name} {countryData.flag}
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
-            Calculated in local currency ({currencyCode}) with live synchronized sliders, direct numeric inputs, and visa process fees.
+            Calculated for <strong className="text-white">{userProfile.persona.replace('_', ' ').toUpperCase()}</strong> in local currency ({currencyCode}).
           </p>
         </div>
 
-        <div className="flex items-center bg-slate-900/80 p-1 rounded-2xl border border-slate-700">
+        {/* Global Persona Selector Controls */}
+        <div className="flex items-center bg-slate-900/80 p-1.5 rounded-2xl border border-slate-700">
           <button
-            onClick={() => setPersonaType('bachelor')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-              personaType === 'bachelor'
+            onClick={() => onUpdatePersona('bachelor')}
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              !isFamily
                 ? 'bg-emerald-600 text-white shadow-md'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            Bachelor / Solo
+            <User className="w-3.5 h-3.5" />
+            <span>Bachelor / Solo</span>
           </button>
           <button
-            onClick={() => setPersonaType('family')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-              personaType === 'family'
+            onClick={() => onUpdatePersona('family_kids')}
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              isFamily
                 ? 'bg-emerald-600 text-white shadow-md'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            Family with Kids
+            <Baby className="w-3.5 h-3.5" />
+            <span>Family with Kids</span>
           </button>
         </div>
       </div>
+
+      {/* Global Filter Active Indicator Alert */}
+      {isFamily && (
+        <div className="p-3.5 px-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-xs text-indigo-200 flex items-center justify-between">
+          <div className="flex items-center gap-2 font-medium">
+            <Baby className="w-4 h-4 text-indigo-400" />
+            <span><strong>Family Mode Active:</strong> Benchmarked for multi-bedroom housing, childcare/kindergarten, family groceries, and pediatric health insurance.</span>
+          </div>
+          <span className="text-[11px] font-bold text-indigo-400 uppercase tracking-wider">Synced Across All Tabs</span>
+        </div>
+      )}
 
       {/* Hero Financial Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -202,9 +228,9 @@ export default function BudgetCalculator({
             {currencySymbol}{Math.round(totalMonthlyLiving).toLocaleString()} <span className="text-xs text-slate-400 font-normal">/mo</span>
           </div>
           <div className="text-[11px] text-slate-400 mt-2 space-y-0.5">
-            <div>• Warm Rent & Utilities: <strong className="text-white">{currencySymbol}{Math.round(rent + utilities).toLocaleString()}</strong></div>
+            <div>• Rent & Utilities: <strong className="text-white">{currencySymbol}{Math.round(rent + utilities).toLocaleString()}</strong></div>
             <div>• Groceries, Transit, Health: <strong className="text-white">{currencySymbol}{Math.round(groceries + transport + healthInsurance).toLocaleString()}</strong></div>
-            <div>• Leisure & Childcare Buffer: <strong className="text-white">{currencySymbol}{Math.round(leisure + contingency + (personaType === 'family' ? childcare : 0)).toLocaleString()}</strong></div>
+            <div>• Leisure & Childcare Buffer: <strong className="text-white">{currencySymbol}{Math.round(leisure + contingency + (isFamily ? childcare : 0)).toLocaleString()}</strong></div>
           </div>
         </div>
 
@@ -218,7 +244,7 @@ export default function BudgetCalculator({
             {currencySymbol}{Math.round(recommendedRunway3Months).toLocaleString()}
           </div>
           <div className="text-[11px] text-slate-400 mt-2">
-            Target liquid cash buffer = (3 × Monthly Burn of {currencySymbol}{Math.round(totalMonthlyLiving).toLocaleString()}) + Upfront Capital of {currencySymbol}{Math.round(totalUpfrontCost).toLocaleString()}.
+            Target liquid savings = (3 × Monthly Burn of {currencySymbol}{Math.round(totalMonthlyLiving).toLocaleString()}) + Upfront Capital of {currencySymbol}{Math.round(totalUpfrontCost).toLocaleString()}.
           </div>
         </div>
       </div>
@@ -244,7 +270,9 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Monthly Rent (Warm / Base + Condomínio)</span>
+                    <span className="font-medium">
+                      {isFamily ? 'Monthly Rent (2-3 Bedroom Family Apartment)' : 'Monthly Rent (1BR / Studio / WG)'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -266,7 +294,7 @@ export default function BudgetCalculator({
                   />
                   <div className="flex justify-between text-[10px] text-slate-500">
                     <span>{currencySymbol}{min}</span>
-                    <span>Benchmark: {currencySymbol}{cityDefaults.rent}</span>
+                    <span>City Benchmark: {currencySymbol}{cityDefaults.rent}</span>
                     <span>{currencySymbol}{max}</span>
                   </div>
                 </div>
@@ -279,7 +307,9 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Groceries, Supermarket & Fresh Produce</span>
+                    <span className="font-medium">
+                      {isFamily ? 'Family Groceries, Baby Supplies & Pantry' : 'Groceries & Home Cooking'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -314,7 +344,9 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Public Transit & Commuting Pass</span>
+                    <span className="font-medium">
+                      {isFamily ? 'Family Public Transit Passes & Fuel' : 'Public Commuter Transit Pass'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -349,7 +381,9 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Health Insurance (Monthly Plan / Copay)</span>
+                    <span className="font-medium">
+                      {isFamily ? 'Family Health Insurance Plan / Copay' : 'Health Insurance (Employee Share)'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -378,13 +412,16 @@ export default function BudgetCalculator({
               );
             })()}
 
-            {/* Childcare (if family) */}
-            {personaType === 'family' && (() => {
+            {/* Childcare & Schooling (Family Mode) */}
+            {isFamily && (() => {
               const { min, max, step } = getSliderLimits(cityDefaults.childcare || 1000);
               return (
-                <div className="space-y-1">
-                  <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Childcare / Schooling / Kindergarten</span>
+                <div className="p-3 bg-indigo-950/20 rounded-xl border border-indigo-500/20 space-y-1">
+                  <div className="flex justify-between items-center text-slate-200">
+                    <span className="font-semibold flex items-center gap-1.5">
+                      <Baby className="w-3.5 h-3.5 text-indigo-400" />
+                      Childcare / Kindergarten (Kita) / School Tuition
+                    </span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -419,7 +456,7 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Utilities (Electricity, WiFi, Mobile)</span>
+                    <span className="font-medium">Utilities (Heating/Electricity, High-Speed WiFi, Mobiles)</span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -449,7 +486,9 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Dining Out, Leisure & Weekends</span>
+                    <span className="font-medium">
+                      {isFamily ? 'Family Outings, Dining, Activities & Weekend Parks' : 'Dining Out, Leisure & Social Life'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -479,7 +518,7 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Monthly Contingency & Buffer</span>
+                    <span className="font-medium">Monthly Emergency Buffer & Unforeseen Expenses</span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -537,7 +576,9 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">1st Month Temporary Stay (Airbnb / Furnished)</span>
+                    <span className="font-medium">
+                      {isFamily ? '1st Month Furnished Family Apartment Stay' : '1st Month Temporary Studio / Airbnb'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -567,7 +608,9 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Flight Tickets & Excess Baggage</span>
+                    <span className="font-medium">
+                      {isFamily ? 'Family Flight Tickets & Extra Baggage Allowance' : 'Flight Ticket & Excess Baggage'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -597,7 +640,9 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Visa Fees, Apostilles & Sworn Translations</span>
+                    <span className="font-medium">
+                      {isFamily ? 'Family Visas, Birth/Marriage Apostilles & Translations' : 'Visa Fees, Apostilles & Sworn Translations'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input
@@ -617,10 +662,6 @@ export default function BudgetCalculator({
                     onChange={(e) => setVisaFees(Number(e.target.value))}
                     className="w-full accent-emerald-500 h-1.5 bg-slate-700 rounded-lg cursor-pointer"
                   />
-                  <div className="text-[10px] text-slate-400 flex items-center justify-between">
-                    <span>Adjust manually or select your visa category below!</span>
-                    <span className="text-indigo-400 font-semibold">{currencySymbol}{visaFees}</span>
-                  </div>
                 </div>
               );
             })()}
@@ -631,7 +672,9 @@ export default function BudgetCalculator({
               return (
                 <div className="space-y-1">
                   <div className="flex justify-between items-center text-slate-300">
-                    <span className="font-medium">Initial Home Starter Setup & Furniture</span>
+                    <span className="font-medium">
+                      {isFamily ? 'Family Home Setup (Kids beds, crib, cookware)' : 'Initial Home Starter Setup & Furniture'}
+                    </span>
                     <div className="flex items-center gap-1">
                       <span className="text-slate-400">{currencySymbol}</span>
                       <input

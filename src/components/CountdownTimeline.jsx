@@ -34,6 +34,15 @@ export default function CountdownTimeline({
     }
   };
 
+  const isFamily = userProfile.persona.toLowerCase().includes('family');
+
+  const isFamilyRelevantTask = (task) => {
+    const text = (task.title + ' ' + task.desc).toLowerCase();
+    return text.includes('school') || text.includes('kindergarten') || text.includes('kita') ||
+           text.includes('child') || text.includes('vaccin') || text.includes('marriage') ||
+           text.includes('birth') || text.includes('family') || text.includes('pediatric');
+  };
+
   return (
     <div className="space-y-6 animate-fadeIn">
       {/* Header & Sub-tab Selector */}
@@ -81,6 +90,21 @@ export default function CountdownTimeline({
       {/* Content for T-30 Days */}
       {activeSubTab === 'tminus30' && (
         <div className="space-y-6">
+          {/* Family Mode Priority Alert */}
+          {isFamily && (
+            <div className="p-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/40 text-indigo-200 text-xs flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-base">👨‍👩‍👧‍👦</span>
+                <span>
+                  <strong className="text-white">Family Timeline Active:</strong> Highlighting school & kindergarten enrollments, child immunization records, and family flight logistics.
+                </span>
+              </div>
+              <span className="text-[10px] uppercase font-bold text-indigo-400 bg-indigo-500/20 px-2 py-0.5 rounded border border-indigo-500/30">
+                Family Mode
+              </span>
+            </div>
+          )}
+
           <div className="p-4 rounded-2xl bg-indigo-950/30 border border-indigo-500/20 text-indigo-200 text-xs flex items-center justify-between">
             <span>
               💡 <strong>Pro Tip:</strong> Complete tasks in sequence. Never delay temporary accommodation registration confirmation and medical checks!
@@ -171,6 +195,11 @@ export default function CountdownTimeline({
                                 {task.priority === 'high' && (
                                   <span className="px-1.5 py-0.5 text-[9px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded uppercase">
                                     High
+                                  </span>
+                                )}
+                                {isFamily && isFamilyRelevantTask(task) && (
+                                  <span className="px-1.5 py-0.5 text-[9px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded uppercase">
+                                    👨‍👩‍👧 Family Critical
                                   </span>
                                 )}
                               </div>

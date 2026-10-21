@@ -18,7 +18,15 @@ import { COUNTRY_VISA_DETAILS } from '../data/visaData';
 export default function VisaGuide({ countryData, userProfile }) {
   const countryVisas = COUNTRY_VISA_DETAILS[countryData.id] || COUNTRY_VISA_DETAILS.germany;
   const primaryVisas = countryVisas.primaryVisas || [];
-  const [selectedVisaId, setSelectedVisaId] = useState(primaryVisas[0]?.id || '');
+  const isFamily = userProfile?.persona?.toLowerCase().includes('family');
+
+  const [selectedVisaId, setSelectedVisaId] = useState(() => {
+    if (isFamily) {
+      const fam = primaryVisas.find(v => v.category === 'Family' || v.id.includes('family') || v.id.includes('xi'));
+      if (fam) return fam.id;
+    }
+    return primaryVisas[0]?.id || '';
+  });
 
   const activeVisa = primaryVisas.find(v => v.id === selectedVisaId) || primaryVisas[0];
   const currencySymbol = countryData?.symbol || countryVisas.symbol || '€';
@@ -45,6 +53,41 @@ export default function VisaGuide({ countryData, userProfile }) {
           <span>Recommended Start Time: <strong>2–3 Months Prior to Move</strong></span>
         </div>
       </div>
+
+      {/* Family Visa Dependent Rights Banner */}
+      {isFamily && (
+        <div className="p-4 rounded-2xl bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-500/40 space-y-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 font-bold text-indigo-300 text-xs sm:text-sm">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              Family Reunion & Dependent Spouse Rights in {countryData.name}
+            </div>
+            <span className="text-[10px] font-bold text-indigo-400 bg-indigo-500/20 px-2 py-0.5 rounded border border-indigo-500/30 uppercase">
+              Family Mode Active
+            </span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-300 pt-1">
+            <div className="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+              <strong className="text-white block">Spouse Unrestricted Work Rights:</strong>
+              <p className="text-slate-400 text-[11px] mt-0.5">
+                Spouses of EU Blue Card, UK Skilled Worker, and Brazil VITEM holders receive immediate full-time work authorization without requiring a separate employer sponsorship.
+              </p>
+            </div>
+            <div className="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+              <strong className="text-white block">Marriage & Birth Apostilles:</strong>
+              <p className="text-slate-400 text-[11px] mt-0.5">
+                Original marriage and birth certificates must have the Hague Apostille from your foreign ministry plus sworn translations into {countryData.language}.
+              </p>
+            </div>
+            <div className="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+              <strong className="text-white block">Living Space Verification:</strong>
+              <p className="text-slate-400 text-[11px] mt-0.5">
+                Immigration authorities require proof of adequate residential living space (minimum 12m² per adult and 10m² per child under 6).
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Visa Category Selector Tabs */}
       <div className="space-y-3">

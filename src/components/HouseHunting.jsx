@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, ExternalLink, ShieldCheck, AlertOctagon, FileText, Copy, Check, Info } from 'lucide-react';
+import { Home, ExternalLink, ShieldCheck, AlertOctagon, FileText, Copy, Check, Info, Baby, Users, School } from 'lucide-react';
 
 export default function HouseHunting({ countryData, userProfile }) {
   const [copiedLetter, setCopiedLetter] = useState(false);
@@ -9,23 +9,48 @@ export default function HouseHunting({ countryData, userProfile }) {
     keyConcepts: []
   };
 
-  const sampleCoverLetter = `Dear Landlord / Property Manager,
+  const isFamily = userProfile.persona.toLowerCase().includes('family');
+
+  const sampleCoverLetter = isFamily
+    ? `Dear Landlord / Property Manager,
+
+My name is [Your Name], and my family and I are writing to express our keen interest in leasing your property in ${userProfile.destinationCity}.
+
+I am relocating from ${userProfile.origin} to take up a permanent full-time position as [Your Job Title] at [Company Name] with a stable corporate salary.
+Family Members: [My spouse and X children, aged X].
+We are non-smokers, quiet, responsible, and seeking a long-term home in a safe neighborhood close to schools and parks.
+
+Attached is our complete, verified tenant application dossier:
+1. Signed Employment Contract & Proof of Income (recent 3 payslips)
+2. Credit Rating Certificate (clean record with zero defaults)
+3. Copies of Passports & Valid Residence Visas for all family members
+4. Previous Landlord Reference
+
+We are available for an in-person or live video viewing at your convenience, and can move in starting [Target Date].
+
+Thank you for your time and welcoming our family.
+
+Warm regards,
+[Your Name] & Family
+[Your Phone Number]
+[Your Email]`
+    : `Dear Landlord / Property Manager,
 
 My name is [Your Name], and I am writing to express my strong interest in leasing your property in ${userProfile.destinationCity}.
 
 I am relocating from ${userProfile.origin} to take up a full-time position as [Your Job Title] at [Company Name] with a permanent contract.
-Travel Party: ${userProfile.persona.replace('_', ' ')}.
-We are non-smokers, quiet, responsible tenants with no history of rent defaults.
+Travel Party: Solo Professional / Non-smoker with no pets.
+I am a quiet, responsible tenant with no history of rent defaults.
 
-Attached please find our complete application dossier:
+Attached is my complete application dossier:
 1. Signed Employment Contract & Proof of Income (recent payslips)
 2. Credit Rating Certificate (clean record)
-3. Copies of Passports & Valid Residence Visas
+3. Copy of Passport & Valid Residence Visa
 4. Previous Landlord Reference
 
-We are available for an in-person or virtual viewing at your convenience, and can move in starting [Target Date].
+I am available for an in-person or virtual viewing at your convenience, and can move in starting [Target Date].
 
-Thank you for your time and consideration.
+Thank you for your consideration.
 
 Warm regards,
 [Your Name]
@@ -48,13 +73,50 @@ Warm regards,
             Housing & Lease Defense
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white">
-            House Hunting Masterclass in {countryData.name}
+            House Hunting Masterclass in {countryData.name} {countryData.flag}
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
-            Official verified portals, scam defense playbook, lease terminology, and tenant application templates.
+            Official verified portals, scam defense playbook, lease terminology, and {isFamily ? 'family housing strategies' : 'bachelor studio guidance'}.
           </p>
         </div>
+
+        {isFamily && (
+          <div className="p-3 bg-indigo-950/40 border border-indigo-500/30 rounded-2xl flex items-center gap-2 text-xs text-indigo-300">
+            <Baby className="w-4 h-4 text-indigo-400" />
+            <span><strong>Family Filter Active:</strong> Prioritizing 2–3 BR apartments, school catchment areas, and elevator access.</span>
+          </div>
+        )}
       </div>
+
+      {/* Family Housing Strategy Card */}
+      {isFamily && (
+        <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-500/40 space-y-3">
+          <div className="flex items-center gap-2 font-bold text-indigo-300 text-sm">
+            <School className="w-5 h-5 text-indigo-400" />
+            Family Housing Rules: School Catchment Zones & Space Mandates
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-300 pt-1">
+            <div className="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/60 space-y-1">
+              <strong className="text-white block">1. School Catchment Zones:</strong>
+              <p className="text-slate-400 leading-relaxed">
+                Public school and kindergarten admission strictly depends on the exact municipal postal code where your family does city registration. Pick neighborhoods with high-rated primary schools.
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/60 space-y-1">
+              <strong className="text-white block">2. Minimum Bedroom Space:</strong>
+              <p className="text-slate-400 leading-relaxed">
+                In Europe and the UK, landlords and immigration authorities require adequate square footage (min 10–12 m² per child). Children over 10 of different genders often legally require separate bedrooms.
+              </p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/60 space-y-1">
+              <strong className="text-white block">3. Strollers & Noise Protection:</strong>
+              <p className="text-slate-400 leading-relaxed">
+                Check for ground-floor stroller storage (*Kinderwagenraum*) or an elevator. By law (*Kinderlärmschutzgesetz* in Germany/EU), normal child noise is protected and cannot be ground for eviction.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Scam Defense Playbook */}
       <div className="p-5 rounded-2xl bg-rose-950/20 border border-rose-500/40 space-y-3">
@@ -63,10 +125,10 @@ Warm regards,
           The #1 Expat Rental Scam: "Landlord is Abroad"
         </div>
         <p className="text-xs text-slate-300 leading-relaxed">
-          The most common rental scam targeting newcomers: A fraudster lists a gorgeous flat at an attractive price. When you message them, they say: <em>"I recently had to relocate to the UK/Spain for work. If you wire the security deposit and first month's rent through Airbnb / Western Union / crypto, the delivery service will mail you the keys."</em>
+          The most common rental scam targeting newcomers: A fraudster lists an attractive flat at a below-market rate. When you inquire, they claim: <em>"I recently had to relocate to the UK/Spain. If you wire the security deposit and first month's rent through Airbnb / Western Union / PIX, the delivery courier will mail you the keys."</em>
         </p>
         <div className="text-xs text-rose-200 font-semibold flex items-center gap-2">
-          <span>⛔ Rule:</span> NEVER transfer a deposit or rent until you have viewed the property in person (or had a trusted local friend visit) and verified the owner's identity with a signed written lease.
+          <span>⛔ Golden Rule:</span> NEVER transfer a deposit or rent until you have viewed the property in person (or had a trusted local friend visit) and verified the owner's identity with a signed written lease.
         </div>
       </div>
 
@@ -125,7 +187,7 @@ Warm regards,
         <div className="flex items-center justify-between">
           <div className="font-bold text-sm text-white flex items-center gap-2">
             <FileText className="w-4 h-4 text-emerald-400" />
-            High-Response Tenant Application Letter Template
+            {isFamily ? 'Family Tenant Application Letter Template' : 'Solo Professional Application Letter Template'}
           </div>
           <button
             onClick={copyToClipboard}
@@ -146,7 +208,7 @@ Warm regards,
         </div>
 
         <p className="text-xs text-slate-400">
-          In competitive rental markets like Berlin, London, Amsterdam, Dublin, or New York, hundreds of people apply within 30 minutes of a listing. Sending a tailored, polite introduction significantly increases viewing invitation rates:
+          Tailored specifically for your <strong>{userProfile.persona.replace('_', ' ').toUpperCase()}</strong> profile moving to {userProfile.destinationCity}:
         </p>
 
         <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 whitespace-pre-wrap leading-relaxed select-all">

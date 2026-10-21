@@ -10,7 +10,8 @@ import {
   Baby,
   Dog,
   User,
-  Plus
+  Plus,
+  ShieldCheck
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -19,22 +20,23 @@ export default function PackingEngine({
   completedTasks,
   onToggleTask,
   userProfile,
-  countryData
+  countryData,
+  onUpdatePersona
 }) {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [selectedPersonaFilter, setSelectedPersonaFilter] = useState(
-    userProfile.persona.toLowerCase().includes('family') ? 'family' : 'bachelor'
-  );
-  const [hasPet, setHasPet] = useState(userProfile.persona.toLowerCase().includes('pet'));
 
-  // Calculate items
+  // Driven directly by Global Persona!
+  const isFamily = userProfile.persona.toLowerCase().includes('family');
+  const hasPet = userProfile.persona.toLowerCase().includes('pet');
+
+  // Assemble items based on active Global Persona
   const allFilteredItems = [];
   categories.forEach(cat => {
     if (activeCategory === 'all' || activeCategory === cat.id) {
       cat.bachelorItems.forEach(item => {
         allFilteredItems.push({ ...item, categoryName: cat.name, categoryId: cat.id, personaType: 'bachelor' });
       });
-      if (selectedPersonaFilter === 'family') {
+      if (isFamily) {
         cat.familyItems.forEach(item => {
           allFilteredItems.push({ ...item, categoryName: cat.name, categoryId: cat.id, personaType: 'family' });
         });
@@ -66,27 +68,27 @@ export default function PackingEngine({
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      {/* Header & Persona Filter */}
+      {/* Header & Global Persona Filter */}
       <div className="p-6 rounded-3xl bg-slate-800/40 border border-slate-700/60 backdrop-blur-md flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-1">
             <Luggage className="w-4 h-4" />
-            Intelligent Luggage Matrix
+            Luggage & Baggage Matrix
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white">
-            Smart Packing & Voltage Planner
+            Smart Packing Planner for {countryData.name}
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
-            Dynamically adapted for {userProfile.persona} moving to {countryData.name}.
+            Dynamically adapted for <strong className="text-white">{userProfile.persona.replace('_', ' ').toUpperCase()}</strong>.
           </p>
         </div>
 
-        {/* Persona toggle buttons */}
-        <div className="flex flex-wrap items-center gap-2">
+        {/* Global Persona Toggles */}
+        <div className="flex flex-wrap items-center gap-2 bg-slate-900/80 p-1.5 rounded-2xl border border-slate-700">
           <button
-            onClick={() => setSelectedPersonaFilter('bachelor')}
+            onClick={() => onUpdatePersona('bachelor')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-              selectedPersonaFilter === 'bachelor'
+              !isFamily && !hasPet
                 ? 'bg-indigo-600 border-indigo-500 text-white shadow-md'
                 : 'bg-slate-800 border-slate-700 text-slate-300 hover:text-white'
             }`}
@@ -96,9 +98,9 @@ export default function PackingEngine({
           </button>
 
           <button
-            onClick={() => setSelectedPersonaFilter('family')}
+            onClick={() => onUpdatePersona('family_kids')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
-              selectedPersonaFilter === 'family'
+              isFamily && !hasPet
                 ? 'bg-indigo-600 border-indigo-500 text-white shadow-md'
                 : 'bg-slate-800 border-slate-700 text-slate-300 hover:text-white'
             }`}
@@ -108,7 +110,7 @@ export default function PackingEngine({
           </button>
 
           <button
-            onClick={() => setHasPet(!hasPet)}
+            onClick={() => onUpdatePersona('family_pets')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
               hasPet
                 ? 'bg-amber-600 border-amber-500 text-white shadow-md'
@@ -116,10 +118,25 @@ export default function PackingEngine({
             }`}
           >
             <Dog className="w-3.5 h-3.5" />
-            <span>Include Pets</span>
+            <span>With Pets</span>
           </button>
         </div>
       </div>
+
+      {/* Global Filter Family Banner */}
+      {isFamily && (
+        <div className="p-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-indigo-200 text-xs flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <Baby className="w-5 h-5 text-indigo-400 shrink-0" />
+            <div>
+              <strong className="text-white">Family Packing Mode Active:</strong> Children's immunization charts, apostilled birth & marriage certificates, pediatric medicines, comfort toys, and warm snowsuits are automatically included in your checklist.
+            </div>
+          </div>
+          <span className="text-[11px] font-bold text-indigo-400 uppercase tracking-wider shrink-0 hidden sm:inline">
+            Global Sync
+          </span>
+        </div>
+      )}
 
       {/* Voltage & Electrical Rules Alert */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -211,6 +228,8 @@ export default function PackingEngine({
               className={`p-3.5 rounded-xl border transition-all cursor-pointer flex items-start gap-3 ${
                 isDone
                   ? 'bg-emerald-950/20 border-emerald-500/30'
+                  : item.personaType === 'family'
+                  ? 'bg-indigo-950/25 border-indigo-500/40 hover:bg-indigo-950/40'
                   : 'bg-slate-800/40 hover:bg-slate-800/70 border-slate-700/60'
               }`}
             >
@@ -243,10 +262,14 @@ export default function PackingEngine({
                     <span className="text-amber-400 font-semibold uppercase">High</span>
                   )}
                   {item.personaType === 'family' && (
-                    <span className="text-emerald-400">Family specific</span>
+                    <span className="text-indigo-300 font-bold bg-indigo-500/20 px-1.5 py-0.2 rounded border border-indigo-500/30">
+                      👨‍👩‍👧 Family Requirement
+                    </span>
                   )}
                   {item.personaType === 'pet' && (
-                    <span className="text-amber-400">Pet specific</span>
+                    <span className="text-amber-300 font-bold bg-amber-500/20 px-1.5 py-0.2 rounded border border-amber-500/30">
+                      🐾 Pet Requirement
+                    </span>
                   )}
                 </div>
               </div>
