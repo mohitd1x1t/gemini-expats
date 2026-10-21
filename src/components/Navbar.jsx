@@ -11,7 +11,8 @@ import {
   Baby,
   User,
   Dog,
-  ChevronDown
+  ChevronDown,
+  Siren
 } from 'lucide-react';
 
 export default function Navbar({
@@ -19,6 +20,7 @@ export default function Navbar({
   countryData,
   onOpenProfile,
   onOpenSettings,
+  onOpenSOS,
   onExportPDF,
   activeTab,
   setActiveTab,
@@ -144,6 +146,16 @@ export default function Navbar({
             title="Profile"
           >
             <SlidersHorizontal className="w-4 h-4" />
+          </button>
+
+          {/* Emergency SOS Button */}
+          <button
+            onClick={onOpenSOS}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-rose-600/90 hover:bg-rose-500 text-white shadow-sm shadow-rose-600/30 transition-all animate-pulse"
+            title="Immediate Emergency Numbers & Embassy Contacts"
+          >
+            <Siren className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">SOS</span>
           </button>
 
           {/* Settings / API Key */}

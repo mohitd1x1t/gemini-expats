@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import ProfileWizard from './components/ProfileWizard';
 import SettingsModal from './components/SettingsModal';
+import EmergencySOSModal from './components/EmergencySOSModal';
 import DashboardOverview from './components/DashboardOverview';
 import CountdownTimeline from './components/CountdownTimeline';
 import PackingEngine from './components/PackingEngine';
@@ -11,6 +12,9 @@ import HouseHunting from './components/HouseHunting';
 import DietaryAndFaith from './components/DietaryAndFaith';
 import HealthcareGuide from './components/HealthcareGuide';
 import VisaGuide from './components/VisaGuide';
+import DocumentVault from './components/DocumentVault';
+import DrivingTransport from './components/DrivingTransport';
+import PetRelocation from './components/PetRelocation';
 import GeminiCopilot from './components/GeminiCopilot';
 
 import { COUNTRIES_DATA } from './data/countries';
@@ -27,8 +31,14 @@ import {
   UtensilsCrossed,
   HeartPulse,
   FileCheck2,
+  FileText,
+  Car,
+  Dog,
   Bot,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Compass,
   Users
 } from 'lucide-react';
 
@@ -81,6 +91,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('overview');
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+  const [isSOSModalOpen, setIsSOSModalOpen] = useState(false);
 
   // Sync to localStorage
   useEffect(() => {
@@ -146,17 +157,34 @@ export default function App() {
   };
 
   const navigationTabs = [
-    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
-    { id: 'countdown', label: '30-Day Timelines', icon: Calendar },
-    { id: 'packing', label: 'Smart Packing', icon: Luggage },
-    { id: 'budget', label: 'Budget Calculator', icon: Calculator },
-    { id: 'rules', label: 'Strict Laws & Rules', icon: ShieldAlert },
-    { id: 'housing', label: 'House Hunting', icon: Home },
-    { id: 'dietary', label: 'Dietary & Faith', icon: UtensilsCrossed },
-    { id: 'healthcare', label: 'Healthcare & Insurance', icon: HeartPulse },
-    { id: 'visa', label: 'Visa Process', icon: FileCheck2 },
-    { id: 'copilot', label: 'AI Copilot', icon: Bot, isHighlight: true }
+    { id: 'overview', label: '1. Overview Dashboard', icon: LayoutDashboard, group: 'Planning & Legal' },
+    { id: 'countdown', label: '2. 30-Day Timelines (T-30 & Day 1-30)', icon: Calendar, group: 'Planning & Legal' },
+    { id: 'visa', label: '3. Visa & Legal Pathways', icon: FileCheck2, group: 'Planning & Legal' },
+    { id: 'budget', label: '4. Relocation & Living Budget', icon: Calculator, group: 'Planning & Legal' },
+    { id: 'packing', label: '5. Smart Packing Matrix', icon: Luggage, group: 'Logistics & Housing' },
+    { id: 'vault', label: '6. Document Vault & Apostilles', icon: FileText, group: 'Logistics & Housing' },
+    { id: 'housing', label: '7. House Hunting & Scam Defense', icon: Home, group: 'Logistics & Housing' },
+    { id: 'rules', label: '8. Strict Local Laws & Fines', icon: ShieldAlert, group: 'Logistics & Housing' },
+    { id: 'dietary', label: '9. Dietary, Supermarkets & Faith', icon: UtensilsCrossed, group: 'Living & Mobility' },
+    { id: 'healthcare', label: '10. Healthcare & Insurance Guide', icon: HeartPulse, group: 'Living & Mobility' },
+    { id: 'transport', label: '11. Driving, IDP & Public Transit', icon: Car, group: 'Living & Mobility' },
+    { id: 'pets', label: '12. Pet Relocation & Biosecurity', icon: Dog, group: 'Living & Mobility' },
+    { id: 'copilot', label: '13. Gemini AI Relocation Copilot', icon: Bot, isHighlight: true, group: 'AI Intelligence' }
   ];
+
+  const currentIdx = Math.max(0, navigationTabs.findIndex(t => t.id === activeTab));
+
+  const handlePrevTab = () => {
+    if (currentIdx > 0) {
+      setActiveTab(navigationTabs[currentIdx - 1].id);
+    }
+  };
+
+  const handleNextTab = () => {
+    if (currentIdx < navigationTabs.length - 1) {
+      setActiveTab(navigationTabs[currentIdx + 1].id);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#0b0f19] text-slate-100 flex flex-col selection:bg-indigo-500 selection:text-white">
@@ -166,6 +194,7 @@ export default function App() {
         countryData={countryData}
         onOpenProfile={() => setIsProfileModalOpen(true)}
         onOpenSettings={() => setIsSettingsModalOpen(true)}
+        onOpenSOS={() => setIsSOSModalOpen(true)}
         onExportPDF={handleExportPDF}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -175,28 +204,83 @@ export default function App() {
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        {/* Navigation Tab Bar */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-slate-800/80 scrollbar-none">
-          {navigationTabs.map(tab => {
-            const Icon = tab.icon;
-            const isActive = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
-                  isActive
-                    ? tab.isHighlight
-                      ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
-                      : 'bg-slate-800 text-white border border-slate-700 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-                }`}
+        {/* Navigation Dropdown Bar */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-lg backdrop-blur-md">
+          {/* Active Module Dropdown Selector */}
+          <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-3">
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-300 shrink-0">
+              <span className="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+                <Compass className="w-4 h-4" />
+              </span>
+              <span>Go to Report / Guide:</span>
+            </div>
+
+            {/* Dropdown with optgroups */}
+            <div className="relative flex-1">
+              <select
+                id="module-navigator-select"
+                value={activeTab}
+                onChange={(e) => setActiveTab(e.target.value)}
+                className="w-full appearance-none bg-slate-800 hover:bg-slate-750 border border-slate-700 hover:border-indigo-500/60 text-white font-semibold text-sm rounded-xl pl-3.5 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer shadow-inner transition-all"
               >
-                <Icon className={`w-4 h-4 ${isActive ? 'text-indigo-400' : 'text-slate-400'}`} />
-                <span>{tab.label}</span>
+                <optgroup label="🏛️ Core Planning & Legal" className="bg-slate-900 text-slate-400 font-bold">
+                  <option value="overview" className="bg-slate-800 text-slate-100 font-normal">📊 1. Overview Dashboard</option>
+                  <option value="countdown" className="bg-slate-800 text-slate-100 font-normal">⏱️ 2. 30-Day Timelines (T-30 & Day 1-30)</option>
+                  <option value="visa" className="bg-slate-800 text-slate-100 font-normal">🛂 3. Visa & Legal Pathways</option>
+                  <option value="budget" className="bg-slate-800 text-slate-100 font-normal">💰 4. Relocation & Living Budget</option>
+                </optgroup>
+                <optgroup label="📦 Logistics, Documents & Housing" className="bg-slate-900 text-slate-400 font-bold">
+                  <option value="packing" className="bg-slate-800 text-slate-100 font-normal">🧳 5. Smart Packing Matrix</option>
+                  <option value="vault" className="bg-slate-800 text-slate-100 font-normal">📑 6. Document Vault & Apostilles</option>
+                  <option value="housing" className="bg-slate-800 text-slate-100 font-normal">🏡 7. House Hunting & Scam Defense</option>
+                  <option value="rules" className="bg-slate-800 text-slate-100 font-normal">⚖️ 8. Strict Local Laws & Fines</option>
+                </optgroup>
+                <optgroup label="🌍 Daily Living, Healthcare & Mobility" className="bg-slate-900 text-slate-400 font-bold">
+                  <option value="dietary" className="bg-slate-800 text-slate-100 font-normal">🥗 9. Dietary, Supermarkets & Faith</option>
+                  <option value="healthcare" className="bg-slate-800 text-slate-100 font-normal">🩺 10. Healthcare & Insurance Guide</option>
+                  <option value="transport" className="bg-slate-800 text-slate-100 font-normal">🚗 11. Driving, IDP & Public Transit</option>
+                  <option value="pets" className="bg-slate-800 text-slate-100 font-normal">🐾 12. Pet Relocation & Biosecurity Protocol</option>
+                </optgroup>
+                <optgroup label="✨ AI Relocation Intelligence" className="bg-slate-900 text-slate-400 font-bold">
+                  <option value="copilot" className="bg-slate-800 text-indigo-300 font-medium">🤖 13. Gemini AI Relocation Copilot</option>
+                </optgroup>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-indigo-400">
+                <ChevronDown className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+
+          {/* Step Counter & Prev / Next Controls */}
+          <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0 border-t md:border-t-0 pt-2 md:pt-0 border-slate-800">
+            <span className="text-[11px] font-semibold text-slate-400 px-2.5 py-1 rounded-lg bg-slate-800/80 border border-slate-700/60">
+              Module <strong className="text-white">{currentIdx + 1}</strong> of {navigationTabs.length}
+            </span>
+
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={handlePrevTab}
+                disabled={currentIdx <= 0}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:hover:bg-slate-800 disabled:cursor-not-allowed text-slate-200 border border-slate-700 transition-all"
+                title="Go to previous guide"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Prev</span>
               </button>
-            );
-          })}
+
+              <button
+                type="button"
+                onClick={handleNextTab}
+                disabled={currentIdx >= navigationTabs.length - 1}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:hover:bg-indigo-600 disabled:cursor-not-allowed text-white shadow-sm shadow-indigo-600/30 transition-all"
+                title="Go to next guide"
+              >
+                <span className="hidden sm:inline">Next</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Global Persona Filter Status Banner */}
@@ -319,6 +403,27 @@ export default function App() {
           />
         )}
 
+        {activeTab === 'vault' && (
+          <DocumentVault
+            userProfile={userProfile}
+            countryData={countryData}
+          />
+        )}
+
+        {activeTab === 'transport' && (
+          <DrivingTransport
+            countryData={countryData}
+            userProfile={userProfile}
+          />
+        )}
+
+        {activeTab === 'pets' && (
+          <PetRelocation
+            countryData={countryData}
+            userProfile={userProfile}
+          />
+        )}
+
         {activeTab === 'copilot' && (
           <GeminiCopilot
             userProfile={userProfile}
@@ -342,6 +447,13 @@ export default function App() {
         onClose={() => setIsSettingsModalOpen(false)}
         apiKey={apiKey}
         onSaveApiKey={handleSaveApiKey}
+      />
+
+      {/* Emergency SOS Modal */}
+      <EmergencySOSModal
+        isOpen={isSOSModalOpen}
+        onClose={() => setIsSOSModalOpen(false)}
+        countryData={countryData}
       />
 
       {/* Footer */}

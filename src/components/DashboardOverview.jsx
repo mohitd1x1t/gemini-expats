@@ -8,6 +8,9 @@ import {
   UtensilsCrossed,
   HeartPulse,
   FileCheck2,
+  FileText,
+  Car,
+  Dog,
   Bot,
   ArrowRight,
   Sparkles,
@@ -110,6 +113,30 @@ export default function DashboardOverview({
       icon: FileCheck2,
       color: 'from-purple-500/20 to-violet-500/20 text-purple-400 border-purple-500/30',
       badge: 'Entry Clearance'
+    },
+    {
+      id: 'vault',
+      title: 'Document Vault & Apostille Tracker',
+      desc: 'Track physical originals, Hague apostilles, sworn court certified translations, and encrypted 300-DPI cloud backups.',
+      icon: FileText,
+      color: 'from-amber-500/20 to-yellow-500/20 text-yellow-300 border-yellow-500/30',
+      badge: 'Legalization'
+    },
+    {
+      id: 'transport',
+      title: 'Driving, IDP & Public Transit',
+      desc: '6-month foreign license grace period, reciprocity conversion rules, winter tire laws, and monthly transit passes.',
+      icon: Car,
+      color: 'from-blue-500/20 to-cyan-500/20 text-cyan-300 border-cyan-500/30',
+      badge: 'Mobility'
+    },
+    {
+      id: 'pets',
+      title: 'Pet Relocation & Biosecurity',
+      desc: 'ISO 11784/11785 microchip, 3-month rabies titer RNATT timeline, government vet certificates, and IATA airline crates.',
+      icon: Dog,
+      color: 'from-orange-500/20 to-rose-500/20 text-orange-300 border-orange-500/30',
+      badge: 'Biosecurity'
     },
     {
       id: 'copilot',
