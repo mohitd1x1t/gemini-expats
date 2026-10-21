@@ -18,7 +18,7 @@ import PetRelocation from './components/PetRelocation';
 import GeminiCopilot from './components/GeminiCopilot';
 
 import { COUNTRIES_DATA } from './data/countries';
-import { PACKING_CATEGORIES, ONE_MONTH_COUNTDOWN, FIRST_MONTH_ROADMAP } from './data/checklists';
+import { PACKING_CATEGORIES, getCountryCountdownTimeline, getCountryArrivalRoadmap } from './data/checklists';
 import { CITY_BUDGET_BENCHMARKS } from './data/budgetDefaults';
 import { exportRelocationBinderPDF } from './utils/pdfGenerator';
 import {
@@ -125,12 +125,16 @@ export default function App() {
   const countryData = COUNTRIES_DATA[userProfile.destinationCountry] || COUNTRIES_DATA.germany;
   const budgetData = CITY_BUDGET_BENCHMARKS[userProfile.destinationCity] || CITY_BUDGET_BENCHMARKS['Berlin'];
 
+  // Derive country-specific 30-Day Departure Countdown and First Month Arrival Roadmaps
+  const activeCountdownData = getCountryCountdownTimeline(userProfile.destinationCountry, countryData, userProfile);
+  const activeArrivalRoadmap = getCountryArrivalRoadmap(userProfile.destinationCountry, countryData, userProfile);
+
   // Calculate overall readiness stats
   let totalTasks = 0;
-  ONE_MONTH_COUNTDOWN.forEach(stage => {
+  activeCountdownData.forEach(stage => {
     totalTasks += stage.tasks.length;
   });
-  FIRST_MONTH_ROADMAP.forEach(phase => {
+  activeArrivalRoadmap.forEach(phase => {
     totalTasks += phase.tasks.length;
   });
   PACKING_CATEGORIES.forEach(cat => {
@@ -151,7 +155,7 @@ export default function App() {
       userProfile,
       countryData,
       budgetData,
-      ONE_MONTH_COUNTDOWN,
+      activeCountdownData,
       PACKING_CATEGORIES
     );
   };
@@ -339,8 +343,8 @@ export default function App() {
 
         {activeTab === 'countdown' && (
           <CountdownTimeline
-            countdownData={ONE_MONTH_COUNTDOWN}
-            arrivalRoadmap={FIRST_MONTH_ROADMAP}
+            countdownData={activeCountdownData}
+            arrivalRoadmap={activeArrivalRoadmap}
             completedTasks={completedTasks}
             onToggleTask={toggleTask}
             userProfile={userProfile}
