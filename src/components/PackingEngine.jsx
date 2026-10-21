@@ -129,7 +129,9 @@ export default function PackingEngine({
             <div className="font-bold text-white">Voltage & Plug Compatibility Check:</div>
             <p className="text-slate-300 leading-relaxed">
               <strong>{countryData.name}</strong> operates on{' '}
-              {countryData.id === 'usa' || countryData.id === 'canada'
+              {countryData.id === 'brazil'
+                ? 'Type N sockets (3-round-pin). Crucial: Voltage varies by city! São Paulo & Rio are 127V/110V, whereas Brasília, Curitiba & Florianópolis are 220V.'
+                : countryData.id === 'usa' || countryData.id === 'canada'
                 ? '120V @ 60Hz (Type A/B plugs).'
                 : '230V @ 50Hz (Standard EU / UK / AU plugs).'}
             </p>

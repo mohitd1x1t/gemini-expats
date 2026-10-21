@@ -303,5 +303,204 @@ export const CITY_BUDGET_BENCHMARKS = {
       starterFurniture: 140000,
       miscellaneousSetup: 50000
     }
+  },
+
+  // Brazil
+  'São Paulo': {
+    country: 'brazil',
+    currency: 'BRL',
+    symbol: 'R$',
+    bachelor: {
+      rent: 3200, // 1BR / Studio in Pinheiros, Vila Madalena, Itaim Bibi, Bela Vista
+      groceries: 1200,
+      transport: 250, // Bilhete Único / Metrô SP
+      healthInsurance: 450, // Individual private health plan (Amil/SulAmérica/Unimed)
+      utilities: 400, // Electricity, high-speed fiber internet, mobile
+      leisure: 900, // Dining out, cafes, cultural events
+      contingency: 500
+    },
+    family: {
+      rent: 6500, // 2-3 BR apartment in safe neighborhood with 24h doorman
+      groceries: 3000,
+      transport: 600, // Family transit & occasional Uber/gas
+      healthInsurance: 1400, // Family private medical plan
+      utilities: 750,
+      childcare: 2800, // Private school tuition / bilingual kindergarten
+      leisure: 2000,
+      contingency: 1200
+    },
+    upfrontRelocation: {
+      flights: 4500,
+      visaAndApostilles: 1500,
+      temporaryStay1Month: 5000, // Furnished Airbnb in Jardins/Pinheiros
+      depositRentMultiplier: 3, // Standard 3-month rental deposit (or QuintoAndar deposit)
+      starterFurniture: 3500,
+      miscellaneousSetup: 1500
+    }
+  },
+
+  'Rio de Janeiro': {
+    country: 'brazil',
+    currency: 'BRL',
+    symbol: 'R$',
+    bachelor: {
+      rent: 3000, // 1BR in Zona Sul (Botafogo, Flamengo, Copacabana, Ipanema)
+      groceries: 1150,
+      transport: 230,
+      healthInsurance: 450,
+      utilities: 380,
+      leisure: 850,
+      contingency: 500
+    },
+    family: {
+      rent: 6200, // 2-3 BR in Zona Sul or Barra da Tijuca
+      groceries: 2800,
+      transport: 550,
+      healthInsurance: 1400,
+      utilities: 700,
+      childcare: 2600,
+      leisure: 1800,
+      contingency: 1100
+    },
+    upfrontRelocation: {
+      flights: 4500,
+      visaAndApostilles: 1500,
+      temporaryStay1Month: 4800,
+      depositRentMultiplier: 3,
+      starterFurniture: 3200,
+      miscellaneousSetup: 1400
+    }
+  },
+
+  'Brasília': {
+    country: 'brazil',
+    currency: 'BRL',
+    symbol: 'R$',
+    bachelor: {
+      rent: 2600, // Asa Sul / Asa Norte studio
+      groceries: 1100,
+      transport: 220,
+      healthInsurance: 450,
+      utilities: 350,
+      leisure: 750,
+      contingency: 450
+    },
+    family: {
+      rent: 5500,
+      groceries: 2700,
+      transport: 500,
+      healthInsurance: 1400,
+      utilities: 650,
+      childcare: 2400,
+      leisure: 1600,
+      contingency: 1000
+    },
+    upfrontRelocation: {
+      flights: 4500,
+      visaAndApostilles: 1500,
+      temporaryStay1Month: 4200,
+      depositRentMultiplier: 3,
+      starterFurniture: 3000,
+      miscellaneousSetup: 1300
+    }
+  },
+
+  'Curitiba': {
+    country: 'brazil',
+    currency: 'BRL',
+    symbol: 'R$',
+    bachelor: {
+      rent: 2200, // Batel / Centro Cívico / Bigorrilho
+      groceries: 1000,
+      transport: 190, // World-famous BRT transit system
+      healthInsurance: 400,
+      utilities: 320,
+      leisure: 700,
+      contingency: 400
+    },
+    family: {
+      rent: 4600,
+      groceries: 2400,
+      transport: 450,
+      healthInsurance: 1300,
+      utilities: 600,
+      childcare: 2100,
+      leisure: 1400,
+      contingency: 900
+    },
+    upfrontRelocation: {
+      flights: 4500,
+      visaAndApostilles: 1500,
+      temporaryStay1Month: 3800,
+      depositRentMultiplier: 3,
+      starterFurniture: 2800,
+      miscellaneousSetup: 1200
+    }
+  },
+
+  'Florianópolis': {
+    country: 'brazil',
+    currency: 'BRL',
+    symbol: 'R$',
+    bachelor: {
+      rent: 2500, // Lagoa da Conceição / Campeche / Centro
+      groceries: 1100,
+      transport: 200,
+      healthInsurance: 400,
+      utilities: 340,
+      leisure: 800,
+      contingency: 450
+    },
+    family: {
+      rent: 5200,
+      groceries: 2600,
+      transport: 500,
+      healthInsurance: 1300,
+      utilities: 650,
+      childcare: 2200,
+      leisure: 1600,
+      contingency: 1000
+    },
+    upfrontRelocation: {
+      flights: 4500,
+      visaAndApostilles: 1500,
+      temporaryStay1Month: 4200,
+      depositRentMultiplier: 3,
+      starterFurniture: 2900,
+      miscellaneousSetup: 1300
+    }
+  },
+
+  'Belo Horizonte': {
+    country: 'brazil',
+    currency: 'BRL',
+    symbol: 'R$',
+    bachelor: {
+      rent: 2100, // Savassi / Lourdes / Funcionários
+      groceries: 980,
+      transport: 190,
+      healthInsurance: 400,
+      utilities: 320,
+      leisure: 700,
+      contingency: 400
+    },
+    family: {
+      rent: 4500,
+      groceries: 2300,
+      transport: 450,
+      healthInsurance: 1300,
+      utilities: 580,
+      childcare: 2000,
+      leisure: 1400,
+      contingency: 900
+    },
+    upfrontRelocation: {
+      flights: 4500,
+      visaAndApostilles: 1500,
+      temporaryStay1Month: 3600,
+      depositRentMultiplier: 3,
+      starterFurniture: 2700,
+      miscellaneousSetup: 1200
+    }
   }
 };

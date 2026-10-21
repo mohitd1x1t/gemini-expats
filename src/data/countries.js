@@ -798,5 +798,113 @@ export const COUNTRIES_DATA = {
       overview: 'Shinto and Buddhism form the cultural backdrop, with complete religious freedom.',
       placesOfWorship: 'Tokyo Camii (magnificent Ottoman-style mosque in Shibuya), Yokohama Hindu Temple, Kobe Muslim Mosque, English Catholic & Christian fellowships.'
     }
+  },
+
+  brazil: {
+    id: 'brazil',
+    name: 'Brazil',
+    flag: '🇧🇷',
+    currency: 'BRL',
+    symbol: 'R$',
+    language: 'Portuguese',
+    emergencyNumbers: {
+      police: '190',
+      ambulance: '192',
+      fire: '193'
+    },
+    cities: ['São Paulo', 'Rio de Janeiro', 'Brasília', 'Curitiba', 'Florianópolis', 'Belo Horizonte'],
+    visaTypes: [
+      {
+        name: 'Digital Nomad Visa (VITEM XIV)',
+        desc: '1-year renewable residence visa for remote workers employed by companies outside Brazil. Requires proof of monthly remote income of at least US$ 1,500 (or available bank funds of US$ 18,000). Highly popular among expats.',
+        timeframe: '3 to 6 weeks'
+      },
+      {
+        name: 'Work Visa (VITEM V)',
+        desc: 'For foreigners with an employment contract with a Brazilian entity, pre-approved by the Ministry of Justice and Public Security (Coordenação-Geral de Imigração Laboral).',
+        timeframe: '6 to 12 weeks'
+      },
+      {
+        name: 'Investor Visa (VIPER / VITEM IX)',
+        desc: 'Permanent residency pathway for individual investors investing in real estate (minimum R$ 700k in North/Northeast or R$ 1M in South/Southeast) or in a new Brazilian business enterprise.',
+        timeframe: '8 to 16 weeks'
+      },
+      {
+        name: 'Family Reunion Visa (VITEM XI)',
+        desc: 'For spouse, common-law partner (união estável), children, or dependent parents of a Brazilian citizen or valid residence permit holder.',
+        timeframe: '4 to 8 weeks'
+      }
+    ],
+    strictRulesAndLaws: [
+      {
+        title: 'CPF (Cadastro de Pessoas Físicas) is Essential',
+        desc: 'The CPF (tax ID number) is mandatory for practically everything in Brazil: buying a local SIM card, renting an apartment, ordering on iFood, shopping online, opening a bank account, or using the PIX payment system. Apply for your CPF at a Brazilian consulate before departure or at the Receita Federal immediately on arrival.',
+        severity: 'critical'
+      },
+      {
+        title: 'Federal Police Registration (CRNM) within 90 Days',
+        desc: 'All visa holders must schedule an appointment and register in person with the Federal Police (Polícia Federal) within 90 days of arriving in Brazil to receive their Carteira de Registro Nacional Migratório (CRNM / foreign ID card). Heavy daily fines apply for late registration.',
+        severity: 'critical'
+      },
+      {
+        title: 'Street Safety & Phone Snatching Awareness',
+        desc: 'In major metropolitan hubs like São Paulo (especially Centro, Paulista, Pinheiros) and Rio de Janeiro, avoid using your mobile phone openly on sidewalks or near road traffic due to bicycle/motorbike grab-and-run thefts. Use rideshares (Uber/99) at night, keep backup digital copies of documents, and carry a secondary debit card.',
+        severity: 'high'
+      },
+      {
+        title: 'Voltage & Plug Type N Peculiarity',
+        desc: 'Brazil uses the unique three-round-pin Type N socket (IEC 60906-1). Crucially, voltage is NOT standardized nationally: São Paulo and Rio de Janeiro are primarily 110V/127V, whereas Brasília, Curitiba, and Florianópolis are 220V! Always check the outlet label before plugging high-wattage equipment.',
+        severity: 'high'
+      },
+      {
+        title: 'PIX Payment Dominance',
+        desc: 'Brazil has revolutionized payments through PIX (instant QR/key transfers directly between bank accounts). Almost every vendor, from beach stalls to supermarkets, prefers PIX over cash. Opening a local digital bank account (Nubank, Inter) unlocks PIX access.',
+        severity: 'medium'
+      }
+    ],
+    houseHunting: {
+      topPortals: [
+        { name: 'QuintoAndar', url: 'https://www.quintoandar.com.br', note: 'The #1 modern rental platform in Brazil. Eliminates the traditional need for a local guarantor (fiador) and operates fully digitally.' },
+        { name: 'Zap Imóveis', url: 'https://www.zapimoveis.com.br', note: 'Largest classifieds portal for apartments and houses across São Paulo and all Brazilian states.' },
+        { name: 'Viva Real', url: 'https://www.vivareal.com.br', note: 'Massive database of verified rental properties with neighborhood price maps.' },
+        { name: 'OLX Brasil', url: 'https://www.olx.com.br', note: 'Popular direct-owner rental classifieds (exercise caution and avoid wire deposits without in-person inspection).' }
+      ],
+      scamWarnings: [
+        'Never make a deposit or advance PIX payment before physically viewing the property and verifying the owner\'s identity with official registration (matrícula do imóvel).',
+        'Traditional Brazilian rental contracts often ask for a "Fiador" (a Brazilian guarantor who owns real estate in the same city) or expensive rental insurance ("Seguro Fiança"). Using QuintoAndar avoids this obstacle.'
+      ],
+      keyConcepts: [
+        { term: 'Aluguel (Base Rent)', meaning: 'Base rental amount paid to the property owner.' },
+        { term: 'Condomínio', meaning: 'Monthly building maintenance, security, and amenity charge (pools, gym, doorman/portaria 24h); billed separately from rent and can add R$ 500 to R$ 2,500/month.' },
+        { term: 'IPTU', meaning: 'Municipal urban property tax, almost always passed on as the tenant\'s responsibility in Brazil.' },
+        { term: 'Cartório & Firma Reconhecida', meaning: 'Notary offices where lease contracts must be officially notarized and verified.' },
+        { term: 'Portaria 24 Horas', meaning: '24/7 staffed reception/doorman building entrance, highly valued for residential security and package deliveries.' }
+      ]
+    },
+    healthcare: {
+      type: 'Constitutional Universal Public Healthcare (SUS) & Private Insurance',
+      details: 'Brazil provides free healthcare to all persons on Brazilian soil (including foreign tourists and expats) through the SUS (Sistema Único de Saúde). However, public facilities frequently experience long queues and administrative delays. Expats almost universally purchase private health plans (Amil, Bradesco Saúde, SulAmérica, Unimed, or Porto Seguro) for immediate access to top hospitals like Albert Einstein and Sírio-Libanês in São Paulo.',
+      englishFriendlyInsurers: ['Amil', 'Bradesco Saúde', 'SulAmérica', 'Porto Seguro Saúde'],
+      generalPractitioner: 'Private clinics and telemedicine apps allow immediate appointment booking. For emergencies, dial 192 (SAMU - Serviço de Atendimento Móvel de Urgência) or go to a private hospital Emergency Room (Pronto-Socorro).',
+      prescriptions: 'Pharmacies (Drogasil, Droga Raia) are on almost every street corner in São Paulo. Generic medications (Medicamentos Genéricos) are strictly regulated and highly affordable. Antibiotics and controlled medications require a doctor\'s dual carbon-copy prescription (receita controlada).'
+    },
+    dietaryGuide: {
+      vegetarianStatus: 'Surprising variety! While Brazilian food culture is famous for churrasco, São Paulo is one of the world\'s top culinary capitals with thousands of vegetarian, vegan, Japanese, Lebanese, and Italian dining options.',
+      restaurantesPorQuilo: 'Look for "Restaurante por Quilo" (pay-by-weight buffet restaurants). They are ubiquitous at lunch, budget-friendly, and offer dozens of fresh salads, vegetables, rice, beans, manioc, and fruit where vegetarians select exactly what they want.',
+      hiddenIngredientsPortuguese: [
+        { pt: 'Banha de porco / Gordura de porco', en: 'Pork lard (frequently used in traditional Brazilian black beans / feijoada)' },
+        { pt: 'Caldo de galinha / Caldo de carne', en: 'Chicken / Beef bouillon cube' },
+        { pt: 'Bacon / Toucinho', en: 'Bacon bits (often added to cooked beans and farofa; always ask "O feijão tem bacon?")' },
+        { pt: 'Gelatina', en: 'Gelatin' },
+        { pt: 'Camarão seco', en: 'Dried shrimp (often added to northern Brazilian dishes like vatapá and acarajé)' }
+      ],
+      supermarkets: 'Pão de Açúcar (premium with organic/vegan sections), St. Marche, Carrefour, Hirota Food Supermercados (great Asian selection).',
+      ethnicGrocers: 'Bairro da Liberdade in São Paulo has the largest Japanese/Asian diaspora outside Japan, brimming with specialty tofu, sauces, and produce. Zona Cerealista in São Paulo is a giant historic market for bulk nuts, grains, pulses, and spices at warehouse prices.'
+    },
+    religiousGuide: {
+      overview: 'Brazil is a constitutionally secular country with immense religious diversity and constitutional protection of freedom of worship.',
+      placesOfWorship: 'Historic Catholic cathedrals (Catedral da Sé), thriving Evangelical churches, Jewish synagogues and cultural centers (notably in Higienópolis and Bom Retiro in São Paulo), Mosques (Mesquita Brasil in Cambuci, São Paulo - the oldest in Latin America), Buddhist temples (Zu Lai Temple in Cotia/SP - largest in South America), and Afro-Brazilian spiritual centers (Candomblé and Umbanda terreiros).',
+      hinduCommunity: 'Active Hindu diaspora centers in São Paulo include ISKCON São Paulo (Templo Hare Krishna na Rua Juquis, Indianópolis), Indian Cultural Centre (affiliated with the Indian Consulate), and regular Diwali celebrations organized by the Indian Association of São Paulo.'
+    }
   }
 };

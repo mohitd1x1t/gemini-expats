@@ -135,6 +135,32 @@ export const RESTAURANT_FLASHCARDS = {
       text: 'Je mange uniquement de la nourriture Halal. Je ne consomme pas de porc, ni de saindoux, ni d’alcool (même dans les sauces ou cuissons). Cette viande est-elle certifiée Halal ?',
       phonetic: 'Zhuh mahnzh ew-neek-mahn duh lah noo-ree-toor hah-lahl...'
     }
+  },
+  brazil: {
+    vegetarian: {
+      lang: 'Portuguese',
+      title: 'Cartão Vegetariano',
+      text: 'Sou vegetariano(a). Não como carne bovina, frango, peixe nem presunto. Por favor, certifique-se de que a comida não contém caldo de galinha ou de carne, banha de porco nem gelatina. O feijão tem bacon? Muito obrigado(a)!',
+      phonetic: 'Soe veh-zheh-tah-ree-ah-noo. Nown koh-moo kahr-nee boh-vee-nah...'
+    },
+    vegan: {
+      lang: 'Portuguese',
+      title: 'Cartão Vegano',
+      text: 'Sou vegano(a). Não consumo nenhum ingrediente de origem animal: sem carne, peixe, leite, queijo, manteiga, ovos ou mel. O prato foi feito sem banha de porco e sem manteiga? Muito obrigado(a)!',
+      phonetic: 'Soe veh-gah-noo. Nown kohn-soo-moo nay-nyoom een-greh-dee-en-tee...'
+    },
+    halal: {
+      lang: 'Portuguese',
+      title: 'Cartão Halal',
+      text: 'Sigo uma alimentação Halal. Não posso consumir carne de porco (nem bacon, presunto ou banha) e nenhum molho ou prato preparado com álcool. Essa carne é certificada Halal?',
+      phonetic: 'See-goo oo-mah ah-lee-men-tah-sown Hah-lahl...'
+    },
+    jain: {
+      lang: 'Portuguese',
+      title: 'Cartão Vegetariano Estrito (Jain)',
+      text: 'Sou vegetariano estrito (Jain). Não como carne, peixe, ovos e nenhum legume de raiz como cebola, alho, batata e cenoura. É possível preparar um prato sem cebola e sem alho? Muito obrigado!',
+      phonetic: 'Soe veh-zheh-tah-ree-ah-noo eh-stree-too...'
+    }
   }
 };
 
