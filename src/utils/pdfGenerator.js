@@ -203,6 +203,39 @@ export function exportRelocationBinderPDF(userProfile, countryData, budgetData, 
     margin: { left: 14, right: 14 }
   });
 
+  // 5. Visa Process & Pathways
+  if (countryData.visaTypes && countryData.visaTypes.length > 0) {
+    doc.addPage();
+    startY = 20;
+
+    doc.setTextColor(126, 34, 206); // Purple
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`5. Visa Process & Legal Entry Pathways for ${countryData.name}`, 14, startY);
+    startY += 6;
+
+    const visaRows = countryData.visaTypes.map(v => [
+      v.name,
+      v.timeframe,
+      v.desc
+    ]);
+
+    doc.autoTable({
+      startY: startY,
+      head: [['Visa Type', 'Processing Time', 'Eligibility & Requirements']],
+      body: visaRows,
+      theme: 'grid',
+      headStyles: { fillColor: [126, 34, 206], textColor: 255 },
+      styles: { fontSize: 8, cellPadding: 3 },
+      columnStyles: {
+        0: { cellWidth: 50, fontStyle: 'bold' },
+        1: { cellWidth: 32, halign: 'center' },
+        2: { cellWidth: 100 }
+      },
+      margin: { left: 14, right: 14 }
+    });
+  }
+
   // Footer on each page
   const pageCount = doc.internal.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
