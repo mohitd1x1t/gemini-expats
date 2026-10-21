@@ -17,7 +17,8 @@ import {
   HelpCircle,
   Users,
   Baby,
-  User
+  User,
+  ChevronDown
 } from 'lucide-react';
 import { COUNTRY_VISA_DETAILS } from '../data/visaData';
 
@@ -162,30 +163,27 @@ export default function BudgetCalculator({
           </p>
         </div>
 
-        {/* Global Persona Selector Controls */}
-        <div className="flex items-center bg-slate-900/80 p-1.5 rounded-2xl border border-slate-700">
-          <button
-            onClick={() => onUpdatePersona('bachelor')}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-              !isFamily
-                ? 'bg-emerald-600 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <User className="w-3.5 h-3.5" />
-            <span>Bachelor / Solo</span>
-          </button>
-          <button
-            onClick={() => onUpdatePersona('family_kids')}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-              isFamily
-                ? 'bg-emerald-600 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <Baby className="w-3.5 h-3.5" />
-            <span>Family with Kids</span>
-          </button>
+        {/* Global Persona Selector Dropdown */}
+        <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-2xl border border-slate-700">
+          <label className="text-xs text-slate-400 font-medium flex items-center gap-1.5">
+            <Users className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Traveler Party:</span>
+          </label>
+          <div className="relative">
+            <select
+              value={userProfile.persona}
+              onChange={(e) => onUpdatePersona(e.target.value)}
+              className="appearance-none bg-slate-800 border border-emerald-500/50 hover:border-emerald-400 text-white font-bold text-xs rounded-xl pl-3 pr-8 py-1.5 focus:outline-none focus:ring-1 focus:ring-emerald-500 cursor-pointer shadow-sm transition-all"
+            >
+              <option value="bachelor" className="bg-slate-900 text-slate-100">🎒 Bachelor / Solo</option>
+              <option value="couple" className="bg-slate-900 text-slate-100">👫 Couple</option>
+              <option value="family_kids" className="bg-slate-900 text-slate-100">👨‍👩‍👧‍👦 Family with Kids</option>
+              <option value="family_pets" className="bg-slate-900 text-slate-100">🐾 Traveling with Pets</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-emerald-400">
+              <ChevronDown className="w-3.5 h-3.5" />
+            </div>
+          </div>
         </div>
       </div>
 

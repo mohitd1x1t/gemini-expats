@@ -27,7 +27,9 @@ import {
   UtensilsCrossed,
   HeartPulse,
   FileCheck2,
-  Bot
+  Bot,
+  ChevronDown,
+  Users
 } from 'lucide-react';
 
 const STORAGE_KEY_PROFILE = 'expat_compass_profile';
@@ -200,46 +202,41 @@ export default function App() {
         {/* Global Persona Filter Status Banner */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3.5 px-4 rounded-2xl bg-slate-900/90 border border-indigo-500/30 shadow-md">
           <div className="flex items-center gap-2.5">
-            <span className="text-lg">
+            <span className="text-xl">
               {userProfile.persona.includes('family') ? '👨‍👩‍👧‍👦' : userProfile.persona === 'couple' ? '👫' : userProfile.persona.includes('pet') ? '🐾' : '🎒'}
             </span>
             <div className="text-xs">
-              <span className="text-slate-400">Global Relocation Filter: </span>
+              <span className="text-slate-400">Global Relocation Mode: </span>
               <strong className="text-white capitalize">
                 {userProfile.persona.replace('_', ' ')}
               </strong>
-              <span className="text-indigo-300 ml-1.5 hidden sm:inline">
+              <span className="text-indigo-300 ml-1.5 hidden md:inline">
                 • Synchronized across Budget, Packing, House Hunting, Healthcare & Visas
               </span>
             </div>
           </div>
 
-          {/* Quick 1-Click Global Switcher */}
-          <div className="flex items-center gap-1 self-start sm:self-center">
-            {[
-              { id: 'bachelor', label: 'Bachelor', icon: '🎒' },
-              { id: 'couple', label: 'Couple', icon: '👫' },
-              { id: 'family_kids', label: 'Family with Kids', icon: '👨‍👩‍👧‍👦' },
-              { id: 'family_pets', label: 'With Pets', icon: '🐾' }
-            ].map(p => {
-              const isSelected = userProfile.persona === p.id ||
-                (p.id === 'family_kids' && userProfile.persona === 'family');
-              return (
-                <button
-                  key={p.id}
-                  onClick={() => updateGlobalPersona(p.id)}
-                  className={`px-2.5 py-1 rounded-xl text-[11px] font-bold transition-all border ${
-                    isSelected
-                      ? 'bg-indigo-600 border-indigo-500 text-white shadow-sm'
-                      : 'bg-slate-800/60 border-slate-700/60 text-slate-400 hover:text-white hover:bg-slate-800'
-                  }`}
-                  title={`Switch global report mode to ${p.label}`}
-                >
-                  <span className="mr-1">{p.icon}</span>
-                  <span>{p.label}</span>
-                </button>
-              );
-            })}
+          {/* Global Traveler Party Dropdown */}
+          <div className="flex items-center gap-2 self-start sm:self-center">
+            <label className="text-xs text-slate-400 font-medium hidden sm:flex items-center gap-1">
+              <Users className="w-3.5 h-3.5 text-indigo-400" />
+              <span>Traveler Party:</span>
+            </label>
+            <div className="relative">
+              <select
+                value={userProfile.persona}
+                onChange={(e) => updateGlobalPersona(e.target.value)}
+                className="appearance-none bg-slate-800 border border-indigo-500/50 hover:border-indigo-400 text-white font-bold text-xs rounded-xl pl-3 pr-8 py-1.5 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer shadow-sm transition-all"
+              >
+                <option value="bachelor" className="bg-slate-900 text-slate-100">🎒 Bachelor / Solo</option>
+                <option value="couple" className="bg-slate-900 text-slate-100">👫 Couple</option>
+                <option value="family_kids" className="bg-slate-900 text-slate-100">👨‍👩‍👧‍👦 Family with Kids</option>
+                <option value="family_pets" className="bg-slate-900 text-slate-100">🐾 Traveling with Pets</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-indigo-400">
+                <ChevronDown className="w-3.5 h-3.5" />
+              </div>
+            </div>
           </div>
         </div>
 

@@ -10,7 +10,8 @@ import {
   Users,
   Baby,
   User,
-  Dog
+  Dog,
+  ChevronDown
 } from 'lucide-react';
 
 export default function Navbar({
@@ -56,31 +57,27 @@ export default function Navbar({
           </div>
         </div>
 
-        {/* Global Persona Quick Filter (Active Everywhere!) */}
-        <div className="hidden lg:flex items-center bg-slate-950/80 border border-slate-700/80 rounded-2xl p-1 gap-1">
-          <span className="text-[10px] uppercase font-bold text-slate-400 px-2 flex items-center gap-1">
+        {/* Global Persona Quick Filter Dropdown */}
+        <div className="hidden lg:flex items-center bg-slate-800/80 border border-slate-700/80 rounded-xl px-2.5 py-1 text-xs gap-1.5 shadow-sm">
+          <label className="text-slate-400 flex items-center gap-1 text-[11px] font-semibold shrink-0">
             <Users className="w-3.5 h-3.5 text-indigo-400" />
-            Party:
-          </span>
-          {personas.map(p => {
-            const isActive = userProfile.persona === p.id ||
-              (p.id === 'family_kids' && userProfile.persona === 'family');
-            return (
-              <button
-                key={p.id}
-                onClick={() => onUpdatePersona(p.id)}
-                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-semibold transition-all ${
-                  isActive
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-bold'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-                }`}
-                title={`Switch global report mode to ${p.label}`}
-              >
-                <span>{p.icon}</span>
-                <span>{p.label}</span>
-              </button>
-            );
-          })}
+            <span>Party:</span>
+          </label>
+          <div className="relative">
+            <select
+              value={userProfile.persona}
+              onChange={(e) => onUpdatePersona(e.target.value)}
+              className="appearance-none bg-transparent text-white font-bold text-xs focus:outline-none cursor-pointer pr-6 py-0.5"
+            >
+              <option value="bachelor" className="bg-slate-900 text-slate-100">🎒 Bachelor / Solo</option>
+              <option value="couple" className="bg-slate-900 text-slate-100">👫 Couple</option>
+              <option value="family_kids" className="bg-slate-900 text-slate-100">👨‍👩‍👧‍👦 Family with Kids</option>
+              <option value="family_pets" className="bg-slate-900 text-slate-100">🐾 Traveling with Pets</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center text-indigo-400">
+              <ChevronDown className="w-3.5 h-3.5" />
+            </div>
+          </div>
         </div>
 
         {/* User Route Pill */}
