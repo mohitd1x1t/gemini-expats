@@ -94,7 +94,14 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY_USER);
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed?.email?.includes('alex.mercer')) {
+          localStorage.removeItem(STORAGE_KEY_USER);
+          return null;
+        }
+        return parsed;
+      }
     } catch (e) {}
     return null;
   });

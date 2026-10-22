@@ -27,6 +27,8 @@ export const EXPERIENCE_LEVELS = [
 // Country Benchmarks (Annual base figures in local currency for a Senior level)
 export const COUNTRY_SALARY_BENCHMARKS = {
   germany: {
+    id: 'germany',
+    name: 'Germany',
     currency: 'EUR',
     symbol: '€',
     seniorMedianBase: 84000,
@@ -56,6 +58,8 @@ export const COUNTRY_SALARY_BENCHMARKS = {
     ]
   },
   brazil: {
+    id: 'brazil',
+    name: 'Brazil',
     currency: 'BRL',
     symbol: 'R$',
     seniorMedianBase: 210000, // Annual CLT base (~R$ 16,150/mo x 13)
@@ -84,6 +88,8 @@ export const COUNTRY_SALARY_BENCHMARKS = {
     ]
   },
   uk: {
+    id: 'uk',
+    name: 'United Kingdom',
     currency: 'GBP',
     symbol: '£',
     seniorMedianBase: 90000,
@@ -112,6 +118,8 @@ export const COUNTRY_SALARY_BENCHMARKS = {
     ]
   },
   usa: {
+    id: 'usa',
+    name: 'United States',
     currency: 'USD',
     symbol: '$',
     seniorMedianBase: 185000,
@@ -141,6 +149,8 @@ export const COUNTRY_SALARY_BENCHMARKS = {
     ]
   },
   canada: {
+    id: 'canada',
+    name: 'Canada',
     currency: 'CAD',
     symbol: '$',
     seniorMedianBase: 132000,
@@ -168,6 +178,8 @@ export const COUNTRY_SALARY_BENCHMARKS = {
     ]
   },
   netherlands: {
+    id: 'netherlands',
+    name: 'Netherlands',
     currency: 'EUR',
     symbol: '€',
     seniorMedianBase: 88000,
@@ -195,6 +207,8 @@ export const COUNTRY_SALARY_BENCHMARKS = {
     ]
   },
   australia: {
+    id: 'australia',
+    name: 'Australia',
     currency: 'AUD',
     symbol: '$',
     seniorMedianBase: 155000,
@@ -222,6 +236,8 @@ export const COUNTRY_SALARY_BENCHMARKS = {
     ]
   },
   uae: {
+    id: 'uae',
+    name: 'United Arab Emirates',
     currency: 'AED',
     symbol: 'AED ',
     seniorMedianBase: 360000, // AED 30,000 / month
@@ -247,6 +263,8 @@ export const COUNTRY_SALARY_BENCHMARKS = {
     ]
   },
   singapore: {
+    id: 'singapore',
+    name: 'Singapore',
     currency: 'SGD',
     symbol: '$',
     seniorMedianBase: 150000, // SGD 12,500 / month
@@ -270,6 +288,8 @@ export const COUNTRY_SALARY_BENCHMARKS = {
     ]
   },
   japan: {
+    id: 'japan',
+    name: 'Japan',
     currency: 'JPY',
     symbol: '¥',
     seniorMedianBase: 10500000,
@@ -304,7 +324,9 @@ export function calculateSalaryBenchmark(roleId, experienceLevelId, countryId, c
   const country = COUNTRY_SALARY_BENCHMARKS[countryId] || COUNTRY_SALARY_BENCHMARKS.germany;
 
   // City multiplier
-  const cityMult = (city && country.cityMultipliers[city]) ? country.cityMultipliers[city] : 1.0;
+  const cityMult = (city && country.cityMultipliers && country.cityMultipliers[city])
+    ? country.cityMultipliers[city]
+    : 1.0;
 
   // Role specialization factor
   let roleFactor = 1.0;
@@ -317,7 +339,7 @@ export function calculateSalaryBenchmark(roleId, experienceLevelId, countryId, c
   const adjustedMedian = Math.round(country.seniorMedianBase * exp.factor * roleFactor * cityMult);
 
   // Derive percentiles
-  const p25 = Math.round(adjustedMedian * 0.85); // 25th percentile (below median)
+  const p25 = Math.round(adjustedMedian * 0.85); // 25th percentile (entry / below median)
   const p50 = adjustedMedian;                    // 50th percentile (market standard)
   const p75 = Math.round(adjustedMedian * 1.16); // 75th percentile (top tier tech)
   const p90 = Math.round(adjustedMedian * 1.35); // 90th percentile (elite multinationals)
@@ -326,6 +348,7 @@ export function calculateSalaryBenchmark(roleId, experienceLevelId, countryId, c
     role,
     exp,
     country,
+    countryName: country.name || 'Target Country',
     cityMult,
     currency: country.currency,
     symbol: country.symbol,
@@ -340,55 +363,58 @@ export function calculateSalaryBenchmark(roleId, experienceLevelId, countryId, c
 
 // Evaluate user's offered salary against the benchmark
 export function evaluateExpatOffer(offeredAmount, benchmark, persona = 'bachelor') {
-  const { p25, p50, p75, p90, visaThreshold, symbol, country } = benchmark;
+  const { p25, p50, p75, p90, visaThreshold, symbol, countryName, country } = benchmark;
+  const numOffer = Number(offeredAmount) || 0;
 
-  const diffFromMedian = Math.round(((offeredAmount - p50) / p50) * 100);
+  const diffFromMedian = p50 > 0 ? Math.round(((numOffer - p50) / p50) * 100) : 0;
   const isFamily = persona.toLowerCase().includes('family');
 
   let rating = 'fair';
-  let badgeLabel = 'Fair Market Range';
+  let badgeLabel = 'Within Market Median';
   let badgeColor = 'stone';
   let narrative = '';
 
-  if (offeredAmount >= p90) {
+  const countryDisplayName = countryName || country?.name || 'this destination';
+
+  if (numOffer >= p90) {
     rating = 'exceptional';
     badgeLabel = 'Top 10% Elite Offer';
     badgeColor = 'emerald';
-    narrative = `This offer sits in the top decile of compensation for this specialization in ${country.name}. You have an exceptional package with substantial bargaining power.`;
-  } else if (offeredAmount >= p75) {
+    narrative = `This offer sits in the top decile of compensation for ${benchmark.role.name} in ${countryDisplayName}. You have an exceptional package with substantial bargaining power.`;
+  } else if (numOffer >= p75) {
     rating = 'strong';
     badgeLabel = 'Above Market Standard';
     badgeColor = 'emerald';
-    narrative = `Your package is ${Math.abs(diffFromMedian)}% above the regional median. This matches high-tier tech companies and well-funded scale-ups.`;
-  } else if (offeredAmount >= p25) {
+    narrative = `Your package is ${Math.abs(diffFromMedian)}% above the regional median for ${countryDisplayName}. This matches high-tier tech companies and well-funded scale-ups.`;
+  } else if (numOffer >= p25) {
     rating = 'fair';
     badgeLabel = 'Within Market Median';
     badgeColor = 'stone';
-    narrative = `Your offer is in line with the standard market median for this seniority level. A solid, realistic base for living comfortably.`;
-  } else if (offeredAmount >= visaThreshold) {
+    narrative = `Your offer is in line with the standard regional median for a ${benchmark.exp.label} in ${countryDisplayName}. A solid, competitive base for living comfortably.`;
+  } else if (numOffer >= visaThreshold) {
     rating = 'below_average';
     badgeLabel = 'Below Market Average';
     badgeColor = 'amber';
-    narrative = `This offer is ${Math.abs(diffFromMedian)}% below regional tech averages. While it legally meets work visa criteria, you should negotiate for a relocation allowance or performance review in 6 months.`;
+    narrative = `This offer is ${Math.abs(diffFromMedian)}% below regional tech averages in ${countryDisplayName}. While it legally meets work visa criteria, you should negotiate for a relocation allowance or signing bonus.`;
   } else {
     rating = 'critical';
     badgeLabel = 'Visa Non-Compliance Risk';
     badgeColor = 'rose';
-    narrative = `Warning: This offer is below the official immigration threshold (${symbol}${visaThreshold.toLocaleString()}) for ${benchmark.visaName}. Immigration authorities may reject the work visa on wage dumping grounds!`;
+    narrative = `Warning: This offer is below the official immigration threshold (${symbol}${visaThreshold.toLocaleString()}) for the ${benchmark.visaName} in ${countryDisplayName}. Immigration authorities may reject the work visa on wage dumping grounds!`;
   }
 
   // Legal visa check
-  const meetsVisa = offeredAmount >= visaThreshold;
+  const meetsVisa = numOffer >= visaThreshold;
 
   // Estimated take-home
   const taxRate = isFamily ? country.taxEstimate.familyTaxRate : country.taxEstimate.singleTaxRate;
-  const annualTax = Math.round(offeredAmount * taxRate);
-  const annualNet = offeredAmount - annualTax;
-  const monthlyGross = Math.round(offeredAmount / 12);
+  const annualTax = Math.round(numOffer * taxRate);
+  const annualNet = numOffer - annualTax;
+  const monthlyGross = Math.round(numOffer / 12);
   const monthlyNet = Math.round(annualNet / 12);
 
   return {
-    offeredAmount,
+    offeredAmount: numOffer,
     diffFromMedian,
     rating,
     badgeLabel,

@@ -1,19 +1,16 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   TrendingUp,
   Award,
   ShieldCheck,
   AlertTriangle,
-  DollarSign,
   Briefcase,
   ChevronDown,
   Building2,
   CheckCircle2,
-  Info,
-  Scale,
-  Sparkles,
   Layers,
-  ArrowRight
+  ArrowRight,
+  RotateCcw
 } from 'lucide-react';
 import {
   IT_ROLES,
@@ -30,11 +27,11 @@ export default function SalaryBenchmark({
 }) {
   const isFamily = userProfile?.persona?.toLowerCase().includes('family');
 
-  // Local state for role and seniority
+  // Role and Seniority selectors
   const [selectedRoleId, setSelectedRoleId] = useState('backend_engineer');
   const [selectedExpId, setSelectedExpId] = useState('senior');
 
-  // Compute base benchmark
+  // Calculate market benchmark
   const benchmark = useMemo(() => {
     return calculateSalaryBenchmark(
       selectedRoleId,
@@ -44,35 +41,41 @@ export default function SalaryBenchmark({
     );
   }, [selectedRoleId, selectedExpId, countryData.id, userProfile.destinationCity]);
 
-  // Offered salary input state initialized to the 50th percentile median
+  // Offered salary input state
   const [offeredSalary, setOfferedSalary] = useState(() => benchmark.p50);
 
-  // Sync offered salary if country or role changes radically
-  const [prevBenchmarkP50, setPrevBenchmarkP50] = useState(benchmark.p50);
-  if (benchmark.p50 !== prevBenchmarkP50) {
-    setPrevBenchmarkP50(benchmark.p50);
-    setOfferedSalary(benchmark.p50);
-  }
+  // When destination country changes (different currency/scale), synchronize default
+  const [currentCountryId, setCurrentCountryId] = useState(countryData.id);
+  useEffect(() => {
+    if (countryData.id !== currentCountryId) {
+      setCurrentCountryId(countryData.id);
+      setOfferedSalary(benchmark.p50);
+    }
+  }, [countryData.id, currentCountryId, benchmark.p50]);
 
-  // Evaluation of current offer
+  // Evaluate current offer
   const evaluation = useMemo(() => {
     return evaluateExpatOffer(offeredSalary, benchmark, userProfile.persona);
   }, [offeredSalary, benchmark, userProfile.persona]);
 
-  // Pull local city rent & cost data from budget defaults
-  const cityBudget = CITY_BUDGET_BENCHMARKS[userProfile.destinationCity] || CITY_BUDGET_BENCHMARKS['Berlin'] || {
-    rent1BR: 1200,
-    rent3BR: 2100,
-    groceries: 400,
-    transitPass: 49
-  };
+  // Accurate living costs pulled from budget database
+  const cityBudget = CITY_BUDGET_BENCHMARKS[userProfile.destinationCity] || CITY_BUDGET_BENCHMARKS['Berlin'] || {};
+  const personaKey = isFamily ? 'family' : 'bachelor';
+  const personaBudget = cityBudget[personaKey] || cityBudget['bachelor'] || {};
 
-  const estimatedRent = isFamily ? (cityBudget.rent3BR || cityBudget.rent1BR * 1.6) : cityBudget.rent1BR;
-  const estimatedLivingCosts = (cityBudget.groceries || 350) + (cityBudget.transitPass || 60) + 300;
+  const estimatedRent = Number(personaBudget.rent) || (isFamily ? 2200 : 1200);
+  const estimatedLivingCosts = (Number(personaBudget.groceries) || 400) + (Number(personaBudget.transport) || 60) + (Number(personaBudget.utilities) || 180);
   const totalMonthlyExpenses = Math.round(estimatedRent + estimatedLivingCosts);
   const monthlySavingsPotential = Math.max(0, evaluation.monthlyNet - totalMonthlyExpenses);
 
   const currencySymbol = benchmark.symbol;
+  const sliderMin = Math.max(1000, Math.round(benchmark.p25 * 0.4));
+  const sliderMax = Math.round(benchmark.p90 * 1.8);
+  const sliderStep = benchmark.currency === 'JPY' ? 100000 : 1000;
+
+  // Percentage position on market bar for visual indicator
+  const clampedOffer = Math.max(sliderMin, Math.min(sliderMax, offeredSalary));
+  const marketPositionPercent = Math.round(((clampedOffer - sliderMin) / (sliderMax - sliderMin)) * 100);
 
   return (
     <div className="space-y-8 animate-fadeIn">
@@ -81,13 +84,13 @@ export default function SalaryBenchmark({
         <div>
           <div className="flex items-center gap-2 text-stone-500 font-mono text-[10px] uppercase tracking-[0.22em] mb-1.5">
             <TrendingUp className="w-3.5 h-3.5 text-stone-700" />
-            <span>Compensation Intelligence · IT & Tech Industry</span>
+            <span>Compensation Intelligence · IT & Tech Sector</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 tracking-tight font-normal">
-            Expat Salary & Market Benchmark for <em className="italic font-serif">{userProfile.destinationCity}</em>, {countryData.name} {countryData.flag}
+            Expat Salary Benchmark for <em className="italic font-serif">{userProfile.destinationCity}</em>, {countryData.name} {countryData.flag}
           </h2>
           <p className="text-xs sm:text-sm text-stone-500 mt-1">
-            Evaluate your job offer against regional tech market percentiles, statutory work visa thresholds, and net purchasing power.
+            Compare your compensation offer against verified tech market percentiles, statutory work visa thresholds, and living cost coverage.
           </p>
         </div>
 
@@ -154,7 +157,7 @@ export default function SalaryBenchmark({
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
               <div className="font-serif text-stone-900 text-base">Your Offered Annual Base Salary</div>
-              <p className="text-xs text-stone-500">Enter gross annual package before taxes in {benchmark.currency} ({currencySymbol})</p>
+              <p className="text-xs text-stone-500">Gross annual base package in {benchmark.currency} ({currencySymbol})</p>
             </div>
 
             <div className="flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-2xl px-4 py-2 self-start sm:self-auto">
@@ -162,30 +165,59 @@ export default function SalaryBenchmark({
               <input
                 type="number"
                 value={offeredSalary}
-                onChange={(e) => setOfferedSalary(Number(e.target.value) || 0)}
-                step="1000"
-                className="bg-transparent font-mono text-lg font-bold text-stone-900 focus:outline-none w-32"
+                onChange={(e) => setOfferedSalary(Math.max(0, Number(e.target.value) || 0))}
+                step={sliderStep}
+                className="bg-transparent font-mono text-lg font-bold text-stone-900 focus:outline-none w-36"
               />
               <span className="text-[10px] font-mono uppercase text-stone-400">/ yr</span>
             </div>
           </div>
 
           {/* Slider */}
-          <div className="space-y-1">
+          <div className="space-y-2">
             <input
               type="range"
-              min={Math.round(benchmark.p25 * 0.5)}
-              max={Math.round(benchmark.p90 * 1.5)}
-              step={1000}
-              value={offeredSalary}
+              min={sliderMin}
+              max={sliderMax}
+              step={sliderStep}
+              value={clampedOffer}
               onChange={(e) => setOfferedSalary(Number(e.target.value))}
               className="w-full h-1.5 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-stone-900"
             />
-            <div className="flex justify-between text-[10px] font-mono text-stone-400 pt-1">
-              <span>Low Range ({currencySymbol}{Math.round(benchmark.p25 * 0.5).toLocaleString()})</span>
+            <div className="flex justify-between text-[10px] font-mono text-stone-400">
+              <span>Min ({currencySymbol}{sliderMin.toLocaleString()})</span>
               <span>Regional Median ({currencySymbol}{benchmark.p50.toLocaleString()})</span>
-              <span>Top Tier ({currencySymbol}{Math.round(benchmark.p90 * 1.5).toLocaleString()})</span>
+              <span>Max ({currencySymbol}{sliderMax.toLocaleString()})</span>
             </div>
+          </div>
+
+          {/* Quick Preset Buttons */}
+          <div className="flex items-center gap-2 pt-1 flex-wrap">
+            <span className="text-[10px] font-mono uppercase text-stone-400">Quick Presets:</span>
+            <button
+              onClick={() => setOfferedSalary(benchmark.p25)}
+              className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-stone-100 hover:bg-stone-200 border border-stone-200 text-stone-700 transition-colors"
+            >
+              25th: {currencySymbol}{benchmark.p25.toLocaleString()}
+            </button>
+            <button
+              onClick={() => setOfferedSalary(benchmark.p50)}
+              className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-stone-100 hover:bg-stone-200 border border-stone-200 text-stone-700 font-bold transition-colors"
+            >
+              Median: {currencySymbol}{benchmark.p50.toLocaleString()}
+            </button>
+            <button
+              onClick={() => setOfferedSalary(benchmark.p75)}
+              className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-stone-100 hover:bg-stone-200 border border-stone-200 text-stone-700 transition-colors"
+            >
+              75th: {currencySymbol}{benchmark.p75.toLocaleString()}
+            </button>
+            <button
+              onClick={() => setOfferedSalary(benchmark.p90)}
+              className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-stone-100 hover:bg-stone-200 border border-stone-200 text-stone-700 transition-colors"
+            >
+              90th: {currencySymbol}{benchmark.p90.toLocaleString()}
+            </button>
           </div>
         </div>
       </div>
@@ -196,13 +228,13 @@ export default function SalaryBenchmark({
         <div className="lg:col-span-2 p-7 rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-6">
           <div className="flex items-center justify-between border-b border-stone-100 pb-4">
             <div>
-              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-400">Market Distribution</div>
+              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-400">Regional Distribution</div>
               <h3 className="text-xl font-serif text-stone-900 mt-0.5">
                 {benchmark.role.name} • {benchmark.exp.label}
               </h3>
             </div>
             <div className="text-right">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400">Regional Median</span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400">Market Median</span>
               <div className="font-serif text-xl font-medium text-stone-900">
                 {currencySymbol}{benchmark.p50.toLocaleString()}
               </div>
@@ -212,59 +244,75 @@ export default function SalaryBenchmark({
           {/* Percentile Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
             <div className={`p-4 rounded-2xl border transition-all ${
-              offeredSalary < benchmark.p50 && offeredSalary >= benchmark.p25
-                ? 'bg-stone-100 border-stone-900 ring-1 ring-stone-900'
-                : 'bg-stone-50 border-stone-200/80'
+              offeredSalary < benchmark.p50
+                ? 'bg-stone-900 text-white border-stone-900 shadow-md'
+                : 'bg-stone-50 border-stone-200/80 text-stone-900'
             }`}>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-stone-400">25th Percentile</div>
-              <div className="font-serif text-base font-semibold text-stone-800 mt-1">
+              <div className={`text-[10px] font-mono uppercase tracking-wider ${offeredSalary < benchmark.p50 ? 'text-stone-300' : 'text-stone-400'}`}>
+                25th Percentile
+              </div>
+              <div className="font-serif text-base font-semibold mt-1">
                 {currencySymbol}{benchmark.p25.toLocaleString()}
               </div>
-              <div className="text-[10px] text-stone-500 mt-0.5">Entry / Below Avg</div>
+              <div className={`text-[10px] mt-0.5 ${offeredSalary < benchmark.p50 ? 'text-stone-300' : 'text-stone-500'}`}>
+                Entry / Below Avg
+              </div>
             </div>
 
             <div className={`p-4 rounded-2xl border transition-all ${
               offeredSalary >= benchmark.p50 && offeredSalary < benchmark.p75
-                ? 'bg-stone-100 border-stone-900 ring-1 ring-stone-900'
-                : 'bg-stone-50 border-stone-200/80'
+                ? 'bg-stone-900 text-white border-stone-900 shadow-md'
+                : 'bg-stone-50 border-stone-200/80 text-stone-900'
             }`}>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-stone-500 font-bold">50th (Median)</div>
-              <div className="font-serif text-base font-bold text-stone-900 mt-1">
+              <div className={`text-[10px] font-mono uppercase tracking-wider font-bold ${offeredSalary >= benchmark.p50 && offeredSalary < benchmark.p75 ? 'text-stone-300' : 'text-stone-500'}`}>
+                50th (Median)
+              </div>
+              <div className="font-serif text-base font-bold mt-1">
                 {currencySymbol}{benchmark.p50.toLocaleString()}
               </div>
-              <div className="text-[10px] text-stone-600 mt-0.5 font-medium">Standard Market</div>
+              <div className={`text-[10px] mt-0.5 ${offeredSalary >= benchmark.p50 && offeredSalary < benchmark.p75 ? 'text-stone-300' : 'text-stone-600'}`}>
+                Standard Market
+              </div>
             </div>
 
             <div className={`p-4 rounded-2xl border transition-all ${
               offeredSalary >= benchmark.p75 && offeredSalary < benchmark.p90
-                ? 'bg-stone-100 border-stone-900 ring-1 ring-stone-900'
-                : 'bg-stone-50 border-stone-200/80'
+                ? 'bg-stone-900 text-white border-stone-900 shadow-md'
+                : 'bg-stone-50 border-stone-200/80 text-stone-900'
             }`}>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-stone-400">75th Percentile</div>
-              <div className="font-serif text-base font-semibold text-stone-800 mt-1">
+              <div className={`text-[10px] font-mono uppercase tracking-wider ${offeredSalary >= benchmark.p75 && offeredSalary < benchmark.p90 ? 'text-stone-300' : 'text-stone-400'}`}>
+                75th Percentile
+              </div>
+              <div className="font-serif text-base font-semibold mt-1">
                 {currencySymbol}{benchmark.p75.toLocaleString()}
               </div>
-              <div className="text-[10px] text-stone-500 mt-0.5">Top-Tier Tech</div>
+              <div className={`text-[10px] mt-0.5 ${offeredSalary >= benchmark.p75 && offeredSalary < benchmark.p90 ? 'text-stone-300' : 'text-stone-500'}`}>
+                Top-Tier Tech
+              </div>
             </div>
 
             <div className={`p-4 rounded-2xl border transition-all ${
               offeredSalary >= benchmark.p90
-                ? 'bg-stone-100 border-stone-900 ring-1 ring-stone-900'
-                : 'bg-stone-50 border-stone-200/80'
+                ? 'bg-stone-900 text-white border-stone-900 shadow-md'
+                : 'bg-stone-50 border-stone-200/80 text-stone-900'
             }`}>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-stone-400">90th Percentile</div>
-              <div className="font-serif text-base font-semibold text-stone-800 mt-1">
+              <div className={`text-[10px] font-mono uppercase tracking-wider ${offeredSalary >= benchmark.p90 ? 'text-stone-300' : 'text-stone-400'}`}>
+                90th Percentile
+              </div>
+              <div className="font-serif text-base font-semibold mt-1">
                 {currencySymbol}{benchmark.p90.toLocaleString()}
               </div>
-              <div className="text-[10px] text-stone-500 mt-0.5">Elite Multinationals</div>
+              <div className={`text-[10px] mt-0.5 ${offeredSalary >= benchmark.p90 ? 'text-stone-300' : 'text-stone-500'}`}>
+                Elite Multinationals
+              </div>
             </div>
           </div>
 
           {/* Visa Compliance Banner */}
           <div className={`p-4 rounded-2xl border flex items-start gap-3.5 ${
             evaluation.meetsVisa
-              ? 'bg-emerald-50/70 border-emerald-200 text-emerald-950'
-              : 'bg-rose-50/70 border-rose-200 text-rose-950'
+              ? 'bg-emerald-50/80 border-emerald-200 text-emerald-950'
+              : 'bg-rose-50/80 border-rose-200 text-rose-950'
           }`}>
             <div className="w-8 h-8 rounded-full bg-white border border-current/20 flex items-center justify-center shrink-0 mt-0.5">
               {evaluation.meetsVisa ? (
@@ -278,10 +326,10 @@ export default function SalaryBenchmark({
                 {evaluation.meetsVisa ? 'Work Visa Legal Threshold: Compliant' : 'Immigration Legal Warning: Salary Below Minimum Threshold'}
               </div>
               <p className="leading-relaxed opacity-90">
-                Official minimum requirement for <strong>{benchmark.visaName}</strong>: {currencySymbol}{benchmark.visaThreshold.toLocaleString()}/year.
+                Official statutory minimum for <strong>{benchmark.visaName}</strong> in {benchmark.countryName}: {currencySymbol}{benchmark.visaThreshold.toLocaleString()}/year.
                 {evaluation.meetsVisa
-                  ? ` Your offer of ${currencySymbol}${offeredSalary.toLocaleString()} safely exceeds the legal wage dumping threshold.`
-                  : ` Your offer of ${currencySymbol}${offeredSalary.toLocaleString()} is below the statutory minimum. The immigration authority may reject your work permit application.`}
+                  ? ` Your offer of ${currencySymbol}${offeredSalary.toLocaleString()} safely exceeds the legal threshold required for foreign specialist work authorization.`
+                  : ` Your offer of ${currencySymbol}${offeredSalary.toLocaleString()} is below the required legal salary threshold. The immigration authority may reject your work permit application on wage dumping grounds.`}
               </p>
             </div>
           </div>
@@ -399,7 +447,7 @@ export default function SalaryBenchmark({
       <div className="p-7 rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-5">
         <h3 className="font-serif text-lg text-stone-900 flex items-center gap-2">
           <Award className="w-4 h-4 text-stone-700" />
-          <span>Expat Relocation Benefits & Negotiation Playbook ({countryData.name})</span>
+          <span>Expat Relocation Benefits & Negotiation Playbook ({benchmark.countryName})</span>
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 text-xs text-stone-600">
