@@ -54,7 +54,7 @@ export default function DashboardOverview({
     {
       id: 'countdown',
       title: '1-Month Countdown & First 30 Days',
-      desc: 'Week-by-week departure tasks (T-30) and Day 1-30 arrival survival roadmap (Anmeldung, SIM, Bank).',
+      desc: `Week-by-week departure tasks (T-30) and arrival survival roadmap for ${countryData?.name || 'your destination'} (registration, SIM, banking).`,
       icon: Calendar,
       color: 'from-amber-500/20 to-orange-500/20 text-orange-400 border-orange-500/30',
       badge: 'Time Critical'
@@ -86,7 +86,7 @@ export default function DashboardOverview({
     {
       id: 'rules',
       title: 'Strict Local Laws & Fines',
-      desc: 'Unspoken rules that get expats fined: quiet hours (Ruhezeit), torrenting penalties, recycling, TV licenses.',
+      desc: `Crucial statutory regulations, steep municipal fines, and everyday workplace norms in ${countryData?.name || 'your destination'}.`,
       icon: ShieldAlert,
       color: 'from-red-500/20 to-rose-500/20 text-rose-400 border-rose-500/30',
       badge: 'High Importance'
@@ -94,7 +94,7 @@ export default function DashboardOverview({
     {
       id: 'housing',
       title: 'House Hunting & Scam Defense',
-      desc: 'Top verified portals (ImmoScout24, Rightmove, Funda), deposit rules, tenant dossier, and red flags.',
+      desc: `Top verified rental portals in ${countryData?.name || 'your destination'}, lease contracts, tenant dossier, and deposit safeguards.`,
       icon: Home,
       color: 'from-cyan-500/20 to-sky-500/20 text-cyan-400 border-cyan-500/30',
       badge: 'Portals & Leases'
@@ -110,7 +110,7 @@ export default function DashboardOverview({
     {
       id: 'healthcare',
       title: 'Healthcare & Health Insurance',
-      desc: 'Statutory vs Private insurance requirements, finding English-speaking Hausarzt/GP, and emergency steps.',
+      desc: `Insurance architecture, pediatric care, and finding English-speaking medical doctors in ${countryData?.name || 'your destination'}.`,
       icon: HeartPulse,
       color: 'from-pink-500/20 to-rose-500/20 text-pink-400 border-pink-500/30',
       badge: 'Mandatory'
@@ -118,7 +118,7 @@ export default function DashboardOverview({
     {
       id: 'visa',
       title: 'Visa & Document Legalization',
-      desc: 'EU Blue Card, Skilled Worker, Express Entry pathways, apostilles, sworn translations, and embassy prep.',
+      desc: `Official entry visas, legal document attestations, government fees, and biometric registration in ${countryData?.name || 'your destination'}.`,
       icon: FileCheck2,
       color: 'from-purple-500/20 to-violet-500/20 text-purple-400 border-purple-500/30',
       badge: 'Entry Clearance'

@@ -906,6 +906,1098 @@ export const COUNTRY_TIMELINES = {
         ]
       }
     ]
+  },
+
+  uae: {
+    countdown: [
+      {
+        week: 'Week 4 (T-30 to T-23 Days)',
+        title: 'Attestations & Medical Preparation',
+        focus: 'Document legalization through UAE Embassy and MOFA, and health records',
+        tasks: [
+          {
+            id: 'uae-w4-1',
+            title: 'Attest Degree and Civil Certificates via MOFA & UAE Embassy',
+            desc: 'UAE immigration strictly requires educational degrees, marriage, and birth certificates to be fully attested: home country foreign ministry, UAE Embassy in home country, and Ministry of Foreign Affairs (MOFA) in UAE.',
+            priority: 'critical'
+          },
+          {
+            id: 'uae-w4-2',
+            title: 'Medical Fitness Preparation & Health Clearance',
+            desc: 'UAE residency requires passing a mandatory medical screening (blood test for infectious diseases and chest X-ray for active tuberculosis). Ensure prior medical checkups are complete.',
+            priority: 'high'
+          },
+          {
+            id: 'uae-w4-3',
+            title: 'Order Multi-Currency Travel Card (AED Support)',
+            desc: 'Order a multi-currency card (Wise/Revolut) supporting United Arab Emirates Dirham (AED) to pay initial hotel deposits, taxi fares, and government fees without heavy foreign transaction surcharges.',
+            priority: 'high'
+          },
+          {
+            id: 'uae-w4-4',
+            title: 'Passport Validity Check (Minimum 6 Months)',
+            desc: 'Ensure passport has at least 6 months validity from expected date of arrival and at least 3 blank pages for UAE visa and residency stamping.',
+            priority: 'critical'
+          }
+        ]
+      },
+      {
+        week: 'Week 3 (T-22 to T-15 Days)',
+        title: 'Entry Permit & Temporary Accommodation',
+        focus: 'Securing the UAE Entry Permit (Pink Visa) and initial accommodation',
+        tasks: [
+          {
+            id: 'uae-w3-1',
+            title: 'Receive Official UAE Entry Permit (Pink Visa)',
+            desc: 'Your employer/sponsor applies for an electronic Entry Permit via MOHRE / GDRFA / ICP. Verify your name matches your passport letter-for-letter before flying.',
+            priority: 'critical'
+          },
+          {
+            id: 'uae-w3-2',
+            title: 'Book Temporary Furnished Accommodation in Dubai or Abu Dhabi',
+            desc: 'Book your first 2 to 4 weeks in a central district (e.g. Dubai Marina, Downtown, Business Bay, JLT, or Al Reem Island in Abu Dhabi). Ensure the property provides written booking confirmation.',
+            priority: 'critical'
+          },
+          {
+            id: 'uae-w3-3',
+            title: 'Review UAE Banned Medications List (MOHAP)',
+            desc: 'Certain prescription painkillers, sleeping pills, and ADHD stimulants are strictly controlled in the UAE. Check the Ministry of Health and Prevention (MOHAP) controlled drug list and obtain online import approval if needed.',
+            priority: 'critical'
+          }
+        ]
+      },
+      {
+        week: 'Week 2 (T-14 to T-8 Days)',
+        title: 'Pet Relocation & Home Resignation',
+        focus: 'Finalizing home affairs and preparing cargo/logistics',
+        tasks: [
+          {
+            id: 'uae-w2-1',
+            title: 'Submit Resignation & Obtain Employment Experience Letters',
+            desc: 'Serve formal notice to current employer. Collect stamped service letters, reference contacts, and last 6 months payslips for UAE banking and executive credit applications.',
+            priority: 'high'
+          },
+          {
+            id: 'uae-w2-2',
+            title: 'Driving License Verification for Reciprocal Conversion',
+            desc: 'Check if your home country license is on the UAE RTA approved exemption list (UK, USA, Canada, EU nations, Australia, Japan). If eligible, bring the physical original for instant conversion.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 1 (T-7 to T-0 Days)',
+        title: 'App Installation & Flight Departure',
+        focus: 'Digital setup and packing for Dubai / Abu Dhabi arrival',
+        tasks: [
+          {
+            id: 'uae-w1-1',
+            title: 'Download Essential UAE Digital Apps',
+            desc: 'Install UAE Pass (national digital identity), Dubai Now (municipal utilities and payments), Careem (ride-hailing and food delivery), and Nol Pay.',
+            priority: 'critical'
+          },
+          {
+            id: 'uae-w1-2',
+            title: 'Pack Original Legal Documents in Carry-On Bag',
+            desc: 'Keep attested degree certificates, marriage/birth certificates, printed Entry Permit, passport, and passport photos on white background in your carry-on backpack.',
+            priority: 'critical'
+          }
+        ]
+      }
+    ],
+    arrival: [
+      {
+        phase: 'Days 1 to 3',
+        title: 'Landing, SIM Card & Nol Smartcard',
+        badge: 'Landing & Connectivity',
+        tasks: [
+          {
+            id: 'uae-arr-1',
+            title: 'Collect Local UAE SIM Card at DXB / AUH Airport',
+            desc: 'Collect a local telecom SIM card (e& or du) at airport passport control. A local +971 phone number is essential for receiving OTPs from government portals, banks, and building security.',
+            timing: 'Day 1'
+          },
+          {
+            id: 'uae-arr-2',
+            title: 'Purchase Dubai Nol Card (Silver or Gold)',
+            desc: 'Purchase an RTA Nol Card at airport metro station for seamless travel on Dubai Metro, Dubai Tram, and city buses with automatic fare deduction.',
+            timing: 'Day 1-2'
+          },
+          {
+            id: 'uae-arr-3',
+            title: 'Check Into Temporary Lodging & Perform In-Country Status Change',
+            desc: 'If you entered on a tourist visa instead of an entry permit, employer will file an in-country Change of Status without requiring you to exit the country.',
+            timing: 'Day 2-3'
+          }
+        ]
+      },
+      {
+        phase: 'Week 1 (Days 4 to 7)',
+        title: 'Medical Fitness Screening & Emirates ID Biometrics',
+        badge: 'Legal Identity',
+        tasks: [
+          {
+            id: 'uae-arr-4',
+            title: 'Complete Mandatory Medical Fitness Screening',
+            desc: 'Visit an authorized DHA Medical Fitness Centre (e.g. Al Muhaisnah or Smart Salem VIP center) for mandatory blood test and chest X-ray screening.',
+            timing: 'Days 4-5'
+          },
+          {
+            id: 'uae-arr-5',
+            title: 'Attend ICP Emirates ID Biometric Enrollment',
+            desc: 'Visit an ICP (Federal Authority for Identity and Citizenship) biometric center for fingerprint scanning, facial photography, and retina capture.',
+            timing: 'Days 5-7'
+          },
+          {
+            id: 'uae-arr-6',
+            title: 'Office Orientation & MOHRE Contract Signing',
+            desc: 'Report to your corporate office or Free Zone authority. Sign your standard MOHRE tripartite employment contract detailing salary and benefits.',
+            timing: 'Days 4-7'
+          }
+        ]
+      },
+      {
+        phase: 'Week 2 (Days 8 to 14)',
+        title: 'Emirates ID Delivery, UAE Pass & Bank Account',
+        badge: 'Financial Foundation',
+        tasks: [
+          {
+            id: 'uae-arr-7',
+            title: 'Receive Digital Residency Visa & Physical Emirates ID',
+            desc: 'GDRFA/ICP issues your digital residency visa. Your physical Emirates ID smartcard is delivered via Emirates Post to your registered address.',
+            timing: 'Days 8-10'
+          },
+          {
+            id: 'uae-arr-8',
+            title: 'Activate UAE Pass Digital National Identity',
+            desc: 'Register on the UAE Pass smartphone app using your new Emirates ID card and facial verification. Unlocks 100% of municipal and federal digital services.',
+            timing: 'Days 9-11'
+          },
+          {
+            id: 'uae-arr-9',
+            title: 'Open UAE Bank Account (Zero Minimum Balance / Digital)',
+            desc: 'Open a local checking/salary account with Emirates NBD, ADCB, FAB, or Wio digital bank using your Emirates ID and salary certificate.',
+            timing: 'Days 10-14'
+          }
+        ]
+      },
+      {
+        phase: 'Week 3 (Days 15 to 21)',
+        title: 'Long-Term Housing, Cheques & Ejari Registration',
+        badge: 'Permanent Housing',
+        tasks: [
+          {
+            id: 'uae-arr-10',
+            title: 'House Hunting on Property Finder & Bayut',
+            desc: 'Tour verified properties in your target neighborhoods. Check building amenities (pool, gym, covered parking, chiller free status).',
+            timing: 'Days 15-18'
+          },
+          {
+            id: 'uae-arr-11',
+            title: 'Issue Rent Cheques & Register Ejari Lease',
+            desc: 'In the UAE, rent is paid via post-dated bank cheques (1 to 4 cheques per year). Register your unified tenancy contract on the official Ejari system (vital for DEWA and family visas).',
+            timing: 'Days 18-21'
+          }
+        ]
+      },
+      {
+        phase: 'Week 4 (Days 22 to 30)',
+        title: 'Utilities, Driving License & Family Visas',
+        badge: 'Settling In',
+        tasks: [
+          {
+            id: 'uae-arr-12',
+            title: 'Connect DEWA (Dubai Electricity & Water) Online',
+            desc: 'DEWA is activated automatically upon Ejari registration. Pay the security deposit (AED 2,000 for apartment / AED 4,000 for villa) online.',
+            timing: 'Day 22'
+          },
+          {
+            id: 'uae-arr-13',
+            title: 'Exchange Driving License at RTA & Get Salik Tag',
+            desc: 'Visit an RTA Customer Happiness Centre with eye test results and your home license to receive your physical UAE Driving License. Purchase a Salik toll tag for your car.',
+            timing: 'Days 23-26'
+          },
+          {
+            id: 'uae-arr-14',
+            title: 'Sponsor Family Dependents for UAE Residence Visas',
+            desc: 'Using your Emirates ID, salary certificate, and Ejari tenancy contract, apply for dependent residence visas for spouse and children via Amer Centre or ICP portal.',
+            timing: 'Days 25-30'
+          }
+        ]
+      }
+    ]
+  },
+
+  singapore: {
+    countdown: [
+      {
+        week: 'Week 4 (T-30 to T-23 Days)',
+        title: 'MOM Educational Verification & COMPASS',
+        focus: 'Ministry of Manpower degree screening and initial preparations',
+        tasks: [
+          {
+            id: 'sg-w4-1',
+            title: 'Submit Degree to MOM-Approved Verification Agency',
+            desc: 'Singapore MOM requires candidate degrees to be verified through accredited background screening agencies (Dataflow, Cisive, HireRight) to fulfill COMPASS C2 criteria.',
+            priority: 'critical'
+          },
+          {
+            id: 'sg-w4-2',
+            title: 'Notify Home Banks & Prepare Multi-Currency Card (SGD Support)',
+            desc: 'Order a multi-currency card (Wise/Revolut) supporting Singapore Dollars (SGD) for instant fee payments and local tap-to-pay transit.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 3 (T-22 to T-15 Days)',
+        title: 'In-Principle Approval (IPA) & Accommodation',
+        focus: 'Receiving the IPA letter and booking initial stay',
+        tasks: [
+          {
+            id: 'sg-w3-1',
+            title: 'Receive MOM In-Principle Approval (IPA) Letter',
+            desc: 'Your employer receives the IPA letter via myMOM. Print the full document; it acts as an official single-entry visa for Singapore.',
+            priority: 'critical'
+          },
+          {
+            id: 'sg-w3-2',
+            title: 'Book Serviced Apartment or Temporary Stay',
+            desc: 'Book temporary lodging in a convenient district (Tanjong Pagar, Novena, River Valley). Note that Airbnb short-term rentals under 3 months are strictly prohibited in Singapore private residential properties.',
+            priority: 'critical'
+          }
+        ]
+      },
+      {
+        week: 'Week 2 (T-14 to T-8 Days)',
+        title: 'Employment Resignation & Vital Records',
+        focus: 'Finalizing affairs back home',
+        tasks: [
+          {
+            id: 'sg-w2-1',
+            title: 'Legalize Marriage & Birth Certificates for DP Sponsorship',
+            desc: 'If relocating with family, ensure marriage and child birth certificates are translated into English by a certified translator or notary public.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 1 (T-7 to T-0 Days)',
+        title: 'Arrival Card (SGAC) & Packing',
+        focus: 'Electronic declaration and travel readiness',
+        tasks: [
+          {
+            id: 'sg-w1-1',
+            title: 'Submit Singapore Arrival Card (SGAC) Online',
+            desc: 'Submit the electronic SG Arrival Card with health declaration on the ICA portal within 3 days prior to arriving at Singapore Changi Airport.',
+            priority: 'critical'
+          },
+          {
+            id: 'sg-w1-2',
+            title: 'Pack Original Degree and IPA in Cabin Luggage',
+            desc: 'Carry original degree certificates, passport, IPA letter, and employment contract in your carry-on luggage for immigration inspection.',
+            priority: 'critical'
+          }
+        ]
+      }
+    ],
+    arrival: [
+      {
+        phase: 'Days 1 to 3',
+        title: 'Landing, Changi SIM & SimplyGo Transit',
+        badge: 'Landing & Connectivity',
+        tasks: [
+          {
+            id: 'sg-arr-1',
+            title: 'Pick Up Local Tourist/Postpaid SIM at Changi Airport',
+            desc: 'Pick up a local SIM (Singtel, StarHub, M1). A local Singapore +65 phone number is required for Singpass SMS notifications.',
+            timing: 'Day 1'
+          },
+          {
+            id: 'sg-arr-2',
+            title: 'Tap SimplyGo on MRT & Public Buses',
+            desc: 'You can tap directly onto MRT trains and public buses with your contactless bank card, Apple Pay, or EZ-Link card.',
+            timing: 'Day 1-2'
+          }
+        ]
+      },
+      {
+        phase: 'Week 1 (Days 4 to 7)',
+        title: 'Pass Issuance & EPSC Biometrics',
+        badge: 'Work Pass Registration',
+        tasks: [
+          {
+            id: 'sg-arr-3',
+            title: 'Employer Issues Pass via myMOM Portal',
+            desc: 'Upon landing, employer requests card issuance on myMOM and receives the Notification Letter allowing you to work immediately.',
+            timing: 'Days 4-5'
+          },
+          {
+            id: 'sg-arr-4',
+            title: 'Attend Biometrics Appointment at MOM EPSC',
+            desc: 'Visit the Employment Pass Services Centre (EPSC) at Riverside Walk for fingerprint registration and photo capture.',
+            timing: 'Days 5-7'
+          }
+        ]
+      },
+      {
+        phase: 'Week 2 (Days 8 to 14)',
+        title: 'EP Smartcard, Singpass & Local Banking',
+        badge: 'Digital Identity & Finance',
+        tasks: [
+          {
+            id: 'sg-arr-5',
+            title: 'Receive Physical Employment Pass Smartcard',
+            desc: 'Your EP smartcard is delivered to your employer\'s registered address within 4 business days. Download SGWorkPass app.',
+            timing: 'Days 8-10'
+          },
+          {
+            id: 'sg-arr-6',
+            title: 'Set Up Singpass Digital National Identity',
+            desc: 'Register for Singpass on the app using your FIN number. Unlocks all digital government transactions, tax filings, and banking.',
+            timing: 'Days 9-11'
+          },
+          {
+            id: 'sg-arr-7',
+            title: 'Open Singapore Bank Account (DBS, OCBC, UOB)',
+            desc: 'Open an everyday checking and savings account via Singpass MyInfo verification for instant approval.',
+            timing: 'Days 10-14'
+          }
+        ]
+      },
+      {
+        phase: 'Week 3 (Days 15 to 21)',
+        title: 'Long-Term Housing on PropertyGuru',
+        badge: 'Permanent Housing',
+        tasks: [
+          {
+            id: 'sg-arr-8',
+            title: 'Search Condominiums or HDB Flats on PropertyGuru',
+            desc: 'Inspect target units. For HDB rentals, confirm landlord has valid HDB approval and ethnic integration quota compliance for foreign tenants.',
+            timing: 'Days 15-18'
+          },
+          {
+            id: 'sg-arr-9',
+            title: 'Sign Letter of Intent (LOI) & Tenancy Agreement (TA)',
+            desc: 'Submit LOI with 1 month good faith deposit. Review standard CEA tenancy agreement with 1-2 months security deposit and diplomatic clause.',
+            timing: 'Days 18-21'
+          }
+        ]
+      },
+      {
+        phase: 'Week 4 (Days 22 to 30)',
+        title: 'Utilities & Dependant\'s Pass (DP)',
+        badge: 'Settling In',
+        tasks: [
+          {
+            id: 'sg-arr-10',
+            title: 'Open SP Services Account for Water & Electricity',
+            desc: 'Download the SP Utilities app to open your residential utilities account with digital meter activation.',
+            timing: 'Day 22'
+          },
+          {
+            id: 'sg-arr-11',
+            title: 'Complete Dependant\'s Pass Registration for Family',
+            desc: 'Attend family biometrics at EPSC and receive DP smartcards for spouse and children.',
+            timing: 'Days 23-30'
+          }
+        ]
+      }
+    ]
+  },
+
+  australia: {
+    countdown: [
+      {
+        week: 'Week 4 (T-30 to T-23 Days)',
+        title: 'VEVO Visa Check & Health Examination',
+        focus: 'Department of Home Affairs verification and medicals',
+        tasks: [
+          {
+            id: 'aus-w4-1',
+            title: 'Verify Visa Grant on VEVO (Visa Entitlement Verification Online)',
+            desc: 'Check your Subclass 482 / 189 / 190 visa grant letter and confirm full work rights and validity on the official Home Affairs VEVO portal.',
+            priority: 'critical'
+          },
+          {
+            id: 'aus-w4-2',
+            title: 'Arrange Overseas Visitor Health Cover (OVHC)',
+            desc: 'If on Subclass 482, maintain compliant OVHC (Bupa, Medibank, Allianz Care) meeting visa condition 8501 for you and all dependents.',
+            priority: 'critical'
+          }
+        ]
+      },
+      {
+        week: 'Week 3 (T-22 to T-15 Days)',
+        title: 'Accommodation & Banking Setup',
+        focus: 'Securing lodging in Sydney, Melbourne, Brisbane',
+        tasks: [
+          {
+            id: 'aus-w3-1',
+            title: 'Book Initial Temporary Stay',
+            desc: 'Book temporary lodging in a vetted neighborhood with train/tram connectivity. Confirm landlord will provide proof of address.',
+            priority: 'high'
+          },
+          {
+            id: 'aus-w3-2',
+            title: 'Order Multi-Currency Card (AUD Support)',
+            desc: 'Order a multi-currency card (Wise) with Australian Dollar balance for tap-and-go payments upon landing.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 2 (T-14 to T-8 Days)',
+        title: 'Employment Resignation & Documents',
+        focus: 'Finalizing affairs back home',
+        tasks: [
+          {
+            id: 'aus-w2-1',
+            title: 'Assemble NAATI Certified Civil Documents',
+            desc: 'Ensure marriage and birth certificates not in English have official NAATI certified translations.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 1 (T-7 to T-0 Days)',
+        title: 'Biosecurity Customs Awareness & Flight',
+        focus: 'Australian Border Force compliance',
+        tasks: [
+          {
+            id: 'aus-w1-1',
+            title: 'Review Strict Biosecurity Declaration Rules',
+            desc: 'Australia enforces world-leading biosecurity laws. Never pack fresh fruit, meat, dairy, seeds, or uncleaned hiking boots. Declare all food items on incoming passenger card.',
+            priority: 'critical'
+          }
+        ]
+      }
+    ],
+    arrival: [
+      {
+        phase: 'Days 1 to 3',
+        title: 'Landing, SIM Card & Public Transit Pass',
+        badge: 'Landing & Connectivity',
+        tasks: [
+          {
+            id: 'aus-arr-1',
+            title: 'Buy Local Australian SIM Card at Airport',
+            desc: 'Collect a local mobile SIM (Telstra, Optus, or Vodafone). An Australian +61 number is required for myGov and banking.',
+            timing: 'Day 1'
+          },
+          {
+            id: 'aus-arr-2',
+            title: 'Transit Card / Contactless Tap',
+            desc: 'Get an Opal Card in Sydney, myki in Melbourne, or simply tap your contactless bank card directly on gates and buses.',
+            timing: 'Day 1-2'
+          }
+        ]
+      },
+      {
+        phase: 'Week 1 (Days 4 to 7)',
+        title: 'Tax File Number (TFN) & First Day at Work',
+        badge: 'Tax & Employment',
+        tasks: [
+          {
+            id: 'aus-arr-3',
+            title: 'Apply Online for Tax File Number (TFN) via ATO',
+            desc: 'Apply online on the Australian Taxation Office (ATO) website once physically inside Australia. Provide TFN to employer within 28 days to avoid highest marginal tax withholding.',
+            timing: 'Days 4-5'
+          },
+          {
+            id: 'aus-arr-4',
+            title: 'Report to Employer & Superannuation Setup',
+            desc: 'First day at workplace: submit TFN, passport, and elect your Superannuation fund (e.g. AustralianSuper) for 11.5% mandatory employer retirement contributions.',
+            timing: 'Days 4-7'
+          }
+        ]
+      },
+      {
+        phase: 'Week 2 (Days 8 to 14)',
+        title: 'Australian Banking & Medicare Enrollment',
+        badge: 'Finance & Healthcare',
+        tasks: [
+          {
+            id: 'aus-arr-5',
+            title: 'Activate Australian Bank Account (Big 4)',
+            desc: 'Visit a branch of CommBank, ANZ, NAB, or Westpac with your passport to complete 100-point ID check and receive debit card.',
+            timing: 'Days 8-10'
+          },
+          {
+            id: 'aus-arr-6',
+            title: 'Enroll in Medicare (if Eligible)',
+            desc: 'Permanent residents or citizens from reciprocal healthcare countries (UK, Netherlands, Italy, etc.) register at Services Australia for a Medicare card.',
+            timing: 'Days 10-14'
+          }
+        ]
+      },
+      {
+        phase: 'Week 3 (Days 15 to 21)',
+        title: 'Long-Term Rentals on Realestate & Domain',
+        badge: 'Permanent Housing',
+        tasks: [
+          {
+            id: 'aus-arr-7',
+            title: 'Inspect Rentals & Submit 1Form / 2Apply Dossier',
+            desc: 'Attend Saturday rental inspections. Submit electronic application with 100 points of ID, employer letter, and payslips.',
+            timing: 'Days 15-18'
+          },
+          {
+            id: 'aus-arr-8',
+            title: 'Pay 4 Weeks Bond to State Rental Bonds Board',
+            desc: 'Security bond (typically 4 weeks rent) is held safely by the government statutory authority (Rental Bonds Online).',
+            timing: 'Days 18-21'
+          }
+        ]
+      },
+      {
+        phase: 'Week 4 (Days 22 to 30)',
+        title: 'Utilities & Driver License Exchange',
+        badge: 'Settling In',
+        tasks: [
+          {
+            id: 'aus-arr-9',
+            title: 'Connect Electricity, Gas & Internet',
+            desc: 'Connect electricity and NBN broadband through providers like AGL, Origin, or Aussie Broadband.',
+            timing: 'Day 22'
+          },
+          {
+            id: 'aus-arr-10',
+            title: 'Exchange Driver License at State Service Centre',
+            desc: 'Visit Service NSW / VicRoads within 3 to 6 months to convert foreign license to state driver license.',
+            timing: 'Days 23-30'
+          }
+        ]
+      }
+    ]
+  },
+
+  japan: {
+    countdown: [
+      {
+        week: 'Week 4 (T-30 to T-23 Days)',
+        title: 'Certificate of Eligibility (CoE) & Visa Stamping',
+        focus: 'Securing the CoE and Japanese consular visa',
+        tasks: [
+          {
+            id: 'jp-w4-1',
+            title: 'Receive Certificate of Eligibility (CoE) from Employer',
+            desc: 'Confirm employer has obtained your electronic CoE from the Regional Immigration Services Bureau in Japan.',
+            priority: 'critical'
+          },
+          {
+            id: 'jp-w4-2',
+            title: 'Apply for Japanese Entry Visa at Consulate',
+            desc: 'Submit your passport, CoE, and application form to the local Japanese embassy or consulate to receive your visa sticker.',
+            priority: 'critical'
+          }
+        ]
+      },
+      {
+        week: 'Week 3 (T-22 to T-15 Days)',
+        title: 'Temporary Apartment & Personal Seal (Hanko)',
+        focus: 'Lodging in Tokyo / Osaka and personal identification seal',
+        tasks: [
+          {
+            id: 'jp-w3-1',
+            title: 'Book Monthly Furnished Apartment',
+            desc: 'Book a monthly apartment (Oakwood, Metroresidences, Fontana) where landlord permits address registration.',
+            priority: 'critical'
+          },
+          {
+            id: 'jp-w3-2',
+            title: 'Order Personal Seal (Hanko / Inkan) in Katakana',
+            desc: 'While signatures are increasingly accepted, a wooden or titanium name stamp (Hanko) in Katakana is highly recommended for official Japanese banking and rental contracts.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 2 (T-14 to T-8 Days)',
+        title: 'Flight Booking to Major International Airport',
+        focus: 'Ensuring on-the-spot Residence Card issuance',
+        tasks: [
+          {
+            id: 'jp-w2-1',
+            title: 'Book Flight into Major International Airport',
+            desc: 'Fly into Tokyo Narita (NRT), Tokyo Haneda (HND), Kansai (KIX), or Chubu (NGO) airport where your physical Residence Card (Zairyū Card) is issued instantly at immigration control.',
+            priority: 'critical'
+          }
+        ]
+      },
+      {
+        week: 'Week 1 (T-7 to T-0 Days)',
+        title: 'Cash Preparation & Japan Digital Travel Apps',
+        focus: 'Yen cash and digital navigation',
+        tasks: [
+          {
+            id: 'jp-w1-1',
+            title: 'Convert Japanese Yen Cash for Initial Days',
+            desc: 'Carry ¥30,000 to ¥50,000 in cash. While cashless payment is common, many ramen shops, shrines, and coin laundromats accept cash only.',
+            priority: 'high'
+          },
+          {
+            id: 'jp-w1-2',
+            title: 'Install Translation and Transit Apps',
+            desc: 'Download Google Translate (with Japanese offline camera dictionary) and Japan Travel by NAVITIME for train routing.',
+            priority: 'high'
+          }
+        ]
+      }
+    ],
+    arrival: [
+      {
+        phase: 'Days 1 to 3',
+        title: 'Landing, Zairyū Card & Mobile Suica',
+        badge: 'Landing & Connectivity',
+        tasks: [
+          {
+            id: 'jp-arr-1',
+            title: 'Receive Biometric Residence Card (Zairyū Card) at Airport',
+            desc: 'Present your passport and CoE at airport immigration gate to have your physical biometric Residence Card printed on the spot.',
+            timing: 'Day 1'
+          },
+          {
+            id: 'jp-arr-2',
+            title: 'Pick Up Pocket WiFi or Tourist SIM at Airport',
+            desc: 'Collect pre-ordered Pocket WiFi router or data SIM card from airport pickup counter.',
+            timing: 'Day 1'
+          },
+          {
+            id: 'jp-arr-3',
+            title: 'Add Mobile Suica or Pasmo to Apple Wallet / Google Pay',
+            desc: 'Add a digital transit IC card directly to your smartphone wallet for seamless tap-in across Tokyo Metro, JR East lines, and combinis (7-Eleven, Lawson).',
+            timing: 'Day 1-2'
+          }
+        ]
+      },
+      {
+        phase: 'Week 1 (Days 4 to 7)',
+        title: 'Ward Office Registration (Jūminhyō) & Health Insurance',
+        badge: 'Municipal Foundation',
+        tasks: [
+          {
+            id: 'jp-arr-4',
+            title: 'Register Address at Local City/Ward Office (Kuyakusho)',
+            desc: 'Visit your local ward office (e.g. Shinjuku, Shibuya, Minato) within 14 days. Staff will print your official address on the back of your Residence Card and create your Resident Certificate (Jūminhyō).',
+            timing: 'Days 4-5'
+          },
+          {
+            id: 'jp-arr-5',
+            title: 'Enroll in National Health Insurance & National Pension',
+            desc: 'Enroll in National Health Insurance (NHI) and National Pension (Kokumin Nenkin) at the ward office counter if not enrolled directly via employer Shakai Hoken.',
+            timing: 'Days 4-6'
+          }
+        ]
+      },
+      {
+        phase: 'Week 2 (Days 8 to 14)',
+        title: 'My Number Card & Japanese Bank Account',
+        badge: 'Finance & Identity',
+        tasks: [
+          {
+            id: 'jp-arr-6',
+            title: 'Receive My Number (Individual Number) Notification',
+            desc: 'Collect your My Number letter mailed to your registered address for official tax and payroll reporting.',
+            timing: 'Days 8-10'
+          },
+          {
+            id: 'jp-arr-7',
+            title: 'Open Japanese Bank Account (Japan Post Bank / Yūcho Ginko)',
+            desc: 'During the first 6 months, expats are classed as "non-resident" for banking. Open an account with Japan Post Bank (Yūcho Ginko) or SMBC Prestia using your Residence Card.',
+            timing: 'Days 10-14'
+          }
+        ]
+      },
+      {
+        phase: 'Week 3 (Days 15 to 21)',
+        title: 'Long-Term Housing via Suumo & Expat Agencies',
+        badge: 'Permanent Housing',
+        tasks: [
+          {
+            id: 'jp-arr-8',
+            title: 'Search Apartments on Suumo / GaijinPot Apartments',
+            desc: 'Work with an expat-friendly real estate agent. Understand initial upfront costs: Key money (Reikin), Deposit (Shikikin), and Guarantor Company fee.',
+            timing: 'Days 15-18'
+          },
+          {
+            id: 'jp-arr-9',
+            title: 'Sign Lease Agreement with Hanko Stamp',
+            desc: 'Sign the two-year lease agreement using your Hanko stamp and provide copies of Jūminhyō and employment contract.',
+            timing: 'Days 18-21'
+          }
+        ]
+      },
+      {
+        phase: 'Week 4 (Days 22 to 30)',
+        title: 'Utilities & Mobile Voice Contract',
+        badge: 'Settling In',
+        tasks: [
+          {
+            id: 'jp-arr-10',
+            title: 'Connect TEPCO Electricity & Gas',
+            desc: 'Call utility providers to open electricity and gas accounts. Gas activation requires an in-person technician visit to open the valve.',
+            timing: 'Day 22'
+          },
+          {
+            id: 'jp-arr-11',
+            title: 'Switch to Local Voice SIM (IIJmio, Linemo, ahamo)',
+            desc: 'With your Jūminhyō, Japanese bank account, and Residence Card, sign up for a permanent Japanese mobile voice plan.',
+            timing: 'Days 23-30'
+          }
+        ]
+      }
+    ]
+  },
+
+  usa: {
+    countdown: [
+      {
+        week: 'Week 4 (T-30 to T-23 Days)',
+        title: 'Form I-797 Approval & DS-160 Filing',
+        focus: 'USCIS petition verification and consular appointment',
+        tasks: [
+          {
+            id: 'usa-w4-1',
+            title: 'Verify Form I-797 H-1B Approval Notice',
+            desc: 'Confirm your employer\'s legal counsel has sent your original Form I-797 Notice of Action and complete I-129 petition copy.',
+            priority: 'critical'
+          },
+          {
+            id: 'usa-w4-2',
+            title: 'Submit Online DS-160 Form and Pay Consular Fee ($205)',
+            desc: 'Complete the Department of State DS-160 application online and schedule your visa interview at the nearest US Embassy or Consulate.',
+            priority: 'critical'
+          }
+        ]
+      },
+      {
+        week: 'Week 3 (T-22 to T-15 Days)',
+        title: 'Consular Interview & Temporary Housing',
+        focus: 'Receiving visa foil and securing initial US lodging',
+        tasks: [
+          {
+            id: 'usa-w3-1',
+            title: 'Attend US Consular Visa Interview',
+            desc: 'Bring I-797 original, employer support letter, bachelor/master degree diplomas with academic evaluation, and DS-160 confirmation to the interview.',
+            priority: 'critical'
+          },
+          {
+            id: 'usa-w3-2',
+            title: 'Book Short-Term Lodging in Destination City',
+            desc: 'Book your first 2 to 4 weeks in a central location. Verify host will allow receiving mail and package deliveries.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 2 (T-14 to T-8 Days)',
+        title: 'Financial Notifications & Packing',
+        focus: 'US banking preparation and travel cards',
+        tasks: [
+          {
+            id: 'usa-w2-1',
+            title: 'Order Multi-Currency Card (USD Support)',
+            desc: 'Order a multi-currency card (Wise/Revolut) with US Dollar balance to handle initial security deposits and everyday expenses without foreign transaction fees.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 1 (T-7 to T-0 Days)',
+        title: 'Travel Timing & Documents in Hand',
+        focus: '10-Day early entry window compliance',
+        tasks: [
+          {
+            id: 'usa-w1-1',
+            title: 'Check 10-Day Early Entry Rule',
+            desc: 'By US statutory law, H-1B visa holders may enter the United States up to 10 days before the start date indicated on Form I-797, but cannot work until the official start date.',
+            priority: 'critical'
+          },
+          {
+            id: 'usa-w1-2',
+            title: 'Assemble I-797, Degrees, and Offer in Carry-On',
+            desc: 'CBP border officers at US Port of Entry will inspect your physical I-797 approval, visa stamp, and job offer letter. Never pack them in checked baggage.',
+            priority: 'critical'
+          }
+        ]
+      }
+    ],
+    arrival: [
+      {
+        phase: 'Days 1 to 3',
+        title: 'Landing, Form I-94 & Mobile SIM',
+        badge: 'Landing & Connectivity',
+        tasks: [
+          {
+            id: 'usa-arr-1',
+            title: 'Download Electronic Form I-94 Arrival Record',
+            desc: 'Visit i94.cbp.dhs.gov within 24 hours of landing to retrieve your electronic I-94 arrival record proving legal status and authorized stay duration.',
+            timing: 'Day 1'
+          },
+          {
+            id: 'usa-arr-2',
+            title: 'Buy Local US Mobile SIM Card',
+            desc: 'Activate a monthly plan with T-Mobile, AT&T, or Verizon. A local +1 US phone number is required for two-factor authentication on banking and credit portals.',
+            timing: 'Day 1-2'
+          }
+        ]
+      },
+      {
+        phase: 'Week 1 (Days 4 to 7)',
+        title: 'Form I-9 & Social Security Number (SSN)',
+        badge: 'Employment & Tax ID',
+        tasks: [
+          {
+            id: 'usa-arr-3',
+            title: 'Complete Form I-9 Employment Verification on Day 1',
+            desc: 'Report to your employer and complete federal Form I-9 (Employment Eligibility Verification) presenting your passport, visa, and I-94.',
+            timing: 'Days 4-5'
+          },
+          {
+            id: 'usa-arr-4',
+            title: 'Apply for Social Security Number (SSN) at SSA Office',
+            desc: 'Wait 3 to 5 business days after landing for CBP records to sync with SAVE database, then visit local Social Security Administration office with passport and I-94.',
+            timing: 'Days 5-7'
+          }
+        ]
+      },
+      {
+        phase: 'Week 2 (Days 8 to 14)',
+        title: 'US Bank Account & Credit Score Foundation',
+        badge: 'Finance & Credit',
+        tasks: [
+          {
+            id: 'usa-arr-5',
+            title: 'Open Checking & Savings Account (Chase, BofA)',
+            desc: 'Visit a local bank branch with passport, I-94, employment offer letter, and lease confirmation to open checking account and set up direct deposit payroll.',
+            timing: 'Days 8-10'
+          },
+          {
+            id: 'usa-arr-6',
+            title: 'Apply for a Secured Credit Card to Build FICO Score',
+            desc: 'In the US, credit history does not transfer from abroad. Open a secured credit card (Discover it Secured or Capital One) to begin establishing your US credit score immediately.',
+            timing: 'Days 10-14'
+          }
+        ]
+      },
+      {
+        phase: 'Week 3 (Days 15 to 21)',
+        title: 'Long-Term Housing Search',
+        badge: 'Permanent Housing',
+        tasks: [
+          {
+            id: 'usa-arr-7',
+            title: 'Search Apartments on Zillow, Streeteasy, or Apartments.com',
+            desc: 'Tour prospective rentals. Landlords require proof of 40x monthly rent in annual income, recent bank statements, and background check authorization.',
+            timing: 'Days 15-18'
+          },
+          {
+            id: 'usa-arr-8',
+            title: 'Sign Lease Agreement & Pay Security Deposit',
+            desc: 'Pay first month\'s rent and one month\'s security deposit via cashier\'s check or ACH transfer.',
+            timing: 'Days 18-21'
+          }
+        ]
+      },
+      {
+        phase: 'Week 4 (Days 22 to 30)',
+        title: 'State Driver\'s License (REAL ID) & Utilities',
+        badge: 'Settling In',
+        tasks: [
+          {
+            id: 'usa-arr-9',
+            title: 'Connect Electric, Gas & High-Speed Internet',
+            desc: 'Set up accounts with local utility companies (ConEdison, PG&E, National Grid) and schedule broadband installation.',
+            timing: 'Day 22'
+          },
+          {
+            id: 'usa-arr-10',
+            title: 'Visit State DMV for Driver\'s License or REAL ID',
+            desc: 'Schedule appointment at the state DMV (Department of Motor Vehicles) to transfer license or take knowledge test for state driver license.',
+            timing: 'Days 23-30'
+          }
+        ]
+      }
+    ]
+  },
+
+  canada: {
+    countdown: [
+      {
+        week: 'Week 4 (T-30 to T-23 Days)',
+        title: 'Port of Entry (POE) Letter & Medical Exam',
+        focus: 'IRCC approval documents and panel physician clearance',
+        tasks: [
+          {
+            id: 'ca-w4-1',
+            title: 'Verify Port of Entry (POE) Letter of Introduction',
+            desc: 'Ensure your IRCC Port of Entry (POE) Letter of Introduction is printed in color; you will hand this directly to the CBSA border officer at the airport to receive your physical work permit.',
+            priority: 'critical'
+          },
+          {
+            id: 'ca-w4-2',
+            title: 'Obtain International Driver\'s Permit (IDP) & Driving Abstract',
+            desc: 'Request a certified driving record / abstract from your home country licensing bureau. In Ontario, BC, and Alberta, this allows immediate credit toward a full Class G / Class 5 driver license.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 3 (T-22 to T-15 Days)',
+        title: 'Temporary Lodging in Toronto / Vancouver / Montreal',
+        focus: 'Securing initial accommodation in Canada',
+        tasks: [
+          {
+            id: 'ca-w3-1',
+            title: 'Book Initial Temporary Stay',
+            desc: 'Book 2 to 4 weeks in a transit-friendly neighborhood. Ensure the host can provide written proof of residence.',
+            priority: 'critical'
+          },
+          {
+            id: 'ca-w3-2',
+            title: 'Order Multi-Currency Card (CAD Support)',
+            desc: 'Order a multi-currency card (Wise) with Canadian Dollar (CAD) balance for immediate expenses upon landing.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 2 (T-14 to T-8 Days)',
+        title: 'Employment Resignation & Vital Records',
+        focus: 'Certified copies of family and academic documents',
+        tasks: [
+          {
+            id: 'ca-w2-1',
+            title: 'Assemble Certified English/French Translations',
+            desc: 'Ensure birth certificates, marriage certificates, and university degrees have certified English or French translations.',
+            priority: 'high'
+          }
+        ]
+      },
+      {
+        week: 'Week 1 (T-7 to T-0 Days)',
+        title: 'Winter Clothing & Flight Departure',
+        focus: 'Packing for Canadian climate and border readiness',
+        tasks: [
+          {
+            id: 'ca-w1-1',
+            title: 'Pack Thermal Layers and Winter Outerwear',
+            desc: 'If arriving between October and April, pack a heavy down parka, thermal underwear, gloves, and waterproof boots in your luggage.',
+            priority: 'high'
+          },
+          {
+            id: 'ca-w1-2',
+            title: 'Assemble POE Letter, LMIA/Job Offer, and Funds in Carry-On',
+            desc: 'CBSA border officers will inspect your POE letter, employer offer, and bank proof of funds before issuing the work permit at immigration.',
+            priority: 'critical'
+          }
+        ]
+      }
+    ],
+    arrival: [
+      {
+        phase: 'Days 1 to 3',
+        title: 'Airport Work Permit, SIM & Transit Card',
+        badge: 'Landing & Connectivity',
+        tasks: [
+          {
+            id: 'ca-arr-1',
+            title: 'Collect Physical Work Permit from CBSA at Airport',
+            desc: 'Present your POE letter at border control. Verify your name, employer name, and conditions on the printed physical Work Permit paper before leaving the counter.',
+            timing: 'Day 1'
+          },
+          {
+            id: 'ca-arr-2',
+            title: 'Buy Local Canadian SIM Card at Airport',
+            desc: 'Activate a monthly mobile plan with Rogers, Telus, Bell, or discount carriers (Fido, Koodo, Freedom). A +1 number is needed for Service Canada.',
+            timing: 'Day 1-2'
+          },
+          {
+            id: 'ca-arr-3',
+            title: 'Get Transit Smartcard (PRESTO / Compass / OPUS)',
+            desc: 'Buy a PRESTO card in Toronto, Compass Card in Vancouver, or OPUS in Montreal for integrated subway, train, and bus transit.',
+            timing: 'Day 1-2'
+          }
+        ]
+      },
+      {
+        phase: 'Week 1 (Days 4 to 7)',
+        title: 'Social Insurance Number (SIN) & Health Insurance',
+        badge: 'Legal & Health Foundation',
+        tasks: [
+          {
+            id: 'ca-arr-4',
+            title: 'Obtain Social Insurance Number (SIN) at Service Canada',
+            desc: 'Visit a Service Canada Centre with your passport and physical Work Permit. You will receive your 9-digit SIN paper on the spot.',
+            timing: 'Days 4-5'
+          },
+          {
+            id: 'ca-arr-5',
+            title: 'Apply for Provincial Healthcare Card (OHIP / MSP / RAMQ)',
+            desc: 'Submit application for provincial healthcare. Keep private travel health insurance active during any applicable waiting periods.',
+            timing: 'Days 5-7'
+          }
+        ]
+      },
+      {
+        phase: 'Week 2 (Days 8 to 14)',
+        title: 'Canadian Banking Newcomer Package',
+        badge: 'Finance & Credit',
+        tasks: [
+          {
+            id: 'ca-arr-6',
+            title: 'Open Bank Account with Newcomer Package (RBC, TD, Scotiabank)',
+            desc: 'Canadian banks offer dedicated newcomer packages with free checking for one year and an unsecured credit card to begin building your Canadian credit rating.',
+            timing: 'Days 8-10'
+          },
+          {
+            id: 'ca-arr-7',
+            title: 'Provide SIN and Direct Deposit Void Cheque to Employer',
+            desc: 'Download a direct deposit form from your banking app and submit it along with your SIN to corporate payroll.',
+            timing: 'Days 10-14'
+          }
+        ]
+      },
+      {
+        phase: 'Week 3 (Days 15 to 21)',
+        title: 'Long-Term Housing on Rentals.ca & Realtor.ca',
+        badge: 'Permanent Housing',
+        tasks: [
+          {
+            id: 'ca-arr-8',
+            title: 'Search Long-Term Condos or Apartments',
+            desc: 'Tour prospective homes with a licensed real estate agent (tenant representation is free in Canada; landlord pays commission).',
+            timing: 'Days 15-18'
+          },
+          {
+            id: 'ca-arr-9',
+            title: 'Sign Standard Lease & Pay First and Last Month\'s Rent',
+            desc: 'Sign the Standard Form of Lease and provide first and last month\'s rent via bank draft or Interac e-Transfer.',
+            timing: 'Days 18-21'
+          }
+        ]
+      },
+      {
+        phase: 'Week 4 (Days 22 to 30)',
+        title: 'Driver License Exchange & School Registration',
+        badge: 'Settling In',
+        tasks: [
+          {
+            id: 'ca-arr-10',
+            title: 'Exchange Driver\'s License at DriveTest / ICBC',
+            desc: 'Visit DriveTest (Ontario) or ICBC (BC) with your home license, driving abstract, and proof of address to exchange for provincial driver license.',
+            timing: 'Days 22-25'
+          },
+          {
+            id: 'ca-arr-11',
+            title: 'Register Children at Local Public School Board',
+            desc: 'Contact the local school board (e.g. TDSB in Toronto, VSB in Vancouver) to enroll children in their neighborhood public school.',
+            timing: 'Days 25-30'
+          }
+        ]
+      }
+    ]
   }
 };
 

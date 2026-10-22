@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FileCheck2,
   Clock,
@@ -18,14 +18,27 @@ export default function VisaGuide({ countryData, userProfile }) {
 
   const [selectedVisaId, setSelectedVisaId] = useState(() => {
     if (isFamily) {
-      const fam = primaryVisas.find(v => v.category === 'Family' || v.id.includes('family') || v.id.includes('xi'));
+      const fam = primaryVisas.find(v => v.category === 'Family' || v.id.includes('family') || v.id.includes('dep') || v.id.includes('xi'));
       if (fam) return fam.id;
     }
     return primaryVisas[0]?.id || '';
   });
 
+  // Ensure active visa resets whenever destination country or persona changes
+  useEffect(() => {
+    if (isFamily) {
+      const fam = primaryVisas.find(v => v.category === 'Family' || v.id.includes('family') || v.id.includes('dep') || v.id.includes('xi'));
+      if (fam) {
+        setSelectedVisaId(fam.id);
+        return;
+      }
+    }
+    setSelectedVisaId(primaryVisas[0]?.id || '');
+  }, [countryData.id, userProfile?.persona]);
+
   const activeVisa = primaryVisas.find(v => v.id === selectedVisaId) || primaryVisas[0];
   const currencySymbol = countryData?.symbol || countryVisas.symbol || '€';
+  const familyInfo = countryVisas.familyReunion;
 
   return (
     <div className="space-y-8 animate-fadeIn">
@@ -40,7 +53,7 @@ export default function VisaGuide({ countryData, userProfile }) {
             Visa Pathways & Legal Entry for <em className="italic font-serif">{countryData.name}</em> {countryData.flag}
           </h2>
           <p className="text-xs sm:text-sm text-stone-500 mt-1">
-            Official visa routes, Hague Apostille legalization, sworn translations, consular appointments, and post-arrival police registration.
+            Official visa routes, legal document attestations, government fees, and post-arrival biometric registration.
           </p>
         </div>
 
@@ -51,12 +64,12 @@ export default function VisaGuide({ countryData, userProfile }) {
       </div>
 
       {/* Family Visa Dependent Rights Banner */}
-      {isFamily && (
+      {isFamily && familyInfo && (
         <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200/90 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5 font-serif text-stone-900 text-sm">
               <ShieldCheck className="w-4 h-4 text-stone-800" />
-              <span>Family Reunion & Dependent Spouse Rights in {countryData.name}</span>
+              <span>Family Reunion & Dependent Rights in {countryData.name}</span>
             </div>
             <span className="text-[10px] font-mono uppercase tracking-[0.2em] px-2.5 py-0.5 rounded-full bg-white border border-stone-200 text-stone-700">
               Family Mode Active
@@ -66,19 +79,19 @@ export default function VisaGuide({ countryData, userProfile }) {
             <div className="p-4 bg-white rounded-xl border border-stone-200/80 shadow-[0_1px_2px_rgba(0,0,0,0.02)] space-y-1">
               <strong className="text-stone-900 block font-medium">Spouse Work Entitlement:</strong>
               <p className="text-stone-500 text-[11px] leading-relaxed">
-                Spouses of EU Blue Card, UK Skilled Worker, and Brazil VITEM holders receive immediate open work authorization without requiring separate employer sponsorship.
+                {familyInfo.spouseWork}
               </p>
             </div>
             <div className="p-4 bg-white rounded-xl border border-stone-200/80 shadow-[0_1px_2px_rgba(0,0,0,0.02)] space-y-1">
               <strong className="text-stone-900 block font-medium">Vital Records Legalization:</strong>
               <p className="text-stone-500 text-[11px] leading-relaxed">
-                Original marriage and birth certificates must bear the Hague Apostille stamp from your foreign ministry plus certified court translations into {countryData.language}.
+                {familyInfo.vitalRecords}
               </p>
             </div>
             <div className="p-4 bg-white rounded-xl border border-stone-200/80 shadow-[0_1px_2px_rgba(0,0,0,0.02)] space-y-1">
-              <strong className="text-stone-900 block font-medium">Living Space Verification:</strong>
+              <strong className="text-stone-900 block font-medium">Housing & Salary Guidelines:</strong>
               <p className="text-stone-500 text-[11px] leading-relaxed">
-                Immigration authorities require proof of adequate residential living space (minimum 12m² per adult and 10m² per child under 6).
+                {familyInfo.housingOrSalary}
               </p>
             </div>
           </div>
@@ -90,7 +103,7 @@ export default function VisaGuide({ countryData, userProfile }) {
         <div className="flex items-center justify-between">
           <h3 className="font-serif text-lg text-stone-900 flex items-center gap-2">
             <Award className="w-4 h-4 text-stone-600" />
-            <span>Select Visa Pathway</span>
+            <span>Select Visa Pathway for {countryData.name}</span>
           </h3>
           <span className="text-xs font-mono text-stone-400">Click a pathway to inspect full procedural roadmap</span>
         </div>
@@ -198,7 +211,7 @@ export default function VisaGuide({ countryData, userProfile }) {
           <div className="space-y-3 pt-2">
             <h4 className="font-serif text-base text-stone-900 flex items-center gap-2">
               <Stamp className="w-4 h-4 text-stone-600" />
-              <span>Chronological Step-by-Step Procedure</span>
+              <span>Chronological Step-by-Step Procedure for {activeVisa.name}</span>
             </h4>
 
             <div className="space-y-2.5">
@@ -230,23 +243,23 @@ export default function VisaGuide({ countryData, userProfile }) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
           <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
-            <div className="font-mono uppercase text-[10px] tracking-wider text-stone-500 font-semibold">1. Hague Apostille</div>
+            <div className="font-mono uppercase text-[10px] tracking-wider text-stone-500 font-semibold">1. Legalization / Apostille</div>
             <p className="text-stone-600 leading-relaxed">
-              Standard notary stamps are rejected abroad. Vital records (marriage, birth, degrees) must carry the official <strong>Hague Apostille</strong> sticker from your home country's Foreign Ministry.
+              Standard notary stamps are rejected abroad. Vital records (marriage, birth, degrees) must carry the official <strong>Hague Apostille</strong> or consular MOFA embassy attestation for {countryData.name}.
             </p>
           </div>
 
           <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
             <div className="font-mono uppercase text-[10px] tracking-wider text-stone-500 font-semibold">2. Sworn Court Translation</div>
             <p className="text-stone-600 leading-relaxed">
-              Non-official translations are invalid. Certified translations must be completed by a sworn court translator (<em>tradutor juramentado</em> in Brazil, <em>vereidigter Übersetzer</em> in Germany).
+              Translations must be completed by an official sworn court translator (e.g. into {countryData.language}) recognized by consular authorities.
             </p>
           </div>
 
           <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
-            <div className="font-mono uppercase text-[10px] tracking-wider text-stone-500 font-semibold">3. Degree Recognition</div>
+            <div className="font-mono uppercase text-[10px] tracking-wider text-stone-500 font-semibold">3. Academic Degree Evaluation</div>
             <p className="text-stone-600 leading-relaxed">
-              Germany requires Anabin H+ validation; Canada requires WES ECA evaluation; Brazil requires Carolina Bori diploma recognition for regulated technical professions.
+              Credentials must meet local statutory standards (e.g., Anabin H+ in Germany, MOFA/Dataflow verification in UAE & Singapore, WES in Canada, ACS/VETASSESS in Australia).
             </p>
           </div>
 

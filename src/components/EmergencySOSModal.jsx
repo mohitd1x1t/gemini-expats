@@ -66,9 +66,21 @@ export default function EmergencySOSModal({ isOpen, onClose, countryData }) {
 
           <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200 text-center space-y-1.5">
             <PhoneCall className="w-5 h-5 text-stone-700 mx-auto" />
-            <div className="text-[10px] font-mono uppercase tracking-wider text-stone-500">Non-Emergency</div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-stone-500">Non-Emergency Advice</div>
             <div className="text-xl font-serif font-medium text-stone-900">
-              {countryData.id === 'germany' ? '116 117' : countryData.id === 'uk' ? '111' : countryData.id === 'canada' ? '811' : 'Local Clinic'}
+              {countryData.emergencyNumbers?.medicalOnCall ||
+               countryData.emergencyNumbers?.medicalNonEmergency ||
+               countryData.emergencyNumbers?.healthAdvice ||
+               (countryData.id === 'germany' ? '116 117' :
+                countryData.id === 'uk' ? '111' :
+                countryData.id === 'canada' ? '811' :
+                countryData.id === 'uae' ? '800 342' :
+                countryData.id === 'singapore' ? '1777' :
+                countryData.id === 'australia' ? '1800 022 222' :
+                countryData.id === 'usa' ? '311' :
+                countryData.id === 'japan' ? '#7119' :
+                countryData.id === 'netherlands' ? '0900-8844' :
+                countryData.id === 'brazil' ? '136' : 'Local Clinic')}
             </div>
           </div>
         </div>
@@ -80,7 +92,7 @@ export default function EmergencySOSModal({ isOpen, onClose, countryData }) {
             <span>Consular Assistance & Lost Passports</span>
           </div>
           <p className="text-stone-600 leading-relaxed text-[11px]">
-            If your passport is stolen or you require emergency repatriation, contact your home country’s Embassy or Consulate in {countryData.name}. File an immediate police report (*Polizeibericht / Boletim de Ocorrência*) as formal proof.
+            If your passport is stolen or you require emergency repatriation, contact your home country’s Embassy or Consulate in {countryData.name}. File an immediate police report with local municipal police as formal proof.
           </p>
         </div>
 
