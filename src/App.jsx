@@ -3,10 +3,12 @@ import Navbar from './components/Navbar';
 import ProfileWizard from './components/ProfileWizard';
 import SettingsModal from './components/SettingsModal';
 import EmergencySOSModal from './components/EmergencySOSModal';
+import GoogleAuthModal from './components/GoogleAuthModal';
 import DashboardOverview from './components/DashboardOverview';
 import CountdownTimeline from './components/CountdownTimeline';
 import PackingEngine from './components/PackingEngine';
 import BudgetCalculator from './components/BudgetCalculator';
+import SalaryBenchmark from './components/SalaryBenchmark';
 import CountryRules from './components/CountryRules';
 import HouseHunting from './components/HouseHunting';
 import DietaryAndFaith from './components/DietaryAndFaith';
@@ -26,6 +28,7 @@ import {
   Calendar,
   Luggage,
   Calculator,
+  TrendingUp,
   ShieldAlert,
   Home,
   UtensilsCrossed,
@@ -45,6 +48,7 @@ import {
 const STORAGE_KEY_PROFILE = 'expat_compass_profile';
 const STORAGE_KEY_TASKS = 'expat_compass_tasks';
 const STORAGE_KEY_API_KEY = 'expat_compass_gemini_key';
+const STORAGE_KEY_USER = 'expat_google_user';
 
 export default function App() {
   // 1. Relocation Profile State
@@ -55,7 +59,6 @@ export default function App() {
     } catch (e) {
       console.warn('Profile parse error:', e);
     }
-    // Default 30 days ahead from today
     const futureDate = new Date();
     futureDate.setDate(futureDate.getDate() + 30);
     const dateStr = futureDate.toISOString().split('T')[0];
@@ -87,11 +90,21 @@ export default function App() {
     return localStorage.getItem(STORAGE_KEY_API_KEY) || '';
   });
 
-  // 4. Navigation & Modals
+  // 4. Google Auth User
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_USER);
+      if (saved) return JSON.parse(saved);
+    } catch (e) {}
+    return null;
+  });
+
+  // 5. Navigation & Modals
   const [activeTab, setActiveTab] = useState('overview');
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isSOSModalOpen, setIsSOSModalOpen] = useState(false);
+  const [isGoogleAuthModalOpen, setIsGoogleAuthModalOpen] = useState(false);
 
   // Sync to localStorage
   useEffect(() => {
@@ -105,6 +118,16 @@ export default function App() {
   const handleSaveApiKey = (newKey) => {
     setApiKey(newKey);
     localStorage.setItem(STORAGE_KEY_API_KEY, newKey);
+  };
+
+  const handleGoogleSignIn = (userObj) => {
+    setCurrentUser(userObj);
+    localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(userObj));
+  };
+
+  const handleGoogleSignOut = () => {
+    setCurrentUser(null);
+    localStorage.removeItem(STORAGE_KEY_USER);
   };
 
   const updateGlobalPersona = (newPersona) => {
@@ -165,15 +188,16 @@ export default function App() {
     { id: 'countdown', label: '2. 30-Day Timelines (T-30 & Day 1-30)', icon: Calendar, group: 'Planning & Legal' },
     { id: 'visa', label: '3. Visa & Legal Pathways', icon: FileCheck2, group: 'Planning & Legal' },
     { id: 'budget', label: '4. Relocation & Living Budget', icon: Calculator, group: 'Planning & Legal' },
-    { id: 'packing', label: '5. Smart Packing Matrix', icon: Luggage, group: 'Logistics & Housing' },
-    { id: 'vault', label: '6. Document Vault & Apostilles', icon: FileText, group: 'Logistics & Housing' },
-    { id: 'housing', label: '7. House Hunting & Scam Defense', icon: Home, group: 'Logistics & Housing' },
-    { id: 'rules', label: '8. Strict Local Laws & Fines', icon: ShieldAlert, group: 'Logistics & Housing' },
-    { id: 'dietary', label: '9. Dietary, Supermarkets & Faith', icon: UtensilsCrossed, group: 'Living & Mobility' },
-    { id: 'healthcare', label: '10. Healthcare & Insurance Guide', icon: HeartPulse, group: 'Living & Mobility' },
-    { id: 'transport', label: '11. Driving, IDP & Public Transit', icon: Car, group: 'Living & Mobility' },
-    { id: 'pets', label: '12. Pet Relocation & Biosecurity', icon: Dog, group: 'Living & Mobility' },
-    { id: 'copilot', label: '13. Gemini AI Relocation Copilot', icon: Bot, isHighlight: true, group: 'AI Intelligence' }
+    { id: 'compensation', label: '5. Tech Salary & Market Benchmark', icon: TrendingUp, group: 'Planning & Legal' },
+    { id: 'packing', label: '6. Smart Packing Matrix', icon: Luggage, group: 'Logistics & Housing' },
+    { id: 'vault', label: '7. Document Vault & Apostilles', icon: FileText, group: 'Logistics & Housing' },
+    { id: 'housing', label: '8. House Hunting & Scam Defense', icon: Home, group: 'Logistics & Housing' },
+    { id: 'rules', label: '9. Strict Local Laws & Fines', icon: ShieldAlert, group: 'Logistics & Housing' },
+    { id: 'dietary', label: '10. Dietary, Supermarkets & Faith', icon: UtensilsCrossed, group: 'Living & Mobility' },
+    { id: 'healthcare', label: '11. Healthcare & Insurance Guide', icon: HeartPulse, group: 'Living & Mobility' },
+    { id: 'transport', label: '12. Driving, IDP & Public Transit', icon: Car, group: 'Living & Mobility' },
+    { id: 'pets', label: '13. Pet Relocation & Biosecurity', icon: Dog, group: 'Living & Mobility' },
+    { id: 'copilot', label: '14. Gemini AI Relocation Copilot', icon: Bot, isHighlight: true, group: 'AI Intelligence' }
   ];
 
   const currentIdx = Math.max(0, navigationTabs.findIndex(t => t.id === activeTab));
@@ -199,6 +223,8 @@ export default function App() {
         onOpenProfile={() => setIsProfileModalOpen(true)}
         onOpenSettings={() => setIsSettingsModalOpen(true)}
         onOpenSOS={() => setIsSOSModalOpen(true)}
+        onOpenGoogleAuth={() => setIsGoogleAuthModalOpen(true)}
+        currentUser={currentUser}
         onExportPDF={handleExportPDF}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -220,31 +246,31 @@ export default function App() {
             {/* Dropdown with optgroups */}
             <div className="relative flex-1">
               <select
-                id="module-navigator-select"
                 value={activeTab}
                 onChange={(e) => setActiveTab(e.target.value)}
-                className="w-full appearance-none bg-[#faf9f5] hover:bg-stone-100/70 border border-stone-200 hover:border-stone-400 text-stone-900 font-medium text-xs sm:text-sm rounded-xl pl-3.5 pr-10 py-2.5 focus:outline-none focus:ring-1 focus:ring-stone-400 cursor-pointer transition-all"
+                className="w-full appearance-none bg-stone-50 border border-stone-200 hover:border-stone-400 text-stone-900 font-serif font-normal text-sm sm:text-base rounded-xl pl-4 pr-10 py-2 focus:outline-none focus:ring-1 focus:ring-stone-400 cursor-pointer transition-all shadow-none"
               >
-                <optgroup label="Core Planning & Legal" className="bg-white text-stone-400 font-bold">
-                  <option value="overview" className="bg-white text-stone-900 font-normal">01 · Overview Blueprint</option>
-                  <option value="countdown" className="bg-white text-stone-900 font-normal">02 · 30-Day Timelines (T-30 & Day 1-30)</option>
-                  <option value="visa" className="bg-white text-stone-900 font-normal">03 · Visa & Legal Pathways</option>
-                  <option value="budget" className="bg-white text-stone-900 font-normal">04 · Relocation & Living Budget</option>
+                <optgroup label="Planning, Budget & Legal Pathways" className="font-sans font-bold text-xs text-stone-500 bg-stone-100">
+                  <option value="overview" className="font-serif text-stone-900">01 · Overview Blueprint</option>
+                  <option value="countdown" className="font-serif text-stone-900">02 · 30-Day Departure & First Month Timelines</option>
+                  <option value="visa" className="font-serif text-stone-900">03 · Visa Process & Legal Roadmap</option>
+                  <option value="budget" className="font-serif text-stone-900">04 · Relocation & Living Budget Calculator</option>
+                  <option value="compensation" className="font-serif text-stone-900">05 · Tech Salary & Market Benchmark</option>
                 </optgroup>
-                <optgroup label="Logistics, Documents & Housing" className="bg-white text-stone-400 font-bold">
-                  <option value="packing" className="bg-white text-stone-900 font-normal">05 · Smart Packing Matrix</option>
-                  <option value="vault" className="bg-white text-stone-900 font-normal">06 · Document Vault & Apostilles</option>
-                  <option value="housing" className="bg-white text-stone-900 font-normal">07 · House Hunting & Scam Defense</option>
-                  <option value="rules" className="bg-white text-stone-900 font-normal">08 · Strict Local Laws & Fines</option>
+                <optgroup label="Logistics, Housing & Regulations" className="font-sans font-bold text-xs text-stone-500 bg-stone-100">
+                  <option value="packing" className="font-serif text-stone-900">06 · Smart Packing Matrix (Baggage & Customs)</option>
+                  <option value="vault" className="font-serif text-stone-900">07 · Document Vault & Legalization Tracker</option>
+                  <option value="housing" className="font-serif text-stone-900">08 · House Hunting & Scam Defense Masterclass</option>
+                  <option value="rules" className="font-serif text-stone-900">09 · Country Rules, Strict Laws & Fines</option>
                 </optgroup>
-                <optgroup label="Daily Living, Healthcare & Mobility" className="bg-white text-stone-400 font-bold">
-                  <option value="dietary" className="bg-white text-stone-900 font-normal">09 · Dietary, Supermarkets & Faith</option>
-                  <option value="healthcare" className="bg-white text-stone-900 font-normal">10 · Healthcare & Insurance Guide</option>
-                  <option value="transport" className="bg-white text-stone-900 font-normal">11 · Driving, IDP & Public Transit</option>
-                  <option value="pets" className="bg-white text-stone-900 font-normal">12 · Pet Relocation & Biosecurity</option>
+                <optgroup label="Living, Health & Lifestyle" className="font-sans font-bold text-xs text-stone-500 bg-stone-100">
+                  <option value="dietary" className="font-serif text-stone-900">10 · Dietary Preferences & Faith Communities</option>
+                  <option value="healthcare" className="font-serif text-stone-900">11 · Healthcare System & Insurance Guide</option>
+                  <option value="transport" className="font-serif text-stone-900">12 · Driving License & Public Transit</option>
+                  <option value="pets" className="font-serif text-stone-900">13 · Pet Relocation & Biosecurity Protocol</option>
                 </optgroup>
-                <optgroup label="Intelligence & Assistant" className="bg-white text-stone-400 font-bold">
-                  <option value="copilot" className="bg-white text-stone-900 font-medium">13 · Gemini AI Relocation Copilot</option>
+                <optgroup label="AI Intelligence" className="font-sans font-bold text-xs text-stone-500 bg-stone-100">
+                  <option value="copilot" className="font-serif text-stone-900">14 · Gemini AI Relocation Copilot</option>
                 </optgroup>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-stone-500">
@@ -253,80 +279,54 @@ export default function App() {
             </div>
           </div>
 
-          {/* Step Counter & Prev / Next Controls */}
-          <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0 border-t md:border-t-0 pt-2 md:pt-0 border-stone-200">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-stone-500 px-3 py-1 rounded-full bg-stone-100 border border-stone-200">
-              Module <strong className="text-stone-900 font-mono">{currentIdx + 1}</strong> of {navigationTabs.length}
+            {/* Quick Step Buttons & Persona Indicator */}
+          <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0 border-t sm:border-t-0 pt-2 sm:pt-0 border-stone-100">
+            <span className="text-xs font-mono text-stone-500 px-2 py-1 rounded bg-stone-50 border border-stone-200">
+              Module {currentIdx + 1} of {navigationTabs.length}
             </span>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1">
               <button
-                type="button"
                 onClick={handlePrevTab}
-                disabled={currentIdx <= 0}
-                className="flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-medium bg-white hover:bg-stone-100 disabled:opacity-40 disabled:hover:bg-white disabled:cursor-not-allowed text-stone-700 border border-stone-200 hover:border-stone-400 transition-all"
-                title="Go to previous guide"
+                disabled={currentIdx === 0}
+                className="p-1.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50 disabled:opacity-30 disabled:pointer-events-none text-stone-700 transition-colors"
+                title="Previous Module"
               >
-                <ChevronLeft className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Prev</span>
+                <ChevronLeft className="w-4 h-4" />
               </button>
-
               <button
-                type="button"
                 onClick={handleNextTab}
-                disabled={currentIdx >= navigationTabs.length - 1}
-                className="flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium bg-stone-900 hover:bg-black disabled:opacity-40 disabled:hover:bg-stone-900 disabled:cursor-not-allowed text-white shadow-sm transition-all"
-                title="Go to next guide"
+                disabled={currentIdx === navigationTabs.length - 1}
+                className="p-1.5 rounded-full border border-stone-200 bg-white hover:bg-stone-50 disabled:opacity-30 disabled:pointer-events-none text-stone-700 transition-colors"
+                title="Next Module"
               >
-                <span className="hidden sm:inline">Next</span>
-                <ChevronRight className="w-3.5 h-3.5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Global Persona Filter Status Banner */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3.5 px-5 rounded-2xl bg-white border border-stone-200/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+        {/* Global Persona Active Filter Indicator Banner */}
+        <div className="p-3.5 rounded-2xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2.5">
-            <span className="text-sm">
-              {userProfile.persona.includes('family') ? '👨‍👩‍👧‍👦' : userProfile.persona === 'couple' ? '👫' : userProfile.persona.includes('pet') ? '🐾' : '🎒'}
-            </span>
-            <div className="text-xs text-stone-600">
-              <span className="text-stone-400 uppercase tracking-wider text-[10px] font-mono mr-1.5">Mode:</span>
-              <strong className="text-stone-900 capitalize font-medium">
-                {userProfile.persona.replace('_', ' ')}
-              </strong>
-              <span className="text-stone-400 ml-2 hidden md:inline">
-                · Synchronized across Budget, Packing, House Hunting, Healthcare & Visas
-              </span>
+            <div className="w-6 h-6 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center shrink-0">
+              <Users className="w-3.5 h-3.5 text-stone-700" />
+            </div>
+            <div className="text-stone-700">
+              Active Persona: <strong className="text-stone-900 font-serif font-medium">{userProfile.persona.replace('_', ' ').toUpperCase()}</strong>
+              <span className="text-stone-400 mx-2">|</span>
+              Moving: <span className="font-mono text-stone-600">{userProfile.origin} ➔ {userProfile.destinationCity}, {countryData.name}</span>
             </div>
           </div>
 
-          {/* Global Traveler Party Dropdown */}
-          <div className="flex items-center gap-2 self-start sm:self-center">
-            <label className="text-xs text-stone-500 font-medium hidden sm:flex items-center gap-1">
-              <Users className="w-3.5 h-3.5 text-stone-400" />
-              <span>Traveler Party:</span>
-            </label>
-            <div className="relative">
-              <select
-                value={userProfile.persona}
-                onChange={(e) => updateGlobalPersona(e.target.value)}
-                className="appearance-none bg-stone-50 border border-stone-200 hover:border-stone-400 text-stone-900 font-medium text-xs rounded-full pl-3 pr-8 py-1 focus:outline-none focus:ring-1 focus:ring-stone-400 cursor-pointer transition-colors shadow-sm"
-              >
-                <option value="bachelor">🎒 Bachelor / Solo</option>
-                <option value="couple">👫 Couple</option>
-                <option value="family_kids">👨‍👩‍👧‍👦 Family with Kids</option>
-                <option value="family_pets">🐾 Traveling with Pets</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-stone-400">
-                <ChevronDown className="w-3 h-3" />
-              </div>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] px-2.5 py-0.5 rounded-full bg-stone-100 text-stone-600 border border-stone-200">
+              Synchronized Across All 14 Modules
+            </span>
           </div>
         </div>
 
-        {/* Tab Content Display */}
+        {/* Tab Content Panes */}
         {activeTab === 'overview' && (
           <DashboardOverview
             userProfile={userProfile}
@@ -335,7 +335,6 @@ export default function App() {
             onSelectTab={setActiveTab}
             onOpenProfile={() => setIsProfileModalOpen(true)}
             completionStats={completionStats}
-            onUpdatePersona={updateGlobalPersona}
           />
         )}
 
@@ -345,8 +344,10 @@ export default function App() {
             arrivalRoadmap={activeArrivalRoadmap}
             completedTasks={completedTasks}
             onToggleTask={toggleTask}
-            userProfile={userProfile}
+            departureDate={userProfile.departureDate}
             countryData={countryData}
+            userProfile={userProfile}
+            onUpdatePersona={updateGlobalPersona}
           />
         )}
 
@@ -367,6 +368,15 @@ export default function App() {
             countryData={countryData}
             userProfile={userProfile}
             onUpdatePersona={updateGlobalPersona}
+            onOpenVisaTab={() => setActiveTab('visa')}
+          />
+        )}
+
+        {activeTab === 'compensation' && (
+          <SalaryBenchmark
+            countryData={countryData}
+            userProfile={userProfile}
+            onOpenBudgetTab={() => setActiveTab('budget')}
           />
         )}
 
@@ -431,6 +441,7 @@ export default function App() {
             userProfile={userProfile}
             countryData={countryData}
             apiKey={apiKey}
+            currentUser={currentUser}
           />
         )}
       </main>
@@ -449,6 +460,17 @@ export default function App() {
         onClose={() => setIsSettingsModalOpen(false)}
         apiKey={apiKey}
         onSaveApiKey={handleSaveApiKey}
+        currentUser={currentUser}
+        onOpenGoogleAuth={() => setIsGoogleAuthModalOpen(true)}
+      />
+
+      {/* Google Authentication Modal */}
+      <GoogleAuthModal
+        isOpen={isGoogleAuthModalOpen}
+        onClose={() => setIsGoogleAuthModalOpen(false)}
+        currentUser={currentUser}
+        onSignIn={handleGoogleSignIn}
+        onSignOut={handleGoogleSignOut}
       />
 
       {/* Emergency SOS Modal */}

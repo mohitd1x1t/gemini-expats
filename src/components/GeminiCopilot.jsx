@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, Send, Sparkles, User, RefreshCw, Copy, Check } from 'lucide-react';
+import { Bot, Send, Sparkles, User, RefreshCw, Copy, Check, ShieldCheck } from 'lucide-react';
 import { sendChatMessage } from '../utils/geminiService';
 
-export default function GeminiCopilot({ userProfile, countryData, apiKey }) {
+export default function GeminiCopilot({ userProfile, countryData, apiKey, currentUser }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -14,7 +14,7 @@ I have your active itinerary loaded:
 • Dietary Preference: ${userProfile.dietary.toUpperCase()}
 • Faith: ${userProfile.faith ? userProfile.faith.toUpperCase() : 'Secular'}
 
-How can I assist your relocation planning today? Inquire about visa interviews, lease agreements, pediatric screening registrations, or local neighborhoods!`
+How can I assist your relocation planning today? Inquire about visa interviews, lease agreements, pediatric registrations, or local neighborhoods!`
     }
   ]);
   const [input, setInput] = useState('');
@@ -55,7 +55,7 @@ How can I assist your relocation planning today? Inquire about visa interviews, 
         ...newMessages,
         {
           role: 'assistant',
-          content: `Note: Unable to reach the AI reasoning service (${err.message}). You can continue exploring our curated country modules above, or check your API key in Settings.`
+          content: `Note: Unable to reach the AI reasoning service (${err.message}). You can continue exploring our curated country modules above, or check your connection.`
         }
       ]);
     } finally {
@@ -95,13 +95,19 @@ How can I assist your relocation planning today? Inquire about visa interviews, 
           </p>
         </div>
 
-        <button
-          onClick={clearChat}
-          className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium bg-stone-50 hover:bg-stone-100 text-stone-700 border border-stone-200 self-start sm:self-center transition-colors"
-        >
-          <RefreshCw className="w-3 h-3 text-stone-500" />
-          <span>Reset Session</span>
-        </button>
+        <div className="flex items-center gap-3 self-start sm:self-center">
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-200 rounded-full text-[11px] font-mono text-emerald-800">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+            <span>Free Tier Active</span>
+          </div>
+          <button
+            onClick={clearChat}
+            className="flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-medium bg-stone-50 hover:bg-stone-100 text-stone-700 border border-stone-200 transition-colors"
+          >
+            <RefreshCw className="w-3 h-3 text-stone-500" />
+            <span>Reset</span>
+          </button>
+        </div>
       </div>
 
       {/* Suggested Prompt Chips */}
@@ -120,6 +126,19 @@ How can I assist your relocation planning today? Inquire about visa interviews, 
 
       {/* Chat Container */}
       <div className="rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col h-[540px] overflow-hidden">
+        {/* Top Info Strip */}
+        <div className="px-5 py-2.5 bg-stone-50/70 border-b border-stone-100 flex items-center justify-between text-[11px] font-mono text-stone-500">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-3.5 h-3.5 text-stone-600" />
+            <span>Zero API Key Required • Powered by Gemini 3.8 Flash</span>
+          </div>
+          {currentUser ? (
+            <span className="text-stone-700 font-medium">Logged in as {currentUser.name.split(' ')[0]}</span>
+          ) : (
+            <span className="text-stone-400">Guest Access</span>
+          )}
+        </div>
+
         {/* Messages Scroll Area */}
         <div className="flex-1 overflow-y-auto p-5 sm:p-7 space-y-4 bg-[#fcfbf9]/60">
           {messages.map((m, idx) => {
@@ -157,7 +176,11 @@ How can I assist your relocation planning today? Inquire about visa interviews, 
 
                 {isUser && (
                   <div className="w-7 h-7 rounded-full bg-stone-900 text-white flex items-center justify-center shrink-0 mt-0.5">
-                    <User className="w-3.5 h-3.5" />
+                    {currentUser ? (
+                      <img src={currentUser.picture} alt="" className="w-7 h-7 rounded-full" />
+                    ) : (
+                      <User className="w-3.5 h-3.5" />
+                    )}
                   </div>
                 )}
               </div>

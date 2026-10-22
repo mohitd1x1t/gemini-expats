@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
-import { X, Key, Check, ShieldCheck, Sparkles, ExternalLink } from 'lucide-react';
+import { X, Key, Check, ShieldCheck, Sparkles, ExternalLink, UserCheck } from 'lucide-react';
 
-export default function SettingsModal({ isOpen, onClose, apiKey, onSaveApiKey }) {
+export default function SettingsModal({
+  isOpen,
+  onClose,
+  apiKey,
+  onSaveApiKey,
+  currentUser,
+  onOpenGoogleAuth
+}) {
   const [inputKey, setInputKey] = useState(apiKey || '');
   const [savedSuccess, setSavedSuccess] = useState(false);
 
@@ -26,50 +33,82 @@ export default function SettingsModal({ isOpen, onClose, apiKey, onSaveApiKey })
               <Key className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-400">AI Configuration</div>
-              <h3 className="text-base font-serif text-stone-900">Gemini Intelligence Settings</h3>
+              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-400">Settings & Sync</div>
+              <h3 className="text-base font-serif text-stone-900">Account & Gemini Intelligence</h3>
             </div>
           </div>
           <button
             onClick={onClose}
             className="p-1.5 text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 transition-colors"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-4 text-xs">
-          <div className="p-4 bg-stone-50 border border-stone-200 rounded-2xl text-stone-600 space-y-2">
-            <div className="flex items-center gap-1.5 font-medium text-stone-900 font-serif">
-              <ShieldCheck className="w-4 h-4 text-stone-700" />
-              <span>Client-Side Local Storage</span>
+        <div className="p-6 space-y-5 text-xs">
+          {/* Account Status Card */}
+          <div className="p-4 bg-stone-50 border border-stone-200 rounded-2xl flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              {currentUser ? (
+                <img
+                  src={currentUser.picture}
+                  alt={currentUser.name}
+                  className="w-9 h-9 rounded-full border border-stone-200"
+                />
+              ) : (
+                <div className="w-9 h-9 rounded-full bg-white border border-stone-200 flex items-center justify-center text-stone-400">
+                  <UserCheck className="w-4 h-4" />
+                </div>
+              )}
+              <div>
+                <div className="font-serif font-medium text-stone-900 text-sm">
+                  {currentUser ? currentUser.name : 'Guest User'}
+                </div>
+                <div className="text-[10px] font-mono text-stone-500">
+                  {currentUser ? currentUser.email : 'Checklists stored locally in browser'}
+                </div>
+              </div>
             </div>
-            <p className="text-stone-500 leading-relaxed text-[11px]">
-              ExpatCompass contains pre-compiled dossiers for all top destinations. Entering your Google Gemini API key enables real-time reasoning with <strong>Gemini 3.8 Flash</strong> for custom questions, neighborhood searches, and uncataloged cities.
-            </p>
-            <a
-              href="https://aistudio.google.com/app/apikey"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-stone-800 hover:text-stone-950 font-mono text-[11px] underline underline-offset-2"
+
+            <button
+              onClick={() => {
+                onClose();
+                onOpenGoogleAuth();
+              }}
+              className="px-3 py-1.5 rounded-full text-[11px] font-medium bg-white border border-stone-200 hover:border-stone-400 text-stone-700 transition-colors"
             >
-              Get a free API key at Google AI Studio <ExternalLink className="w-3 h-3" />
-            </a>
+              {currentUser ? 'Manage' : 'Sign In'}
+            </button>
           </div>
 
-          <div>
-            <label className="block text-[10px] font-mono uppercase tracking-wider text-stone-500 mb-1.5">
-              Gemini API Key
-            </label>
+          {/* Built-in Free Tier Note */}
+          <div className="p-4 bg-stone-50 border border-stone-200 rounded-2xl text-stone-600 space-y-1.5">
+            <div className="flex items-center gap-1.5 font-medium text-stone-900 font-serif">
+              <ShieldCheck className="w-4 h-4 text-emerald-700" />
+              <span>Free Gemini 3.8 Flash Active</span>
+            </div>
+            <p className="text-stone-500 leading-relaxed text-[11px]">
+              ExpatCompass Copilot is free and active by default out-of-the-box. Users do not need an API key to ask questions regarding visas, rental contracts, schooling, or packing.
+            </p>
+          </div>
+
+          {/* Optional Developer API Key */}
+          <div className="pt-2 border-t border-stone-100 space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-[10px] font-mono uppercase tracking-wider text-stone-500">
+                Custom Gemini API Key (Optional)
+              </label>
+              <span className="text-[10px] font-mono text-stone-400">For Developers</span>
+            </div>
             <input
               type="password"
               placeholder="AIzaSy..."
               value={inputKey}
               onChange={(e) => setInputKey(e.target.value)}
-              className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-stone-800 placeholder-stone-400 focus:outline-none focus:border-stone-500 font-mono text-xs"
+              className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2 text-stone-800 placeholder-stone-400 focus:outline-none focus:border-stone-500 font-mono text-xs"
             />
-            <p className="text-[10px] font-mono text-stone-400 mt-1.5">
-              Your key is saved locally in your browser and never sent to external servers.
+            <p className="text-[10px] font-mono text-stone-400">
+              Only enter a key if you wish to bypass standard community rate limits.
             </p>
           </div>
         </div>
@@ -79,7 +118,7 @@ export default function SettingsModal({ isOpen, onClose, apiKey, onSaveApiKey })
             onClick={onClose}
             className="px-4 py-2 text-xs font-mono text-stone-500 hover:text-stone-900 transition-colors"
           >
-            Cancel
+            Close
           </button>
           <button
             onClick={handleSave}

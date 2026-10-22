@@ -12,6 +12,7 @@ import {
   Car,
   Dog,
   Bot,
+  TrendingUp,
   ArrowRight,
   Sparkles,
   PhoneCall,
@@ -73,6 +74,14 @@ export default function DashboardOverview({
       icon: Calculator,
       color: 'from-emerald-500/20 to-teal-500/20 text-emerald-400 border-emerald-500/30',
       badge: `${countryData?.currency || 'EUR'}`
+    },
+    {
+      id: 'compensation',
+      title: 'IT Salary & Market Benchmark',
+      desc: 'Verify if your tech compensation package meets market percentiles, statutory work visa thresholds, and purchasing power.',
+      icon: TrendingUp,
+      color: 'from-amber-500/20 to-stone-500/20 text-stone-700 border-stone-300',
+      badge: 'Compensation'
     },
     {
       id: 'rules',
