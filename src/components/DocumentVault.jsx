@@ -4,15 +4,8 @@ import {
   CheckCircle2,
   Circle,
   AlertTriangle,
-  UploadCloud,
-  FileCheck,
   Shield,
-  Download,
-  Plus,
-  Sparkles,
-  ExternalLink,
-  Copy,
-  Check
+  Plus
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -171,14 +164,13 @@ export default function DocumentVault({ userProfile, countryData }) {
     });
     saveDocs(updated);
 
-    // If all applicable checkboxes for this doc are checked, celebrate!
     const targetDoc = updated.find(d => d.id === docId);
     if (targetDoc.cloudBackup && targetDoc.physicalOriginal) {
       confetti({
         particleCount: 20,
         spread: 45,
         origin: { y: 0.8 },
-        colors: ['#a855f7', '#3b82f6', '#10b981']
+        colors: ['#1c1917', '#78716c', '#10b981']
       });
     }
   };
@@ -227,76 +219,78 @@ export default function DocumentVault({ userProfile, countryData }) {
   const completenessPercent = totalChecks > 0 ? Math.round((completedChecks / totalChecks) * 100) : 0;
 
   return (
-    <div className="space-y-6 animate-fadeIn">
+    <div className="space-y-8 animate-fadeIn">
       {/* Header */}
-      <div className="p-6 rounded-3xl bg-slate-800/40 border border-slate-700/60 backdrop-blur-md flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="p-7 rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col md:flex-row md:items-center md:justify-between gap-5">
         <div>
-          <div className="flex items-center gap-2 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-1">
-            <FileText className="w-4 h-4" />
-            Expat Dossier & Document Readiness
+          <div className="flex items-center gap-2 text-stone-500 font-mono text-[10px] uppercase tracking-[0.22em] mb-1.5">
+            <FileText className="w-3.5 h-3.5 text-stone-700" />
+            <span>Expat Dossier & Document Readiness</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white">
-            Document Vault & Legalization Tracker
+          <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 tracking-tight font-normal">
+            Legal Document Vault & <em className="italic font-serif">Apostille Tracker</em>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
-            Track physical originals, Hague Apostilles, certified court translations, and encrypted cloud backups for {countryData.name}.
+          <p className="text-xs sm:text-sm text-stone-500 mt-1">
+            Track certified physical originals, Hague apostilles, sworn court translations, and encrypted scans for {countryData.name}.
           </p>
         </div>
 
         {/* Completeness Card */}
-        <div className="p-4 rounded-2xl bg-slate-900/80 border border-purple-500/30 flex items-center gap-3 self-start md:self-auto min-w-[200px]">
-          <div className="p-2.5 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30">
-            <Shield className="w-6 h-6" />
+        <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200 flex items-center gap-3.5 self-start md:self-auto min-w-[210px]">
+          <div className="w-10 h-10 rounded-full bg-white border border-stone-200 flex items-center justify-center shrink-0">
+            <Shield className="w-5 h-5 text-stone-800" />
           </div>
           <div>
-            <div className="text-xs text-slate-400">Vault Readiness</div>
-            <div className="text-2xl font-black text-purple-300">{completenessPercent}%</div>
-            <div className="text-[10px] text-slate-500">{completedChecks} of {totalChecks} checks verified</div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-stone-500">Vault Readiness</div>
+            <div className="text-2xl font-serif font-medium text-stone-900">{completenessPercent}%</div>
+            <div className="text-[10px] text-stone-400 font-mono">{completedChecks} of {totalChecks} checks verified</div>
           </div>
         </div>
       </div>
 
       {/* Golden Document Preservation Notice */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs sm:text-sm flex items-start gap-3">
-        <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+      <div className="p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-amber-950 text-xs sm:text-sm flex items-start gap-3.5">
+        <div className="w-8 h-8 rounded-full bg-white border border-amber-200 flex items-center justify-center shrink-0 mt-0.5">
+          <AlertTriangle className="w-4 h-4 text-amber-800" />
+        </div>
         <div className="space-y-1">
-          <strong className="text-amber-300 block">The #1 Traveler Rule: Never Place Original Documents in Checked Luggage!</strong>
-          <p className="text-amber-200/90 leading-relaxed text-xs">
-            Always assemble original passports, apostilled degree certificates, marriage/birth certificates, work contracts, and police clearances in a <strong>clear, waterproof accordion binder kept inside your personal cabin backpack</strong>. Checked luggage can be delayed or lost.
+          <strong className="text-stone-900 block font-serif font-semibold text-sm">Essential Rule: Carry All Original Certificates in Your Cabin Luggage</strong>
+          <p className="text-stone-700 leading-relaxed text-xs">
+            Assemble your original passports, apostilled degree diplomas, birth & marriage certificates, and medical records in a <strong>waterproof document folder inside your personal carry-on bag</strong>. Never place irreplaceable legal documents in checked airline baggage.
           </p>
         </div>
       </div>
 
       {/* Filter Tabs & Add Custom Doc */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
         <div className="flex flex-wrap gap-1.5 text-xs">
           {['all', 'Identification', 'Immigration', 'Education & Career', 'Family & Vital Records', 'Health & Medical', 'Transportation'].map(cat => (
             <button
               key={cat}
               onClick={() => setFilterCategory(cat)}
-              className={`px-3 py-1.5 rounded-xl font-semibold transition-all border ${
+              className={`px-3.5 py-1.5 rounded-full font-medium transition-all border ${
                 filterCategory === cat
-                  ? 'bg-purple-600 border-purple-500 text-white shadow-sm'
-                  : 'bg-slate-800/60 border-slate-700/60 text-slate-400 hover:text-white'
+                  ? 'bg-stone-900 border-stone-900 text-white shadow-sm'
+                  : 'bg-white border-stone-200 text-stone-600 hover:border-stone-400 hover:text-stone-900'
               }`}
             >
-              {cat === 'all' ? `All (${visibleDocs.length})` : cat}
+              {cat === 'all' ? `All Documents (${visibleDocs.length})` : cat}
             </button>
           ))}
         </div>
 
         {/* Add custom document input */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2">
           <input
             type="text"
-            placeholder="Add custom document..."
+            placeholder="Add custom certificate..."
             value={newDocName}
             onChange={(e) => setNewDocName(e.target.value)}
-            className="bg-slate-800 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-purple-500"
+            className="bg-white border border-stone-200 rounded-full px-4 py-1.5 text-xs text-stone-800 placeholder-stone-400 focus:outline-none focus:border-stone-500 focus:ring-1 focus:ring-stone-400/20"
           />
           <button
             onClick={handleAddCustomDoc}
-            className="p-1.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs transition-colors"
+            className="p-1.5 bg-stone-900 hover:bg-stone-800 text-white rounded-full transition-colors"
             title="Add Document"
           >
             <Plus className="w-4 h-4" />
@@ -310,42 +304,42 @@ export default function DocumentVault({ userProfile, countryData }) {
           return (
             <div
               key={doc.id}
-              className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition-all space-y-3"
+              className="p-5 rounded-2xl bg-white border border-stone-200/90 hover:border-stone-300 shadow-[0_1px_3px_rgba(0,0,0,0.02)] transition-all space-y-3.5"
             >
               <div className="flex items-start justify-between gap-2">
                 <div>
-                  <div className="font-bold text-white text-sm flex items-center gap-2">
+                  <div className="font-serif text-stone-900 text-base flex items-center gap-2 flex-wrap">
                     <span>{doc.name}</span>
                     {doc.mandatory && (
-                      <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 uppercase">
+                      <span className="text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-stone-100 text-stone-700 border border-stone-200">
                         Mandatory
                       </span>
                     )}
                     {doc.familyOnly && (
-                      <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 uppercase">
-                        👨‍👩‍👧 Family
+                      <span className="text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-stone-100 text-stone-700 border border-stone-200">
+                        Family
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  <p className="text-xs text-stone-500 mt-1 leading-relaxed">
                     {doc.desc}
                   </p>
                 </div>
               </div>
 
               {/* Checkboxes Row */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-800/80 text-[11px]">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-stone-100 text-[11px]">
                 {/* Physical Original */}
                 <button
                   onClick={() => toggleCheck(doc.id, 'physicalOriginal')}
                   className={`p-2 rounded-xl border flex items-center gap-1.5 transition-all text-left ${
                     doc.physicalOriginal
-                      ? 'bg-emerald-950/30 border-emerald-500/40 text-emerald-300 font-semibold'
-                      : 'bg-slate-800/40 border-slate-700 text-slate-400 hover:text-white'
+                      ? 'bg-stone-900 border-stone-900 text-white font-medium'
+                      : 'bg-white border-stone-200 text-stone-600 hover:border-stone-400'
                   }`}
                 >
-                  {doc.physicalOriginal ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> : <Circle className="w-3.5 h-3.5 shrink-0" />}
-                  <span>Original Copy</span>
+                  {doc.physicalOriginal ? <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" /> : <Circle className="w-3.5 h-3.5 text-stone-300 shrink-0" />}
+                  <span className="truncate">Original</span>
                 </button>
 
                 {/* Cloud Scan */}
@@ -353,12 +347,12 @@ export default function DocumentVault({ userProfile, countryData }) {
                   onClick={() => toggleCheck(doc.id, 'cloudBackup')}
                   className={`p-2 rounded-xl border flex items-center gap-1.5 transition-all text-left ${
                     doc.cloudBackup
-                      ? 'bg-blue-950/30 border-blue-500/40 text-blue-300 font-semibold'
-                      : 'bg-slate-800/40 border-slate-700 text-slate-400 hover:text-white'
+                      ? 'bg-stone-900 border-stone-900 text-white font-medium'
+                      : 'bg-white border-stone-200 text-stone-600 hover:border-stone-400'
                   }`}
                 >
-                  {doc.cloudBackup ? <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" /> : <Circle className="w-3.5 h-3.5 shrink-0" />}
-                  <span>Cloud 300 DPI</span>
+                  {doc.cloudBackup ? <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" /> : <Circle className="w-3.5 h-3.5 text-stone-300 shrink-0" />}
+                  <span className="truncate">Cloud PDF</span>
                 </button>
 
                 {/* Hague Apostille */}
@@ -367,16 +361,16 @@ export default function DocumentVault({ userProfile, countryData }) {
                     onClick={() => toggleCheck(doc.id, 'apostilleDone')}
                     className={`p-2 rounded-xl border flex items-center gap-1.5 transition-all text-left ${
                       doc.apostilleDone
-                        ? 'bg-purple-950/30 border-purple-500/40 text-purple-300 font-semibold'
-                        : 'bg-slate-800/40 border-slate-700 text-slate-400 hover:text-white'
+                        ? 'bg-stone-900 border-stone-900 text-white font-medium'
+                        : 'bg-white border-stone-200 text-stone-600 hover:border-stone-400'
                     }`}
                   >
-                    {doc.apostilleDone ? <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" /> : <Circle className="w-3.5 h-3.5 shrink-0" />}
-                    <span>Apostilled</span>
+                    {doc.apostilleDone ? <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" /> : <Circle className="w-3.5 h-3.5 text-stone-300 shrink-0" />}
+                    <span className="truncate">Apostilled</span>
                   </button>
                 ) : (
-                  <div className="p-2 rounded-xl bg-slate-900/40 text-slate-600 text-center text-[10px] flex items-center justify-center">
-                    Apostille N/A
+                  <div className="p-2 rounded-xl bg-stone-50 text-stone-400 text-center text-[10px] font-mono flex items-center justify-center border border-stone-100">
+                    N/A
                   </div>
                 )}
 
@@ -386,16 +380,16 @@ export default function DocumentVault({ userProfile, countryData }) {
                     onClick={() => toggleCheck(doc.id, 'translationDone')}
                     className={`p-2 rounded-xl border flex items-center gap-1.5 transition-all text-left ${
                       doc.translationDone
-                        ? 'bg-amber-950/30 border-amber-500/40 text-amber-300 font-semibold'
-                        : 'bg-slate-800/40 border-slate-700 text-slate-400 hover:text-white'
+                        ? 'bg-stone-900 border-stone-900 text-white font-medium'
+                        : 'bg-white border-stone-200 text-stone-600 hover:border-stone-400'
                     }`}
                   >
-                    {doc.translationDone ? <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" /> : <Circle className="w-3.5 h-3.5 shrink-0" />}
-                    <span>Translated</span>
+                    {doc.translationDone ? <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" /> : <Circle className="w-3.5 h-3.5 text-stone-300 shrink-0" />}
+                    <span className="truncate">Sworn Trans</span>
                   </button>
                 ) : (
-                  <div className="p-2 rounded-xl bg-slate-900/40 text-slate-600 text-center text-[10px] flex items-center justify-center">
-                    Translation N/A
+                  <div className="p-2 rounded-xl bg-stone-50 text-stone-400 text-center text-[10px] font-mono flex items-center justify-center border border-stone-100">
+                    N/A
                   </div>
                 )}
               </div>

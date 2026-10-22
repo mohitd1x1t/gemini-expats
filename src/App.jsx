@@ -191,7 +191,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0f19] text-slate-100 flex flex-col selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-[#faf9f5] text-stone-900 flex flex-col selection:bg-stone-900 selection:text-white">
       {/* Top Navbar */}
       <Navbar
         userProfile={userProfile}
@@ -208,15 +208,13 @@ export default function App() {
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        {/* Navigation Dropdown Bar */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-lg backdrop-blur-md">
+        {/* Navigation Dropdown Bar — Minimalist Atelier Index */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
           {/* Active Module Dropdown Selector */}
           <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-3">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-300 shrink-0">
-              <span className="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
-                <Compass className="w-4 h-4" />
-              </span>
-              <span>Go to Report / Guide:</span>
+            <div className="flex items-center gap-2 text-xs font-semibold text-stone-500 uppercase tracking-widest shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-stone-900" />
+              <span>Index / Guide:</span>
             </div>
 
             {/* Dropdown with optgroups */}
@@ -225,40 +223,40 @@ export default function App() {
                 id="module-navigator-select"
                 value={activeTab}
                 onChange={(e) => setActiveTab(e.target.value)}
-                className="w-full appearance-none bg-slate-800 hover:bg-slate-750 border border-slate-700 hover:border-indigo-500/60 text-white font-semibold text-sm rounded-xl pl-3.5 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer shadow-inner transition-all"
+                className="w-full appearance-none bg-[#faf9f5] hover:bg-stone-100/70 border border-stone-200 hover:border-stone-400 text-stone-900 font-medium text-xs sm:text-sm rounded-xl pl-3.5 pr-10 py-2.5 focus:outline-none focus:ring-1 focus:ring-stone-400 cursor-pointer transition-all"
               >
-                <optgroup label="🏛️ Core Planning & Legal" className="bg-slate-900 text-slate-400 font-bold">
-                  <option value="overview" className="bg-slate-800 text-slate-100 font-normal">📊 1. Overview Dashboard</option>
-                  <option value="countdown" className="bg-slate-800 text-slate-100 font-normal">⏱️ 2. 30-Day Timelines (T-30 & Day 1-30)</option>
-                  <option value="visa" className="bg-slate-800 text-slate-100 font-normal">🛂 3. Visa & Legal Pathways</option>
-                  <option value="budget" className="bg-slate-800 text-slate-100 font-normal">💰 4. Relocation & Living Budget</option>
+                <optgroup label="Core Planning & Legal" className="bg-white text-stone-400 font-bold">
+                  <option value="overview" className="bg-white text-stone-900 font-normal">01 · Overview Blueprint</option>
+                  <option value="countdown" className="bg-white text-stone-900 font-normal">02 · 30-Day Timelines (T-30 & Day 1-30)</option>
+                  <option value="visa" className="bg-white text-stone-900 font-normal">03 · Visa & Legal Pathways</option>
+                  <option value="budget" className="bg-white text-stone-900 font-normal">04 · Relocation & Living Budget</option>
                 </optgroup>
-                <optgroup label="📦 Logistics, Documents & Housing" className="bg-slate-900 text-slate-400 font-bold">
-                  <option value="packing" className="bg-slate-800 text-slate-100 font-normal">🧳 5. Smart Packing Matrix</option>
-                  <option value="vault" className="bg-slate-800 text-slate-100 font-normal">📑 6. Document Vault & Apostilles</option>
-                  <option value="housing" className="bg-slate-800 text-slate-100 font-normal">🏡 7. House Hunting & Scam Defense</option>
-                  <option value="rules" className="bg-slate-800 text-slate-100 font-normal">⚖️ 8. Strict Local Laws & Fines</option>
+                <optgroup label="Logistics, Documents & Housing" className="bg-white text-stone-400 font-bold">
+                  <option value="packing" className="bg-white text-stone-900 font-normal">05 · Smart Packing Matrix</option>
+                  <option value="vault" className="bg-white text-stone-900 font-normal">06 · Document Vault & Apostilles</option>
+                  <option value="housing" className="bg-white text-stone-900 font-normal">07 · House Hunting & Scam Defense</option>
+                  <option value="rules" className="bg-white text-stone-900 font-normal">08 · Strict Local Laws & Fines</option>
                 </optgroup>
-                <optgroup label="🌍 Daily Living, Healthcare & Mobility" className="bg-slate-900 text-slate-400 font-bold">
-                  <option value="dietary" className="bg-slate-800 text-slate-100 font-normal">🥗 9. Dietary, Supermarkets & Faith</option>
-                  <option value="healthcare" className="bg-slate-800 text-slate-100 font-normal">🩺 10. Healthcare & Insurance Guide</option>
-                  <option value="transport" className="bg-slate-800 text-slate-100 font-normal">🚗 11. Driving, IDP & Public Transit</option>
-                  <option value="pets" className="bg-slate-800 text-slate-100 font-normal">🐾 12. Pet Relocation & Biosecurity Protocol</option>
+                <optgroup label="Daily Living, Healthcare & Mobility" className="bg-white text-stone-400 font-bold">
+                  <option value="dietary" className="bg-white text-stone-900 font-normal">09 · Dietary, Supermarkets & Faith</option>
+                  <option value="healthcare" className="bg-white text-stone-900 font-normal">10 · Healthcare & Insurance Guide</option>
+                  <option value="transport" className="bg-white text-stone-900 font-normal">11 · Driving, IDP & Public Transit</option>
+                  <option value="pets" className="bg-white text-stone-900 font-normal">12 · Pet Relocation & Biosecurity</option>
                 </optgroup>
-                <optgroup label="✨ AI Relocation Intelligence" className="bg-slate-900 text-slate-400 font-bold">
-                  <option value="copilot" className="bg-slate-800 text-indigo-300 font-medium">🤖 13. Gemini AI Relocation Copilot</option>
+                <optgroup label="Intelligence & Assistant" className="bg-white text-stone-400 font-bold">
+                  <option value="copilot" className="bg-white text-stone-900 font-medium">13 · Gemini AI Relocation Copilot</option>
                 </optgroup>
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-indigo-400">
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-stone-500">
                 <ChevronDown className="w-4 h-4" />
               </div>
             </div>
           </div>
 
           {/* Step Counter & Prev / Next Controls */}
-          <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0 border-t md:border-t-0 pt-2 md:pt-0 border-slate-800">
-            <span className="text-[11px] font-semibold text-slate-400 px-2.5 py-1 rounded-lg bg-slate-800/80 border border-slate-700/60">
-              Module <strong className="text-white">{currentIdx + 1}</strong> of {navigationTabs.length}
+          <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0 border-t md:border-t-0 pt-2 md:pt-0 border-stone-200">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-stone-500 px-3 py-1 rounded-full bg-stone-100 border border-stone-200">
+              Module <strong className="text-stone-900 font-mono">{currentIdx + 1}</strong> of {navigationTabs.length}
             </span>
 
             <div className="flex items-center gap-1.5">
@@ -266,7 +264,7 @@ export default function App() {
                 type="button"
                 onClick={handlePrevTab}
                 disabled={currentIdx <= 0}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:hover:bg-slate-800 disabled:cursor-not-allowed text-slate-200 border border-slate-700 transition-all"
+                className="flex items-center gap-1 px-3.5 py-1.5 rounded-full text-xs font-medium bg-white hover:bg-stone-100 disabled:opacity-40 disabled:hover:bg-white disabled:cursor-not-allowed text-stone-700 border border-stone-200 hover:border-stone-400 transition-all"
                 title="Go to previous guide"
               >
                 <ChevronLeft className="w-3.5 h-3.5" />
@@ -277,7 +275,7 @@ export default function App() {
                 type="button"
                 onClick={handleNextTab}
                 disabled={currentIdx >= navigationTabs.length - 1}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:hover:bg-indigo-600 disabled:cursor-not-allowed text-white shadow-sm shadow-indigo-600/30 transition-all"
+                className="flex items-center gap-1 px-4 py-1.5 rounded-full text-xs font-medium bg-stone-900 hover:bg-black disabled:opacity-40 disabled:hover:bg-stone-900 disabled:cursor-not-allowed text-white shadow-sm transition-all"
                 title="Go to next guide"
               >
                 <span className="hidden sm:inline">Next</span>
@@ -288,41 +286,41 @@ export default function App() {
         </div>
 
         {/* Global Persona Filter Status Banner */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3.5 px-4 rounded-2xl bg-slate-900/90 border border-indigo-500/30 shadow-md">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3.5 px-5 rounded-2xl bg-white border border-stone-200/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
           <div className="flex items-center gap-2.5">
-            <span className="text-xl">
+            <span className="text-sm">
               {userProfile.persona.includes('family') ? '👨‍👩‍👧‍👦' : userProfile.persona === 'couple' ? '👫' : userProfile.persona.includes('pet') ? '🐾' : '🎒'}
             </span>
-            <div className="text-xs">
-              <span className="text-slate-400">Global Relocation Mode: </span>
-              <strong className="text-white capitalize">
+            <div className="text-xs text-stone-600">
+              <span className="text-stone-400 uppercase tracking-wider text-[10px] font-mono mr-1.5">Mode:</span>
+              <strong className="text-stone-900 capitalize font-medium">
                 {userProfile.persona.replace('_', ' ')}
               </strong>
-              <span className="text-indigo-300 ml-1.5 hidden md:inline">
-                • Synchronized across Budget, Packing, House Hunting, Healthcare & Visas
+              <span className="text-stone-400 ml-2 hidden md:inline">
+                · Synchronized across Budget, Packing, House Hunting, Healthcare & Visas
               </span>
             </div>
           </div>
 
           {/* Global Traveler Party Dropdown */}
           <div className="flex items-center gap-2 self-start sm:self-center">
-            <label className="text-xs text-slate-400 font-medium hidden sm:flex items-center gap-1">
-              <Users className="w-3.5 h-3.5 text-indigo-400" />
+            <label className="text-xs text-stone-500 font-medium hidden sm:flex items-center gap-1">
+              <Users className="w-3.5 h-3.5 text-stone-400" />
               <span>Traveler Party:</span>
             </label>
             <div className="relative">
               <select
                 value={userProfile.persona}
                 onChange={(e) => updateGlobalPersona(e.target.value)}
-                className="appearance-none bg-slate-800 border border-indigo-500/50 hover:border-indigo-400 text-white font-bold text-xs rounded-xl pl-3 pr-8 py-1.5 focus:outline-none focus:ring-1 focus:ring-indigo-500 cursor-pointer shadow-sm transition-all"
+                className="appearance-none bg-stone-50 border border-stone-200 hover:border-stone-400 text-stone-900 font-medium text-xs rounded-full pl-3 pr-8 py-1 focus:outline-none focus:ring-1 focus:ring-stone-400 cursor-pointer transition-colors shadow-sm"
               >
-                <option value="bachelor" className="bg-slate-900 text-slate-100">🎒 Bachelor / Solo</option>
-                <option value="couple" className="bg-slate-900 text-slate-100">👫 Couple</option>
-                <option value="family_kids" className="bg-slate-900 text-slate-100">👨‍👩‍👧‍👦 Family with Kids</option>
-                <option value="family_pets" className="bg-slate-900 text-slate-100">🐾 Traveling with Pets</option>
+                <option value="bachelor">🎒 Bachelor / Solo</option>
+                <option value="couple">👫 Couple</option>
+                <option value="family_kids">👨‍👩‍👧‍👦 Family with Kids</option>
+                <option value="family_pets">🐾 Traveling with Pets</option>
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-indigo-400">
-                <ChevronDown className="w-3.5 h-3.5" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-stone-400">
+                <ChevronDown className="w-3 h-3" />
               </div>
             </div>
           </div>
@@ -460,16 +458,16 @@ export default function App() {
         countryData={countryData}
       />
 
-      {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-950/60 py-6 text-center text-xs text-slate-500">
+      {/* Minimalist Footer */}
+      <footer className="border-t border-stone-200/80 bg-white/60 py-8 text-xs text-stone-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-slate-300">ExpatCompass AI</span>
-            <span>•</span>
-            <span>Empowering Global Expats & Nomads</span>
+            <span className="font-serif text-sm font-normal text-stone-900">Expat<span className="italic text-stone-600">Compass</span></span>
+            <span className="text-stone-300">·</span>
+            <span className="text-[11px] uppercase tracking-wider text-stone-400 font-mono">The Relocation Atelier</span>
           </div>
-          <div>
-            Built with Google Gemini 3.8 Flash • Always consult official government immigration authorities
+          <div className="text-stone-400 text-[11px]">
+            Powered by Gemini 3.8 Flash · Always verify immigration rules with official consular services
           </div>
         </div>
       </footer>

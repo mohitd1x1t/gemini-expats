@@ -148,39 +148,38 @@ export default function BudgetCalculator({
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      {/* Header & Global Persona Sync Bar */}
-      <div className="p-6 rounded-3xl bg-slate-800/40 border border-slate-700/60 backdrop-blur-md flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      {/* Header & Global Persona Sync Bar — Minimalist Ledger */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1">
-            <Calculator className="w-4 h-4" />
-            Cost of Living & Relocation Calculator
+          <div className="text-[10px] uppercase font-mono tracking-[0.22em] text-stone-400 mb-1">
+            FINANCIAL INTELLIGENCE · {countryData.currency} ({countryData.symbol})
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white">
-            Budget Projections for {userProfile.destinationCity}, {countryData.name} {countryData.flag}
+          <h2 className="font-serif text-2xl sm:text-3xl font-normal text-stone-900">
+            Relocation & Living Budget Projections
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
-            Calculated for <strong className="text-white">{userProfile.persona.replace('_', ' ').toUpperCase()}</strong> in local currency ({currencyCode}).
+          <p className="text-xs sm:text-sm text-stone-500 mt-1 font-sans">
+            Benchmarked for {userProfile.destinationCity}, {countryData.name} ({userProfile.persona.replace('_', ' ').toUpperCase()}).
           </p>
         </div>
 
         {/* Global Persona Selector Dropdown */}
-        <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-2xl border border-slate-700">
-          <label className="text-xs text-slate-400 font-medium flex items-center gap-1.5">
-            <Users className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Traveler Party:</span>
+        <div className="flex items-center gap-2 bg-[#faf9f5] px-3.5 py-1.5 rounded-full border border-stone-200">
+          <label className="text-xs text-stone-500 font-medium flex items-center gap-1.5">
+            <Users className="w-3.5 h-3.5 text-stone-700" />
+            <span>Party:</span>
           </label>
           <div className="relative">
             <select
               value={userProfile.persona}
               onChange={(e) => onUpdatePersona(e.target.value)}
-              className="appearance-none bg-slate-800 border border-emerald-500/50 hover:border-emerald-400 text-white font-bold text-xs rounded-xl pl-3 pr-8 py-1.5 focus:outline-none focus:ring-1 focus:ring-emerald-500 cursor-pointer shadow-sm transition-all"
+              className="appearance-none bg-white border border-stone-200 hover:border-stone-400 text-stone-900 font-medium text-xs rounded-full pl-3 pr-8 py-1 focus:outline-none focus:ring-1 focus:ring-stone-400 cursor-pointer shadow-sm transition-all"
             >
-              <option value="bachelor" className="bg-slate-900 text-slate-100">🎒 Bachelor / Solo</option>
-              <option value="couple" className="bg-slate-900 text-slate-100">👫 Couple</option>
-              <option value="family_kids" className="bg-slate-900 text-slate-100">👨‍👩‍👧‍👦 Family with Kids</option>
-              <option value="family_pets" className="bg-slate-900 text-slate-100">🐾 Traveling with Pets</option>
+              <option value="bachelor">🎒 Bachelor / Solo</option>
+              <option value="couple">👫 Couple</option>
+              <option value="family_kids">👨‍👩‍👧‍👦 Family with Kids</option>
+              <option value="family_pets">🐾 Traveling with Pets</option>
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-emerald-400">
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-stone-400">
               <ChevronDown className="w-3.5 h-3.5" />
             </div>
           </div>
@@ -189,59 +188,59 @@ export default function BudgetCalculator({
 
       {/* Global Filter Active Indicator Alert */}
       {isFamily && (
-        <div className="p-3.5 px-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-xs text-indigo-200 flex items-center justify-between">
+        <div className="p-4 px-5 rounded-2xl bg-white border border-stone-200/90 text-xs text-stone-700 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-2 font-medium">
-            <Baby className="w-4 h-4 text-indigo-400" />
+            <Baby className="w-4 h-4 text-stone-800" />
             <span><strong>Family Mode Active:</strong> Benchmarked for multi-bedroom housing, childcare/kindergarten, family groceries, and pediatric health insurance.</span>
           </div>
-          <span className="text-[11px] font-bold text-indigo-400 uppercase tracking-wider">Synced Across All Tabs</span>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-stone-500 bg-stone-100 px-2.5 py-0.5 rounded-full border border-stone-200">Synced Across All Tabs</span>
         </div>
       )}
 
-      {/* Hero Financial Summary Cards */}
+      {/* Hero Financial Summary Cards — Gallery Accounting */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Card 1: Upfront */}
-        <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-950/60 to-slate-900 border border-indigo-500/30">
-          <div className="flex items-center justify-between text-xs text-indigo-300 font-semibold mb-1">
+        <div className="p-6 rounded-2xl bg-white border border-stone-200/90 shadow-sm space-y-2">
+          <div className="flex items-center justify-between text-xs text-stone-500 font-mono uppercase tracking-wider">
             <span>Initial Upfront Sunk Capital</span>
-            <PiggyBank className="w-4 h-4 text-indigo-400" />
+            <PiggyBank className="w-4 h-4 text-stone-400" />
           </div>
-          <div className="text-3xl font-black text-white tracking-tight">
+          <div className="font-serif text-3xl font-normal text-stone-900 tracking-tight">
             {currencySymbol}{Math.round(totalUpfrontCost).toLocaleString()}
           </div>
-          <div className="text-[11px] text-slate-400 mt-2 space-y-0.5">
-            <div>• Security Deposit ({depositMultiplier}x): <strong className="text-white">{currencySymbol}{Math.round(securityDeposit).toLocaleString()}</strong></div>
-            <div>• Temp Stay + Flights + Setup: <strong className="text-white">{currencySymbol}{Math.round(tempStay + flights + furniture).toLocaleString()}</strong></div>
-            <div>• Visa & Document Legalization: <strong className="text-white">{currencySymbol}{Math.round(visaFees).toLocaleString()}</strong></div>
+          <div className="text-[11px] text-stone-500 pt-2 border-t border-stone-100 space-y-1 font-sans">
+            <div>• Security Deposit ({depositMultiplier}x): <strong className="text-stone-900">{currencySymbol}{Math.round(securityDeposit).toLocaleString()}</strong></div>
+            <div>• Temp Stay + Flights + Setup: <strong className="text-stone-900">{currencySymbol}{Math.round(tempStay + flights + furniture).toLocaleString()}</strong></div>
+            <div>• Visa & Document Legalization: <strong className="text-stone-900">{currencySymbol}{Math.round(visaFees).toLocaleString()}</strong></div>
           </div>
         </div>
 
         {/* Card 2: Monthly */}
-        <div className="p-5 rounded-2xl bg-gradient-to-br from-emerald-950/60 to-slate-900 border border-emerald-500/30">
-          <div className="flex items-center justify-between text-xs text-emerald-300 font-semibold mb-1">
+        <div className="p-6 rounded-2xl bg-white border border-stone-200/90 shadow-sm space-y-2">
+          <div className="flex items-center justify-between text-xs text-stone-500 font-mono uppercase tracking-wider">
             <span>Estimated Monthly Recurring Burn</span>
-            <Calculator className="w-4 h-4 text-emerald-400" />
+            <Calculator className="w-4 h-4 text-stone-400" />
           </div>
-          <div className="text-3xl font-black text-emerald-400 tracking-tight">
-            {currencySymbol}{Math.round(totalMonthlyLiving).toLocaleString()} <span className="text-xs text-slate-400 font-normal">/mo</span>
+          <div className="font-serif text-3xl font-normal text-stone-900 tracking-tight">
+            {currencySymbol}{Math.round(totalMonthlyLiving).toLocaleString()} <span className="text-xs text-stone-400 font-sans">/mo</span>
           </div>
-          <div className="text-[11px] text-slate-400 mt-2 space-y-0.5">
-            <div>• Rent & Utilities: <strong className="text-white">{currencySymbol}{Math.round(rent + utilities).toLocaleString()}</strong></div>
-            <div>• Groceries, Transit, Health: <strong className="text-white">{currencySymbol}{Math.round(groceries + transport + healthInsurance).toLocaleString()}</strong></div>
-            <div>• Leisure & Childcare Buffer: <strong className="text-white">{currencySymbol}{Math.round(leisure + contingency + (isFamily ? childcare : 0)).toLocaleString()}</strong></div>
+          <div className="text-[11px] text-stone-500 pt-2 border-t border-stone-100 space-y-1 font-sans">
+            <div>• Rent & Utilities: <strong className="text-stone-900">{currencySymbol}{Math.round(rent + utilities).toLocaleString()}</strong></div>
+            <div>• Groceries, Transit, Health: <strong className="text-stone-900">{currencySymbol}{Math.round(groceries + transport + healthInsurance).toLocaleString()}</strong></div>
+            <div>• Leisure & Childcare Buffer: <strong className="text-stone-900">{currencySymbol}{Math.round(leisure + contingency + (isFamily ? childcare : 0)).toLocaleString()}</strong></div>
           </div>
         </div>
 
         {/* Card 3: 3-Month Runway */}
-        <div className="p-5 rounded-2xl bg-gradient-to-br from-amber-950/60 to-slate-900 border border-amber-500/30">
-          <div className="flex items-center justify-between text-xs text-amber-300 font-semibold mb-1">
-            <span>Recommended Emergency Runway (3 Months)</span>
-            <ShieldCheck className="w-4 h-4 text-amber-400" />
+        <div className="p-6 rounded-2xl bg-[#faf9f5] border border-stone-200 shadow-sm space-y-2">
+          <div className="flex items-center justify-between text-xs text-stone-600 font-mono uppercase tracking-wider">
+            <span>Target Emergency Runway (3 Mo)</span>
+            <ShieldCheck className="w-4 h-4 text-stone-700" />
           </div>
-          <div className="text-3xl font-black text-amber-300 tracking-tight">
+          <div className="font-serif text-3xl font-normal text-stone-900 tracking-tight">
             {currencySymbol}{Math.round(recommendedRunway3Months).toLocaleString()}
           </div>
-          <div className="text-[11px] text-slate-400 mt-2">
+          <div className="text-[11px] text-stone-600 pt-2 border-t border-stone-200/70 font-sans leading-relaxed">
             Target liquid savings = (3 × Monthly Burn of {currencySymbol}{Math.round(totalMonthlyLiving).toLocaleString()}) + Upfront Capital of {currencySymbol}{Math.round(totalUpfrontCost).toLocaleString()}.
           </div>
         </div>
@@ -250,13 +249,13 @@ export default function BudgetCalculator({
       {/* Two Column Interactive Budget Form */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Column 1: Ongoing Monthly Living */}
-        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 className="font-bold text-sm text-white flex items-center gap-2">
-              <Home className="w-4 h-4 text-blue-400" />
+        <div className="p-6 rounded-2xl bg-white border border-stone-200/90 shadow-sm space-y-4">
+          <div className="flex items-center justify-between border-b border-stone-200/80 pb-3">
+            <h3 className="font-serif text-base text-stone-900 flex items-center gap-2">
+              <Home className="w-4 h-4 text-stone-600" />
               Monthly Ongoing Expenses ({currencyCode})
             </h3>
-            <span className="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+            <span className="text-xs font-mono text-stone-700 bg-stone-100 px-3 py-1 rounded-full border border-stone-200 font-medium">
               Total: {currencySymbol}{Math.round(totalMonthlyLiving).toLocaleString()}/mo
             </span>
           </div>
@@ -543,27 +542,27 @@ export default function BudgetCalculator({
         </div>
 
         {/* Column 2: Upfront One-Time Relocation Costs */}
-        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 className="font-bold text-sm text-white flex items-center gap-2">
-              <PiggyBank className="w-4 h-4 text-emerald-400" />
+        <div className="p-6 rounded-2xl bg-white border border-stone-200/90 shadow-sm space-y-4">
+          <div className="flex items-center justify-between border-b border-stone-200/80 pb-3">
+            <h3 className="font-serif text-base text-stone-900 flex items-center gap-2">
+              <PiggyBank className="w-4 h-4 text-stone-600" />
               Upfront Relocation Capital ({currencyCode})
             </h3>
-            <span className="text-xs text-indigo-400 font-bold bg-indigo-500/10 px-2.5 py-1 rounded-full border border-indigo-500/20">
+            <span className="text-xs font-mono text-stone-700 bg-stone-100 px-3 py-1 rounded-full border border-stone-200 font-medium">
               Total: {currencySymbol}{Math.round(totalUpfrontCost).toLocaleString()}
             </span>
           </div>
 
           <div className="space-y-4 text-xs">
             {/* Security Deposit (Dynamic from Rent) */}
-            <div className="p-3.5 bg-slate-800/60 rounded-xl border border-slate-700/60 flex items-center justify-between">
+            <div className="p-3.5 bg-[#faf9f5] rounded-xl border border-stone-200 flex items-center justify-between">
               <div>
-                <div className="font-semibold text-white">Apartment Rental Deposit ({depositMultiplier}x Monthly Rent)</div>
-                <div className="text-[11px] text-slate-400">
+                <div className="font-medium text-stone-900">Apartment Rental Deposit ({depositMultiplier}x Monthly Rent)</div>
+                <div className="text-[11px] text-stone-500 font-mono">
                   Calculated automatically: {depositMultiplier} × {currencySymbol}{Math.round(rent).toLocaleString()}
                 </div>
               </div>
-              <div className="text-base font-black text-emerald-400">
+              <div className="text-base font-serif font-normal text-stone-900">
                 {currencySymbol}{Math.round(securityDeposit).toLocaleString()}
               </div>
             </div>
@@ -699,18 +698,17 @@ export default function BudgetCalculator({
         </div>
       </div>
 
-      {/* INTEGRATED VISA PROCESS & DETAILED FEES MODULE */}
-      <div className="p-6 rounded-3xl bg-slate-900/70 border border-slate-800 space-y-5">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-800 pb-4">
+      {/* INTEGRATED VISA PROCESS & DETAILED FEES MODULE — Minimalist Protocol */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-white border border-stone-200/90 shadow-sm space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-stone-200/80 pb-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider">
-              <FileCheck2 className="w-4 h-4" />
-              Integrated Visa Process & Government Fees
+            <div className="text-[10px] font-mono uppercase tracking-[0.22em] text-stone-400">
+              IMMIGRATION & CONSULAR FEES · {countryData.name.toUpperCase()}
             </div>
-            <h3 className="text-lg font-bold text-white">
-              Official Visa Application & Legalization Breakdown ({countryData.name})
+            <h3 className="font-serif text-xl sm:text-2xl font-normal text-stone-900">
+              Official Visa Application & Legalization Breakdown
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-stone-500 font-sans">
               Select your visa category to see itemized consular fees, police registrations, and step-by-step procedures.
             </p>
           </div>
@@ -720,7 +718,7 @@ export default function BudgetCalculator({
             <select
               value={selectedVisaId}
               onChange={(e) => setSelectedVisaId(e.target.value)}
-              className="bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs font-semibold text-slate-200 focus:outline-none focus:border-purple-500"
+              className="bg-[#faf9f5] border border-stone-200 rounded-full px-3.5 py-1.5 text-xs font-medium text-stone-900 focus:outline-none focus:border-stone-900 cursor-pointer shadow-sm"
             >
               {countryVisas.primaryVisas.map(v => (
                 <option key={v.id} value={v.id}>{v.name} ({v.category})</option>
@@ -729,7 +727,7 @@ export default function BudgetCalculator({
 
             <button
               onClick={() => handleApplyVisaFee(activeVisa.fees.total)}
-              className="px-3.5 py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs transition-all flex items-center gap-1.5 shadow-md shadow-purple-600/20"
+              className="px-4 py-1.5 bg-stone-900 hover:bg-black text-white font-medium rounded-full text-xs transition-all flex items-center gap-1.5 shadow-sm"
               title="Apply this exact fee into the Upfront Budget"
             >
               <Check className="w-3.5 h-3.5" />
@@ -742,12 +740,12 @@ export default function BudgetCalculator({
         {activeVisa && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Fees Column */}
-            <div className="p-5 rounded-2xl bg-slate-800/40 border border-slate-700/60 space-y-3">
+            <div className="p-5 rounded-2xl bg-[#faf9f5] border border-stone-200 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-xs uppercase tracking-wider text-purple-300">
+                <span className="font-mono text-xs uppercase tracking-wider text-stone-500">
                   Itemized Fee Breakdown
                 </span>
-                <span className="text-xs font-extrabold text-white bg-purple-500/20 px-2 py-0.5 rounded border border-purple-500/30">
+                <span className="text-xs font-mono font-medium text-stone-900 bg-white px-2.5 py-0.5 rounded-full border border-stone-200">
                   Total: {currencySymbol}{Math.round(activeVisa.fees.total).toLocaleString()}
                 </span>
               </div>
@@ -759,29 +757,29 @@ export default function BudgetCalculator({
                     .replace(/([A-Z])/g, ' $1')
                     .replace(/^./, str => str.toUpperCase());
                   return (
-                    <div key={feeKey} className="flex items-center justify-between p-2 rounded-lg bg-slate-900/60 border border-slate-800">
-                      <span className="text-slate-300">{label}</span>
-                      <span className="font-mono font-bold text-white">{currencySymbol}{Math.round(amount).toLocaleString()}</span>
+                    <div key={feeKey} className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-stone-200/80">
+                      <span className="text-stone-600">{label}</span>
+                      <span className="font-mono font-medium text-stone-900">{currencySymbol}{Math.round(amount).toLocaleString()}</span>
                     </div>
                   );
                 })}
               </div>
 
-              <div className="p-2.5 rounded-xl bg-purple-950/20 border border-purple-500/30 text-[11px] text-purple-300 flex items-center gap-2">
-                <Clock className="w-4 h-4 shrink-0 text-purple-400" />
-                <span>Estimated processing time: <strong>{activeVisa.processingTime}</strong></span>
+              <div className="p-3 rounded-xl bg-white border border-stone-200 text-[11px] text-stone-600 flex items-center gap-2">
+                <Clock className="w-4 h-4 shrink-0 text-stone-400" />
+                <span>Estimated processing time: <strong className="text-stone-900">{activeVisa.processingTime}</strong></span>
               </div>
             </div>
 
             {/* Eligibility & Requirements */}
-            <div className="p-5 rounded-2xl bg-slate-800/40 border border-slate-700/60 space-y-3">
-              <div className="font-bold text-xs uppercase tracking-wider text-emerald-300">
+            <div className="p-5 rounded-2xl bg-[#faf9f5] border border-stone-200 space-y-3">
+              <div className="font-mono text-xs uppercase tracking-wider text-stone-500">
                 Core Eligibility Requirements
               </div>
-              <ul className="space-y-2 text-xs text-slate-300">
+              <ul className="space-y-2.5 text-xs text-stone-700">
                 {activeVisa.eligibility.map((req, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-emerald-400 font-bold shrink-0">✓</span>
+                    <span className="text-stone-900 font-bold shrink-0">✓</span>
                     <span className="leading-relaxed">{req}</span>
                   </li>
                 ))}
@@ -789,15 +787,15 @@ export default function BudgetCalculator({
             </div>
 
             {/* Step-by-Step Procedure */}
-            <div className="p-5 rounded-2xl bg-slate-800/40 border border-slate-700/60 space-y-3">
-              <div className="font-bold text-xs uppercase tracking-wider text-blue-300">
+            <div className="p-5 rounded-2xl bg-[#faf9f5] border border-stone-200 space-y-3">
+              <div className="font-mono text-xs uppercase tracking-wider text-stone-500">
                 Visa Application Steps
               </div>
-              <div className="space-y-2.5 text-xs">
+              <div className="space-y-3 text-xs">
                 {activeVisa.steps.map((st, i) => (
                   <div key={i} className="space-y-0.5">
-                    <div className="font-bold text-slate-200">{st.step}</div>
-                    <div className="text-slate-400 text-[11px] leading-relaxed">{st.desc}</div>
+                    <div className="font-medium text-stone-900">{st.step}</div>
+                    <div className="text-stone-500 text-[11px] leading-relaxed">{st.desc}</div>
                   </div>
                 ))}
               </div>

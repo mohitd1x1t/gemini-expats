@@ -150,146 +150,153 @@ export default function DashboardOverview({
 
   return (
     <div className="space-y-8 animate-fadeIn">
-      {/* Hero Relocation Blueprint Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950/50 to-slate-900 border border-slate-700/70 p-6 sm:p-8 shadow-2xl">
-        <div className="absolute top-0 right-0 -mt-10 -mr-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-1/3 -mb-10 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-xs font-semibold text-indigo-300">
-              <Clock className="w-3.5 h-3.5 text-indigo-400" />
-              <span>{daysRemainingText}</span>
-              <span className="text-slate-500">•</span>
-              <span>{userProfile.persona.replace('_', ' ').toUpperCase()}</span>
+      {/* Hero Relocation Blueprint Banner — Minimalist Architectural Portfolio Style */}
+      <div className="relative bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
+          {/* Left Column: Editorial Headline & Narrative */}
+          <div className="space-y-4 max-w-2xl">
+            <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.22em] text-stone-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-stone-900" />
+              <span>Relocation Protocol · {userProfile.origin?.toUpperCase()} → {countryData?.name?.toUpperCase()}</span>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-              Relocating from <span className="text-slate-300">{userProfile.origin}</span> to{' '}
-              <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-emerald-400 bg-clip-text text-transparent">
-                {userProfile.destinationCity}, {countryData?.name} {countryData?.flag}
-              </span>
+            <h1 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-stone-900 leading-[1.12]">
+              Relocations composed with <span className="italic font-serif font-light text-stone-500">clarity</span>, intention, and calm.
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-300/90 leading-relaxed">
-              Your comprehensive, personalized action hub. Covering mandatory city registration, rental scam protection, dietary labels, high-fine local laws, healthcare, and your step-by-step T-30 countdown.
+            <p className="text-sm sm:text-base text-stone-600 leading-relaxed font-sans max-w-xl">
+              Your comprehensive, personalized action guide for settling in <strong className="font-medium text-stone-900">{userProfile.destinationCity}, {countryData?.name}</strong>. Curated with legal precision, neighborhood intelligence, and verified relocation checklists.
             </p>
 
-            <div className="flex flex-wrap items-center gap-2 pt-1">
-              <button
-                onClick={onOpenProfile}
-                className="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition-colors"
-              >
-                Change Destination / Settings
-              </button>
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 onClick={() => onSelectTab('countdown')}
-                className="text-xs px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-md shadow-indigo-600/30 transition-all flex items-center gap-1.5"
+                className="text-xs px-6 py-2.5 rounded-full bg-stone-900 hover:bg-black text-white font-medium shadow-sm transition-all flex items-center gap-2 tracking-wide"
               >
                 <span>Start T-30 Checklist</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
+
+              <button
+                onClick={onOpenProfile}
+                className="text-xs px-5 py-2.5 rounded-full bg-white hover:bg-stone-50 border border-stone-300 hover:border-stone-900 text-stone-800 font-medium transition-all"
+              >
+                Modify Route & Settings
+              </button>
             </div>
           </div>
 
-          {/* Quick Metrics & Readiness Card */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 min-w-[280px]">
-            <div className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur-md">
-              <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-                <span>Readiness</span>
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+          {/* Right Column: Architectural Framed Destination Card with Crop Marks */}
+          <div className="relative p-6 sm:p-7 bg-[#faf9f5] border border-stone-200/90 rounded-2xl min-w-[300px] lg:max-w-sm w-full space-y-4 shadow-sm">
+            {/* Architectural corner crop marks */}
+            <div className="crop-bracket-tl" />
+            <div className="crop-bracket-tr" />
+            <div className="crop-bracket-bl" />
+            <div className="crop-bracket-br" />
+
+            <div className="border-b border-stone-200/80 pb-3">
+              <div className="text-[10px] uppercase font-mono tracking-[0.2em] text-stone-400">
+                Destination Profile
               </div>
-              <div className="text-2xl font-black text-white">{readinessPercent}%</div>
-              <div className="text-[11px] text-slate-400 mt-1">
-                {completionStats.completed} of {completionStats.total} actions done
+              <div className="font-serif text-xl font-normal text-stone-900 flex items-center gap-2 mt-0.5">
+                <span>{userProfile.destinationCity}, {countryData?.name}</span>
+                <span>{countryData?.flag}</span>
+              </div>
+              <div className="text-[11px] font-mono text-stone-500 mt-1 flex items-center gap-1.5">
+                <Clock className="w-3 h-3 text-stone-400" />
+                <span>{daysRemainingText}</span>
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur-md">
-              <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-                <span>Emergency</span>
-                <PhoneCall className="w-4 h-4 text-rose-400" />
+            {/* 4 Minimalist Indicators */}
+            <div className="space-y-2.5 text-xs">
+              <div className="flex items-center justify-between py-1 border-b border-stone-200/50">
+                <span className="text-stone-500 font-mono text-[11px]">Est. Monthly Living</span>
+                <span className="font-mono font-medium text-stone-900">
+                  ~{countryData?.symbol}{monthlyCostEstimate.toLocaleString()}
+                </span>
               </div>
-              <div className="text-2xl font-black text-rose-400">
-                {countryData?.emergencyNumbers?.police || '112'}
-              </div>
-              <div className="text-[11px] text-slate-400 mt-1">
-                Ambulance: {countryData?.emergencyNumbers?.ambulance || '112'}
-              </div>
-            </div>
 
-            <div className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur-md">
-              <div className="text-xs text-slate-400 mb-1">Est. Monthly Living</div>
-              <div className="text-xl font-bold text-emerald-400">
-                ~{countryData?.symbol}{monthlyCostEstimate.toLocaleString()}
+              <div className="flex items-center justify-between py-1 border-b border-stone-200/50">
+                <span className="text-stone-500 font-mono text-[11px]">Readiness Score</span>
+                <span className="font-mono font-medium text-stone-900">
+                  {readinessPercent}% ({completionStats.completed}/{completionStats.total})
+                </span>
               </div>
-              <div className="text-[11px] text-slate-400 mt-1">
-                Rent + food + transit ({userProfile.persona})
-              </div>
-            </div>
 
-            <div className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 backdrop-blur-md">
-              <div className="text-xs text-slate-400 mb-1">Diet & Faith</div>
-              <div className="text-base font-bold text-amber-300 capitalize truncate">
-                {userProfile.dietary}
+              <div className="flex items-center justify-between py-1 border-b border-stone-200/50">
+                <span className="text-stone-500 font-mono text-[11px]">Emergency Direct</span>
+                <span className="font-mono font-medium text-stone-900">
+                  {countryData?.emergencyNumbers?.police || '112'} / {countryData?.emergencyNumbers?.ambulance || '112'}
+                </span>
               </div>
-              <div className="text-[11px] text-slate-400 mt-1 capitalize">
-                {userProfile.faith || 'Secular'}
+
+              <div className="flex items-center justify-between py-1">
+                <span className="text-stone-500 font-mono text-[11px]">Party & Diet</span>
+                <span className="font-medium text-stone-900 capitalize">
+                  {userProfile.persona.replace('_', ' ')} · {userProfile.dietary}
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Critical First Alert Box */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs sm:text-sm flex items-start gap-3.5">
-        <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-        <div className="space-y-1">
-          <div className="font-bold text-amber-300">
-            Top 3 Golden Rules for Moving to {countryData?.name}:
+      {/* Critical First Alert Box — Clean Minimalist Notice */}
+      <div className="p-5 sm:p-6 rounded-2xl bg-white border border-stone-200/90 text-stone-800 text-xs sm:text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)] space-y-2">
+        <div className="font-serif text-base font-normal text-stone-900 flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-stone-900" />
+          <span>Three Essential Golden Rules for Relocating to {countryData?.name}:</span>
+        </div>
+        <div className="text-stone-600 leading-relaxed space-y-1 sm:space-y-0 sm:flex sm:items-center sm:gap-6 pt-1 text-xs">
+          <div>
+            <strong className="text-stone-900 font-medium">1. Official Address:</strong> Ensure initial stay provides registered proof of residence for tax ID issuance.
           </div>
-          <div className="text-amber-200/90 leading-relaxed">
-            <strong>1. Temporary Stay:</strong> Ensure your first apartment offers official city registration proof (e.g. <em>Wohnungsgeberbestätigung</em> / address proof) so you can get your tax ID on week 1.{' '}
-            <strong>2. Scams:</strong> Never wire deposits before receiving the keys in person.{' '}
-            <strong>3. Carry-on Docs:</strong> Never pack original degrees, marriage/birth certificates, or visas in checked luggage.
+          <div>
+            <strong className="text-stone-900 font-medium">2. Rental Verification:</strong> Never transfer security deposits prior to in-person key exchange.
+          </div>
+          <div>
+            <strong className="text-stone-900 font-medium">3. Original Certificates:</strong> Always carry apostilles, degrees, and visas in cabin luggage.
           </div>
         </div>
       </div>
 
-      {/* 9 Core Relocation Pillars Grid */}
+      {/* Core Relocation Modules Grid */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-indigo-400" />
-            Core Relocation Modules & Guides
+        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 border-b border-stone-200/80 pb-3">
+          <h2 className="font-serif text-2xl font-normal text-stone-900">
+            Relocation Chapters & Protocols
           </h2>
-          <span className="text-xs text-slate-400">Click any card to explore details</span>
+          <span className="text-xs font-mono text-stone-400 uppercase tracking-wider">
+            13 Modules · Select to inspect details
+          </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {modules.map((m) => {
+          {modules.map((m, idx) => {
             const Icon = m.icon;
+            const indexStr = String(idx + 1).padStart(2, '0');
             return (
               <div
                 key={m.id}
                 onClick={() => onSelectTab(m.id)}
-                className="group relative p-5 rounded-2xl bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 hover:border-indigo-500/50 transition-all cursor-pointer shadow-sm hover:shadow-indigo-500/10 hover:-translate-y-0.5"
+                className="group relative p-6 rounded-2xl bg-white border border-stone-200/90 hover:border-stone-900 transition-all cursor-pointer shadow-[0_1px_2px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] hover:-translate-y-0.5"
               >
-                <div className="flex items-start justify-between mb-3">
-                  <div className={`p-3 rounded-xl border bg-gradient-to-br ${m.color}`}>
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-700/60 text-slate-300 border border-slate-600/50">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-xs text-stone-400 font-medium">
+                    {indexStr}
+                  </span>
+                  <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-stone-100 text-stone-600 border border-stone-200">
                     {m.badge}
                   </span>
                 </div>
 
-                <h3 className="font-bold text-base text-white group-hover:text-indigo-300 transition-colors mb-1.5 flex items-center justify-between">
+                <h3 className="font-serif text-lg font-normal text-stone-900 group-hover:text-stone-600 transition-colors mb-2 flex items-center justify-between">
                   <span>{m.title}</span>
-                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-stone-900 group-hover:translate-x-1 transition-all" />
                 </h3>
 
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-xs text-stone-500 leading-relaxed font-sans">
                   {m.desc}
                 </p>
               </div>

@@ -5,40 +5,87 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #f1f5f9;
-    background-color: #0b0f19;
+    color: #1c1917;
+    background-color: #faf9f5;
+  }
+
+  h1, h2, h3, .font-editorial {
+    font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
   }
 }
 
-/* Custom scrollbars */
+/* Minimalist scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #faf9f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: #d6d3d1;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #a8a29e;
 }
 
-/* Glassmorphism helpers */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Minimalist Architectural Panels */
+.minimal-panel {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
 }
 
-.glass-card {
-  background: rgba(30, 41, 59, 0.6);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+.minimal-card {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card:hover {
-  border-color: rgba(99, 102, 241, 0.4);
+.minimal-card:hover {
+  border-color: #1c1917;
+  box-shadow: 0 4px 12px -2px rgba(28, 25, 23, 0.06);
+}
+
+/* Architectural corner crop marks */
+.crop-bracket-tl {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 14px;
+  height: 14px;
+  border-top: 1.5px solid #a8a29e;
+  border-left: 1.5px solid #a8a29e;
+  pointer-events: none;
+}
+.crop-bracket-tr {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 14px;
+  height: 14px;
+  border-top: 1.5px solid #a8a29e;
+  border-right: 1.5px solid #a8a29e;
+  pointer-events: none;
+}
+.crop-bracket-bl {
+  position: absolute;
+  bottom: -6px;
+  left: -6px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 1.5px solid #a8a29e;
+  border-left: 1.5px solid #a8a29e;
+  pointer-events: none;
+}
+.crop-bracket-br {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 1.5px solid #a8a29e;
+  border-right: 1.5px solid #a8a29e;
+  pointer-events: none;
 }
