@@ -1,9 +1,15 @@
-import React from 'react';
-import { ShieldAlert, AlertTriangle, Scale, PhoneCall, Info, Users2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { ShieldAlert, AlertTriangle, Scale, PhoneCall, Info, Users2, ChevronDown, ChevronUp, Baby, CheckCircle2 } from 'lucide-react';
+import { getCountryCulturalBundle } from '../data/countryCulturalData';
 
 export default function CountryRules({ countryData, userProfile }) {
   const laws = countryData.strictRulesAndLaws || [];
   const isFamily = userProfile?.persona?.toLowerCase().includes('family');
+  const [showFamilyDetails, setShowFamilyDetails] = useState(isFamily);
+
+  const culturalBundle = getCountryCulturalBundle(countryData.id);
+  const familyRegulations = culturalBundle.familyRegulations || [];
+  const culturalEtiquette = culturalBundle.culturalEtiquette || [];
 
   return (
     <div className="space-y-8 animate-fadeIn">
@@ -37,34 +43,50 @@ export default function CountryRules({ countryData, userProfile }) {
       </div>
 
       {/* Family Laws & Child Regulations */}
-      {isFamily && (
-        <div className="p-6 rounded-3xl bg-stone-50 border border-stone-200/90 space-y-4">
-          <div className="flex items-center gap-2 font-serif text-stone-900 text-base">
+      <div className="p-6 rounded-3xl bg-stone-50 border border-stone-200/90 space-y-4">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5 font-serif text-stone-900 text-base">
             <ShieldAlert className="w-4 h-4 text-stone-700" />
             <span>Family & Child Welfare Regulations in {countryData.name}</span>
+            {isFamily && (
+              <span className="px-2.5 py-0.5 rounded-full text-[9px] font-mono uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200">
+                Active Party: Family
+              </span>
+            )}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs text-stone-600">
-            <div className="p-4 rounded-2xl bg-white border border-stone-200/80 shadow-[0_1px_2px_rgba(0,0,0,0.02)] space-y-1.5">
-              <strong className="text-stone-900 block font-medium">1. Compulsory Schooling (Schulpflicht):</strong>
-              <p className="text-stone-500 text-[11px] leading-relaxed">
-                School attendance is legally mandatory for children (ages 6–16). Homeschooling is strictly prohibited in Germany, and pulling children from school early before term ends incurs airport police fines up to €1,000.
-              </p>
-            </div>
-            <div className="p-4 rounded-2xl bg-white border border-stone-200/80 shadow-[0_1px_2px_rgba(0,0,0,0.02)] space-y-1.5">
-              <strong className="text-stone-900 block font-medium">2. Child Car Seat Mandate:</strong>
-              <p className="text-stone-500 text-[11px] leading-relaxed">
-                By law, children under 12 or shorter than 150 cm must ride in an approved child safety restraint seat (ECE R129 / i-Size). Taxis may decline transport without proper seats.
-              </p>
-            </div>
-            <div className="p-4 rounded-2xl bg-white border border-stone-200/80 shadow-[0_1px_2px_rgba(0,0,0,0.02)] space-y-1.5">
-              <strong className="text-stone-900 block font-medium">3. Child Benefits (Kindergeld):</strong>
-              <p className="text-stone-500 text-[11px] leading-relaxed">
-                Foreign tax-paying residents with valid residence permits qualify for monthly government child allowances (~€250/mo per child in Germany, Child Benefit in UK).
-              </p>
-            </div>
-          </div>
+
+          <button
+            onClick={() => setShowFamilyDetails(!showFamilyDetails)}
+            className="flex items-center gap-1.5 text-xs text-stone-500 hover:text-stone-800 font-mono transition-colors"
+          >
+            <span>{showFamilyDetails ? 'Collapse' : 'Expand Family Rules'}</span>
+            {showFamilyDetails ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+          </button>
         </div>
-      )}
+
+        {showFamilyDetails ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs text-stone-600 pt-1">
+            {familyRegulations.length > 0 ? (
+              familyRegulations.map((reg, idx) => (
+                <div key={idx} className="p-4 rounded-2xl bg-white border border-stone-200/80 shadow-[0_1px_2px_rgba(0,0,0,0.02)] space-y-1.5">
+                  <strong className="text-stone-900 block font-medium font-serif">{reg.title}</strong>
+                  <p className="text-stone-500 text-[11px] leading-relaxed">
+                    {reg.desc}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-3 p-4 bg-white rounded-2xl border border-stone-200 text-stone-500 text-xs">
+                Check local municipal guidelines for family support, child immunizations, and school district enrollment.
+              </div>
+            )}
+          </div>
+        ) : (
+          <p className="text-xs text-stone-500">
+            Click to view child travel consent mandates, mandatory schooling attendance laws, and child allowance benefits in {countryData.name}.
+          </p>
+        )}
+      </div>
 
       {/* Strict Laws Grid */}
       <div className="space-y-4">
@@ -117,26 +139,20 @@ export default function CountryRules({ countryData, userProfile }) {
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-          <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
-            <div className="font-mono uppercase text-[10px] tracking-wider text-stone-500 font-semibold">Punctuality & Appointments</div>
-            <p className="text-stone-600 leading-relaxed">
-              Arriving 5-10 minutes early is standard. Missing an appointment without 24 hours prior cancellation can incur cancellation charges from doctors and service providers.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
-            <div className="font-mono uppercase text-[10px] tracking-wider text-stone-500 font-semibold">Direct Workplace Culture</div>
-            <p className="text-stone-600 leading-relaxed">
-              Communication in business is direct, factual, and low-context. Constructive feedback is considered constructive; work-life boundaries are rigorously respected.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
-            <div className="font-mono uppercase text-[10px] tracking-wider text-stone-500 font-semibold">Public Decorum & Quiet Hours</div>
-            <p className="text-stone-600 leading-relaxed">
-              Keep phone conversations discreet on public transit. Follow bike lane right-of-way rules religiously — pedestrians walking on dedicated bike tracks cause severe conflict.
-            </p>
-          </div>
+          {culturalEtiquette.length > 0 ? (
+            culturalEtiquette.map((item, idx) => (
+              <div key={idx} className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
+                <div className="font-mono uppercase text-[10px] tracking-wider text-stone-700 font-semibold">{item.title}</div>
+                <p className="text-stone-600 leading-relaxed text-[11px]">
+                  {item.desc}
+                </p>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-3 p-4 bg-stone-50 rounded-2xl border border-stone-200 text-stone-500 text-xs">
+              Be mindful of local customs, professional punctuality, and cultural decorum.
+            </div>
+          )}
         </div>
       </div>
     </div>

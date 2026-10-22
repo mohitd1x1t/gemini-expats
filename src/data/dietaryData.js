@@ -92,6 +92,44 @@ export const RESTAURANT_FLASHCARDS = {
       title: 'Strikte vegetarische (Jain) Karte',
       text: 'Ich bin strikter Vegetarier (Jain). Ich esse KEIN Fleisch, KEINEN Fisch, KEINE Eier und KEINE Wurzelgemüse wie Zwiebeln, Knoblauch, Kartoffeln oder Karotten. Kann dieses Gericht ohne Zwiebeln und ohne Knoblauch zubereitet werden?',
       phonetic: 'Ikh bin shtrik-ter veh-geh-tah-ree-er...'
+    },
+    kosher: {
+      lang: 'German',
+      title: 'Koschere Karte',
+      text: 'Ich ernähre mich koscher. Ich esse kein Schweinefleisch, keine Schalentiere und trenne Fleisch- und Milchprodukte strikt. Bieten Sie koschere oder rein vegetarische Speisen an?',
+      phonetic: 'Ikh er-nay-reh mikh koh-sher...'
+    }
+  },
+  uk: {
+    vegetarian: {
+      lang: 'English (UK)',
+      title: 'Vegetarian Dietary Card',
+      text: 'I am strictly vegetarian. I do not eat meat, poultry, fish, seafood, gelatin, or animal rennet. Could you please confirm if this dish is prepared without animal broths, beef dripping, or parmesan made with calf rennet? Thank you!',
+      phonetic: 'Clear British English inquiry for restaurant and pub staff.'
+    },
+    vegan: {
+      lang: 'English (UK)',
+      title: 'Vegan Dietary Card',
+      text: 'I follow a 100% plant-based vegan diet. I do not consume meat, poultry, fish, dairy, cheese, butter, eggs, or honey. Please ensure no dairy or egg wash is used. Thank you!',
+      phonetic: 'Clear British English dietary request.'
+    },
+    halal: {
+      lang: 'English (UK)',
+      title: 'Halal Dining Card',
+      text: 'I only consume Halal food. I cannot eat pork, bacon, gelatin, or any dishes cooked with alcohol or cooking wine. Is your chicken or beef certified Halal, or do you have a vegetarian option prepared without alcohol?',
+      phonetic: 'Clear inquiry on Halal certification and alcohol-free cooking.'
+    },
+    jain: {
+      lang: 'English (UK)',
+      title: 'Strict Vegetarian (Jain) Card',
+      text: 'I follow a strict Jain vegetarian diet. I do not eat meat, fish, eggs, gelatin, or any underground root vegetables including onions, garlic, potatoes, and carrots. Can this dish be prepared without onion and garlic? Thank you!',
+      phonetic: 'Specific dietary allergy and religious preference statement.'
+    },
+    kosher: {
+      lang: 'English (UK)',
+      title: 'Kosher Dietary Card',
+      text: 'I keep strictly Kosher. I do not consume pork, shellfish, or mix dairy and meat products. Could you please advise on vegetarian or kosher-suitable options?',
+      phonetic: 'Inquiry regarding kashrut dietary compatibility.'
     }
   },
   netherlands: {
@@ -101,11 +139,159 @@ export const RESTAURANT_FLASHCARDS = {
       text: 'Ik ben vegetariër. Ik eet GEEN vlees, GEEN kip, GEEN vis en GEEN zeevruchten. Bevat dit gerecht vleesbouillon of dierlijke gelatine? Alvast hartelijk bedankt!',
       phonetic: 'Ik ben veh-geh-tah-ree-er. Ik ayt ghayn vlais...'
     },
+    vegan: {
+      lang: 'Dutch',
+      title: 'Vegane Kaart',
+      text: 'Ik eet 100% plantaardig (veganistisch). Ik eet GEEN vlees, vis, zuivel, kaas, boter, eieren of honing. Is dit gerecht volledig veganistisch?',
+      phonetic: 'Ik ayt plan-taar-dekh...'
+    },
     halal: {
       lang: 'Dutch',
       title: 'Halal Kaart',
       text: 'Ik eet uitsluitend Halal. Ik eet GEEN varkensvlees of gelatine en GEEN gerechten bereid met alcohol of kookwijn. Is dit gerecht halal?',
       phonetic: 'Ik ayt out-sloy-tend hah-lahl...'
+    },
+    jain: {
+      lang: 'Dutch',
+      title: 'Jain Vegetarische Kaart',
+      text: 'Ik ben strikt vegetariër (Jain). Ik eet geen vlees, vis, eieren en geen uien, knoflook of wortelgroenten. Kan dit gerecht zonder ui en zonder knoflook gemaakt worden?',
+      phonetic: 'Zon-der oy en zon-der knof-look...'
+    }
+  },
+  canada: {
+    vegetarian: {
+      lang: 'English & French (Canada)',
+      title: 'Vegetarian Card / Carte Végétarienne',
+      text: 'I am strictly vegetarian / Je suis végétarien(ne). I do not consume meat, poultry, fish, gelatin, or meat broths. Pas de viande, volaille, poisson ni bouillon animal. Merci beaucoup!',
+      phonetic: 'Je suis végétarien(ne). Pas de viande ni de bouillon.'
+    },
+    vegan: {
+      lang: 'English & French (Canada)',
+      title: 'Vegan Card / Carte Végétalienne',
+      text: 'I follow a 100% vegan diet / Je suis végétalien(ne). No meat, dairy, cheese, eggs, or animal derivatives. Aucun produit d\'origine animale (lait, fromage, beurre, oeufs). Thank you!',
+      phonetic: 'Je suis végétalien(ne). Aucun produit d\'origine animale.'
+    },
+    halal: {
+      lang: 'English & French (Canada)',
+      title: 'Halal Card / Carte Halal',
+      text: 'I eat strictly Halal. No pork, bacon, gelatin, or food prepared with cooking wine or alcohol. Is this meat certified Halal? Cette viande est-elle certifiée Halal? Merci!',
+      phonetic: 'Est-ce certifié Halal? Pas de porc ni d\'alcool.'
+    },
+    jain: {
+      lang: 'English & French (Canada)',
+      title: 'Jain Vegetarian Card',
+      text: 'I am a strict Jain vegetarian. No meat, fish, eggs, and strictly no root vegetables (no onions, garlic, potatoes). Sans oignons ni ail s\'il vous plaît. Thank you!',
+      phonetic: 'Sans oignon ni ail s\'il vous plaît.'
+    }
+  },
+  usa: {
+    vegetarian: {
+      lang: 'English (US)',
+      title: 'Vegetarian Dietary Card',
+      text: 'I am strictly vegetarian. I do not eat meat, poultry, fish, shellfish, gelatin, or animal rennet. Please ensure no chicken or beef broth, bacon fat, or animal stock is used in this dish. Thank you!',
+      phonetic: 'Standard American English dietary instruction for waitstaff.'
+    },
+    vegan: {
+      lang: 'English (US)',
+      title: 'Strict Vegan Card',
+      text: 'I follow a 100% plant-based vegan diet. No meat, dairy, cheese, butter, eggs, honey, or animal fats. Is this dish completely free of animal products?',
+      phonetic: 'Standard plant-based dietary specification.'
+    },
+    halal: {
+      lang: 'English (US)',
+      title: 'Halal Dietary Card',
+      text: 'I adhere to a strict Halal diet. I do not consume pork, bacon, lard, or any food cooked with wine or alcohol. Is your meat Halal certified, or could you recommend an alcohol-free vegetarian option?',
+      phonetic: 'Inquiry on Halal certification and alcohol-free cooking.'
+    },
+    jain: {
+      lang: 'English (US)',
+      title: 'Jain Vegetarian Card',
+      text: 'I am a strict Jain vegetarian. I do not consume meat, fish, eggs, gelatin, or underground root vegetables (no onions, garlic, potatoes, or carrots). Can this dish be prepared without onion and garlic? Thank you!',
+      phonetic: 'Religious dietary specification: no meat, eggs, onion, or garlic.'
+    },
+    kosher: {
+      lang: 'English (US)',
+      title: 'Kosher Dietary Card',
+      text: 'I observe Kosher dietary laws. I do not consume non-kosher meats, pork, shellfish, or mix meat and dairy. Could you please advise on kosher-certified or suitable vegetarian selections?',
+      phonetic: 'Kashrut dietary compatibility check.'
+    }
+  },
+  uae: {
+    vegetarian: {
+      lang: 'Arabic & English (UAE)',
+      title: 'بطاقة نباتي (Vegetarian Card)',
+      text: 'أنا شخص نباتي. لا أتناول اللحوم أو الدواجن أو المأكولات البحرية أو الجيلاتين أو مرق اللحم. I am strictly vegetarian. No meat, chicken, fish, seafood, or animal broth. شكراً جزيلاً!',
+      phonetic: 'Ana nabati. La atanawal al-luhum aw al-dajaj aw al-samak.'
+    },
+    vegan: {
+      lang: 'Arabic & English (UAE)',
+      title: 'بطاقة نباتي صرف (Vegan Card)',
+      text: 'أنا نباتي صرف (فيجان). لا أتناول أي منتجات حيوانية، بما في ذلك الحليب أو الجبن أو البيض أو الزبدة أو العسل. I eat 100% plant-based vegan food: no dairy, cheese, eggs, or butter. شكراً!',
+      phonetic: 'Ana nabati sarf. La atanawal ayy muntajat hayawaniyyah.'
+    },
+    halal: {
+      lang: 'Arabic & English (UAE)',
+      title: 'حلال (Halal Standard in UAE)',
+      text: 'جميع اللحوم في دولة الإمارات حلال وفقاً للوائح هيئة الرقابة الغذائية. All meat served in UAE restaurants is strictly 100% Halal certified by law. Pork is strictly segregated in dedicated non-Muslim sections.',
+      phonetic: 'Jamee\' al-luhum halal bi-hukm al-qanun.'
+    },
+    jain: {
+      lang: 'Arabic & English (UAE)',
+      title: 'بطاقة نباتي جايني (Jain Card)',
+      text: 'أنا نباتي جايني. لا آكل اللحوم أو الأسماك أو البيض، ولا أتناول البصل أو الثوم أو البطاطس. I am strict Jain vegetarian: no meat, eggs, and strictly no onion, garlic, or root vegetables. شكراً!',
+      phonetic: 'Bidoon basal wa bidoon thawm min fadlik.'
+    }
+  },
+  singapore: {
+    vegetarian: {
+      lang: 'English & Mandarin (新加坡素食卡)',
+      title: 'Vegetarian Card / 素食卡',
+      text: '我是素食者。我不吃任何肉类、家禽、海鲜、动物明胶或肉汤。请确保食物中没有虾米、鱼露或猪油。I am strictly vegetarian. No meat, fish, lard (猪油), dried shrimp (虾米), or belacan (shrimp paste). 谢谢！',
+      phonetic: 'Wǒ shì sù shí zhě. Wǒ bù chī ròu, hǎixiān, zhūyóu, xiāmǐ.'
+    },
+    vegan: {
+      lang: 'English & Mandarin (纯素卡)',
+      title: 'Strict Vegan Card / 纯素卡',
+      text: '我吃纯素。我不吃肉、海鲜、蛋、奶制品（牛奶、奶酪、黄油）或蜂蜜。炒菜请不要放猪油或牛油。I am 100% vegan: no dairy, eggs, honey, or animal fats. 谢谢！',
+      phonetic: 'Wǒ chī chún sù. Bù chī dàn, nǎi, zhūyóu.'
+    },
+    halal: {
+      lang: 'English & Malay (Kad Halal)',
+      title: 'Halal Card / Kad Halal',
+      text: 'Saya hanya makan makanan Halal. Tiada daging babi, gelatin babi, atau arak dalam masakan. Adakah makanan ini diperakui Halal oleh MUIS? I only eat Halal-certified food.',
+      phonetic: 'MUIS Halal certification verification.'
+    },
+    jain: {
+      lang: 'English & Mandarin (严格耆那教素食)',
+      title: 'Jain Vegetarian Card / 严格耆那教素食',
+      text: '我是耆那教素食者。我不吃肉、鱼、蛋、五辛（大蒜、葱、洋葱）以及根茎类蔬菜（马铃薯、胡萝卜）。可以准备无葱无蒜的菜肴吗？No onion, no garlic, no root vegetables. 谢谢！',
+      phonetic: 'Wú cōng wú suàn, bù chī gēnjīng cài.'
+    }
+  },
+  australia: {
+    vegetarian: {
+      lang: 'English (Australia)',
+      title: 'Vegetarian Dietary Card',
+      text: 'I am strictly vegetarian. I do not consume meat, poultry, seafood, gelatin, or animal rennet. Please confirm no chicken/beef stock or bacon is used in the preparation. Thank you!',
+      phonetic: 'Standard Australian English dietary inquiry.'
+    },
+    vegan: {
+      lang: 'English (Australia)',
+      title: 'Vegan Dietary Card',
+      text: 'I eat a 100% plant-based vegan diet. No meat, dairy, eggs, butter, or honey. Is this dish fully vegan-friendly? Thanks!',
+      phonetic: 'Australian plant-based dietary request.'
+    },
+    halal: {
+      lang: 'English (Australia)',
+      title: 'Halal Dietary Card',
+      text: 'I eat Halal only. No pork, bacon, gelatin, or cooking alcohol. Is your meat Halal certified, or could you recommend a seafood/vegetarian option prepared without wine?',
+      phonetic: 'Halal certification and alcohol inquiry.'
+    },
+    jain: {
+      lang: 'English (Australia)',
+      title: 'Jain Vegetarian Card',
+      text: 'I am a strict Jain vegetarian. No meat, seafood, eggs, or underground root vegetables (no onion, garlic, or potatoes). Can this dish be cooked without onion and garlic? Thank you!',
+      phonetic: 'No meat, eggs, onion, or garlic.'
     }
   },
   japan: {
@@ -115,25 +301,23 @@ export const RESTAURANT_FLASHCARDS = {
       text: '私はベジタリアンです。肉、鶏肉、魚、魚介類を一切食べることができません。鰹節（かつおぶし）や魚の出汁（だし）、コンソメスープも使わないでいただけますか？よろしくお願いします。',
       phonetic: 'Watashi wa bejitarian desu. Niku, toriniku, sakana, gyokairui wo issai taberu koto ga dekimasen. Dashi mo dame desu.'
     },
+    vegan: {
+      lang: 'Japanese',
+      title: 'ヴィーガン用カード (Vegan Card)',
+      text: '私は完全菜食主義者（ヴィーガン）です。肉、魚、卵、乳製品（牛乳・チーズ・バター）、蜂蜜を一切口にしません。出汁（だし）やラードも使っていませんか？よろしくお願いします。',
+      phonetic: 'Watashi wa vīgan desu. Tamago, nyūseihin, dashi mo dame desu.'
+    },
     halal: {
       lang: 'Japanese',
       title: 'ハラール用カード (Halal Card)',
       text: '私はイスラム教徒（ムスリム）です。豚肉、ポークエキス、ラード、および料理酒やみりんなどのアルコール類を口にすることができません。ハラール対応のメニューはありますか？',
       phonetic: 'Watashi wa musurimu desu. Butaniku, mirin, sake wa kuchi ni suru koto ga dekimasen.'
-    }
-  },
-  france: {
-    vegetarian: {
-      lang: 'French',
-      title: 'Carte Végétarienne',
-      text: 'Je suis végétarien(ne). Je ne mange ni viande, ni volaille, ni poisson, ni fruits de mer. Veuillez vous assurer que le plat ne contient pas de bouillon de viande ou de gélatine. Merci beaucoup !',
-      phonetic: 'Zhuh swee veh-zheh-tah-ree-an...'
     },
-    halal: {
-      lang: 'French',
-      title: 'Carte Halal',
-      text: 'Je mange uniquement de la nourriture Halal. Je ne consomme pas de porc, ni de saindoux, ni d’alcool (même dans les sauces ou cuissons). Cette viande est-elle certifiée Halal ?',
-      phonetic: 'Zhuh mahnzh ew-neek-mahn duh lah noo-ree-toor hah-lahl...'
+    jain: {
+      lang: 'Japanese',
+      title: 'ジャイナ教素食カード (Jain Vegetarian Card)',
+      text: '私はジャイナ教のベジタリアンです。肉、魚、卵のほか、玉ねぎ、ニンニク、生姜、じゃがいもなどの根菜類も食べられません。玉ねぎ・ニンニク抜きで調理可能ですか？',
+      phonetic: 'Tamanegi, ninniku nuki de chōri dekimasu ka?'
     }
   },
   brazil: {

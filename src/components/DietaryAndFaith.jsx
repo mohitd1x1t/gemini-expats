@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { UtensilsCrossed, HeartHandshake, Eye, ShoppingBag, AlertCircle, Globe, X } from 'lucide-react';
+import { UtensilsCrossed, HeartHandshake, Eye, ShoppingBag, AlertCircle, Globe, X, Sparkles, MapPin, Calendar, Tag, Lightbulb } from 'lucide-react';
 import { DIETARY_PREFERENCES, RESTAURANT_FLASHCARDS, FAITH_GUIDES } from '../data/dietaryData';
+import { getCountryCulturalBundle } from '../data/countryCulturalData';
 
 export default function DietaryAndFaith({ countryData, userProfile }) {
   const [activeSubTab, setActiveSubTab] = useState('diet'); // 'diet' or 'faith'
@@ -9,11 +10,25 @@ export default function DietaryAndFaith({ countryData, userProfile }) {
   const selectedDiet = DIETARY_PREFERENCES.find(d => d.id === userProfile.dietary) || DIETARY_PREFERENCES[0];
   const selectedFaith = FAITH_GUIDES.find(f => f.id === userProfile.faith) || FAITH_GUIDES[0];
 
-  const countryFlashcards = RESTAURANT_FLASHCARDS[countryData.id] || RESTAURANT_FLASHCARDS.germany;
-  const currentCard = countryFlashcards[userProfile.dietary] || countryFlashcards.vegetarian;
+  const culturalBundle = getCountryCulturalBundle(countryData.id);
 
-  const dietGuide = countryData.dietaryGuide || {};
-  const faithGuide = countryData.religiousGuide || {};
+  // Dynamic restaurant flashcard lookup for the destination
+  const countryFlashcards = RESTAURANT_FLASHCARDS[countryData.id] || RESTAURANT_FLASHCARDS.germany;
+  const currentCard = countryFlashcards[userProfile.dietary] || countryFlashcards.vegetarian || {
+    lang: countryData.language || 'English',
+    title: 'Dietary Card',
+    text: `I follow a ${userProfile.dietary} diet. Please ensure this dish contains no meat, fish, gelatin, or animal derivatives. Thank you!`,
+    phonetic: 'Standard dietary inquiry.'
+  };
+
+  // Dynamic faith community data for destination and faith
+  const faithKey = userProfile.faith || 'hindu';
+  const faithCommunity = culturalBundle.faithCommunities?.[faithKey] || {
+    centers: `Active places of worship and community centers for ${selectedFaith.name} operate in major metropolitan areas across ${countryData.name}.`,
+    festivals: selectedFaith.festivalGuide || 'Major religious holidays are celebrated with community banquets and cultural events.'
+  };
+
+  const hiddenIngredients = culturalBundle.hiddenIngredients || [];
 
   return (
     <div className="space-y-8 animate-fadeIn">
@@ -28,7 +43,7 @@ export default function DietaryAndFaith({ countryData, userProfile }) {
             Dietary Preferences & <em className="italic font-serif">Faith Communities</em>
           </h2>
           <p className="text-xs sm:text-sm text-stone-500 mt-1">
-            Tailored for a <span className="font-mono text-stone-800 font-medium">{userProfile.dietary.toUpperCase()}</span> expat practicing <span className="font-mono text-stone-800 font-medium">{userProfile.faith.toUpperCase()}</span> in {countryData.name}.
+            Tailored for a <span className="font-mono text-stone-800 font-medium">{userProfile.dietary?.toUpperCase()}</span> expat observing <span className="font-mono text-stone-800 font-medium">{userProfile.faith?.toUpperCase()}</span> in {countryData.name} {countryData.flag}.
           </p>
         </div>
 
@@ -91,38 +106,77 @@ export default function DietaryAndFaith({ countryData, userProfile }) {
             </button>
           </div>
 
+          {/* Dining Culture & Local Habits in Country */}
+          {culturalBundle.diningCulture && (
+            <div className="p-6 rounded-3xl bg-amber-50/40 border border-amber-200/70 space-y-3">
+              <div className="flex items-center gap-2 font-serif text-stone-900 text-base">
+                <Sparkles className="w-4 h-4 text-amber-700" />
+                <span>Dining Culture & Local Norms in {countryData.name}</span>
+              </div>
+              <p className="text-xs text-stone-700 leading-relaxed">
+                {culturalBundle.diningCulture.overview}
+              </p>
+              {culturalBundle.diningCulture.diningTip && (
+                <div className="flex items-start gap-2.5 p-3.5 rounded-2xl bg-white border border-amber-200/80 text-xs text-stone-800">
+                  <Lightbulb className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="font-serif text-stone-900 mr-1.5">Local Insider Tip:</strong>
+                    <span className="text-stone-600">{culturalBundle.diningCulture.diningTip}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Dietary Overview & Hidden Ingredients */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-6 rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-3">
+            {/* Supermarket Intelligence */}
+            <div className="p-6 rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-4">
               <div className="font-serif text-stone-900 text-base flex items-center gap-2">
                 <ShoppingBag className="w-4 h-4 text-stone-700" />
                 <span>Supermarkets & Pantry Staples in {countryData.name}</span>
               </div>
-              <p className="text-xs text-stone-600 leading-relaxed">
-                {dietGuide.supermarkets || 'Large domestic supermarket chains offer extensive produce and vegetarian staples.'}
-              </p>
-              {dietGuide.ethnicGrocers && (
-                <div className="p-3.5 bg-stone-50 rounded-2xl border border-stone-200 text-xs text-stone-700">
-                  <strong className="text-stone-900 font-serif">Specialty Grocers:</strong> {dietGuide.ethnicGrocers}
-                </div>
-              )}
+
+              <div className="space-y-3 text-xs">
+                {culturalBundle.supermarkets?.mainstream && (
+                  <div className="p-3.5 bg-stone-50 rounded-2xl border border-stone-200/80 space-y-1">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Mainstream Supermarket Chains</div>
+                    <p className="text-stone-700 leading-relaxed">{culturalBundle.supermarkets.mainstream}</p>
+                  </div>
+                )}
+
+                {culturalBundle.supermarkets?.organic && (
+                  <div className="p-3.5 bg-stone-50 rounded-2xl border border-stone-200/80 space-y-1">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Organic & Health Food Markets</div>
+                    <p className="text-stone-700 leading-relaxed">{culturalBundle.supermarkets.organic}</p>
+                  </div>
+                )}
+
+                {culturalBundle.supermarkets?.ethnic && (
+                  <div className="p-3.5 bg-stone-50 rounded-2xl border border-stone-200/80 space-y-1">
+                    <div className="font-mono text-[10px] uppercase tracking-wider text-stone-500 font-semibold">Ethnic Grocers & Diaspora Enclaves</div>
+                    <p className="text-stone-700 leading-relaxed">{culturalBundle.supermarkets.ethnic}</p>
+                  </div>
+                )}
+              </div>
             </div>
 
+            {/* Hidden Ingredients Watchlist */}
             <div className="p-6 rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-3">
               <div className="font-serif text-stone-900 text-base flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 text-rose-700" />
                 <span>Hidden Ingredients Watchlist ({countryData.language})</span>
               </div>
               <p className="text-xs text-stone-500">
-                Inspect ingredient labels for these terms on packaged groceries:
+                Inspect ingredient labels for these local terms on packaged groceries and restaurant menus:
               </p>
 
-              <div className="space-y-1.5 text-xs">
-                {dietGuide.hiddenIngredientsGerman ? (
-                  dietGuide.hiddenIngredientsGerman.map((item, i) => (
-                    <div key={i} className="flex justify-between p-2.5 rounded-xl bg-stone-50 border border-stone-200/70">
-                      <span className="font-mono font-medium text-stone-900">{item.de}</span>
-                      <span className="text-stone-500">{item.en}</span>
+              <div className="space-y-2 text-xs">
+                {hiddenIngredients.length > 0 ? (
+                  hiddenIngredients.map((item, i) => (
+                    <div key={i} className="p-2.5 rounded-xl bg-stone-50 border border-stone-200/70 space-y-0.5">
+                      <div className="font-mono font-medium text-stone-900">{item.term}</div>
+                      <div className="text-stone-500 text-[11px] leading-relaxed">{item.en}</div>
                     </div>
                   ))
                 ) : (
@@ -139,40 +193,77 @@ export default function DietaryAndFaith({ countryData, userProfile }) {
       {/* FAITH & RELIGION SECTION */}
       {activeSubTab === 'faith' && (
         <div className="space-y-6">
-          <div className="p-7 rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-5">
+          <div className="p-7 rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-6">
             <div className="flex items-center gap-3.5">
               <span className="text-3xl">{selectedFaith.icon}</span>
               <div>
                 <h3 className="text-xl font-serif text-stone-900">{selectedFaith.name} Community Guide</h3>
-                <p className="text-xs text-stone-500">Observance and places of worship in {countryData.name}</p>
+                <p className="text-xs text-stone-500">Observance and places of worship in {countryData.name} {countryData.flag}</p>
               </div>
             </div>
 
             <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-              {faithGuide.overview || selectedFaith.overview}
+              {selectedFaith.overview}
             </p>
 
-            {faithGuide.churchTax && (
-              <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-amber-950 text-xs space-y-0.5">
-                <strong className="text-stone-900 font-serif block">Church Tax Notice (Kirchensteuer):</strong>
-                <p className="text-stone-700">{faithGuide.churchTax}</p>
+            {/* Tax or regulatory alert if present */}
+            {faithCommunity.taxAlert && (
+              <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 text-amber-950 text-xs space-y-1">
+                <div className="flex items-center gap-1.5 font-serif font-medium text-stone-900">
+                  <AlertCircle className="w-3.5 h-3.5 text-amber-700" />
+                  <span>Important Tax & Legal Notice</span>
+                </div>
+                <p className="text-stone-700 leading-relaxed">{faithCommunity.taxAlert}</p>
               </div>
             )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-1.5">
-                <div className="font-mono text-xs uppercase tracking-wider text-stone-700 font-semibold">Festivals & Celebrations</div>
+            {/* Country-Specific Places of Worship & Celebrations */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
+                <div className="flex items-center gap-1.5 font-serif text-stone-900 text-sm">
+                  <MapPin className="w-3.5 h-3.5 text-stone-700" />
+                  <span>Places of Worship in {countryData.name}</span>
+                </div>
                 <p className="text-xs text-stone-600 leading-relaxed">
-                  {selectedFaith.festivalGuide || 'Major religious holidays are celebrated with community banquets, temple or mosque gatherings, and cultural events.'}
+                  {faithCommunity.centers}
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-1.5">
-                <div className="font-mono text-xs uppercase tracking-wider text-stone-700 font-semibold">Places of Worship in {countryData.name}</div>
+              <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
+                <div className="flex items-center gap-1.5 font-serif text-stone-900 text-sm">
+                  <Calendar className="w-3.5 h-3.5 text-stone-700" />
+                  <span>Festivals & Celebrations in {countryData.name}</span>
+                </div>
                 <p className="text-xs text-stone-600 leading-relaxed">
-                  {faithGuide.placesOfWorship || 'Places of worship exist in all metropolitan centers. Search local maps with terms like "Mandir", "Central Mosque", or "International Church".'}
+                  {faithCommunity.festivals}
                 </p>
               </div>
+            </div>
+
+            {/* Dietary notes for faith and search keywords */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+              {selectedFaith.dietaryNotes && (
+                <div className="p-4 rounded-2xl bg-white border border-stone-200/80 text-xs space-y-1">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-stone-500 font-semibold block">Faith Dietary Guidelines</span>
+                  <p className="text-stone-600 leading-relaxed">{selectedFaith.dietaryNotes}</p>
+                </div>
+              )}
+
+              {selectedFaith.communityKeywords && (
+                <div className="p-4 rounded-2xl bg-white border border-stone-200/80 text-xs space-y-2">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-stone-500 font-semibold block flex items-center gap-1">
+                    <Tag className="w-3 h-3 text-stone-400" />
+                    <span>Search Keywords for Local Groups</span>
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedFaith.communityKeywords.map((kw, i) => (
+                      <span key={i} className="px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 text-[10px] font-mono border border-stone-200/80">
+                        {kw}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
