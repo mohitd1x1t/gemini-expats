@@ -24,10 +24,21 @@ import DrivingTransport from './components/DrivingTransport';
 import PetRelocation from './components/PetRelocation';
 import GeminiCopilot from './components/GeminiCopilot';
 
+import TaxResidencyEngine from './components/TaxResidencyEngine';
+import CreditZeroGuide from './components/CreditZeroGuide';
+import FamilyWorkspace from './components/FamilyWorkspace';
+import BureaucracyGraph from './components/BureaucracyGraph';
+import NeighborhoodEngine from './components/NeighborhoodEngine';
+import LogisticsOptimizer from './components/LogisticsOptimizer';
+import OfferComparison from './components/OfferComparison';
+import SurvivalAudioDeck from './components/SurvivalAudioDeck';
+import ChangeAlerts from './components/ChangeAlerts';
+
 import { COUNTRIES_DATA } from './data/countries';
 import { PACKING_CATEGORIES, getCountryCountdownTimeline, getCountryArrivalRoadmap } from './data/checklists';
 import { CITY_BUDGET_BENCHMARKS, getCityBudgetData, calculateMonthlyBurn } from './data/budgetDefaults';
 import { exportRelocationBinderPDF } from './utils/pdfGenerator';
+import { parseUserProfileFromURL } from './utils/urlStateManager';
 import {
   LayoutDashboard,
   Calendar,
@@ -47,7 +58,13 @@ import {
   ChevronLeft,
   ChevronRight,
   SlidersHorizontal,
-  Users
+  Users,
+  Scale,
+  Unlock,
+  MapPin,
+  Ship,
+  Volume2,
+  Bell
 } from 'lucide-react';
 
 const STORAGE_KEY_PROFILE = 'expat_compass_profile';
@@ -55,8 +72,11 @@ const STORAGE_KEY_TASKS = 'expat_compass_tasks';
 const STORAGE_KEY_API_KEY = 'expat_compass_gemini_key';
 
 export default function App() {
-  // 1. Relocation Profile State
+  // 1. Relocation Profile State (Supports Shareable Scenario Links from URL)
   const [userProfile, setUserProfile] = useState(() => {
+    const urlProfile = parseUserProfileFromURL();
+    if (urlProfile) return urlProfile;
+
     try {
       const saved = localStorage.getItem(STORAGE_KEY_PROFILE);
       if (saved) return JSON.parse(saved);
@@ -180,7 +200,15 @@ export default function App() {
 
   // Navigation tabs for the workspace
   const navigationTabs = [
-    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
+    { id: 'overview', label: 'Mission Control', icon: LayoutDashboard },
+    { id: 'tax_banking', label: 'Tax, Banking & DTAA', icon: Scale },
+    { id: 'family_hub', label: 'Family & Pediatric', icon: Users },
+    { id: 'bureaucracy', label: 'Deadlock Breaker', icon: Unlock },
+    { id: 'neighborhoods', label: 'Neighborhood Match', icon: MapPin },
+    { id: 'logistics', label: 'Shipping & Voltage ROI', icon: Ship },
+    { id: 'offer_showdown', label: 'Offer Showdown', icon: TrendingUp },
+    { id: 'survival_audio', label: '72h Survival Audio', icon: Volume2 },
+    { id: 'change_alerts', label: 'Policy Alerts', icon: Bell },
     { id: 'visa', label: 'Visa Pathways', icon: FileCheck2 },
     { id: 'compensation', label: 'IT Salary Benchmark', icon: TrendingUp },
     { id: 'budget', label: 'Cost & Budget', icon: Calculator },
@@ -303,6 +331,71 @@ export default function App() {
                 onSelectTab={setActiveTab}
                 onOpenProfile={() => setIsProfileModalOpen(true)}
                 completionStats={completionStats}
+                completedTasks={completedTasks}
+                onToggleTask={toggleTask}
+                onExportPDF={handleExportPDF}
+              />
+            )}
+
+            {activeTab === 'tax_banking' && (
+              <div className="space-y-10">
+                <TaxResidencyEngine
+                  userProfile={userProfile}
+                  countryData={countryData}
+                  onUpdateDepartureDate={(newDate) => {
+                    setUserProfile(prev => ({ ...prev, departureDate: newDate }));
+                  }}
+                />
+                <CreditZeroGuide
+                  countryData={countryData}
+                  userProfile={userProfile}
+                />
+              </div>
+            )}
+
+            {activeTab === 'family_hub' && (
+              <FamilyWorkspace
+                countryData={countryData}
+                userProfile={userProfile}
+              />
+            )}
+
+            {activeTab === 'bureaucracy' && (
+              <BureaucracyGraph
+                countryData={countryData}
+              />
+            )}
+
+            {activeTab === 'neighborhoods' && (
+              <NeighborhoodEngine
+                countryData={countryData}
+                userProfile={userProfile}
+              />
+            )}
+
+            {activeTab === 'logistics' && (
+              <LogisticsOptimizer
+                countryData={countryData}
+                userProfile={userProfile}
+              />
+            )}
+
+            {activeTab === 'offer_showdown' && (
+              <OfferComparison
+                userProfile={userProfile}
+                countryData={countryData}
+              />
+            )}
+
+            {activeTab === 'survival_audio' && (
+              <SurvivalAudioDeck
+                countryData={countryData}
+              />
+            )}
+
+            {activeTab === 'change_alerts' && (
+              <ChangeAlerts
+                countryData={countryData}
               />
             )}
 

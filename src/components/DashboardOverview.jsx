@@ -17,9 +17,18 @@ import {
   Clock,
   Sparkles,
   CheckCircle2,
-  ShieldCheck
+  ShieldCheck,
+  Scale,
+  CreditCard,
+  Users,
+  MapPin,
+  Unlock,
+  Ship,
+  Volume2,
+  Bell
 } from 'lucide-react';
 import { calculateMonthlyBurn } from '../data/budgetDefaults';
+import CommandCenter from './CommandCenter';
 
 export default function DashboardOverview({
   userProfile,
@@ -27,7 +36,10 @@ export default function DashboardOverview({
   budgetData,
   onSelectTab,
   onOpenProfile,
-  completionStats
+  completionStats,
+  completedTasks = {},
+  onToggleTask,
+  onExportPDF
 }) {
   const readinessPercent = completionStats.total > 0
     ? Math.round((completionStats.completed / completionStats.total) * 100)
@@ -50,6 +62,62 @@ export default function DashboardOverview({
   const monthlyCostEstimate = calculateMonthlyBurn(budgetData, userProfile.persona);
 
   const modules = [
+    {
+      id: 'tax_banking',
+      title: 'Tax, Banking & DTAA Compliance',
+      desc: '182-day tax residency calculator, mandatory FEMA NRE/NRO conversions, and no-address neo-bank setups.',
+      icon: Scale,
+      badge: 'Tax & FEMA'
+    },
+    {
+      id: 'family_hub',
+      title: 'Family, Kids & Spousal Rights',
+      desc: 'Household member tracking, pediatric vaccine translation (STIKO/CDC), and Kita/schooling fee estimator.',
+      icon: Users,
+      badge: 'Family Workspace'
+    },
+    {
+      id: 'bureaucracy',
+      title: 'Catch-22 Deadlock Breaker',
+      desc: 'Interactive 5-step critical path flowchart breaking the lease vs. tax ID vs. bank account chicken-and-egg trap.',
+      icon: Unlock,
+      badge: 'Dependency Flow'
+    },
+    {
+      id: 'neighborhoods',
+      title: 'Neighborhood Match Engine',
+      desc: `Rank districts in ${userProfile.destinationCity} by weighted safety, commute times to tech hubs, schools, and rent benchmarks.`,
+      icon: MapPin,
+      badge: 'Micro-Locations'
+    },
+    {
+      id: 'logistics',
+      title: 'Shipping vs. Baggage ROI & Voltage',
+      desc: '4x 23kg suitcases vs. LCL wooden sea crate ROI calculator + 50Hz/60Hz appliance compatibility tester.',
+      icon: Ship,
+      badge: 'Logistics'
+    },
+    {
+      id: 'offer_showdown',
+      title: 'Relocation Offer Showdown',
+      desc: 'Side-by-side comparison of 2 international compensation offers calculating real net annual disposable savings.',
+      icon: TrendingUp,
+      badge: 'Offer Comparison'
+    },
+    {
+      id: 'survival_audio',
+      title: '72-Hour Survival Audio Deck',
+      desc: 'Essential foreign scripts for landlords, pharmacies, and utilities with native audio voice playback.',
+      icon: Volume2,
+      badge: 'Voice Audio'
+    },
+    {
+      id: 'change_alerts',
+      title: 'Regulatory Change Alerts',
+      desc: 'Verified live feed of statutory Blue Card thresholds, Golden Visa rules, and visa fee updates.',
+      icon: Bell,
+      badge: 'Policy Feed'
+    },
     {
       id: 'countdown',
       title: '30-Day Departure & Survival Timeline',
@@ -130,7 +198,7 @@ export default function DashboardOverview({
     {
       id: 'copilot',
       title: 'Gemini AI Relocation Copilot',
-      desc: 'Ask any bespoke relocation question, explore child-friendly neighborhoods, or simulate consular visa interviews.',
+      desc: 'Ask any bespoke relocation question, audit contract clauses, or simulate consular visa interviews.',
       icon: Bot,
       badge: 'Gemini 3.8 Flash'
     }
@@ -138,6 +206,18 @@ export default function DashboardOverview({
 
   return (
     <div className="space-y-8 animate-fadeIn">
+      {/* 1. Smart Relocation Command Center (Priority 1) */}
+      <CommandCenter
+        userProfile={userProfile}
+        countryData={countryData}
+        budgetData={budgetData}
+        completedTasks={completedTasks}
+        onToggleTask={onToggleTask}
+        onSelectTab={onSelectTab}
+        onOpenProfile={onOpenProfile}
+        onExportPDF={onExportPDF}
+      />
+
       {/* SaaS Relocation Blueprint Banner */}
       <div className="relative bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-[0_4px_25px_rgba(0,0,0,0.03)]">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">

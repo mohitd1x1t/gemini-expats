@@ -23,12 +23,20 @@ How can I assist your relocation planning today? Inquire about visa interviews, 
   const messagesEndRef = useRef(null);
 
   const samplePrompts = [
+    `Audit this lease clause: "The tenant shall carry out cosmetic repairs (Schönheitsreparaturen) every 3 years at their own expense." Is this legally enforceable in Germany?`,
+    `Audit this employment offer clause: "Non-compete worldwide for 12 months with no compensation." Is this standard?`,
     `Best neighborhoods in ${userProfile.destinationCity} for a ${userProfile.persona.replace('_', ' ')}?`,
     `How does the city registration process work in ${countryData.name}?`,
-    `Where can I buy vegetarian groceries in ${userProfile.destinationCity}?`,
-    `What are typical visa interview questions for my pathway?`,
-    `How to avoid rental scams when apartment hunting in ${countryData.name}?`
+    `Where can I buy vegetarian groceries in ${userProfile.destinationCity}?`
   ];
+
+  const handleAuditClauseTemplate = (type) => {
+    if (type === 'lease') {
+      setInput(`Please audit this foreign rental contract clause for my move to ${userProfile.destinationCity}, ${countryData.name}:\n\n"[PASTE YOUR RENTAL CLAUSE HERE]"\n\nPlease analyze in plain English: (1) Is this legal and standard under local tenancy law? (2) Does it contain hidden financial risks or unreasonable penalties? (3) What counter-amendment should I propose to the landlord?`);
+    } else {
+      setInput(`Please audit this expat job offer clause for my role in ${userProfile.destinationCity}, ${countryData.name}:\n\n"[PASTE YOUR EMPLOYMENT CLAUSE HERE]"\n\nPlease analyze in plain English: (1) Is this standard for tech workers in this country? (2) Does it impose restrictive covenants or clawbacks? (3) How can I negotiate this term safely?`);
+    }
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -110,9 +118,22 @@ How can I assist your relocation planning today? Inquire about visa interviews, 
         </div>
       </div>
 
-      {/* Suggested Prompt Chips */}
+      {/* Clause Auditor & Suggested Prompt Chips */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
-        <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 shrink-0">Prompts:</span>
+        <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 shrink-0">AI Tools:</span>
+        <button
+          onClick={() => handleAuditClauseTemplate('lease')}
+          className="px-3.5 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 font-bold text-xs shrink-0 transition-colors shadow-sm flex items-center gap-1.5"
+        >
+          <span>📋 Audit Lease Clause</span>
+        </button>
+        <button
+          onClick={() => handleAuditClauseTemplate('offer')}
+          className="px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-900 font-bold text-xs shrink-0 transition-colors shadow-sm flex items-center gap-1.5"
+        >
+          <span>💼 Audit Job Offer Clause</span>
+        </button>
+        <span className="text-stone-300">|</span>
         {samplePrompts.map((prompt, idx) => (
           <button
             key={idx}
