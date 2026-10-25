@@ -27,22 +27,22 @@ export default function Navbar({
 }) {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-stone-200/90 bg-[#faf9f6]/95 backdrop-blur-md transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3.5">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-2 sm:gap-4 py-2.5 sm:py-3.5">
         
         {/* Brand Logo (7Heven-style dark rounded badge + bold sans typography) */}
         <div
-          className="flex items-center space-x-3 cursor-pointer shrink-0 group"
+          className="flex items-center space-x-2 sm:space-x-3 cursor-pointer shrink-0 group"
           onClick={() => {
             setActiveTab('overview');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
         >
-          <div className="w-9 h-9 rounded-xl bg-[#181325] flex items-center justify-center text-white shadow-sm group-hover:bg-terracotta-500 transition-colors">
-            <Compass className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#181325] flex items-center justify-center text-white shadow-sm group-hover:bg-terracotta-500 transition-colors">
+            <Compass className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </div>
           <div>
             <div className="flex items-baseline gap-1">
-              <span className="font-sans text-xl font-extrabold tracking-tight text-stone-900">
+              <span className="font-sans text-lg sm:text-xl font-extrabold tracking-tight text-stone-900">
                 Expat<span className="text-terracotta-500">Compass</span>
               </span>
             </div>
@@ -85,12 +85,12 @@ export default function Navbar({
         </nav>
 
         {/* Right Action Bar */}
-        <div className="flex items-center space-x-2.5 sm:space-x-3 shrink-0">
+        <div className="flex items-center space-x-1.5 sm:space-x-2.5 shrink-0">
           
           {/* Destination Route Pill */}
           <button
             onClick={onOpenProfile}
-            className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-stone-200 hover:border-stone-400 text-xs text-stone-700 transition-colors shadow-sm"
+            className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-stone-200 hover:border-stone-400 text-xs text-stone-700 transition-colors shadow-sm"
             title="Change Relocation Route & Origin"
           >
             <span className="text-sm">{countryData?.flag || '🌍'}</span>
@@ -100,10 +100,10 @@ export default function Navbar({
             <SlidersHorizontal className="w-3 h-3 text-stone-400 ml-0.5" />
           </button>
 
-          {/* Export PDF Button */}
+          {/* Export PDF Button (Shown on sm+ to prevent mobile navbar crowding) */}
           <button
             onClick={onExportPDF}
-            className="p-2 rounded-xl bg-white hover:bg-stone-100 text-stone-700 border border-stone-200 transition-colors shadow-sm"
+            className="hidden sm:flex p-2 rounded-xl bg-white hover:bg-stone-100 text-stone-700 border border-stone-200 transition-colors shadow-sm"
             title="Download Relocation PDF Binder"
           >
             <Download className="w-4 h-4" />
@@ -112,10 +112,10 @@ export default function Navbar({
           {/* Emergency SOS Button */}
           <button
             onClick={onOpenSOS}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition-all"
+            className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition-all shrink-0"
             title="Emergency Numbers & Consular SOS Contacts"
           >
-            <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping" />
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-rose-600 animate-ping" />
             <span>SOS</span>
           </button>
 
@@ -129,19 +129,20 @@ export default function Navbar({
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="flex items-center gap-2 px-4 sm:px-5 py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow transition-all"
+            className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow transition-all shrink-0"
           >
-            <span>Get estimate</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Get estimate</span>
+            <span className="sm:hidden">Estimate</span>
+            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
           </button>
 
           {/* Settings Modal Toggle */}
           <button
             onClick={onOpenSettings}
-            className="p-2 rounded-xl bg-white hover:bg-stone-100 text-stone-500 hover:text-stone-900 border border-stone-200 transition-colors"
+            className="p-1.5 sm:p-2 rounded-xl bg-white hover:bg-stone-100 text-stone-500 hover:text-stone-900 border border-stone-200 transition-colors shrink-0"
             title="System Settings"
           >
-            <Settings className="w-4 h-4" />
+            <Settings className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </button>
 
         </div>

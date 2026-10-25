@@ -55,10 +55,10 @@ export default function CustomPlanCTA({
               </div>
             </div>
 
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
               <button
                 onClick={onExportPDF}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-semibold shadow-sm transition-all"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-semibold shadow-sm transition-all"
               >
                 <Download className="w-4 h-4" />
                 <span>Export Relocation PDF Binder</span>
@@ -66,7 +66,7 @@ export default function CustomPlanCTA({
 
               <button
                 onClick={onOpenCopilot}
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white border border-stone-200 hover:border-stone-400 text-stone-700 text-xs font-semibold shadow-sm transition-all"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-white border border-stone-200 hover:border-stone-400 text-stone-700 text-xs font-semibold shadow-sm transition-all"
               >
                 <Bot className="w-4 h-4 text-terracotta-500" />
                 <span>Ask AI Copilot</span>

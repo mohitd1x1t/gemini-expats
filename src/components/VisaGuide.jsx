@@ -152,9 +152,9 @@ export default function VisaGuide({ countryData, userProfile }) {
 
       {/* Visa Category Selector Tabs */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
           <h3 className="font-serif text-lg text-stone-900 flex items-center gap-2">
-            <Award className="w-4 h-4 text-stone-600" />
+            <Award className="w-4 h-4 text-stone-600 shrink-0" />
             <span>Select Visa Pathway for {countryData.name}</span>
           </h3>
           <span className="text-xs font-mono text-stone-400">Click a pathway to inspect official portals & steps</span>

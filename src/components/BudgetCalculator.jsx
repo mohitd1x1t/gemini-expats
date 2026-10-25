@@ -188,12 +188,12 @@ export default function BudgetCalculator({
 
       {/* Global Filter Active Indicator Alert */}
       {isFamily && (
-        <div className="p-4 px-5 rounded-2xl bg-white border border-stone-200/90 text-xs text-stone-700 flex items-center justify-between shadow-sm">
+        <div className="p-4 px-5 rounded-2xl bg-white border border-stone-200/90 text-xs text-stone-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 shadow-sm">
           <div className="flex items-center gap-2 font-medium">
-            <Baby className="w-4 h-4 text-stone-800" />
+            <Baby className="w-4 h-4 text-stone-800 shrink-0" />
             <span><strong>Family Mode Active:</strong> Benchmarked for multi-bedroom housing, childcare/kindergarten, family groceries, and pediatric health insurance.</span>
           </div>
-          <span className="text-[10px] font-mono uppercase tracking-wider text-stone-500 bg-stone-100 px-2.5 py-0.5 rounded-full border border-stone-200">Synced Across All Tabs</span>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-stone-500 bg-stone-100 px-2.5 py-0.5 rounded-full border border-stone-200 shrink-0 self-start sm:self-auto">Synced Across All Tabs</span>
         </div>
       )}
 

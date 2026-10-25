@@ -46,24 +46,24 @@ export default function SaaSHero({
           <div className="lg:col-span-7 space-y-6">
             
             {/* Template Preview Pill / Route Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-stone-200 shadow-sm text-xs text-stone-700">
-              <span className="w-2 h-2 rounded-full bg-terracotta-500 animate-pulse" />
-              <span className="font-medium text-stone-900">
+            <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-2xl sm:rounded-full bg-white border border-stone-200 shadow-sm text-xs text-stone-700 max-w-full">
+              <span className="w-2 h-2 rounded-full bg-terracotta-500 animate-pulse shrink-0" />
+              <span className="font-medium text-stone-900 shrink-0">
                 Relocation Blueprint:
               </span>
-              <span className="text-stone-500">
+              <span className="text-stone-500 truncate max-w-[200px] sm:max-w-none">
                 {userProfile.origin || 'India'} ➔ {userProfile.destinationCity || 'Berlin'}, {countryData?.name || 'Germany'} {countryData?.flag}
               </span>
               <button
                 onClick={onOpenProfile}
-                className="ml-1 text-terracotta-600 hover:text-terracotta-700 font-semibold flex items-center gap-0.5 text-[11px]"
+                className="ml-auto sm:ml-1 text-terracotta-600 hover:text-terracotta-700 font-semibold flex items-center gap-0.5 text-[11px] shrink-0"
               >
                 Change <ChevronRight className="w-3 h-3" />
               </button>
             </div>
 
             {/* Main Headline with Terracotta Highlight */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-sans text-stone-900 tracking-tight leading-[1.08]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold font-sans text-stone-900 tracking-tight leading-[1.12] sm:leading-[1.08]">
               Your international move{' '}
               <span className="text-terracotta-500 inline-block">
                 probably costs less than you think
@@ -120,14 +120,14 @@ export default function SaaSHero({
           <div className="lg:col-span-5 relative">
             
             {/* Floating Browser Mockup Card */}
-            <div className="relative bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-hidden transition-all">
+            <div className="relative bg-white border border-stone-200 rounded-3xl p-5 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-hidden transition-all">
               
               {/* Window dots (Red, Yellow, Green) */}
               <div className="flex items-center gap-2 mb-6">
-                <span className="w-3 h-3 rounded-full bg-[#ff5f56] inline-block" />
-                <span className="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block" />
-                <span className="w-3 h-3 rounded-full bg-[#27c93f] inline-block" />
-                <span className="ml-2 text-[10px] font-mono text-stone-400 uppercase tracking-wider">
+                <span className="w-3 h-3 rounded-full bg-[#ff5f56] inline-block shrink-0" />
+                <span className="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block shrink-0" />
+                <span className="w-3 h-3 rounded-full bg-[#27c93f] inline-block shrink-0" />
+                <span className="ml-2 text-[10px] font-mono text-stone-400 uppercase tracking-wider truncate">
                   Live Relocation Estimator · {countryData?.name}
                 </span>
               </div>
@@ -140,15 +140,15 @@ export default function SaaSHero({
 
               {/* Estimated Cost Section */}
               <div className="space-y-1 mb-6">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase tracking-wider text-stone-500">
-                    Est. Monthly Living Burn ({userProfile.persona.replace('_', ' ')})
+                <div className="flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
+                  <span className="text-[11px] sm:text-xs font-mono uppercase tracking-wider text-stone-500">
+                    Est. Monthly Burn ({userProfile.persona.replace('_', ' ')})
                   </span>
-                  <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  <span className="shrink-0 text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                     All-Inclusive
                   </span>
                 </div>
-                <div className="text-4xl sm:text-5xl font-extrabold font-sans text-stone-900 tracking-tight">
+                <div className="text-3xl sm:text-5xl font-extrabold font-sans text-stone-900 tracking-tight">
                   {currencySymbol}{monthlyBurn.toLocaleString()} <span className="text-base font-normal text-stone-500">/mo</span>
                 </div>
                 <div className="text-xs font-mono text-stone-500">
@@ -159,9 +159,9 @@ export default function SaaSHero({
               {/* Progress Meters: Housing vs Living Breakdown (Matching Image 1) */}
               <div className="space-y-4 pt-2 border-t border-stone-100">
                 <div>
-                  <div className="flex items-center justify-between text-xs font-medium text-stone-700 mb-1.5">
-                    <span>Rent & Housing Utilities</span>
-                    <span className="font-mono text-stone-900">{currencySymbol}{housingAndUtilities.toLocaleString()}/mo</span>
+                  <div className="flex items-center justify-between gap-2 text-xs font-medium text-stone-700 mb-1.5">
+                    <span className="truncate">Rent & Housing Utilities</span>
+                    <span className="font-mono text-stone-900 shrink-0">{currencySymbol}{housingAndUtilities.toLocaleString()}/mo</span>
                   </div>
                   <div className="w-full h-2 bg-stone-100 rounded-full overflow-hidden">
                     <div
@@ -172,9 +172,9 @@ export default function SaaSHero({
                 </div>
 
                 <div>
-                  <div className="flex items-center justify-between text-xs font-medium text-stone-700 mb-1.5">
-                    <span>Groceries, Health, Commute & Buffer</span>
-                    <span className="font-mono text-stone-900">{currencySymbol}{livingGroceriesTransport.toLocaleString()}/mo</span>
+                  <div className="flex items-center justify-between gap-2 text-xs font-medium text-stone-700 mb-1.5">
+                    <span className="truncate">Groceries, Health, Commute & Buffer</span>
+                    <span className="font-mono text-stone-900 shrink-0">{currencySymbol}{livingGroceriesTransport.toLocaleString()}/mo</span>
                   </div>
                   <div className="w-full h-2 bg-stone-100 rounded-full overflow-hidden">
                     <div
@@ -186,14 +186,14 @@ export default function SaaSHero({
               </div>
 
               {/* Upfront Landing Note & Accuracy Tag Badge */}
-              <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-stone-100 text-xs">
+              <div className="mt-6 flex flex-row items-center justify-between gap-3 pt-4 border-t border-stone-100 text-xs">
                 <div>
                   <div className="text-[10px] uppercase font-mono text-stone-400">Upfront Sunk Setup & Deposit</div>
                   <div className="font-mono font-bold text-stone-800">
                     ~{currencySymbol}{upfrontData.totalUpfront.toLocaleString()} {currencyCode}
                   </div>
                 </div>
-                <span className="inline-flex items-center px-3 py-1 rounded-lg bg-terracotta-500 text-white text-xs font-bold shadow-sm self-start sm:self-auto">
+                <span className="shrink-0 inline-flex items-center px-2.5 sm:px-3 py-1 rounded-lg bg-terracotta-500 text-white text-[11px] sm:text-xs font-bold shadow-sm">
                   ±15% Accuracy
                 </span>
               </div>

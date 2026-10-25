@@ -179,10 +179,10 @@ export default function SalaryBenchmark({
               onChange={(e) => setOfferedSalary(Number(e.target.value))}
               className="w-full h-1.5 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-stone-900"
             />
-            <div className="flex justify-between text-[10px] font-mono text-stone-400">
-              <span>Min ({currencySymbol}{sliderMin.toLocaleString()})</span>
-              <span>Regional Median ({currencySymbol}{benchmark.p50.toLocaleString()})</span>
-              <span>Max ({currencySymbol}{sliderMax.toLocaleString()})</span>
+            <div className="flex justify-between text-[10px] font-mono text-stone-400 gap-1">
+              <span className="truncate">Min ({currencySymbol}{sliderMin.toLocaleString()})</span>
+              <span className="truncate text-center">Median ({currencySymbol}{benchmark.p50.toLocaleString()})</span>
+              <span className="truncate text-right">Max ({currencySymbol}{sliderMax.toLocaleString()})</span>
             </div>
           </div>
 

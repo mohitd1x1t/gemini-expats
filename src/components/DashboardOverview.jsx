@@ -143,12 +143,12 @@ export default function DashboardOverview({
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
           
           <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-terracotta-600 bg-terracotta-50 px-3 py-1 rounded-full border border-terracotta-200">
-              <span className="w-1.5 h-1.5 rounded-full bg-terracotta-500" />
-              <span>Itinerary: {userProfile.origin?.toUpperCase()} ➔ {countryData?.name?.toUpperCase()} {countryData?.flag}</span>
+            <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs font-mono uppercase tracking-wider text-terracotta-600 bg-terracotta-50 px-3 py-1 rounded-2xl sm:rounded-full border border-terracotta-200 max-w-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-terracotta-500 shrink-0" />
+              <span className="truncate">Itinerary: {userProfile.origin?.toUpperCase()} ➔ {countryData?.name?.toUpperCase()} {countryData?.flag}</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-sans tracking-tight text-stone-900 leading-[1.15]">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-sans tracking-tight text-stone-900 leading-[1.15]">
               Relocation blueprint for <span className="text-terracotta-500">{userProfile.destinationCity}, {countryData?.name}</span>
             </h2>
 

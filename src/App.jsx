@@ -205,7 +205,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] text-stone-900 flex flex-col font-sans selection:bg-terracotta-500 selection:text-white">
+    <div className="min-h-screen bg-[#faf9f6] text-stone-900 flex flex-col font-sans selection:bg-terracotta-500 selection:text-white overflow-x-hidden w-full max-w-full">
       {/* 1. Header (7Heven-style dark logo badge + terracotta CTA) */}
       <Navbar
         userProfile={userProfile}
@@ -235,7 +235,7 @@ export default function App() {
 
       {/* 4. Interactive Relocation Suite Workspace */}
       <section id="workspace" className="py-12 sm:py-16 bg-[#faf9f6] border-b border-stone-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-6">
           
           {/* Workspace Title & Route Strip */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -243,25 +243,25 @@ export default function App() {
               <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-terracotta-600 mb-1">
                 <span>Interactive Expat Atelier</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold font-sans text-stone-900 tracking-tight">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold font-sans text-stone-900 tracking-tight">
                 Relocation Workspace for {userProfile.destinationCity}, {countryData.name} {countryData.flag}
               </h2>
             </div>
 
             {/* Quick Route Modifier Pill */}
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3 w-full md:w-auto">
               <button
                 onClick={() => setIsProfileModalOpen(true)}
-                className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-stone-200 hover:border-terracotta-400 text-xs font-semibold text-stone-700 shadow-sm transition-all"
+                className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-stone-200 hover:border-terracotta-400 text-xs font-semibold text-stone-700 shadow-sm transition-all"
               >
-                <span>Route: {userProfile.origin} ➔ {userProfile.destinationCity}</span>
-                <SlidersHorizontal className="w-3.5 h-3.5 text-stone-400" />
+                <span className="truncate">Route: {userProfile.origin} ➔ {userProfile.destinationCity}</span>
+                <SlidersHorizontal className="w-3.5 h-3.5 text-stone-400 shrink-0" />
               </button>
 
               <select
                 value={userProfile.persona}
                 onChange={(e) => updateGlobalPersona(e.target.value)}
-                className="appearance-none bg-white border border-stone-200 text-stone-800 text-xs rounded-xl px-3.5 py-2 font-semibold cursor-pointer focus:outline-none focus:ring-1 focus:ring-terracotta-400 shadow-sm transition-colors"
+                className="flex-1 sm:flex-initial appearance-none bg-white border border-stone-200 text-stone-800 text-xs rounded-xl px-3.5 py-2 font-semibold cursor-pointer focus:outline-none focus:ring-1 focus:ring-terracotta-400 shadow-sm transition-colors text-center sm:text-left"
               >
                 <option value="bachelor">Solo / Bachelor</option>
                 <option value="couple">Couple</option>
@@ -272,7 +272,7 @@ export default function App() {
           </div>
 
           {/* Horizontal Scrollable Module Pills */}
-          <div className="p-2 rounded-2xl bg-white border border-stone-200/90 shadow-sm overflow-x-auto scrollbar-none flex items-center gap-1.5">
+          <div className="p-1.5 sm:p-2 rounded-2xl bg-white border border-stone-200/90 shadow-sm overflow-x-auto scrollbar-none flex items-center gap-1.5 -mx-1 sm:mx-0 px-2 sm:px-3">
             {navigationTabs.map(tab => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
