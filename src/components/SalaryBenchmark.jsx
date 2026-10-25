@@ -140,8 +140,8 @@ export default function SalaryBenchmark({
                   onClick={() => setSelectedExpId(exp.id)}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
                     selectedExpId === exp.id
-                      ? 'bg-stone-900 border-stone-900 text-white shadow-sm'
-                      : 'bg-stone-50 border-stone-200 text-stone-600 hover:border-stone-400 hover:text-stone-900'
+                      ? 'bg-terracotta-500 border-terracotta-500 text-white shadow-sm'
+                      : 'bg-stone-50 border-stone-200 text-stone-600 hover:border-terracotta-300 hover:text-stone-900'
                   }`}
                 >
                   <span>{exp.label.split('/')[0]}</span>

@@ -727,7 +727,7 @@ export default function BudgetCalculator({
 
             <button
               onClick={() => handleApplyVisaFee(activeVisa.fees.total)}
-              className="px-4 py-1.5 bg-stone-900 hover:bg-black text-white font-medium rounded-full text-xs transition-all flex items-center gap-1.5 shadow-sm"
+              className="px-4 py-1.5 bg-terracotta-500 hover:bg-terracotta-600 text-white font-medium rounded-full text-xs transition-all flex items-center gap-1.5 shadow-sm"
               title="Apply this exact fee into the Upfront Budget"
             >
               <Check className="w-3.5 h-3.5" />

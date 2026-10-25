@@ -170,28 +170,28 @@ export default function VisaGuide({ countryData, userProfile }) {
                 onClick={() => setSelectedVisaId(visa.id)}
                 className={`p-4 rounded-2xl border text-left transition-all ${
                   isSelected
-                    ? 'bg-stone-900 border-stone-900 text-white shadow-md'
-                    : 'bg-white border-stone-200 text-stone-700 hover:border-stone-400 hover:shadow-[0_1px_3px_rgba(0,0,0,0.03)]'
+                    ? 'bg-[#181325] border-terracotta-500 text-white shadow-md ring-1 ring-terracotta-500'
+                    : 'bg-white border-stone-200 text-stone-700 hover:border-terracotta-300 hover:shadow-sm'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className={`font-serif text-sm font-medium ${isSelected ? 'text-white' : 'text-stone-900'}`}>{visa.name}</span>
+                  <span className={`font-sans text-sm font-bold ${isSelected ? 'text-white' : 'text-stone-900'}`}>{visa.name}</span>
                   <span className={`text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full border ${
-                    isSelected ? 'bg-stone-800 text-stone-300 border-stone-700' : 'bg-stone-50 text-stone-600 border-stone-200'
+                    isSelected ? 'bg-terracotta-500/20 text-terracotta-300 border-terracotta-400/40' : 'bg-stone-50 text-stone-600 border-stone-200'
                   }`}>
                     {visa.category}
                   </span>
                 </div>
                 <div className={`flex items-center gap-1.5 text-[11px] font-mono mt-2 ${isSelected ? 'text-stone-300' : 'text-stone-500'}`}>
-                  <Clock className="w-3.5 h-3.5 shrink-0" />
+                  <Clock className="w-3.5 h-3.5 shrink-0 text-terracotta-400" />
                   <span>{visa.processingTime}</span>
                 </div>
                 {/* Dual Currency Tag */}
                 <div className="mt-2.5 pt-2 border-t border-stone-100/10 flex items-baseline justify-between text-xs">
-                  <span className={`font-mono font-medium ${isSelected ? 'text-stone-200' : 'text-stone-900 font-semibold'}`}>
+                  <span className={`font-mono font-bold ${isSelected ? 'text-terracotta-400' : 'text-stone-900 font-semibold'}`}>
                     {destSymbol}{Math.round(visa.fees.total).toLocaleString()}
                   </span>
-                  <span className={`font-mono text-[10px] ${isSelected ? 'text-stone-400' : 'text-stone-500'}`}>
+                  <span className={`font-mono text-[10px] ${isSelected ? 'text-stone-300' : 'text-stone-500'}`}>
                     ≈ {sourceSymbol}{convertedCardTotal.toLocaleString()}
                   </span>
                 </div>
@@ -422,7 +422,7 @@ export default function VisaGuide({ countryData, userProfile }) {
                     key={sIdx}
                     className="p-4 rounded-2xl bg-white border border-stone-200/80 flex items-start gap-3.5 hover:border-stone-400 transition-colors"
                   >
-                    <div className="w-8 h-8 rounded-full bg-stone-900 text-white flex items-center justify-center font-mono text-xs font-semibold shrink-0 mt-0.5 shadow-sm">
+                    <div className="w-8 h-8 rounded-full bg-terracotta-500 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 shadow-sm">
                       {sIdx + 1}
                     </div>
                     <div className="space-y-0.5 text-xs flex-1">

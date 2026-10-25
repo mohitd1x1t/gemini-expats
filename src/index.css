@@ -6,86 +6,55 @@
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     color: #1c1917;
-    background-color: #faf9f5;
+    background-color: #faf9f6;
   }
 
-  h1, h2, h3, .font-editorial {
-    font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.025em;
   }
 }
 
-/* Minimalist scrollbars */
+/* Subtle modern SaaS grid pattern */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+.bg-grid-pattern-dark {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+/* Minimalist scrollbars with terracotta accent */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #faf9f5;
+  background: #faf8f5;
 }
 ::-webkit-scrollbar-thumb {
   background: #d6d3d1;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a29e;
+  background: #c85a28;
 }
 
-/* Minimalist Architectural Panels */
-.minimal-panel {
+/* Professional card hover animations */
+.saas-card {
   background: #ffffff;
   border: 1px solid #e7e5e4;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-}
-
-.minimal-card {
-  background: #ffffff;
-  border: 1px solid #e7e5e4;
+  border-radius: 1.25rem;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.minimal-card:hover {
-  border-color: #1c1917;
-  box-shadow: 0 4px 12px -2px rgba(28, 25, 23, 0.06);
-}
-
-/* Architectural corner crop marks */
-.crop-bracket-tl {
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  width: 14px;
-  height: 14px;
-  border-top: 1.5px solid #a8a29e;
-  border-left: 1.5px solid #a8a29e;
-  pointer-events: none;
-}
-.crop-bracket-tr {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  width: 14px;
-  height: 14px;
-  border-top: 1.5px solid #a8a29e;
-  border-right: 1.5px solid #a8a29e;
-  pointer-events: none;
-}
-.crop-bracket-bl {
-  position: absolute;
-  bottom: -6px;
-  left: -6px;
-  width: 14px;
-  height: 14px;
-  border-bottom: 1.5px solid #a8a29e;
-  border-left: 1.5px solid #a8a29e;
-  pointer-events: none;
-}
-.crop-bracket-br {
-  position: absolute;
-  bottom: -6px;
-  right: -6px;
-  width: 14px;
-  height: 14px;
-  border-bottom: 1.5px solid #a8a29e;
-  border-right: 1.5px solid #a8a29e;
-  pointer-events: none;
+.saas-card:hover {
+  border-color: #d6d3d1;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
 }

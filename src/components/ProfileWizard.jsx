@@ -128,13 +128,13 @@ export default function ProfileWizard({ isOpen, onClose, currentProfile, onSaveP
                   onClick={() => setProfile({ ...profile, persona: opt.id })}
                   className={`p-3.5 rounded-2xl border text-left transition-all ${
                     profile.persona === opt.id
-                      ? 'bg-stone-900 border-stone-900 text-white shadow-sm'
-                      : 'bg-white border-stone-200 text-stone-700 hover:border-stone-400'
+                      ? 'bg-terracotta-500 border-terracotta-500 text-white shadow-sm ring-1 ring-terracotta-500'
+                      : 'bg-white border-stone-200 text-stone-700 hover:border-terracotta-300'
                   }`}
                 >
                   <div className="text-xl mb-1.5">{opt.icon}</div>
-                  <div className={`font-serif text-sm font-medium ${profile.persona === opt.id ? 'text-white' : 'text-stone-900'}`}>{opt.label}</div>
-                  <div className={`text-[10px] font-mono mt-1 leading-tight ${profile.persona === opt.id ? 'text-stone-300' : 'text-stone-500'}`}>{opt.desc}</div>
+                  <div className={`font-sans text-sm font-bold ${profile.persona === opt.id ? 'text-white' : 'text-stone-900'}`}>{opt.label}</div>
+                  <div className={`text-[10px] font-mono mt-1 leading-tight ${profile.persona === opt.id ? 'text-white/80' : 'text-stone-500'}`}>{opt.desc}</div>
                 </button>
               ))}
             </div>
@@ -161,8 +161,8 @@ export default function ProfileWizard({ isOpen, onClose, currentProfile, onSaveP
                   onClick={() => setProfile({ ...profile, dietary: d.id })}
                   className={`p-2.5 rounded-xl border flex items-center gap-2.5 transition-all text-left ${
                     profile.dietary === d.id
-                      ? 'bg-stone-900 border-stone-900 text-white'
-                      : 'bg-white border-stone-200 text-stone-700 hover:border-stone-400'
+                      ? 'bg-terracotta-500 border-terracotta-500 text-white'
+                      : 'bg-white border-stone-200 text-stone-700 hover:border-terracotta-300'
                   }`}
                 >
                   <span className="text-base">{d.icon}</span>
@@ -195,8 +195,8 @@ export default function ProfileWizard({ isOpen, onClose, currentProfile, onSaveP
                   onClick={() => setProfile({ ...profile, faith: f.id })}
                   className={`p-2 rounded-xl border flex items-center gap-2 transition-all ${
                     profile.faith === f.id
-                      ? 'bg-stone-900 border-stone-900 text-white'
-                      : 'bg-white border-stone-200 text-stone-700 hover:border-stone-400'
+                      ? 'bg-terracotta-500 border-terracotta-500 text-white'
+                      : 'bg-white border-stone-200 text-stone-700 hover:border-terracotta-300'
                   }`}
                 >
                   <span className="text-base">{f.icon}</span>
@@ -251,7 +251,7 @@ export default function ProfileWizard({ isOpen, onClose, currentProfile, onSaveP
           </button>
           <button
             onClick={handleSave}
-            className="px-6 py-2 bg-stone-900 hover:bg-stone-800 text-white text-xs font-medium rounded-full shadow-sm transition-all flex items-center gap-2"
+            className="px-6 py-2 bg-terracotta-500 hover:bg-terracotta-600 text-white text-xs font-semibold rounded-xl shadow-sm transition-all flex items-center gap-2"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Apply & Regenerate Blueprint</span>
