@@ -3,7 +3,6 @@ import Navbar from './components/Navbar';
 import ProfileWizard from './components/ProfileWizard';
 import SettingsModal from './components/SettingsModal';
 import EmergencySOSModal from './components/EmergencySOSModal';
-import GoogleAuthModal from './components/GoogleAuthModal';
 import DashboardOverview from './components/DashboardOverview';
 import CountdownTimeline from './components/CountdownTimeline';
 import PackingEngine from './components/PackingEngine';
@@ -48,7 +47,6 @@ import {
 const STORAGE_KEY_PROFILE = 'expat_compass_profile';
 const STORAGE_KEY_TASKS = 'expat_compass_tasks';
 const STORAGE_KEY_API_KEY = 'expat_compass_gemini_key';
-const STORAGE_KEY_USER = 'expat_google_user';
 
 export default function App() {
   // 1. Relocation Profile State
@@ -90,28 +88,11 @@ export default function App() {
     return localStorage.getItem(STORAGE_KEY_API_KEY) || '';
   });
 
-  // 4. Google Auth User
-  const [currentUser, setCurrentUser] = useState(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY_USER);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed?.email?.includes('alex.mercer')) {
-          localStorage.removeItem(STORAGE_KEY_USER);
-          return null;
-        }
-        return parsed;
-      }
-    } catch (e) {}
-    return null;
-  });
-
-  // 5. Navigation & Modals
+  // 4. Navigation & Modals
   const [activeTab, setActiveTab] = useState('overview');
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isSOSModalOpen, setIsSOSModalOpen] = useState(false);
-  const [isGoogleAuthModalOpen, setIsGoogleAuthModalOpen] = useState(false);
 
   // Sync to localStorage
   useEffect(() => {
@@ -125,16 +106,6 @@ export default function App() {
   const handleSaveApiKey = (newKey) => {
     setApiKey(newKey);
     localStorage.setItem(STORAGE_KEY_API_KEY, newKey);
-  };
-
-  const handleGoogleSignIn = (userObj) => {
-    setCurrentUser(userObj);
-    localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(userObj));
-  };
-
-  const handleGoogleSignOut = () => {
-    setCurrentUser(null);
-    localStorage.removeItem(STORAGE_KEY_USER);
   };
 
   const updateGlobalPersona = (newPersona) => {
@@ -230,8 +201,6 @@ export default function App() {
         onOpenProfile={() => setIsProfileModalOpen(true)}
         onOpenSettings={() => setIsSettingsModalOpen(true)}
         onOpenSOS={() => setIsSOSModalOpen(true)}
-        onOpenGoogleAuth={() => setIsGoogleAuthModalOpen(true)}
-        currentUser={currentUser}
         onExportPDF={handleExportPDF}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -448,7 +417,6 @@ export default function App() {
             userProfile={userProfile}
             countryData={countryData}
             apiKey={apiKey}
-            currentUser={currentUser}
           />
         )}
       </main>
@@ -467,17 +435,6 @@ export default function App() {
         onClose={() => setIsSettingsModalOpen(false)}
         apiKey={apiKey}
         onSaveApiKey={handleSaveApiKey}
-        currentUser={currentUser}
-        onOpenGoogleAuth={() => setIsGoogleAuthModalOpen(true)}
-      />
-
-      {/* Google Authentication Modal */}
-      <GoogleAuthModal
-        isOpen={isGoogleAuthModalOpen}
-        onClose={() => setIsGoogleAuthModalOpen(false)}
-        currentUser={currentUser}
-        onSignIn={handleGoogleSignIn}
-        onSignOut={handleGoogleSignOut}
       />
 
       {/* Emergency SOS Modal */}

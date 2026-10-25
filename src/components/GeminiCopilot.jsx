@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Bot, Send, Sparkles, User, RefreshCw, Copy, Check, ShieldCheck } from 'lucide-react';
 import { sendChatMessage } from '../utils/geminiService';
 
-export default function GeminiCopilot({ userProfile, countryData, apiKey, currentUser }) {
+export default function GeminiCopilot({ userProfile, countryData, apiKey }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -132,11 +132,7 @@ How can I assist your relocation planning today? Inquire about visa interviews, 
             <ShieldCheck className="w-3.5 h-3.5 text-stone-600" />
             <span>Zero API Key Required • Powered by Gemini 3.8 Flash</span>
           </div>
-          {currentUser ? (
-            <span className="text-stone-700 font-medium">Logged in as {currentUser.name.split(' ')[0]}</span>
-          ) : (
-            <span className="text-stone-400">Guest Access</span>
-          )}
+          <span className="text-stone-500">Private Session • No Sign-in Required</span>
         </div>
 
         {/* Messages Scroll Area */}
@@ -176,11 +172,7 @@ How can I assist your relocation planning today? Inquire about visa interviews, 
 
                 {isUser && (
                   <div className="w-7 h-7 rounded-full bg-stone-900 text-white flex items-center justify-center shrink-0 mt-0.5">
-                    {currentUser ? (
-                      <img src={currentUser.picture} alt="" className="w-7 h-7 rounded-full" />
-                    ) : (
-                      <User className="w-3.5 h-3.5" />
-                    )}
+                    <User className="w-3.5 h-3.5" />
                   </div>
                 )}
               </div>

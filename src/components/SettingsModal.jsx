@@ -5,9 +5,7 @@ export default function SettingsModal({
   isOpen,
   onClose,
   apiKey,
-  onSaveApiKey,
-  currentUser,
-  onOpenGoogleAuth
+  onSaveApiKey
 }) {
   const [inputKey, setInputKey] = useState(apiKey || '');
   const [savedSuccess, setSavedSuccess] = useState(false);
@@ -46,39 +44,24 @@ export default function SettingsModal({
         </div>
 
         <div className="p-6 space-y-5 text-xs">
-          {/* Account Status Card */}
+          {/* Local Workspace & Privacy Card */}
           <div className="p-4 bg-stone-50 border border-stone-200 rounded-2xl flex items-center justify-between">
             <div className="flex items-center gap-3">
-              {currentUser ? (
-                <img
-                  src={currentUser.picture}
-                  alt={currentUser.name}
-                  className="w-9 h-9 rounded-full border border-stone-200"
-                />
-              ) : (
-                <div className="w-9 h-9 rounded-full bg-white border border-stone-200 flex items-center justify-center text-stone-400">
-                  <UserCheck className="w-4 h-4" />
-                </div>
-              )}
+              <div className="w-9 h-9 rounded-full bg-white border border-stone-200 flex items-center justify-center text-stone-600">
+                <UserCheck className="w-4 h-4" />
+              </div>
               <div>
                 <div className="font-serif font-medium text-stone-900 text-sm">
-                  {currentUser ? currentUser.name : 'Guest User'}
+                  Private Local Session
                 </div>
                 <div className="text-[10px] font-mono text-stone-500">
-                  {currentUser ? currentUser.email : 'Checklists stored locally in browser'}
+                  Relocation itineraries & checklists stored securely in your browser
                 </div>
               </div>
             </div>
-
-            <button
-              onClick={() => {
-                onClose();
-                onOpenGoogleAuth();
-              }}
-              className="px-3 py-1.5 rounded-full text-[11px] font-medium bg-white border border-stone-200 hover:border-stone-400 text-stone-700 transition-colors"
-            >
-              {currentUser ? 'Manage' : 'Sign In'}
-            </button>
+            <span className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-emerald-50 text-emerald-700 border border-emerald-200">
+              Active
+            </span>
           </div>
 
           {/* Built-in Free Tier Note */}
