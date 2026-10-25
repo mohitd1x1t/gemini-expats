@@ -7,8 +7,10 @@ import {
   Sparkles,
   SlidersHorizontal,
   ChevronRight,
-  CheckCircle2
+  CheckCircle2,
+  ShieldCheck
 } from 'lucide-react';
+import { calculateMonthlyBurn, calculateUpfrontLandingCost } from '../data/budgetDefaults';
 
 export default function SaaSHero({
   userProfile,
@@ -21,17 +23,19 @@ export default function SaaSHero({
   const currencySymbol = countryData?.symbol || '€';
   const currencyCode = countryData?.currency || 'EUR';
 
-  // Live estimated upfront relocation budget
-  const baseRent = budgetData?.[personaKey]?.rent || (personaKey === 'family' ? 2400 : 1500);
-  const deposit = baseRent * 2;
-  const initialLiving = (budgetData?.[personaKey]?.groceries || 450) + (budgetData?.[personaKey]?.utilities || 250);
-  const estimatedCost = baseRent + deposit + initialLiving + 500; // estimated total initial outlay
+  // Accurate, comprehensive monthly living burn from verified benchmarks
+  const monthlyBurn = calculateMonthlyBurn(budgetData, userProfile.persona);
+  const upfrontData = calculateUpfrontLandingCost(budgetData, userProfile.persona);
 
-  const rangeLow = Math.round(estimatedCost * 0.88);
-  const rangeHigh = Math.round(estimatedCost * 1.15);
+  const rangeLow = Math.round(monthlyBurn * 0.90);
+  const rangeHigh = Math.round(monthlyBurn * 1.15);
 
-  const housingPercent = Math.round(((baseRent + deposit) / estimatedCost) * 100);
-  const visaLivingPercent = 100 - housingPercent;
+  const profile = budgetData?.[personaKey] || budgetData?.bachelor || {};
+  const housingAndUtilities = (profile.rent || 0) + (profile.utilities || 0);
+  const livingGroceriesTransport = Math.max(monthlyBurn - housingAndUtilities, 100);
+
+  const housingPercent = Math.min(Math.max(Math.round((housingAndUtilities / (monthlyBurn || 1)) * 100), 25), 75);
+  const livingPercent = 100 - housingPercent;
 
   return (
     <section className="relative overflow-hidden pt-8 pb-14 md:pt-14 md:pb-20 bg-[#faf9f6] bg-grid-pattern border-b border-stone-200/70">
@@ -136,23 +140,28 @@ export default function SaaSHero({
 
               {/* Estimated Cost Section */}
               <div className="space-y-1 mb-6">
-                <div className="text-xs font-mono uppercase tracking-wider text-stone-500">
-                  Estimated Outlay ({userProfile.persona.replace('_', ' ')})
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono uppercase tracking-wider text-stone-500">
+                    Est. Monthly Living Burn ({userProfile.persona.replace('_', ' ')})
+                  </span>
+                  <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    All-Inclusive
+                  </span>
                 </div>
                 <div className="text-4xl sm:text-5xl font-extrabold font-sans text-stone-900 tracking-tight">
-                  {currencySymbol}{estimatedCost.toLocaleString()}
+                  {currencySymbol}{monthlyBurn.toLocaleString()} <span className="text-base font-normal text-stone-500">/mo</span>
                 </div>
                 <div className="text-xs font-mono text-stone-500">
                   Range: {currencySymbol}{rangeLow.toLocaleString()} – {currencySymbol}{rangeHigh.toLocaleString()} {currencyCode}
                 </div>
               </div>
 
-              {/* Progress Meters: Housing vs Visa/Living (Matching Image 1) */}
+              {/* Progress Meters: Housing vs Living Breakdown (Matching Image 1) */}
               <div className="space-y-4 pt-2 border-t border-stone-100">
                 <div>
                   <div className="flex items-center justify-between text-xs font-medium text-stone-700 mb-1.5">
-                    <span>Rent & Deposit (First 30 Days)</span>
-                    <span className="font-mono text-stone-900">{currencySymbol}{(baseRent + deposit).toLocaleString()}</span>
+                    <span>Rent & Housing Utilities</span>
+                    <span className="font-mono text-stone-900">{currencySymbol}{housingAndUtilities.toLocaleString()}/mo</span>
                   </div>
                   <div className="w-full h-2 bg-stone-100 rounded-full overflow-hidden">
                     <div
@@ -164,25 +173,27 @@ export default function SaaSHero({
 
                 <div>
                   <div className="flex items-center justify-between text-xs font-medium text-stone-700 mb-1.5">
-                    <span>Visa, Living & Buffer Funds</span>
-                    <span className="font-mono text-stone-900">{currencySymbol}{(initialLiving + 500).toLocaleString()}</span>
+                    <span>Groceries, Health, Commute & Buffer</span>
+                    <span className="font-mono text-stone-900">{currencySymbol}{livingGroceriesTransport.toLocaleString()}/mo</span>
                   </div>
                   <div className="w-full h-2 bg-stone-100 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-terracotta-500 rounded-full transition-all duration-700"
-                      style={{ width: `${visaLivingPercent}%` }}
+                      style={{ width: `${livingPercent}%` }}
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Bottom Accuracy Tag Badge (Terracotta) */}
-              <div className="mt-6 flex items-center justify-between pt-4 border-t border-stone-100">
-                <div className="text-[11px] text-stone-500 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Real-time market benchmark</span>
+              {/* Upfront Landing Note & Accuracy Tag Badge */}
+              <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-stone-100 text-xs">
+                <div>
+                  <div className="text-[10px] uppercase font-mono text-stone-400">Upfront Sunk Setup & Deposit</div>
+                  <div className="font-mono font-bold text-stone-800">
+                    ~{currencySymbol}{upfrontData.totalUpfront.toLocaleString()} {currencyCode}
+                  </div>
                 </div>
-                <span className="inline-flex items-center px-3 py-1 rounded-lg bg-terracotta-500 text-white text-xs font-bold shadow-sm">
+                <span className="inline-flex items-center px-3 py-1 rounded-lg bg-terracotta-500 text-white text-xs font-bold shadow-sm self-start sm:self-auto">
                   ±15% Accuracy
                 </span>
               </div>

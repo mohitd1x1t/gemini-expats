@@ -26,7 +26,7 @@ import GeminiCopilot from './components/GeminiCopilot';
 
 import { COUNTRIES_DATA } from './data/countries';
 import { PACKING_CATEGORIES, getCountryCountdownTimeline, getCountryArrivalRoadmap } from './data/checklists';
-import { CITY_BUDGET_BENCHMARKS } from './data/budgetDefaults';
+import { CITY_BUDGET_BENCHMARKS, getCityBudgetData, calculateMonthlyBurn } from './data/budgetDefaults';
 import { exportRelocationBinderPDF } from './utils/pdfGenerator';
 import {
   LayoutDashboard,
@@ -126,7 +126,7 @@ export default function App() {
 
   // Derive active Country & Budget
   const countryData = COUNTRIES_DATA[userProfile.destinationCountry] || COUNTRIES_DATA.germany;
-  const budgetData = CITY_BUDGET_BENCHMARKS[userProfile.destinationCountry] || CITY_BUDGET_BENCHMARKS.germany;
+  const budgetData = getCityBudgetData(userProfile.destinationCity, userProfile.destinationCountry);
   const activeCountdownData = getCountryCountdownTimeline(userProfile.destinationCountry);
   const activeArrivalRoadmap = getCountryArrivalRoadmap(userProfile.destinationCountry);
 

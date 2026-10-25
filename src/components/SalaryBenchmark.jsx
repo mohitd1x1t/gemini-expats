@@ -18,7 +18,7 @@ import {
   calculateSalaryBenchmark,
   evaluateExpatOffer
 } from '../data/salaryData';
-import { CITY_BUDGET_BENCHMARKS } from '../data/budgetDefaults';
+import { CITY_BUDGET_BENCHMARKS, getCityBudgetData, calculateMonthlyBurn } from '../data/budgetDefaults';
 
 export default function SalaryBenchmark({
   countryData,
@@ -59,13 +59,8 @@ export default function SalaryBenchmark({
   }, [offeredSalary, benchmark, userProfile.persona]);
 
   // Accurate living costs pulled from budget database
-  const cityBudget = CITY_BUDGET_BENCHMARKS[userProfile.destinationCity] || CITY_BUDGET_BENCHMARKS['Berlin'] || {};
-  const personaKey = isFamily ? 'family' : 'bachelor';
-  const personaBudget = cityBudget[personaKey] || cityBudget['bachelor'] || {};
-
-  const estimatedRent = Number(personaBudget.rent) || (isFamily ? 2200 : 1200);
-  const estimatedLivingCosts = (Number(personaBudget.groceries) || 400) + (Number(personaBudget.transport) || 60) + (Number(personaBudget.utilities) || 180);
-  const totalMonthlyExpenses = Math.round(estimatedRent + estimatedLivingCosts);
+  const cityBudget = getCityBudgetData(userProfile.destinationCity, countryData.id);
+  const totalMonthlyExpenses = calculateMonthlyBurn(cityBudget, userProfile.persona);
   const monthlySavingsPotential = Math.max(0, evaluation.monthlyNet - totalMonthlyExpenses);
 
   const currencySymbol = benchmark.symbol;

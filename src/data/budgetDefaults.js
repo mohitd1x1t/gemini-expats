@@ -502,5 +502,349 @@ export const CITY_BUDGET_BENCHMARKS = {
       starterFurniture: 2700,
       miscellaneousSetup: 1200
     }
+  },
+
+  // Canada
+  'Toronto': {
+    country: 'canada',
+    currency: 'CAD',
+    symbol: 'C$',
+    bachelor: {
+      rent: 2200, // 1-bedroom condo downtown
+      groceries: 450,
+      transport: 156, // TTC monthly pass
+      healthInsurance: 75, // OHIP gap/dental
+      utilities: 220, // hydro, heating, gigabit internet
+      leisure: 450,
+      contingency: 300
+    },
+    family: {
+      rent: 3400, // 2-3 bedroom flat
+      groceries: 1100,
+      transport: 320,
+      healthInsurance: 150,
+      utilities: 380,
+      childcare: 950, // CWELCC subsidized daycare / schooling
+      leisure: 800,
+      contingency: 600
+    },
+    upfrontRelocation: {
+      flights: 900,
+      visaAndApostilles: 500,
+      temporaryStay1Month: 2800,
+      depositRentMultiplier: 2, // First & last month standard
+      starterFurniture: 1500,
+      miscellaneousSetup: 600
+    }
+  },
+  'Vancouver': {
+    country: 'canada',
+    currency: 'CAD',
+    symbol: 'C$',
+    bachelor: {
+      rent: 2350,
+      groceries: 470,
+      transport: 140, // TransLink 2-zone
+      healthInsurance: 75,
+      utilities: 210,
+      leisure: 480,
+      contingency: 320
+    },
+    family: {
+      rent: 3600,
+      groceries: 1150,
+      transport: 300,
+      healthInsurance: 150,
+      utilities: 370,
+      childcare: 1050,
+      leisure: 850,
+      contingency: 650
+    },
+    upfrontRelocation: {
+      flights: 950,
+      visaAndApostilles: 500,
+      temporaryStay1Month: 2900,
+      depositRentMultiplier: 1.5,
+      starterFurniture: 1500,
+      miscellaneousSetup: 600
+    }
+  },
+  'Montreal': {
+    country: 'canada',
+    currency: 'CAD',
+    symbol: 'C$',
+    bachelor: {
+      rent: 1650,
+      groceries: 400,
+      transport: 97, // STM pass
+      healthInsurance: 75,
+      utilities: 180,
+      leisure: 400,
+      contingency: 250
+    },
+    family: {
+      rent: 2600,
+      groceries: 980,
+      transport: 220,
+      healthInsurance: 150,
+      utilities: 320,
+      childcare: 450, // highly subsidized Quebec CPE
+      leisure: 700,
+      contingency: 500
+    },
+    upfrontRelocation: {
+      flights: 900,
+      visaAndApostilles: 500,
+      temporaryStay1Month: 2300,
+      depositRentMultiplier: 1,
+      starterFurniture: 1400,
+      miscellaneousSetup: 500
+    }
+  },
+
+  // Additional Major Hubs
+  'San Francisco': {
+    country: 'usa',
+    currency: 'USD',
+    symbol: '$',
+    bachelor: {
+      rent: 2900,
+      groceries: 550,
+      transport: 120,
+      healthInsurance: 250,
+      utilities: 240,
+      leisure: 600,
+      contingency: 400
+    },
+    family: {
+      rent: 4600,
+      groceries: 1300,
+      transport: 250,
+      healthInsurance: 550,
+      utilities: 450,
+      childcare: 2200,
+      leisure: 1000,
+      contingency: 750
+    },
+    upfrontRelocation: {
+      flights: 1100,
+      visaAndApostilles: 550,
+      temporaryStay1Month: 3800,
+      depositRentMultiplier: 1.5,
+      starterFurniture: 1800,
+      miscellaneousSetup: 800
+    }
+  },
+  'Seattle': {
+    country: 'usa',
+    currency: 'USD',
+    symbol: '$',
+    bachelor: {
+      rent: 2200,
+      groceries: 480,
+      transport: 110,
+      healthInsurance: 220,
+      utilities: 210,
+      leisure: 500,
+      contingency: 350
+    },
+    family: {
+      rent: 3500,
+      groceries: 1150,
+      transport: 240,
+      healthInsurance: 500,
+      utilities: 380,
+      childcare: 1850,
+      leisure: 850,
+      contingency: 650
+    },
+    upfrontRelocation: {
+      flights: 1100,
+      visaAndApostilles: 550,
+      temporaryStay1Month: 3100,
+      depositRentMultiplier: 1.5,
+      starterFurniture: 1600,
+      miscellaneousSetup: 700
+    }
+  },
+  'Frankfurt': {
+    country: 'germany',
+    currency: 'EUR',
+    symbol: '€',
+    bachelor: {
+      rent: 1300,
+      groceries: 380,
+      transport: 49,
+      healthInsurance: 185,
+      utilities: 160,
+      leisure: 320,
+      contingency: 220
+    },
+    family: {
+      rent: 2400,
+      groceries: 900,
+      transport: 125,
+      healthInsurance: 360,
+      utilities: 320,
+      childcare: 350,
+      leisure: 650,
+      contingency: 500
+    },
+    upfrontRelocation: {
+      flights: 700,
+      visaAndApostilles: 350,
+      temporaryStay1Month: 1800,
+      depositRentMultiplier: 3,
+      starterFurniture: 1300,
+      miscellaneousSetup: 500
+    }
+  },
+  'Melbourne': {
+    country: 'australia',
+    currency: 'AUD',
+    symbol: 'A$',
+    bachelor: {
+      rent: 2100,
+      groceries: 550,
+      transport: 190,
+      healthInsurance: 140,
+      utilities: 260,
+      leisure: 500,
+      contingency: 350
+    },
+    family: {
+      rent: 3300,
+      groceries: 1300,
+      transport: 380,
+      healthInsurance: 320,
+      utilities: 420,
+      childcare: 1600,
+      leisure: 850,
+      contingency: 650
+    },
+    upfrontRelocation: {
+      flights: 1200,
+      visaAndApostilles: 3200,
+      temporaryStay1Month: 2900,
+      depositRentMultiplier: 1.2,
+      starterFurniture: 1800,
+      miscellaneousSetup: 700
+    }
+  },
+  'Abu Dhabi': {
+    country: 'uae',
+    currency: 'AED',
+    symbol: 'AED ',
+    bachelor: {
+      rent: 5500,
+      groceries: 1400,
+      transport: 600,
+      healthInsurance: 450,
+      utilities: 750,
+      leisure: 1500,
+      contingency: 800
+    },
+    family: {
+      rent: 10500,
+      groceries: 3200,
+      transport: 1400,
+      healthInsurance: 1200,
+      utilities: 1600,
+      childcare: 3500,
+      leisure: 3000,
+      contingency: 1800
+    },
+    upfrontRelocation: {
+      flights: 1800,
+      visaAndApostilles: 2500,
+      temporaryStay1Month: 7500,
+      depositRentMultiplier: 1,
+      starterFurniture: 4500,
+      miscellaneousSetup: 1500
+    }
   }
 };
+
+// Direct country-level fallbacks so indexing by country code always succeeds
+CITY_BUDGET_BENCHMARKS['germany'] = CITY_BUDGET_BENCHMARKS['Berlin'];
+CITY_BUDGET_BENCHMARKS['uk'] = CITY_BUDGET_BENCHMARKS['London'];
+CITY_BUDGET_BENCHMARKS['netherlands'] = CITY_BUDGET_BENCHMARKS['Amsterdam'];
+CITY_BUDGET_BENCHMARKS['canada'] = CITY_BUDGET_BENCHMARKS['Toronto'];
+CITY_BUDGET_BENCHMARKS['usa'] = CITY_BUDGET_BENCHMARKS['New York'];
+CITY_BUDGET_BENCHMARKS['uae'] = CITY_BUDGET_BENCHMARKS['Dubai'];
+CITY_BUDGET_BENCHMARKS['singapore'] = CITY_BUDGET_BENCHMARKS['Singapore'];
+CITY_BUDGET_BENCHMARKS['australia'] = CITY_BUDGET_BENCHMARKS['Sydney'];
+CITY_BUDGET_BENCHMARKS['japan'] = CITY_BUDGET_BENCHMARKS['Tokyo'];
+CITY_BUDGET_BENCHMARKS['brazil'] = CITY_BUDGET_BENCHMARKS['São Paulo'];
+
+/**
+ * Robust helper to retrieve budget data for any city or country
+ */
+export function getCityBudgetData(city, countryId) {
+  if (city && CITY_BUDGET_BENCHMARKS[city]) {
+    return CITY_BUDGET_BENCHMARKS[city];
+  }
+  if (city) {
+    const match = Object.keys(CITY_BUDGET_BENCHMARKS).find(
+      k => k.toLowerCase() === city.toLowerCase()
+    );
+    if (match) return CITY_BUDGET_BENCHMARKS[match];
+  }
+  if (countryId && CITY_BUDGET_BENCHMARKS[countryId]) {
+    return CITY_BUDGET_BENCHMARKS[countryId];
+  }
+  return CITY_BUDGET_BENCHMARKS['Berlin'];
+}
+
+/**
+ * Calculates accurate, comprehensive monthly living burn
+ * Includes: Rent + Groceries + Transport + Health Insurance + Utilities + (Childcare) + Leisure + Contingency
+ */
+export function calculateMonthlyBurn(budgetData, persona = 'bachelor') {
+  if (!budgetData) return 2500;
+  const isFamily = typeof persona === 'string' && persona.toLowerCase().includes('family');
+  const personaKey = isFamily ? 'family' : 'bachelor';
+  const profile = budgetData[personaKey] || budgetData.bachelor;
+  if (!profile) return 2500;
+
+  const rent = Number(profile.rent) || 0;
+  const groceries = Number(profile.groceries) || 0;
+  const transport = Number(profile.transport) || 0;
+  const healthInsurance = Number(profile.healthInsurance) || 0;
+  const utilities = Number(profile.utilities) || 0;
+  const childcare = isFamily ? (Number(profile.childcare) || 0) : 0;
+  const leisure = Number(profile.leisure) || 0;
+  const contingency = Number(profile.contingency) || 0;
+
+  return Math.round(rent + groceries + transport + healthInsurance + utilities + childcare + leisure + contingency);
+}
+
+/**
+ * Calculates upfront initial relocation capital requirement
+ */
+export function calculateUpfrontLandingCost(budgetData, persona = 'bachelor', customVisaFee = null) {
+  if (!budgetData) return { totalUpfront: 6500, securityDeposit: 3300, flights: 800, visaFees: 500, tempStay: 1800, furniture: 1200, misc: 500 };
+  const isFamily = typeof persona === 'string' && persona.toLowerCase().includes('family');
+  const personaKey = isFamily ? 'family' : 'bachelor';
+  const profile = budgetData[personaKey] || budgetData.bachelor;
+  const upfront = budgetData.upfrontRelocation || {};
+
+  const rent = Number(profile.rent) || 1500;
+  const depositMult = Number(upfront.depositRentMultiplier) || 2.5;
+  const securityDeposit = Math.round(rent * depositMult);
+  const flights = Number(upfront.flights) || (isFamily ? 2400 : 800);
+  const visaFees = customVisaFee !== null ? Number(customVisaFee) : (Number(upfront.visaAndApostilles) || 500);
+  const tempStay = Number(upfront.temporaryStay1Month) || (isFamily ? 3000 : 1800);
+  const furniture = Number(upfront.starterFurniture) || 1200;
+  const misc = Number(upfront.miscellaneousSetup) || 500;
+
+  return {
+    securityDeposit,
+    flights,
+    visaFees,
+    tempStay,
+    furniture,
+    misc,
+    totalUpfront: securityDeposit + flights + visaFees + tempStay + furniture + misc
+  };
+}

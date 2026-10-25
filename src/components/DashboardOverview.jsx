@@ -19,6 +19,7 @@ import {
   CheckCircle2,
   ShieldCheck
 } from 'lucide-react';
+import { calculateMonthlyBurn } from '../data/budgetDefaults';
 
 export default function DashboardOverview({
   userProfile,
@@ -46,7 +47,7 @@ export default function DashboardOverview({
   }
 
   const personaKey = userProfile.persona.toLowerCase().includes('family') ? 'family' : 'bachelor';
-  const monthlyCostEstimate = budgetData ? budgetData[personaKey]?.rent + budgetData[personaKey]?.groceries + budgetData[personaKey]?.transport : 1500;
+  const monthlyCostEstimate = calculateMonthlyBurn(budgetData, userProfile.persona);
 
   const modules = [
     {
@@ -191,9 +192,9 @@ export default function DashboardOverview({
 
             <div className="space-y-2.5 text-xs">
               <div className="flex items-center justify-between py-1 border-b border-stone-200/60">
-                <span className="text-stone-500 font-mono">Est. Monthly Living</span>
+                <span className="text-stone-500 font-mono">Monthly Living Burn</span>
                 <span className="font-mono font-bold text-stone-900">
-                  ~{countryData?.symbol}{monthlyCostEstimate.toLocaleString()} {countryData?.currency}
+                  ~{countryData?.symbol}{monthlyCostEstimate.toLocaleString()} {countryData?.currency}/mo
                 </span>
               </div>
 
