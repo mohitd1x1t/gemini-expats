@@ -172,6 +172,102 @@ export const SCHOOLING_TIERS_DATA = {
       upfrontFees: 'AED 3,000 – AED 7,500 (KHDA registration & assessment fee)',
       pros: 'Ranked Outstanding by KHDA inspection; elite facilities (Olympic pools, theater).'
     }
+  },
+  thailand: {
+    publicLocal: {
+      name: 'Thai Government School (Rong Rian Ratthaban)',
+      language: '100% Thai language',
+      monthlyTuition: '฿0 – ฿1,500 / month (Nominal administrative and uniform fees)',
+      upfrontFees: '฿1,000',
+      pros: 'Complete Thai cultural and linguistic immersion.',
+      cons: 'Language barrier for non-Thai speakers; rote-learning structure.'
+    },
+    privateBilingual: {
+      name: 'English Program (EP) / Bilingual Thai-English School',
+      language: '50% English / 50% Thai',
+      monthlyTuition: '฿8,000 – ฿22,000 / month (฿90k – ฿250k / year)',
+      upfrontFees: '฿15,000 – ฿35,000',
+      pros: 'Affordable bridge for expat families; strong STEM and English foundation.'
+    },
+    international: {
+      name: 'International School (e.g., Bangkok Patana, ISB, NIST, Prem Tinsulanonda Chiang Mai)',
+      language: '100% English (IB, British GCSE/A-Levels, or American AP)',
+      monthlyTuition: '฿35,000 – ฿90,000 / month (฿400k – ฿1,000k / year)',
+      upfrontFees: '฿100,000 – ฿250,000 (Capital fee & registration)',
+      pros: 'World-class campuses, international university matriculation, diverse peer groups.'
+    }
+  },
+  vietnam: {
+    publicLocal: {
+      name: 'Trường Công Lập (Public School)',
+      language: '100% Vietnamese',
+      monthlyTuition: '₫0 – ₫1,000,000 / month',
+      upfrontFees: '₫500,000',
+      pros: 'Rapid fluency in Vietnamese.',
+      cons: 'Heavy curriculum workload; enrollment challenging for non-citizens without local household book.'
+    },
+    privateBilingual: {
+      name: 'Bilingual Vietnamese-English (e.g., Vinschool, VAS)',
+      language: 'Dual Vietnamese & Cambridge English curriculum',
+      monthlyTuition: '₫8,000,000 – ₫20,000,000 / month (₫90M – ₫240M / year)',
+      upfrontFees: '₫10,000,000 – ₫25,000,000',
+      pros: 'High quality modern facilities with recognized Cambridge certificates.'
+    },
+    international: {
+      name: 'International School (e.g., ISHCMC, BIS Saigon, UNIS Hanoi)',
+      language: 'English (IB Diploma, British, or American curriculum)',
+      monthlyTuition: '₫30,000,000 – ₫70,000,000 / month (₫350M – ₫850M / year)',
+      upfrontFees: '₫40,000,000 – ₫75,000,000 (Enrollment capital fee)',
+      pros: 'Among the finest international schools in Asia, IB world schools.'
+    }
+  },
+  indonesia: {
+    publicLocal: {
+      name: 'Sekolah Negeri (Indonesian State School)',
+      language: '100% Bahasa Indonesia',
+      monthlyTuition: 'Rp 0 (Free for citizens, limited expat access)',
+      upfrontFees: 'Rp 0',
+      pros: 'Language fluency.',
+      cons: 'Curriculum structured for local state examinations.'
+    },
+    privateBilingual: {
+      name: 'SPK School / National Plus (e.g., Dyatmika Bali, HighScope Jakarta)',
+      language: 'Bilingual English & Indonesian (Cambridge / International)',
+      monthlyTuition: 'Rp 5,000,000 – Rp 15,000,000 / month',
+      upfrontFees: 'Rp 10,000,000 – Rp 25,000,000 (Uang Pangkal / Entry building fee)',
+      pros: 'Progressive educational approaches, strong arts and sports programs in Bali.'
+    },
+    international: {
+      name: 'International School (e.g., Jakarta Intercultural School - JIS, Green School Bali, BIS)',
+      language: '100% English (IB Diploma / American AP)',
+      monthlyTuition: 'Rp 20,000,000 – Rp 50,000,000 / month (Rp 250M – Rp 600M / year)',
+      upfrontFees: 'Rp 30,000,000 – Rp 70,000,000',
+      pros: 'Pioneering holistic and sustainable education (Green School), elite university placement.'
+    }
+  },
+  mexico: {
+    publicLocal: {
+      name: 'Escuela Primaria / Secundaria Pública (SEP)',
+      language: '100% Spanish',
+      monthlyTuition: 'Mex$ 0 (Constitutional free education)',
+      upfrontFees: 'Mex$ 0',
+      pros: 'Native Spanish fluency within one school year.',
+      cons: 'Large class sizes; bureaucratic enrollment.'
+    },
+    privateBilingual: {
+      name: 'Colegio Bilingüe Particular (e.g., Peterson Schools, Eton School)',
+      language: 'Dual Spanish & English (50/50)',
+      monthlyTuition: 'Mex$ 6,000 – Mex$ 16,000 / month',
+      upfrontFees: 'Mex$ 8,000 – Mex$ 20,000 (Inscripción)',
+      pros: 'Academic excellence, bilingual fluency, sports and technology infrastructure.'
+    },
+    international: {
+      name: 'International School (e.g., American School Foundation - ASF, Greengates British, Churchill)',
+      language: '100% English (US High School Diploma + IB / British A-Levels)',
+      monthlyTuition: 'Mex$ 20,000 – Mex$ 45,000 / month (Mex$ 240k – Mex$ 500k / year)',
+      upfrontFees: 'Mex$ 40,000 – Mex$ 100,000 (Cuota de admisión)',
+      pros: 'Premier educational institutions in Latin America with direct Ivy League/Oxbridge pipelines.'
+    }
   }
 };
 
@@ -244,6 +340,46 @@ export const SPOUSAL_WORK_RIGHTS = {
     remoteWorkForOverseasEmployer: 'Permitted; income declared via monthly Carnê-Leão tax return.',
     integrationResources: [
       { name: 'Digital Work Card (CTPS Digital)', desc: 'Obtained online immediately with CPF number to work for any Brazilian company.' }
+    ]
+  },
+  thailand: {
+    dependentVisaType: 'Non-Immigrant O (Dependent)',
+    workRightStatus: 'Requires Separate Work Permit',
+    requiresSeparatePermit: true,
+    laborMarketTest: false,
+    remoteWorkForOverseasEmployer: 'Permitted if holding DTV dependent or LTR dependent visa status; traditional Non-O requires Thai employer sponsorship for local payroll.',
+    integrationResources: [
+      { name: 'Thai Language & Culture Classes (ED Visa or Community)', desc: 'Alliance Française Bangkok, AUA Language Center, and British Council Bangkok.' }
+    ]
+  },
+  vietnam: {
+    dependentVisaType: 'TT Visa (Thân Nhân)',
+    workRightStatus: 'Requires Independent Work Permit (LD2)',
+    requiresSeparatePermit: true,
+    laborMarketTest: true,
+    remoteWorkForOverseasEmployer: 'Permitted for offshore contracts paid to offshore accounts; local employment requires DOLISA work permit sponsorship.',
+    integrationResources: [
+      { name: 'Saigon Expat Women & Families Community', desc: 'Active network organizing career meetups, international school tours, and Vietnamese language circles.' }
+    ]
+  },
+  indonesia: {
+    dependentVisaType: 'Family KITAS (Index E31 / C317)',
+    workRightStatus: 'Strictly Prohibited from Local Employment without E23 Conversion',
+    requiresSeparatePermit: true,
+    laborMarketTest: true,
+    remoteWorkForOverseasEmployer: 'Remote work for overseas companies permitted if not generating Indonesian-sourced revenue.',
+    integrationResources: [
+      { name: 'Bali Coworking & Family Hubs', desc: 'Bilingual international family networks in Canggu, Sanur, and Ubud (Outpost, BWork, Tropical Nomad).' }
+    ]
+  },
+  mexico: {
+    dependentVisaType: 'Residente Temporal por Unidad Familiar',
+    workRightStatus: 'Permit to Work Granted upon Employer Job Offer',
+    requiresSeparatePermit: true,
+    laborMarketTest: false,
+    remoteWorkForOverseasEmployer: '100% Permitted for offshore employers without Mexican tax liability on foreign salary.',
+    integrationResources: [
+      { name: 'INM Permiso de Trabajo Tramite', desc: 'Fast-track administrative filing at local INM office to add work authorization to the temporary resident card.' }
     ]
   }
 };

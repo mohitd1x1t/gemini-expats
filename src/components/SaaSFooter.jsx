@@ -4,15 +4,19 @@ import { Compass, ShieldCheck, Heart } from 'lucide-react';
 export default function SaaSFooter({ onSelectCountry }) {
   const popularHubs = [
     { id: 'germany', name: 'Germany 🇩🇪' },
+    { id: 'thailand', name: 'Thailand 🇹🇭' },
     { id: 'uae', name: 'UAE / Dubai 🇦🇪' },
+    { id: 'vietnam', name: 'Vietnam 🇻🇳' },
     { id: 'singapore', name: 'Singapore 🇸🇬' },
+    { id: 'indonesia', name: 'Indonesia / Bali 🇮🇩' },
     { id: 'uk', name: 'United Kingdom 🇬🇧' },
+    { id: 'mexico', name: 'Mexico 🇲🇽' },
     { id: 'netherlands', name: 'Netherlands 🇳🇱' },
+    { id: 'japan', name: 'Japan 🇯🇵' },
     { id: 'usa', name: 'United States 🇺🇸' },
     { id: 'canada', name: 'Canada 🇨🇦' },
     { id: 'australia', name: 'Australia 🇦🇺' },
-    { id: 'japan', name: 'Japan 🇯🇵' },
-    { id: 'brazil', name: 'Brazil 🇧🇷' },
+    { id: 'brazil', name: 'Brazil 🇧🇷' }
   ];
 
   return (

@@ -101,6 +101,46 @@ const COUNTRY_TRANSPORT_META = {
       'Reflective hazard warning triangle, jack, lug wrench, and roadworthy spare tire',
       'Annual IPVA vehicle tax payment receipt and mandatory DPVAT/SPVAT insurance'
     ]
+  },
+  thailand: {
+    transit: 'Bangkok features the elevated BTS Skytrain (Rabbit Card), MRT Subway (contactless EMV bank cards accepted), and Chao Phraya Express river boats. Grab and Bolt apps are essential for on-demand rides.',
+    drivingSide: 'Left-hand traffic (drive on the left). Always watch for motorbikes undertaking on the left and overtaking on the right; high density of two-wheelers in urban traffic.',
+    vehicleGearTitle: 'Mandatory Thai Vehicle Requirements',
+    vehicleGear: [
+      'Por Ror Bor (พ.ร.บ.) Compulsory Motor Insurance tax sticker affixed to the front windshield',
+      'Valid International Driving Permit (IDP with motorcycle endorsement) or Thai driving license issued by Department of Land Transport (DLT)',
+      'Blue vehicle registration book (Lem Tabian / เล่มทะเบียน)'
+    ]
+  },
+  vietnam: {
+    transit: 'HCMC and Hanoi feature modern metro lines (Metro Line 1 Ben Thanh - Suoi Tien in Saigon, Cat Linh - Ha Dong line in Hanoi), extensive public buses, and ubiquitous Grab / Be / Xanh SM (electric taxi) apps.',
+    drivingSide: 'Right-hand traffic (drive on the right). Motorbike traffic moves like water; pedestrian crossings require calm, steady forward pace without hesitation.',
+    vehicleGearTitle: 'Mandatory Vietnamese Vehicle Requirements',
+    vehicleGear: [
+      'Cà Vẹt Xe (Blue Card vehicle registration certificate)',
+      'Bảo hiểm bắt buộc (Compulsory Civil Liability Insurance certificate for motorbikes/cars)',
+      'Helmets meeting national safety standards (QCVN 2) legally required for all motorcycle riders'
+    ]
+  },
+  indonesia: {
+    transit: 'In Jakarta: MRT Jakarta, LRT, and TransJakarta bus rapid transit using electronic prepaid cards (e-Money, Flazz, JakLingko). In Bali: Grab, Gojek, or monthly scooter/car rental with driver (Sopir).',
+    drivingSide: 'Left-hand traffic (drive on the left). In Bali, narrow roads, ceremonial processions (upacara), and dogs require vigilant driving speeds.',
+    vehicleGearTitle: 'Mandatory Indonesian Vehicle Requirements',
+    vehicleGear: [
+      'STNK (Surat Tanda Nomor Kendaraan) vehicle registration certificate and annual tax stamp',
+      'Standard SNI certified helmet for motorbike riders and pillion passengers',
+      'Valid International Driving Permit (IDP) with motorcycle class endorsement matching passport'
+    ]
+  },
+  mexico: {
+    transit: 'CDMX has an extensive Metro system, Metrobús BRT (Tarjeta de Movilidad Integrada), Cablebús aerial trams, and reliable Uber / DiDi rideshares.',
+    drivingSide: 'Right-hand traffic (drive on the right). Beware of giant speed bumps ("topes") which are often unpainted and ubiquitous on residential and arterial roads.',
+    vehicleGearTitle: 'Mandatory Mexican Vehicle Requirements',
+    vehicleGear: [
+      'Tarjeta de Circulación (vehicle registration card)',
+      'Póliza de Seguro de Auto (mandatory minimum third-party liability insurance)',
+      'Holograma de Verificación Vehicular (smog and emissions inspection sticker for Hoy No Circula driving restrictions in CDMX)'
+    ]
   }
 };
 

@@ -2621,5 +2621,570 @@ export const COUNTRY_VISA_DETAILS = {
         ]
       }
     ]
+  },
+
+  thailand: {
+    country: 'Thailand',
+    currency: 'THB',
+    symbol: '฿',
+    familyReunion: {
+      spouseWork: 'Spouses on Non-Immigrant O dependent visas do not receive automatic open work rights in Thailand. To work locally, a spouse must obtain an independent Non-B visa and Digital Work Permit sponsored by an employer. Spouses of LTR visa holders enjoy simplified work authorization procedures.',
+      vitalRecords: 'Original marriage certificate and children’s birth certificates must carry the Hague Apostille from your home foreign ministry (or embassy legalization for non-Apostille countries) plus certified English/Thai translation.',
+      housingOrSalary: 'Proof of family support requires 400,000 THB deposited in a Thai bank account under the applicant’s name or minimum monthly salary of 40,000 THB.'
+    },
+    primaryVisas: [
+      {
+        id: 'dtv_thailand',
+        name: 'Destination Thailand Visa (DTV)',
+        category: 'Digital Nomad & Cultural Expat',
+        validity: '5 years (Multiple entry, 180 days stay per entry, extendable +180 days in Thailand)',
+        processingTime: '2 to 4 weeks',
+        fastTrackAvailable: 'Direct 100% online application via the official Thai E-Visa portal.',
+        fees: {
+          consularFee: 10000,
+          extensionFee: 1900,
+          apostillesAndTranslations: 3000,
+          medicalInsurance: 2500,
+          total: 17400
+        },
+        portals: [
+          {
+            name: 'Thai E-Visa Official Portal',
+            url: 'https://www.thaievisa.go.th',
+            loginType: 'Personal Email / Passport Profile',
+            purpose: 'Official Ministry of Foreign Affairs (MFA) portal to lodge digital DTV applications, upload financial proofs, and receive stickerless e-visas.'
+          },
+          {
+            name: 'Thailand Immigration Bureau (TM47 & TM30)',
+            url: 'https://tm47.immigration.go.th',
+            loginType: 'Passport Number / TM6 Slip',
+            purpose: 'Perform mandatory 90-day online residence reporting and download verified TM30 accommodation confirmations.'
+          }
+        ],
+        documentation: {
+          identity: [
+            'Passport with at least 6 months validity from entry date and 2 blank pages',
+            'Passport photograph taken within the last 6 months against a plain white background',
+            'Proof of current legal residence in the jurisdiction where applying'
+          ],
+          credentials: [
+            'Employment contract or service contract with offshore employer outside Thailand',
+            'Professional portfolio showing remote digital work or enrollment in recognized Thai soft-power activity (Muay Thai, culinary, medical treatment)',
+            'Company profile or client references demonstrating remote nature of services'
+          ],
+          financialAndHealth: [
+            'Bank statement showing minimum liquid balance of 500,000 THB (~$15,000 USD) maintained for at least 30 days prior to application',
+            'Travel medical insurance with minimum $50,000 USD emergency health and hospitalization coverage'
+          ],
+          photoSpec: 'Digital passport photo (format JPEG, 45mm x 35mm, white background, no eyeglasses).'
+        },
+        eligibility: [
+          'Location-independent remote worker, freelancer, digital nomad, or participant in approved Thai cultural/soft power activities',
+          'Verifiable bank balance of at least 500,000 THB (~$15,000 USD)',
+          'No criminal record and valid passport'
+        ],
+        steps: [
+          {
+            step: 'Step 1: Create Account on Thai E-Visa Portal',
+            desc: 'Register an account on thaievisa.go.th and select the Royal Thai Embassy or Consulate matching your legal residence.'
+          },
+          {
+            step: 'Step 2: Upload Remote Employment & Financial Proofs',
+            desc: 'Upload passport bio-page, photograph, remote employment contract/freelance portfolio, and bank statement showing ≥ 500,000 THB.'
+          },
+          {
+            step: 'Step 3: Pay Consular Fee Online (10,000 THB)',
+            desc: 'Submit online payment using an international credit card and track consular document verification.'
+          },
+          {
+            step: 'Step 4: Receive Digital Stickerless E-Visa',
+            desc: 'Download the official approved DTV PDF document. Print physical copies to show at airline check-in and Thai immigration.'
+          },
+          {
+            step: 'Step 5: Arrival & 24h TM30 Registration',
+            desc: 'Receive 180-day entry stamp at Suvarnabhumi, Don Mueang, or Phuket airport. Ensure hotel or landlord submits TM30 notification within 24 hours.'
+          },
+          {
+            step: 'Step 6: Optional 180-Day In-Country Extension',
+            desc: 'Before the 180-day stamp expires, visit local immigration (Chaengwattana in Bangkok) to extend your stay for another 180 days (fee: 1,900 THB).'
+          }
+        ],
+        commonPitfalls: [
+          'Bank statement showing less than 500,000 THB on the day of consular submission.',
+          'Applying through a Thai embassy in a jurisdiction where you do not hold valid residency rights.'
+        ]
+      },
+      {
+        id: 'ltr_thailand',
+        name: 'Long-Term Resident (LTR) Visa',
+        category: 'High-Net-Worth & Specialist Remote Worker',
+        validity: '10 years (5 years + 5 years renewable, fast-track digital work permit)',
+        processingTime: '4 to 8 weeks',
+        fastTrackAvailable: 'Dedicated Board of Investment (BOI) concierge review and VIP fast-track airport lanes.',
+        fees: {
+          ltrProcessingFee: 50000,
+          digitalWorkPermitFee: 3000,
+          apostillesAndTranslations: 4000,
+          total: 57000
+        },
+        portals: [
+          {
+            name: 'Thailand BOI LTR Application Portal',
+            url: 'https://ltr.boi.go.th',
+            loginType: 'Registered BOI Account',
+            purpose: 'Lodge LTR qualification endorsement documents directly with the Board of Investment.'
+          },
+          {
+            name: 'One Stop Service Center for Visa and Work Permits (OSOS)',
+            url: 'https://osos.boi.go.th',
+            loginType: 'BOI Endorsement Protocol',
+            purpose: 'Chamchuri Square center where 10-year visa sticker and Digital Work Permit are finalized in 1 visit.'
+          }
+        ],
+        documentation: {
+          identity: [
+            'Current passport with minimum 1-year remaining validity',
+            'Full color bio-pages and historical entry stamps'
+          ],
+          credentials: [
+            'Work-from-Thailand: Proof of personal income ≥ $80,000 USD/year over past 2 years (or $40,000/year if holding Master’s degree or holding intellectual property)',
+            'Employer must be a public company listed on an international stock exchange OR private company with combined revenue ≥ $150M USD over past 3 years',
+            'Minimum 5 years of professional work experience in relevant tech/engineering sector'
+          ],
+          financialAndHealth: [
+            'Health insurance policy with at least $50,000 USD coverage OR social security coverage OR $100,000 USD bank deposit'
+          ],
+          photoSpec: 'Standard passport photos taken within 6 months.'
+        },
+        eligibility: [
+          'Remote tech professionals working for large international firms with ≥ $80,000 USD annual income',
+          'Wealthy Global Citizens ($1M+ in assets, $500k invested in Thai government bonds or real estate)',
+          'High-Skilled Experts working in targeted Thai industry sectors'
+        ],
+        steps: [
+          {
+            step: 'Step 1: Submit Endorsement Dossier to BOI Portal',
+            desc: 'Apply on ltr.boi.go.th. BOI reviews income tax filings, company financial standing, and employment credentials within 20 working days.'
+          },
+          {
+            step: 'Step 2: Issuance of Official Endorsement Letter',
+            desc: 'Receive formal BOI qualification endorsement valid for 60 days to finalize visa issuance.'
+          },
+          {
+            step: 'Step 3: Visa Issuance at OSOS Bangkok or Royal Thai Embassy',
+            desc: 'Book appointment at OSOS Chamchuri Square in Bangkok. Pay 50,000 THB fee and receive your 10-year multiple-entry visa stamp.'
+          },
+          {
+            step: 'Step 4: Issue Digital Work Permit',
+            desc: 'Apply for and receive your Thai Digital Work Permit via Department of Employment counter inside OSOS.'
+          }
+        ],
+        commonPitfalls: [
+          'Employer is an offshore private startup that cannot demonstrate $150M USD revenue over past 3 years.',
+          'Missing tax return transcripts proving personal income threshold of $80k USD.'
+        ]
+      }
+    ]
+  },
+
+  vietnam: {
+    country: 'Vietnam',
+    currency: 'VND',
+    symbol: '₫',
+    familyReunion: {
+      spouseWork: 'Spouses on TT (Thân Nhân) dependent visas do not hold automatic work authorization. A spouse wishing to be employed by a Vietnamese entity must have the employer sponsor an independent Work Permit (Giấy Phép Lao Động) and convert to an LD2 visa/TRC.',
+      vitalRecords: 'Marriage certificates and children’s birth certificates must be apostilled in your home country, authenticated by the Vietnamese Embassy (consular legalization), and translated into Vietnamese by an accredited notary office (Văn Phòng Công Chứng).',
+      housingOrSalary: 'Employer or primary visa sponsor must sign a guarantee commitment (Mẫu NA3) demonstrating adequate income and residential space.'
+    },
+    primaryVisas: [
+      {
+        id: 'trc_vietnam',
+        name: 'Temporary Residence Card (TRC - Thẻ Tạm Trú LD2)',
+        category: 'Skilled Employment & Residency',
+        validity: '2 years (renewable, multi-entry, replaces recurring visa stamps)',
+        processingTime: '2 to 4 weeks',
+        fastTrackAvailable: 'Direct in-country processing via company HR through Immigration Department.',
+        fees: {
+          consularEntryVisa: 625000, // ~US$ 25
+          workPermitDOLISA: 1000000,
+          trcCardImmigration: 3625000, // ~US$ 145
+          healthCheckHospital: 2000000,
+          legalizedTranslations: 1800000,
+          total: 9050000
+        },
+        portals: [
+          {
+            name: 'Vietnam National Public Service Portal',
+            url: 'https://dichvucong.bocongan.gov.vn',
+            loginType: 'Corporate Enterprise Token / Police Portal',
+            purpose: 'Portal used by sponsoring companies to file online work permits and immigration TRC dossiers.'
+          },
+          {
+            name: 'Vietnam Immigration Department Portal',
+            url: 'https://xuatnhapcanh.gov.vn',
+            loginType: 'Public Reference Access',
+            purpose: 'Check status of foreign worker entry approvals and downloadable NA forms (NA5, NA6, NA8).'
+          }
+        ],
+        documentation: {
+          identity: [
+            'Original valid passport with at least 13 months remaining validity and current business/work visa',
+            'Two 2x3 cm and two 3x4 cm passport photos (white background, no glasses)'
+          ],
+          credentials: [
+            'Valid Vietnam Work Permit (Giấy Phép Lao Động) or Work Permit Exemption Certificate',
+            'Legalized Bachelor’s Degree with consular authentication from Ministry of Foreign Affairs',
+            'Legalized foreign Police Clearance Certificate (PCC) issued within the last 6 months'
+          ],
+          financialAndHealth: [
+            'Health Certificate issued by an authorized Vietnamese hospital (e.g., Cho Ray, FV Hospital, Bach Mai) within the last 6 months',
+            'Employment contract signed with Vietnam-registered enterprise'
+          ],
+          photoSpec: 'Recent 2cm x 3cm portrait photos, white background, bare head, formal attire.'
+        },
+        eligibility: [
+          'Foreign professional holding valid Vietnam Work Permit with university degree and ≥ 3 years experience',
+          'Direct full-time employment with a licensed legal entity in Vietnam',
+          'Clean criminal record and passed comprehensive health screening'
+        ],
+        steps: [
+          {
+            step: 'Step 1: Document Legalization in Home Country',
+            desc: 'Apostille your university degree and Police Clearance Certificate (PCC). Complete consular authentication at the Vietnamese Embassy in your home country.'
+          },
+          {
+            step: 'Step 2: Employer Files Foreign Labor Demand Approval',
+            desc: 'At least 15 days before hiring, employer submits labor demand justification to DOLISA (Department of Labour).'
+          },
+          {
+            step: 'Step 3: Work Permit Application (Giấy Phép Lao Động)',
+            desc: 'Submit health check, degree, experience certificates, and PCC to DOLISA to obtain the official Work Permit.'
+          },
+          {
+            step: 'Step 4: Enter Vietnam on LD2 Work Visa',
+            desc: 'Employer obtains entry clearance letter from Immigration Department. Fly into Vietnam and stamp LD2 visa at airport.'
+          },
+          {
+            step: 'Step 5: Apply for Biometric Temporary Residence Card (TRC)',
+            desc: 'Submit Form NA6 and NA8 at Vietnam Immigration Department (HCMC or Hanoi). Receive plastic TRC card within 5–7 working days.'
+          }
+        ],
+        commonPitfalls: [
+          'Work experience letter does not show 3+ years matching the exact university degree and job title.',
+          'Entering Vietnam on a tourist e-visa expecting to convert to a work permit in-country (usually requires exit to reset visa category).'
+        ]
+      },
+      {
+        id: 'evisa_vietnam',
+        name: '90-Day Multiple-Entry E-Visa',
+        category: 'Remote Work / Digital Nomad Stay',
+        validity: '90 days (multiple entries, renew via border run)',
+        processingTime: '3 to 5 business days',
+        fastTrackAvailable: 'Direct online submission through National Immigration portal.',
+        fees: {
+          evisaFee: 1250000, // US$ 50 for multi-entry
+          borderRunTransport: 1500000, // Moc Bai border bus or regional roundtrip flight
+          total: 2750000
+        },
+        portals: [
+          {
+            name: 'Official Vietnam E-Visa Portal',
+            url: 'https://evisa.xuatnhapcanh.gov.vn',
+            loginType: 'Direct Online Protocol',
+            purpose: 'The ONLY official government portal for Vietnamese electronic visas. Avoid high-markup third-party websites.'
+          }
+        ],
+        documentation: {
+          identity: [
+            'Passport valid for at least 6 months beyond the intended departure date',
+            'High-resolution scan of passport biographical page (JPG format, under 2MB)',
+            'Digital passport photo (JPG format, 4x6 cm, white background, no glasses)'
+          ],
+          credentials: [
+            'Temporary address in Vietnam (hotel, serviced apartment, or Airbnb)',
+            'Planned border entry and exit checkpoint selection'
+          ],
+          financialAndHealth: [
+            'Credit card to pay government visa processing fee online'
+          ],
+          photoSpec: 'White background, looking straight, no hats or dark glasses, under 2MB.'
+        },
+        eligibility: [
+          'Citizens of all countries and territories worldwide',
+          'Intention to stay up to 90 consecutive days for tourism, business discovery, or remote work'
+        ],
+        steps: [
+          {
+            step: 'Step 1: Access Official Government E-Visa Portal',
+            desc: 'Visit evisa.xuatnhapcanh.gov.vn. Select "For Foreigners" and "Multiple-Entry 90-Day".'
+          },
+          {
+            step: 'Step 2: Upload Bio-Page & Digital Photo',
+            desc: 'Upload clear color JPGs and double-check that full ICAO barcode line matches your passport data.'
+          },
+          {
+            step: 'Step 3: Pay US$ 50 Processing Fee',
+            desc: 'Pay using international credit/debit card. Record your Registration Code to track processing.'
+          },
+          {
+            step: 'Step 4: Download & Print Approved E-Visa Document',
+            desc: 'After 3–5 business days, download the official A4 E-Visa approval PDF. Print 2 color copies.'
+          },
+          {
+            step: 'Step 5: Border Run Renewal at 90 Days',
+            desc: 'Before the 90 days expire, apply for a new e-visa, take a day bus trip to Moc Bai border (Cambodia) or a regional flight to Bangkok, and re-enter.'
+          }
+        ],
+        commonPitfalls: [
+          'Entering at a different port of entry than the one declared if land borders are strictly audited.',
+          'Typo in passport number or full name (Middle name omitted) leading to denial of boarding.'
+        ]
+      }
+    ]
+  },
+
+  indonesia: {
+    country: 'Indonesia',
+    currency: 'IDR',
+    symbol: 'Rp ',
+    familyReunion: {
+      spouseWork: 'Spouses of foreign workers hold a Dependent Family KITAS (Index E31 / C317). Dependent spouses are strictly prohibited under Indonesian manpower law from engaging in paid local Indonesian employment or earning local salary without converting to an independent Working KITAS (Index E23).',
+      vitalRecords: 'Marriage certificate and children\'s birth certificates must be apostilled in home country, legalized by Indonesian Embassy, and translated into Indonesian by an official sworn translator (Penerjemah Tersumpah).',
+      housingOrSalary: 'The primary sponsor must earn sufficient verified income to support all dependents and maintain a minimum registered Indonesian bank balance.'
+    },
+    primaryVisas: [
+      {
+        id: 'remote_worker_e33g',
+        name: 'Remote Worker Visa (E33G)',
+        category: 'Digital Nomad / Location Independent',
+        validity: '1 year (renewable for subsequent 1-year terms)',
+        processingTime: '1 to 2 weeks',
+        fastTrackAvailable: 'Direct digital application on the official Indonesian Molina e-Visa portal.',
+        fees: {
+          visaApplicationPNBP: 2000000,
+          visaIssuancePNBP: 10000000,
+          agentOrPlatformFee: 3000000,
+          total: 15000000
+        },
+        portals: [
+          {
+            name: 'Molina E-Visa Directorate General of Immigration',
+            url: 'https://evisa.imigrasi.go.id',
+            loginType: 'Personal Email & Passport Account',
+            purpose: 'Official immigration portal for electronic visa applications, document uploads, and credit card fee settlement.'
+          }
+        ],
+        documentation: {
+          identity: [
+            'Passport valid for at least 18 months at the time of visa application',
+            'Color passport-sized photograph (white background)'
+          ],
+          credentials: [
+            'Employment contract with a non-Indonesian company proving active remote work status outside Indonesia',
+            'Company profile and declaration that candidate serves offshore clients only'
+          ],
+          financialAndHealth: [
+            'Proof of annual income of at least $60,000 USD (paystubs, tax statements, or bank transcripts showing minimum $5,000 USD/month)',
+            'Bank account statements showing active balances over the past 3 months'
+          ],
+          photoSpec: 'Recent passport photo, formal clothes, clean white background.'
+        },
+        eligibility: [
+          'Full-time remote employee or long-term contractor for overseas company outside Indonesia',
+          'Documented annual personal earnings of at least $60,000 USD',
+          'No commercial operations or invoicing of local Indonesian companies or individuals'
+        ],
+        steps: [
+          {
+            step: 'Step 1: Create Account on evisa.imigrasi.go.id',
+            desc: 'Register an account on the official Molina immigration website and select Visa Index E33G (Remote Worker).'
+          },
+          {
+            step: 'Step 2: Upload Remote Contract & Proof of $60k Income',
+            desc: 'Upload employment agreement, 3 months of bank statements demonstrating ≥ $5,000 USD/mo deposits, and passport copy.'
+          },
+          {
+            step: 'Step 3: Pay Government PNBP Fees Online',
+            desc: 'Pay the application and visa issuance fee via online credit card transaction.'
+          },
+          {
+            step: 'Step 4: Receive Electronic E-Visa (e-ITAS)',
+            desc: 'Immigration reviews application within 5–10 business days and issues the downloadable E33G electronic visa PDF.'
+          },
+          {
+            step: 'Step 5: Arrival in Bali (Ngurah Rai) or Jakarta',
+            desc: 'Present electronic visa at immigration biometric e-gates or counter to receive initial stay permit stamp.'
+          }
+        ],
+        commonPitfalls: [
+          'Working for or providing paid consulting services to Indonesian registered businesses.',
+          'Bank statements showing average monthly inflow under the $5,000 USD threshold.'
+        ]
+      },
+      {
+        id: 'working_kitas_e23',
+        name: 'Working KITAS (Index E23 / C312)',
+        category: 'Corporate Employment & Expat Specialist',
+        validity: '1 year (renewable up to 5 years, convertible to KITAP permanent residency)',
+        processingTime: '4 to 8 weeks',
+        fastTrackAvailable: 'Coordinated via registered corporate TKA Online portal with Ministry of Manpower.',
+        fees: {
+          rptkaApproval: 1500000,
+          dkptkaSkillsLevy: 19000000, // US$ 1,200/year paid to Indonesian state skills fund
+          itasBiometricFee: 2500000,
+          telexFee: 2000000,
+          total: 25000000
+        },
+        portals: [
+          {
+            name: 'TKA Online (Ministry of Manpower - Kemnaker)',
+            url: 'https://tka-online.kemnaker.go.id',
+            loginType: 'Corporate Employer Token',
+            purpose: 'Mandatory portal for companies to file RPTKA foreign worker plan and pay DKP-TKA skills levies.'
+          },
+          {
+            name: 'Direktorat Jenderal Imigrasi (SIMKIM)',
+            url: 'https://evisa.imigrasi.go.id',
+            loginType: 'Immigration Sponsor Account',
+            purpose: 'Convert approved labor notification into formal entry visa and schedule post-arrival biometrics.'
+          }
+        ],
+        documentation: {
+          identity: [
+            'Passport with minimum 18 months validity (for 1-year KITAS)',
+            'Standard color passport photos'
+          ],
+          credentials: [
+            'Recognized Bachelor’s Degree (S1) or higher related to position',
+            'Certificate of at least 5 years of relevant professional work experience',
+            'Indonesian understudy/counterpart training plan to transfer skills to local employees'
+          ],
+          financialAndHealth: [
+            'Proof of employer paid-in capital (PT PMA minimum IDR 10 Billion paid-up capital)',
+            'Comprehensive health insurance policy valid in Indonesia'
+          ],
+          photoSpec: 'White background, formal collared shirt, 4x6 cm and 3x4 cm.'
+        },
+        eligibility: [
+          'Professional or executive employed by PT PMA or Indonesian legal entity',
+          'Position cannot be on the closed list of restricted jobs (e.g., HR, administrative clerks reserved for Indonesian citizens)',
+          'Employer pays $100 USD/month DKP-TKA training levy to the Indonesian government'
+        ],
+        steps: [
+          {
+            step: 'Step 1: RPTKA Filing by Indonesian Employer',
+            desc: 'Employer submits Foreign Manpower Utilization Plan (RPTKA) on tka-online.kemnaker.go.id.'
+          },
+          {
+            step: 'Step 2: Pay DKP-TKA Skills Fund Levy ($1,200 USD)',
+            desc: 'Employer pays the mandatory state skills levy to the Ministry of Manpower to receive the formal hiring Notification (Notifikasi).'
+          },
+          {
+            step: 'Step 3: Electronic Visa (E23) Issuance',
+            desc: 'Immigration issues the electronic stay permit approval letter.'
+          },
+          {
+            step: 'Step 4: Landing & Biometrics Appointment',
+            desc: 'Arrive in Indonesia and visit the local Kantor Imigrasi (e.g. Denpasar or South Jakarta) within 30 days for biometric photo and fingerprinting.'
+          },
+          {
+            step: 'Step 5: Electronic ITAS (e-ITAS) Issuance',
+            desc: 'Receive digital ITAS card and register with local civil registry (Catatan Sipil) for Surat Keterangan Tempat Tinggal (SKTT).'
+          }
+        ],
+        commonPitfalls: [
+          'Position title falls under prohibited executive roles reserved for Indonesian nationals (such as HR Director).',
+          'Company fails to assign a local Indonesian understudy employee for mandatory knowledge transfer.'
+        ]
+      }
+    ]
+  },
+
+  mexico: {
+    country: 'Mexico',
+    currency: 'MXN',
+    symbol: 'Mex$',
+    familyReunion: {
+      spouseWork: 'Spouses holding a Residente Temporal por Unidad Familiar can work in Mexico by obtaining a written job offer from a registered Mexican employer and applying to INM for a "Permiso de Trabajo" (Work Authorization). Once submitted, INM routinely issues the authorization card within 15–20 working days without requiring labor market tests.',
+      vitalRecords: 'Original marriage certificate and birth certificates must carry the Hague Apostille from the issuing authority in your home country, accompanied by a certified Spanish translation executed by an authorized Mexican Perito Traductor.',
+      housingOrSalary: 'The primary resident must demonstrate additional financial solvency (approx. +$1,000 USD/month in monthly income or savings per accompanying dependent).'
+    },
+    primaryVisas: [
+      {
+        id: 'residente_temporal_solvencia',
+        name: 'Residente Temporal (Economic Solvency / Digital Nomad)',
+        category: 'Remote Work & Independent Means',
+        validity: '1 year initial (renewable for up to 4 years, then converts to Permanent Residency)',
+        processingTime: '2 to 4 weeks',
+        fastTrackAvailable: 'Consular interview booked via official MiConsulado appointment system.',
+        fees: {
+          consularFeeUSD: 1050, // Approx $53 USD
+          inmCanjeCardFee: 5328, // Derechos de Canje de Residente Temporal 1 Año (~$280 USD)
+          apostillesAndTranslations: 2200,
+          total: 8578
+        },
+        portals: [
+          {
+            name: 'MiConsulado (Secretaría de Relaciones Exteriores - SRE)',
+            url: 'https://citas.sre.gob.mx',
+            loginType: 'MiConsulado Personal Profile',
+            purpose: 'Official Mexican government portal to schedule consular visa interview appointments worldwide.'
+          },
+          {
+            name: 'INM Trámites Migratorios Portal',
+            url: 'https://www.inm.gob.mx/tramites/publico/estancia.html',
+            loginType: 'Online Format Protocol (FMMD)',
+            purpose: 'Generate mandatory "Formato Básico" and appointment booking for in-country Canje resident card exchange.'
+          }
+        ],
+        documentation: {
+          identity: [
+            'Valid passport with at least 6 months validity from intended date of entry',
+            'Color copy of passport biographical information page',
+            'One passport-size photograph (front view, white background, no glasses)'
+          ],
+          credentials: [
+            'Employment letter or client consulting contracts proving continuous remote work outside Mexico',
+            'Documentation proving applicant holds professional activity or freelance contracts'
+          ],
+          financialAndHealth: [
+            'Bank statements showing regular monthly net income of at least $3,500 to $4,300 USD over the past 6 months (exact amount varies by Mexican consulate calculated from 300 days of Mexico City minimum wage)',
+            'OR investment/savings balance showing minimum $65,000 to $70,000 USD average over the past 12 consecutive months'
+          ],
+          photoSpec: 'Infantil or passport size, 3.9cm x 3.1cm, plain white background, bare head, face fully visible.'
+        },
+        eligibility: [
+          'Remote employees, entrepreneurs, digital nomads, and retirees with foreign-sourced income',
+          'Documented economic solvency meeting consular minimum wage multipliers',
+          'Clean criminal record and clear purpose of temporary stay'
+        ],
+        steps: [
+          {
+            step: 'Step 1: Book Consular Appointment on MiConsulado',
+            desc: 'Register on citas.sre.gob.mx and select a Mexican embassy or consulate where you have legal residency.'
+          },
+          {
+            step: 'Step 2: Consular Interview & Financial Audit',
+            desc: 'Attend consular interview with 6–12 months of stamped bank statements and paystubs. Pay consular processing fee.'
+          },
+          {
+            step: 'Step 3: Passport Stamped with 180-Day Single-Entry Visa',
+            desc: 'Consulate affixes the temporary resident visa sticker in your passport. You have 180 days to enter Mexico.'
+          },
+          {
+            step: 'Step 4: Landing & Special Entry FMM Stamp',
+            desc: 'Upon landing at MEX, CUN, or GDL airport, show your visa sticker. Ensure officer marks "Canje" on your entry record.'
+          },
+          {
+            step: 'Step 5: Complete INM Canje within 30 Days of Landing',
+            desc: 'Within 30 calendar days of arrival, visit local INM office. Pay rights fee (5,328 MXN), provide fingerprints, and collect your plastic green Residente Temporal card.'
+          }
+        ],
+        commonPitfalls: [
+          'Missing the strict 30-calendar-day window to start the Canje process after touching down in Mexico.',
+          'Consulate calculating the UMA / minimum wage threshold differently; always check your specific consulate’s exact monthly income requirement.'
+        ]
+      }
+    ]
   }
 };

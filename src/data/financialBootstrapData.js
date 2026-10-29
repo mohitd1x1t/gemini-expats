@@ -107,6 +107,62 @@ export const COUNTRY_TAX_ID_WORKAROUNDS = {
         'Apply online at gov.uk with your passport and BRP card or eVisa identity.'
       ]
     }
+  },
+  thailand: {
+    idName: 'Tax Identification Number (TIN)',
+    authority: 'Thai Revenue Department (Krom Sanphakon)',
+    standardTimeline: 'Same-day in person with passport and visa.',
+    bootstrapWorkaround: {
+      title: 'Obtain TIN at Local District Revenue Office',
+      steps: [
+        'Foreigners residing over 180 days in Thailand or opening bank accounts can request a 13-digit Tax ID directly from their area Area Revenue Branch Office (Sanphakon Phunthi).',
+        'Bring your passport, valid visa (Non-B, LTR, or DTV), TM30 accommodation receipt, and rental lease agreement.',
+        'Revenue officials issue the paper Tax Identification Card within 30 to 60 minutes free of charge.',
+        'Use this TIN to file your annual P.N.D. 90/91 tax return and provide to your Thai bank (Bangkok Bank / Kasikornbank).'
+      ]
+    }
+  },
+  vietnam: {
+    idName: 'Mã Số Thuế Cá Nhân (Personal Tax Code - MST)',
+    authority: 'General Department of Taxation (Tổng Cục Thuế)',
+    standardTimeline: '3 to 5 business days via employer HR or local tax branch.',
+    bootstrapWorkaround: {
+      title: 'Fast-Track Tax Registration via Employer HR',
+      steps: [
+        'Foreign employees are registered by their Vietnamese employing entity using Form 05-ĐK-TCT via the online tax portal (thuedientu.gdt.gov.vn).',
+        'Requires certified notarized copy of passport and valid Work Permit / TRC.',
+        'The tax department issues the 10-digit MST electronically within 3 business days.',
+        'Freelancers or rep office staff can register directly at the municipal tax office (Chi Cục Thuế) of their district.'
+      ]
+    }
+  },
+  indonesia: {
+    idName: 'Nomor Pokok Wajib Pajak (NPWP)',
+    authority: 'Direktorat Jenderal Pajak (DJP)',
+    standardTimeline: '1 to 2 business days via ereg.pajak.go.id.',
+    bootstrapWorkaround: {
+      title: 'Online NPWP Registration for KITAS Holders',
+      steps: [
+        'Foreign workers holding a valid Working KITAS (Index E23) or Investor KITAS must register on ereg.pajak.go.id.',
+        'Upload your electronic KITAS (e-ITAS), passport, and employer sponsorship letter.',
+        'DJP issues your 16-digit NPWP digital card via email within 24 to 48 hours.',
+        'Holding an NPWP lowers your employee withholding tax by 20% compared to workers without an NPWP.'
+      ]
+    }
+  },
+  mexico: {
+    idName: 'RFC (Registro Federal de Contribuyentes)',
+    authority: 'SAT (Servicio de Administración Tributaria)',
+    standardTimeline: 'Same-day at SAT appointment with CURP.',
+    bootstrapWorkaround: {
+      title: 'Securing a SAT "Cita" & Getting Your RFC + e.firma',
+      steps: [
+        'You need your CURP population number (printed on your green Residente Temporal card) before applying for an RFC.',
+        'Join the virtual queue on citas.sat.gob.mx for "Inscripción en el RFC Personas Físicas".',
+        'Bring your passport, green Residente card, proof of address (CFE electric bill or water bill under 3 months old), and a USB flash drive.',
+        'SAT issues your RFC certificate (Constancia de Situación Fiscal) and digital signature (e.firma) on your USB drive immediately.'
+      ]
+    }
   }
 };
 
@@ -201,6 +257,34 @@ export const LOCAL_PAYMENT_RAILS = {
     howItWorks: 'Zelle links bank accounts via US phone number or email address with near-instant settlement. FedNow provides underlying interbank real-time rails.',
     fees: 'Free on most consumer checking accounts.',
     expatProTip: 'US landlords often request monthly rent via Zelle, ACH auto-debit, or paper cashier’s check. Beware that Zelle offers zero fraud protection once sent.'
+  },
+  thailand: {
+    systemName: 'PromptPay',
+    operator: 'Bank of Thailand (BOT) & National ITMX',
+    howItWorks: 'Real-time payment rail linked to Thai mobile phone number, Tax ID (TIN), or interoperable Thai QR code. Scanned directly using Thai mobile banking apps (K PLUS, SCB EASY, Bangkok Bank).',
+    fees: '100% free for retail transfers under 5,000 THB; max 2–10 THB for large amounts.',
+    expatProTip: 'Street food stalls, 7-Eleven, BTS transit machines, and condo landlords in Thailand overwhelmingly prefer PromptPay QR scans over physical cash.'
+  },
+  vietnam: {
+    systemName: 'VietQR (Napas 247)',
+    operator: 'National Payment Corporation of Vietnam (NAPAS)',
+    howItWorks: 'Instant 24/7 interbank fund transfer executed by scanning a standardized QR code via any Vietnamese banking app (Vietcombank, Techcombank, MB Bank).',
+    fees: 'Free across almost all commercial digital banking apps.',
+    expatProTip: 'Almost 90% of everyday retail and restaurant purchases in Saigon and Hanoi can be settled in under 3 seconds by scanning the merchant’s VietQR printout.'
+  },
+  indonesia: {
+    systemName: 'QRIS',
+    operator: 'Bank Indonesia (BI) & ASPI',
+    howItWorks: 'Quick Response Code Indonesian Standard. Unifies all bank accounts and digital e-wallets (GoPay, OVO, DANA, ShopeePay) into a single universal scan.',
+    fees: 'Free for retail consumer transfers.',
+    expatProTip: 'Whether ordering coconut water on Canggu beach or dining at a five-star hotel in Jakarta, every merchant presents a QRIS barcode.'
+  },
+  mexico: {
+    systemName: 'SPEI & CoDi',
+    operator: 'Banco de México (Banxico)',
+    howItWorks: 'Sistema de Pagos Electrónicos Interbancarios executes instant 24/7 transfers using an 18-digit CLABE number or registered mobile phone number.',
+    fees: 'Free on almost all Mexican checking and neo-bank accounts (BBVA, Nu México, Hey Banco).',
+    expatProTip: 'Mexican rental contracts mandate SPEI transfer to the landlord’s 18-digit CLABE. Always screenshot the SPEI CEP (Comprobante Electrónico de Pago) for your legal records.'
   }
 };
 

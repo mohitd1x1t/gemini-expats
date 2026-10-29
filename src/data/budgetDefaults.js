@@ -277,31 +277,464 @@ export const CITY_BUDGET_BENCHMARKS = {
     currency: 'JPY',
     symbol: '¥',
     bachelor: {
-      rent: 110000, // 1K / 1LDK apartment
-      groceries: 45000,
-      transport: 15000, // Suica/Pasmo (often reimbursed by employer)
-      healthInsurance: 20000, // NHI / Shakai Hoken
-      utilities: 20000,
-      leisure: 40000,
-      contingency: 25000
+      rent: 125000, // Central Tokyo 1K/1LDK (Shinjuku, Meguro, Shibuya periphery)
+      groceries: 55000,
+      transport: 18000, // Suica/Pasmo (often reimbursed by employer)
+      healthInsurance: 25000, // National Health Insurance / Shakai Hoken
+      utilities: 24000, // Gas, electricity, fiber internet, water
+      leisure: 50000, // Dining, izakayas, coffee
+      contingency: 30000
+    },
+    couple: {
+      rent: 200000, // 1LDK / 2LDK apartment in good neighborhood
+      groceries: 100000, // 2 adults eating balanced meals + occasional eating out
+      transport: 30000, // Dual transit passes
+      healthInsurance: 55000, // 2 adults health & pension
+      utilities: 35000, // Dual heating, electricity, AC, internet
+      leisure: 75000, // Weekend dining, cultural exploration
+      contingency: 45000
     },
     family: {
-      rent: 240000, // 2LDK / 3LDK in central Tokyo
-      groceries: 110000,
-      transport: 30000,
-      healthInsurance: 45000,
-      utilities: 40000,
-      childcare: 80000, // International preschool
+      rent: 280000, // 2LDK / 3LDK in central Tokyo
+      groceries: 130000,
+      transport: 35000,
+      healthInsurance: 60000,
+      utilities: 42000,
+      childcare: 90000, // International preschool
+      leisure: 85000,
+      contingency: 55000
+    },
+    upfrontRelocation: {
+      flights: 90000,
+      visaAndApostilles: 30000,
+      temporaryStay1Month: 240000,
+      depositRentMultiplier: 3.5, // 1 mo deposit + 1-2 mo Key Money (Reikin) + 1 mo agency fee
+      starterFurniture: 160000,
+      miscellaneousSetup: 60000
+    }
+  },
+
+  'Osaka': {
+    country: 'japan',
+    currency: 'JPY',
+    symbol: '¥',
+    bachelor: {
+      rent: 110000, // 1K / 1LDK in central Osaka (Umeda, Namba, Honmachi, Chuo-ku)
+      groceries: 50000,
+      transport: 15000, // Osaka Metro / JR pass
+      healthInsurance: 22000,
+      utilities: 20000,
+      leisure: 45000,
+      contingency: 28000
+    },
+    couple: {
+      rent: 175000, // 1LDK / 2LDK in Umeda, Tennoji, or Namba
+      groceries: 90000, // Two adults eating nutritious meals + eating out
+      transport: 25000, // Two commuters
+      healthInsurance: 50000, // Two adults health & pension
+      utilities: 30000,
+      leisure: 65000, // Dotonbori dining, weekend Kyoto/Nara trips
+      contingency: 35000
+    },
+    family: {
+      rent: 250000, // 2LDK / 3LDK family apartment
+      groceries: 120000,
+      transport: 35000,
+      healthInsurance: 55000,
+      utilities: 38000,
+      childcare: 75000,
       leisure: 75000,
       contingency: 50000
     },
     upfrontRelocation: {
       flights: 85000,
       visaAndApostilles: 30000,
-      temporaryStay1Month: 220000,
-      depositRentMultiplier: 3.5, // 1 mo deposit + 1-2 mo Key Money (Reikin) + 1 mo agency fee
+      temporaryStay1Month: 210000,
+      depositRentMultiplier: 3.0, // Deposit + Key Money + Broker
       starterFurniture: 140000,
       miscellaneousSetup: 50000
+    }
+  },
+
+  // Thailand (ExpatFIRE & Digital Nomad Hubs)
+  'Bangkok': {
+    country: 'thailand',
+    currency: 'THB',
+    symbol: '฿',
+    bachelor: {
+      rent: 18000, // Modern 1BR condo near BTS/MRT with pool/gym (Asok, Phra Khanong, Ari)
+      groceries: 8500, // Mix of local markets, Tops, Villa Market
+      transport: 2500, // BTS Skytrain, MRT, Grab
+      healthInsurance: 3500, // Comprehensive expat inpatient/outpatient coverage
+      utilities: 2500, // High-speed fiber + electricity with AC
+      leisure: 6500, // Street food, rooftop cafes, weekend social
+      contingency: 3500
+    },
+    couple: {
+      rent: 28000, // 2BR / 1BR+ high-rise condo with gym and coworking
+      groceries: 15000, // Two adults
+      transport: 4500,
+      healthInsurance: 7000, // Dual private health plan
+      utilities: 4500, // Daily dual AC usage + utilities
+      leisure: 12000, // Dining out, weekend getaways
+      contingency: 6000
+    },
+    family: {
+      rent: 55000, // 3BR spacious condo in Thonglor / Ekkamai / Sukhumvit
+      groceries: 24000,
+      transport: 7000,
+      healthInsurance: 12000,
+      utilities: 7000,
+      childcare: 35000, // Bilingual / International kindergarten
+      leisure: 18000,
+      contingency: 10000
+    },
+    upfrontRelocation: {
+      flights: 18000,
+      visaAndApostilles: 12000, // DTV or Non-B application & attestations
+      temporaryStay1Month: 32000,
+      depositRentMultiplier: 2.0, // 2 months security deposit standard in Thailand
+      starterFurniture: 25000,
+      miscellaneousSetup: 10000
+    }
+  },
+
+  'Chiang Mai': {
+    country: 'thailand',
+    currency: 'THB',
+    symbol: '฿',
+    bachelor: {
+      rent: 12000, // Modern condo in Nimman / Maya / Santitham with pool/fiber
+      groceries: 6500, // Local fruit & night markets, Rimping Supermarket
+      transport: 1800, // Scooter rental & fuel / Grab
+      healthInsurance: 3000,
+      utilities: 2000,
+      leisure: 5000, // Coffee capital of SEA
+      contingency: 2500
+    },
+    couple: {
+      rent: 19000, // 2BR quiet green condo or townhouse near Nimman / Jed Yod
+      groceries: 12000,
+      transport: 3500,
+      healthInsurance: 6000,
+      utilities: 3500,
+      leisure: 9000,
+      contingency: 4500
+    },
+    family: {
+      rent: 35000, // Spacious detached house / villa in Hang Dong / San Sai
+      groceries: 18000,
+      transport: 5500,
+      healthInsurance: 9000,
+      utilities: 5000,
+      childcare: 22000,
+      leisure: 12000,
+      contingency: 7000
+    },
+    upfrontRelocation: {
+      flights: 18000,
+      visaAndApostilles: 12000,
+      temporaryStay1Month: 24000,
+      depositRentMultiplier: 2.0,
+      starterFurniture: 20000,
+      miscellaneousSetup: 8000
+    }
+  },
+
+  'Phuket': {
+    country: 'thailand',
+    currency: 'THB',
+    symbol: '฿',
+    bachelor: {
+      rent: 20000, // 1BR condo near Rawai, Bang Tao, or Chalong
+      groceries: 9000,
+      transport: 3500, // Scooter or car rental (island transit is pricier)
+      healthInsurance: 3500,
+      utilities: 3000,
+      leisure: 8000,
+      contingency: 4000
+    },
+    couple: {
+      rent: 32000, // 2BR villa / luxury condo with pool access
+      groceries: 16000,
+      transport: 6000,
+      healthInsurance: 7000,
+      utilities: 5000,
+      leisure: 14000,
+      contingency: 6000
+    },
+    family: {
+      rent: 55000, // 3BR pool villa in Cherngtalay / Bang Tao
+      groceries: 25000,
+      transport: 8000,
+      healthInsurance: 12000,
+      utilities: 7500,
+      childcare: 35000,
+      leisure: 18000,
+      contingency: 10000
+    },
+    upfrontRelocation: {
+      flights: 20000,
+      visaAndApostilles: 12000,
+      temporaryStay1Month: 36000,
+      depositRentMultiplier: 2.0,
+      starterFurniture: 28000,
+      miscellaneousSetup: 12000
+    }
+  },
+
+  // Vietnam
+  'Ho Chi Minh City': {
+    country: 'vietnam',
+    currency: 'VND',
+    symbol: '₫',
+    bachelor: {
+      rent: 12000000, // Modern serviced 1BR in District 2 (Thao Dien) or Binh Thanh
+      groceries: 5500000, // Annam Gourmet + local fresh markets
+      transport: 1500000, // GrabBike / GrabCar
+      healthInsurance: 2000000,
+      utilities: 1800000, // AC + fiber internet
+      leisure: 4500000, // Vibrant cafe culture and street eats
+      contingency: 2500000
+    },
+    couple: {
+      rent: 19000000, // 2BR high-rise condo with river views
+      groceries: 10000000,
+      transport: 2800000,
+      healthInsurance: 4000000,
+      utilities: 3000000,
+      leisure: 8000000,
+      contingency: 4000000
+    },
+    family: {
+      rent: 35000000, // 3BR in Thao Dien near international schools
+      groceries: 16000000,
+      transport: 4500000,
+      healthInsurance: 6500000,
+      utilities: 4500000,
+      childcare: 22000000,
+      leisure: 12000000,
+      contingency: 7000000
+    },
+    upfrontRelocation: {
+      flights: 12000000,
+      visaAndApostilles: 8000000,
+      temporaryStay1Month: 22000000,
+      depositRentMultiplier: 2.0, // 2 months deposit standard in Vietnam
+      starterFurniture: 18000000,
+      miscellaneousSetup: 8000000
+    }
+  },
+
+  'Da Nang': {
+    country: 'vietnam',
+    currency: 'VND',
+    symbol: '₫',
+    bachelor: {
+      rent: 9000000, // Beachside studio in An Thuong / My Khe beach
+      groceries: 4500000,
+      transport: 1200000, // Scooter / Grab
+      healthInsurance: 1800000,
+      utilities: 1500000,
+      leisure: 3500000,
+      contingency: 2000000
+    },
+    couple: {
+      rent: 14000000, // 2BR apartment 300m from the beach
+      groceries: 8000000,
+      transport: 2200000,
+      healthInsurance: 3600000,
+      utilities: 2400000,
+      leisure: 6000000,
+      contingency: 3500000
+    },
+    family: {
+      rent: 26000000, // 3BR house / villa near Han River
+      groceries: 13000000,
+      transport: 3500000,
+      healthInsurance: 5500000,
+      utilities: 3500000,
+      childcare: 16000000,
+      leisure: 9000000,
+      contingency: 5500000
+    },
+    upfrontRelocation: {
+      flights: 12000000,
+      visaAndApostilles: 8000000,
+      temporaryStay1Month: 16000000,
+      depositRentMultiplier: 2.0,
+      starterFurniture: 15000000,
+      miscellaneousSetup: 6000000
+    }
+  },
+
+  // Indonesia (Bali & Jakarta)
+  'Bali': {
+    country: 'indonesia',
+    currency: 'IDR',
+    symbol: 'Rp ',
+    bachelor: {
+      rent: 9500000, // 1BR private guesthouse / studio in Canggu, Berawa, or Ubud
+      groceries: 4000000, // Pepito Supermarket + local organic markets
+      transport: 1500000, // Monthly Nmax scooter rental & Gojek
+      healthInsurance: 1800000, // Nomad/Expat health insurance
+      utilities: 1500000, // Fast fiber wifi + PLN electricity
+      leisure: 4500000, // Beach clubs, cafes, yoga
+      contingency: 2500000
+    },
+    couple: {
+      rent: 16000000, // 2BR private pool villa in Pererenan, Sanur, or Ubud
+      groceries: 7500000,
+      transport: 2800000,
+      healthInsurance: 3600000,
+      utilities: 2500000,
+      leisure: 8000000,
+      contingency: 4000000
+    },
+    family: {
+      rent: 30000000, // 3BR enclosed villa with garden in Sanur or Umalas
+      groceries: 13000000,
+      transport: 4500000,
+      healthInsurance: 5500000,
+      utilities: 4000000,
+      childcare: 18000000, // International preschool / Green School programs
+      leisure: 11000000,
+      contingency: 6500000
+    },
+    upfrontRelocation: {
+      flights: 8500000,
+      visaAndApostilles: 6000000, // B211A or E33G Remote Worker visa fees
+      temporaryStay1Month: 15000000,
+      depositRentMultiplier: 1.0, // Long-term Bali rentals often 1-month or paid annually
+      starterFurniture: 12000000,
+      miscellaneousSetup: 5000000
+    }
+  },
+
+  'Jakarta': {
+    country: 'indonesia',
+    currency: 'IDR',
+    symbol: 'Rp ',
+    bachelor: {
+      rent: 10500000, // Modern 1BR apartment in Kuningan / SCBD / Sudirman
+      groceries: 4500000,
+      transport: 1800000, // MRT Jakarta & Bluebird / Grab
+      healthInsurance: 2000000,
+      utilities: 1800000,
+      leisure: 4500000,
+      contingency: 2500000
+    },
+    couple: {
+      rent: 18000000, // 2BR central high-rise condo with gym
+      groceries: 8500000,
+      transport: 3200000,
+      healthInsurance: 4000000,
+      utilities: 3000000,
+      leisure: 8500000,
+      contingency: 4500000
+    },
+    family: {
+      rent: 32000000, // 3BR apartment in Pondok Indah / Senopati
+      groceries: 14000000,
+      transport: 5000000,
+      healthInsurance: 6000000,
+      utilities: 4500000,
+      childcare: 22000000,
+      leisure: 12000000,
+      contingency: 7000000
+    },
+    upfrontRelocation: {
+      flights: 8500000,
+      visaAndApostilles: 6000000,
+      temporaryStay1Month: 18000000,
+      depositRentMultiplier: 2.0,
+      starterFurniture: 14000000,
+      miscellaneousSetup: 5000000
+    }
+  },
+
+  // Mexico
+  'Mexico City': {
+    country: 'mexico',
+    currency: 'MXN',
+    symbol: 'Mex$',
+    bachelor: {
+      rent: 18000, // 1BR in Roma Norte, Condesa, Cuauhtémoc, or Del Valle
+      groceries: 6000, // City Market, Superama, local Tianguis markets
+      transport: 1500, // Metro, Metrobus, Ecobici, occasional Uber
+      healthInsurance: 2500, // Major medical insurance (Gastos Médicos Mayores)
+      utilities: 1800, // High-speed internet, gas, CFE electricity
+      leisure: 5500, // Top world-class culinary capital
+      contingency: 3000
+    },
+    couple: {
+      rent: 28000, // 2BR apartment in safe leafy neighborhood with security
+      groceries: 11000,
+      transport: 2800,
+      healthInsurance: 5000,
+      utilities: 2800,
+      leisure: 9500,
+      contingency: 4500
+    },
+    family: {
+      rent: 45000, // 3BR in Polanco periphery, San Ángel, or Del Valle
+      groceries: 18000,
+      transport: 4500,
+      healthInsurance: 7500,
+      utilities: 4000,
+      childcare: 22000, // Private bilingual school
+      leisure: 14000,
+      contingency: 7500
+    },
+    upfrontRelocation: {
+      flights: 12000,
+      visaAndApostilles: 8000, // Residente Temporal consulate fees
+      temporaryStay1Month: 28000,
+      depositRentMultiplier: 1.5, // 1–1.5 months deposit + Poliza Jurídica
+      starterFurniture: 22000,
+      miscellaneousSetup: 7000
+    }
+  },
+
+  'Playa del Carmen': {
+    country: 'mexico',
+    currency: 'MXN',
+    symbol: 'Mex$',
+    bachelor: {
+      rent: 16000, // Modern 1BR condo near 5th Avenue / Playacar with pool
+      groceries: 5500,
+      transport: 1200, // Walking, bicycle, occasional taxi
+      healthInsurance: 2500,
+      utilities: 2200, // Higher electricity due to Caribbean AC
+      leisure: 5000,
+      contingency: 2500
+    },
+    couple: {
+      rent: 24000, // 2BR condo in quiet Playacar or Centro
+      groceries: 10000,
+      transport: 2500,
+      healthInsurance: 5000,
+      utilities: 3500,
+      leisure: 8500,
+      contingency: 4000
+    },
+    family: {
+      rent: 38000, // 3BR house in gated community with security
+      groceries: 16000,
+      transport: 4000,
+      healthInsurance: 7500,
+      utilities: 5000,
+      childcare: 18000,
+      leisure: 12000,
+      contingency: 6500
+    },
+    upfrontRelocation: {
+      flights: 12000,
+      visaAndApostilles: 8000,
+      temporaryStay1Month: 25000,
+      depositRentMultiplier: 1.5,
+      starterFurniture: 20000,
+      miscellaneousSetup: 6000
     }
   },
 
@@ -776,6 +1209,10 @@ CITY_BUDGET_BENCHMARKS['singapore'] = CITY_BUDGET_BENCHMARKS['Singapore'];
 CITY_BUDGET_BENCHMARKS['australia'] = CITY_BUDGET_BENCHMARKS['Sydney'];
 CITY_BUDGET_BENCHMARKS['japan'] = CITY_BUDGET_BENCHMARKS['Tokyo'];
 CITY_BUDGET_BENCHMARKS['brazil'] = CITY_BUDGET_BENCHMARKS['São Paulo'];
+CITY_BUDGET_BENCHMARKS['thailand'] = CITY_BUDGET_BENCHMARKS['Bangkok'];
+CITY_BUDGET_BENCHMARKS['vietnam'] = CITY_BUDGET_BENCHMARKS['Ho Chi Minh City'];
+CITY_BUDGET_BENCHMARKS['indonesia'] = CITY_BUDGET_BENCHMARKS['Bali'];
+CITY_BUDGET_BENCHMARKS['mexico'] = CITY_BUDGET_BENCHMARKS['Mexico City'];
 
 /**
  * Robust helper to retrieve budget data for any city or country
@@ -799,13 +1236,32 @@ export function getCityBudgetData(city, countryId) {
 /**
  * Calculates accurate, comprehensive monthly living burn
  * Includes: Rent + Groceries + Transport + Health Insurance + Utilities + (Childcare) + Leisure + Contingency
+ * Supports First-Class "couple" persona scaling as requested by Reddit Expat community
  */
 export function calculateMonthlyBurn(budgetData, persona = 'bachelor') {
   if (!budgetData) return 2500;
-  const isFamily = typeof persona === 'string' && persona.toLowerCase().includes('family');
-  const personaKey = isFamily ? 'family' : 'bachelor';
-  const profile = budgetData[personaKey] || budgetData.bachelor;
-  if (!profile) return 2500;
+  const p = typeof persona === 'string' ? persona.toLowerCase() : 'bachelor';
+  const isFamily = p.includes('family');
+  const isCouple = p.includes('couple');
+  const personaKey = isFamily ? 'family' : isCouple ? 'couple' : 'bachelor';
+
+  let profile = budgetData[personaKey];
+  if (!profile && isCouple) {
+    // Smart conservative couple fallback (1.5x rent for 1LDK/2LDK, 1.8x groceries, 2x transport, 2x health, 1.4x utilities, 1.7x leisure, 1.5x contingency)
+    const b = budgetData.bachelor || {};
+    profile = {
+      rent: Math.round((b.rent || 1200) * 1.5),
+      groceries: Math.round((b.groceries || 400) * 1.8),
+      transport: Math.round((b.transport || 60) * 2.0),
+      healthInsurance: Math.round((b.healthInsurance || 200) * 2.0),
+      utilities: Math.round((b.utilities || 150) * 1.4),
+      childcare: 0,
+      leisure: Math.round((b.leisure || 300) * 1.7),
+      contingency: Math.round((b.contingency || 200) * 1.5),
+    };
+  } else if (!profile) {
+    profile = budgetData.bachelor || budgetData.family || {};
+  }
 
   const rent = Number(profile.rent) || 0;
   const groceries = Number(profile.groceries) || 0;
@@ -824,27 +1280,36 @@ export function calculateMonthlyBurn(budgetData, persona = 'bachelor') {
  */
 export function calculateUpfrontLandingCost(budgetData, persona = 'bachelor', customVisaFee = null) {
   if (!budgetData) return { totalUpfront: 6500, securityDeposit: 3300, flights: 800, visaFees: 500, tempStay: 1800, furniture: 1200, misc: 500 };
-  const isFamily = typeof persona === 'string' && persona.toLowerCase().includes('family');
-  const personaKey = isFamily ? 'family' : 'bachelor';
-  const profile = budgetData[personaKey] || budgetData.bachelor;
+  const p = typeof persona === 'string' ? persona.toLowerCase() : 'bachelor';
+  const isFamily = p.includes('family');
+  const isCouple = p.includes('couple');
+  const personaKey = isFamily ? 'family' : isCouple ? 'couple' : 'bachelor';
+
+  let profile = budgetData[personaKey];
+  if (!profile && isCouple) {
+    const b = budgetData.bachelor || {};
+    profile = { rent: Math.round((b.rent || 1200) * 1.5) };
+  } else if (!profile) {
+    profile = budgetData.bachelor || budgetData.family || {};
+  }
   const upfront = budgetData.upfrontRelocation || {};
 
   const rent = Number(profile.rent) || 1500;
   const depositMult = Number(upfront.depositRentMultiplier) || 2.5;
   const securityDeposit = Math.round(rent * depositMult);
-  const flights = Number(upfront.flights) || (isFamily ? 2400 : 800);
-  const visaFees = customVisaFee !== null ? Number(customVisaFee) : (Number(upfront.visaAndApostilles) || 500);
-  const tempStay = Number(upfront.temporaryStay1Month) || (isFamily ? 3000 : 1800);
-  const furniture = Number(upfront.starterFurniture) || 1200;
+  const flights = Number(upfront.flights) ? (isCouple ? Number(upfront.flights) * 2 : isFamily ? Number(upfront.flights) * 2.5 : Number(upfront.flights)) : (isFamily ? 2400 : isCouple ? 1600 : 800);
+  const visaFees = customVisaFee !== null ? Number(customVisaFee) : (Number(upfront.visaAndApostilles) ? (isCouple ? Number(upfront.visaAndApostilles) * 2 : Number(upfront.visaAndApostilles)) : 500);
+  const tempStay = Number(upfront.temporaryStay1Month) ? (isCouple ? Number(upfront.temporaryStay1Month) * 1.25 : isFamily ? Number(upfront.temporaryStay1Month) * 1.5 : Number(upfront.temporaryStay1Month)) : (isFamily ? 3000 : 1800);
+  const furniture = Number(upfront.starterFurniture) ? (isCouple ? Number(upfront.starterFurniture) * 1.3 : Number(upfront.starterFurniture)) : 1200;
   const misc = Number(upfront.miscellaneousSetup) || 500;
 
   return {
     securityDeposit,
-    flights,
-    visaFees,
-    tempStay,
-    furniture,
-    misc,
-    totalUpfront: securityDeposit + flights + visaFees + tempStay + furniture + misc
+    flights: Math.round(flights),
+    visaFees: Math.round(visaFees),
+    tempStay: Math.round(tempStay),
+    furniture: Math.round(furniture),
+    misc: Math.round(misc),
+    totalUpfront: Math.round(securityDeposit + flights + visaFees + tempStay + furniture + misc)
   };
 }

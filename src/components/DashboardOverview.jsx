@@ -28,6 +28,7 @@ import {
   Bell
 } from 'lucide-react';
 import { calculateMonthlyBurn } from '../data/budgetDefaults';
+import { formatDualCurrency } from '../utils/currencyConverter';
 import CommandCenter from './CommandCenter';
 
 export default function DashboardOverview({
@@ -39,7 +40,8 @@ export default function DashboardOverview({
   completionStats,
   completedTasks = {},
   onToggleTask,
-  onExportPDF
+  onExportPDF,
+  displayCurrency = 'LOCAL'
 }) {
   const readinessPercent = completionStats.total > 0
     ? Math.round((completionStats.completed / completionStats.total) * 100)
@@ -273,9 +275,16 @@ export default function DashboardOverview({
             <div className="space-y-2.5 text-xs">
               <div className="flex items-center justify-between py-1 border-b border-stone-200/60">
                 <span className="text-stone-500 font-mono">Monthly Living Burn</span>
-                <span className="font-mono font-bold text-stone-900">
-                  ~{countryData?.symbol}{monthlyCostEstimate.toLocaleString()} {countryData?.currency}/mo
-                </span>
+                <div className="text-right">
+                  <span className="font-mono font-bold text-stone-900 block">
+                    ~{formatDualCurrency(monthlyCostEstimate, countryData?.currency, displayCurrency).primary}/mo
+                  </span>
+                  {formatDualCurrency(monthlyCostEstimate, countryData?.currency, displayCurrency).secondary && (
+                    <span className="text-[10px] font-mono text-terracotta-700 block">
+                      {formatDualCurrency(monthlyCostEstimate, countryData?.currency, displayCurrency).secondary}/mo
+                    </span>
+                  )}
+                </div>
               </div>
 
               <div className="flex items-center justify-between py-1 border-b border-stone-200/60">

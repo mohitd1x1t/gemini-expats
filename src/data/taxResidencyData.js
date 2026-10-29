@@ -110,6 +110,54 @@ export const TAX_RESIDENCY_RULES = {
         implication: 'Worldwide income is taxed at progressive rates up to 45% + solidarity surcharge. The Progression Proviso (Progressionsvorbehalt) means foreign income earned before arrival is not taxed directly, but increases the tax bracket on your German salary.'
       }
     ]
+  },
+  thailand: {
+    country: 'Thailand',
+    fiscalYear: 'January 1 to December 31',
+    rules: [
+      {
+        id: 'thailand_180_days',
+        name: '180-Day Physical Presence & Foreign Remittance Rule (Paw 161/2566)',
+        description: 'Under Thai Revenue Code Section 41, an individual present in Thailand for ≥ 180 days in any calendar year becomes a Thai tax resident. Under Revenue Department Instruction No. Paw 161/2566 (effective 2024), foreign income brought into Thailand by a tax resident is subject to Thai personal income tax regardless of when it was earned.',
+        implication: 'Digital nomads on DTV visas or remote workers should plan remittance timing and consider DTAA foreign tax credits. LTR visa holders enjoy specific tax exemptions on foreign income.'
+      }
+    ]
+  },
+  vietnam: {
+    country: 'Vietnam',
+    fiscalYear: 'January 1 to December 31',
+    rules: [
+      {
+        id: 'vietnam_183_days',
+        name: '183-Day Physical Presence or Registered Regular Residence',
+        description: 'You are considered a tax resident in Vietnam if you are physically present for 183 days or more in a calendar year (or in 12 consecutive months), OR maintain a registered residential lease in Vietnam for 183 days or more.',
+        implication: 'Tax residents are subject to progressive PIT rates from 5% up to 35% on global income. Non-residents are taxed at a flat 20% rate strictly on Vietnam-sourced income.'
+      }
+    ]
+  },
+  indonesia: {
+    country: 'Indonesia',
+    fiscalYear: 'January 1 to December 31',
+    rules: [
+      {
+        id: 'indonesia_183_days',
+        name: '183-Day Rule & DGT Territorial Exemption',
+        description: 'Under the Indonesian Income Tax Law (UU HPP), staying in Indonesia for more than 183 days in a 12-month period or residing with intent to stay makes you a resident tax subject (SPDN). However, qualified foreign specialists with specific STEM expertise can access territorial taxation on Indonesian-sourced income for their first 4 years.',
+        implication: 'Holders of the Remote Worker E33G visa with offshore income are treated as non-taxable on foreign earnings that are not derived from Indonesian businesses.'
+      }
+    ]
+  },
+  mexico: {
+    country: 'Mexico',
+    fiscalYear: 'January 1 to December 31',
+    rules: [
+      {
+        id: 'mexico_center_vital_interests',
+        name: 'Center of Vital Interests & Fiscal Home (Código Fiscal de la Federación Art. 9)',
+        description: 'You are considered a Mexican tax resident if you establish a permanent home in Mexico. If you have homes in two countries, you are resident in Mexico if your center of vital interests is in Mexico (i.e. >50% of your annual income is derived from Mexican sources or Mexico is your primary center of professional activities).',
+        implication: 'Holding a Residente Temporal visa while working 100% remotely for a foreign employer with foreign pay avoids Mexican ISR taxation unless funds are routed through Mexican corporate entities.'
+      }
+    ]
   }
 };
 
@@ -206,6 +254,42 @@ export const BILATERAL_AGREEMENTS = {
       hasAgreement: true,
       title: 'Brazil-India Bilateral Social Security Agreement (Signed 2020)',
       details: 'Coordinates INSS benefits, mutual period aggregation for retirement, and temporary posting exemptions.'
+    }
+  },
+  thailand: {
+    dtaaSigned: true,
+    dtaaArticleEmployment: 'Article 15: Salaries and wages taxed in the state where employment is exercised. Double taxation eliminated via tax credit method.',
+    socialSecurityTotalization: {
+      hasAgreement: false,
+      title: 'Thailand Social Security Framework',
+      details: 'Expats employed on Thai payroll contribute to the Thai Social Security Fund (SSF, 5% capped at 750 THB/mo). Foreign retirees or departing workers can claim accumulated Old Age Pension contributions upon permanent exit.'
+    }
+  },
+  vietnam: {
+    dtaaSigned: true,
+    dtaaArticleEmployment: 'Article 15: Employment income taxed only in residence state unless employment is exercised in the other contracting state for ≥ 183 days.',
+    socialSecurityTotalization: {
+      hasAgreement: false,
+      title: 'Vietnam Social Insurance (SI) One-Time Lump Sum',
+      details: 'Foreign workers contributing to Vietnam Social Insurance (BHXH, 8% employee contribution) are eligible to claim a one-time lump-sum withdrawal payment upon expiration of their work permit and permanent exit from Vietnam.'
+    }
+  },
+  indonesia: {
+    dtaaSigned: true,
+    dtaaArticleEmployment: 'Article 15: Dependent personal services taxed where physically performed. DTAA relief via foreign tax credits prevents double deduction.',
+    socialSecurityTotalization: {
+      hasAgreement: false,
+      title: 'BPJS Ketenagakerjaan (JHT / Jaminan Hari Tua)',
+      details: 'Foreign employees enrolled in Indonesia’s BPJS Old Age Security (JHT) can withdraw their entire accumulated balance (employee 2% + employer 3.7%) upon permanent departure and KITAS cancellation (EPO).'
+    }
+  },
+  mexico: {
+    dtaaSigned: true,
+    dtaaArticleEmployment: 'Article 15: Salaries, wages, and remunerations taxed in source country where physically earned unless 183-day exemption applies. Tax credit mechanism eliminates double taxation.',
+    socialSecurityTotalization: {
+      hasAgreement: false,
+      title: 'IMSS / AFORE Retirement System',
+      details: 'Foreign workers on local Mexican payroll contribute to IMSS and an individual AFORE retirement account. Funds in SAR/AFORE sub-accounts can be managed or transferred under consular certification upon retirement.'
     }
   }
 };

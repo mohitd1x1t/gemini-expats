@@ -906,5 +906,460 @@ export const COUNTRIES_DATA = {
       placesOfWorship: 'Historic Catholic cathedrals (Catedral da Sé), thriving Evangelical churches, Jewish synagogues and cultural centers (notably in Higienópolis and Bom Retiro in São Paulo), Mosques (Mesquita Brasil in Cambuci, São Paulo - the oldest in Latin America), Buddhist temples (Zu Lai Temple in Cotia/SP - largest in South America), and Afro-Brazilian spiritual centers (Candomblé and Umbanda terreiros).',
       hinduCommunity: 'Active Hindu diaspora centers in São Paulo include ISKCON São Paulo (Templo Hare Krishna na Rua Juquis, Indianópolis), Indian Cultural Centre (affiliated with the Indian Consulate), and regular Diwali celebrations organized by the Indian Association of São Paulo.'
     }
+  },
+
+  thailand: {
+    id: 'thailand',
+    name: 'Thailand',
+    flag: '🇹🇭',
+    currency: 'THB',
+    symbol: '฿',
+    language: 'Thai',
+    emergencyNumbers: {
+      police: '191',
+      touristPolice: '1155',
+      ambulance: '1669',
+      fire: '199'
+    },
+    cities: ['Bangkok', 'Chiang Mai', 'Phuket', 'Pattaya', 'Koh Samui', 'Hua Hin'],
+    visaTypes: [
+      {
+        name: 'Destination Thailand Visa (DTV)',
+        desc: 'Groundbreaking 5-year multi-entry digital nomad & cultural visa launched in 2024. Grants 180 days stay per entry (extendable once in Thailand for another 180 days, total up to 360 days/year). Requires 500,000 THB (~$15,000 USD) bank balance and proof of remote employment or freelance contracts.',
+        timeframe: '2 to 4 weeks'
+      },
+      {
+        name: 'Long-Term Resident (LTR) Visa',
+        desc: '10-year residency visa for Wealthy Global Citizens, Wealthy Pensioners, and Remote Professionals (Work-from-Thailand) earning ≥ $80k/yr. Includes fast-track digital work permit and a flat 17% personal income tax cap.',
+        timeframe: '4 to 8 weeks'
+      },
+      {
+        name: 'Non-Immigrant B (Business & Employment)',
+        desc: 'Traditional employer-sponsored work visa paired with a physical or Digital Work Permit. Requires ratio of 4 Thai staff per foreign hire unless BOI (Board of Investment) company approved.',
+        timeframe: '4 to 8 weeks'
+      },
+      {
+        name: 'Non-Immigrant O (Dependent & Retirement)',
+        desc: 'For trailing spouses/dependents of Non-B/LTR holders, or retirees aged 50+ with 800,000 THB bank deposit in a Thai bank or 65,000 THB/mo pension.',
+        timeframe: '2 to 4 weeks'
+      }
+    ],
+    strictRulesAndLaws: [
+      {
+        title: 'Lèse-Majesté (Criminal Code Section 112)',
+        desc: 'Defaming, insulting, or threatening the King, Queen, Heir-Apparent, or Regent carries 3 to 15 years imprisonment per count. This strictly applies to social media posts, private chats, defacing currency with royal images, and public conversations.',
+        severity: 'critical'
+      },
+      {
+        title: 'TM30 Accommodation Notification (Mandatory within 24h)',
+        desc: 'Thai immigration law requires property owners, hotels, or tenants to report foreign guests to the Immigration Bureau within 24 hours of arrival. Without a validated TM30 receipt, you cannot renew visas, apply for 90-day reporting, or get a driving license.',
+        severity: 'critical'
+      },
+      {
+        title: '90-Day Reporting (TM47)',
+        desc: 'Foreign nationals remaining in Thailand for more than 90 consecutive days must report their residential address to the Immigration Bureau every 90 days. Failure to report carries fines from 2,000 to 5,000 THB and risks arrest during police checks.',
+        severity: 'high'
+      },
+      {
+        title: 'Vaping & E-Cigarettes Complete Ban',
+        desc: 'Importing, buying, or possessing e-cigarettes and vaping liquids is strictly illegal in Thailand. Penalties include heavy fines up to 500,000 THB, confiscation, and up to 5 years imprisonment or deportation.',
+        severity: 'critical'
+      },
+      {
+        title: 'Overstay Fines & Entry Bans',
+        desc: 'Overstaying a visa incurs a fine of 500 THB/day (up to 20,000 THB). Overstaying by more than 90 days results in an automatic 1-year entry ban upon departure; over 1 year incurs a 3-year ban.',
+        severity: 'high'
+      },
+      {
+        title: 'Motorbike License & Helmet Laws',
+        desc: 'Riding a scooter without a helmet carries police checkpoint fines. Operating motorbikes without a valid International Driving Permit (with motorcycle endorsement) or Thai driving license invalidates all travel and health insurance claims.',
+        severity: 'high'
+      }
+    ],
+    houseHunting: {
+      topPortals: [
+        { name: 'DDproperty', url: 'https://www.ddproperty.com', note: 'Thailand’s largest property portal for condos, apartments, and townhouses.' },
+        { name: 'Hipflat', url: 'https://www.hipflat.co.th', note: 'Great map-based visual pricing, neighborhood transit walkability, and BTS/MRT proximity.' },
+        { name: 'FazWaz Thailand', url: 'https://www.fazwaz.com', note: 'Curated verified listings with strong English customer service in Bangkok, Phuket, and Chiang Mai.' },
+        { name: 'Living Insider', url: 'https://www.livinginsider.com', note: 'Popular direct-owner and agent portal with real-time room availability.' }
+      ],
+      scamWarnings: [
+        'Never wire rental deposits before inspecting the unit in person and checking the condo juristic office.',
+        'Verify the landlord\'s Chanote (title deed) or confirm the agent holds power of attorney from the registered owner.',
+        'Check utility submetering in the lease: standard government MEA/PEA rates are ~4 to 5 THB/unit. Landlords inflating electricity to 7 to 10 THB/unit will double your AC cooling bills!'
+      ],
+      keyConcepts: [
+        { term: 'Chanote (Nor Sor 4 Jor)', meaning: 'True freehold land title deed in Thailand.' },
+        { term: 'Juristic Office', meaning: 'The on-site condominium management team managing security, parcel collection, and TM30 registration receipts.' },
+        { term: 'Security Deposit', meaning: 'Standard practice is 2 months security deposit + 1 month advance rent upon lease signing.' },
+        { term: 'BTS / MRT Proximity', meaning: 'Skytrain and subway stations in Bangkok dictate rent and traffic sanity; staying within 500m of a station saves 1-2 hours of daily gridlock.' }
+      ]
+    },
+    healthcare: {
+      type: 'Dual Public/Private with World-Renowned Medical Tourism Hubs',
+      details: 'Thailand boasts globally acclaimed private hospitals with zero wait times, JCI accreditations, and multi-lingual concierge medical desks. Expat health insurance (Luma, AXA Thailand, Cigna Global, Allianz Ayudhya) is essential.',
+      englishFriendlyInsurers: ['Luma Health', 'AXA Thailand', 'Cigna Global Thailand', 'Allianz Ayudhya', 'Bupa Thailand'],
+      generalPractitioner: 'Visit private hospital outpatient departments (OPDs) directly for immediate same-day specialist consultations. Top hospitals include Bumrungrad International, Bangkok Hospital, Samitivej Sukhumvit, and BNH Hospital.',
+      prescriptions: 'Pharmacies (Boots, Watsons, and local independent chemists) are ubiquitous. Many standard prescription medications can be dispensed directly over the counter by licensed pharmacists without doctor scripts, except narcotics and psychotropics.'
+    },
+    dietaryGuide: {
+      vegetarianStatus: 'Culinary wonderland with strong Buddhist vegetarian traditions. Street food requires attention to fish sauce and oyster sauce.',
+      jayLabel: 'Look for the bright yellow flag or triangle with the red Thai character "เจ" (Jay). It denotes strict Buddhist vegan cuisine (no meat, eggs, dairy, garlic, or onions).',
+      hiddenIngredientsThai: [
+        { th: 'น้ำปลา (Nam Pla)', en: 'Fish sauce (present in almost every Thai soup, curry, pad thai, and salad)' },
+        { th: 'กะปิ (Kapi)', en: 'Fermented shrimp paste (essential base in curry pastes like Green and Red curry)' },
+        { th: 'น้ำมันหอย (Nam Man Hoi)', en: 'Oyster sauce (standard in stir-fried vegetables)' },
+        { th: 'หมูกรอบ / หมูสับ (Moo Krob / Moo Sab)', en: 'Crispy pork / Minced pork (often mixed into fried rice and noodle broths)' },
+        { th: 'ผงชูรส / ซุปก้อน (Knorr Pork / Chicken cube)', en: 'Meat bouillon base used in vegetable noodle broths' }
+      ],
+      phrases: [
+        { th: 'กินเจ (Gin Jay)', en: 'I eat strict vegan / Jay' },
+        { th: 'มังสวิรัติ (Mangsawirat)', en: 'Vegetarian (may contain egg/dairy)' },
+        { th: 'ไม่ใส่น้ำปลา (Mai sai nam pla)', en: 'Do not put fish sauce' },
+        { th: 'ไม่ใส่เนื้อสัตว์ (Mai sai nuea sat)', en: 'Do not put any meat' }
+      ],
+      supermarkets: 'Gourmet Market (Siam Paragon/EmQuartier - top tier international & organic), Villa Market (classic expat grocery staple), Tops Supermarket, Big C Supercenter.'
+    },
+    religiousGuide: {
+      overview: 'Predominantly Theravada Buddhist (~93%). Religion is deeply integrated into daily life, architecture, and respect for the monarchy and monks.',
+      templeEtiquette: 'Remove shoes before entering temple wats; cover shoulders and knees. Never point your feet directly at Buddha images or monks. Women must never touch or hand objects directly to Buddhist monks.',
+      placesOfWorship: 'Historic Buddhist temples (Wat Phra Kaew, Wat Pho, Wat Arun), Catholic churches (Holy Redeemer Church in Ruamrudee, Assumption Cathedral), Protestant fellowships, and Sunni/Shia Mosques (Haroon Mosque in Bang Rak).',
+      hinduCommunity: 'Deeply revered in Thai culture! Sri Maha Mariamman Temple (Wat Khaek) in Silom is a vibrant center for Tamil and Indian diaspora. The Erawan Shrine (Phra Phrom / Brahma) in Rajprasong is visited by millions. Dev Mandir in Phra Nakhon and Gurudwara Siri Guru Singh Sabha in Phahurat (Little India) host weekly langar.'
+    }
+  },
+
+  vietnam: {
+    id: 'vietnam',
+    name: 'Vietnam',
+    flag: '🇻🇳',
+    currency: 'VND',
+    symbol: '₫',
+    language: 'Vietnamese',
+    emergencyNumbers: {
+      police: '113',
+      ambulance: '115',
+      fire: '114'
+    },
+    cities: ['Ho Chi Minh City', 'Da Nang', 'Hanoi', 'Nha Trang', 'Hoi An', 'Vung Tau'],
+    visaTypes: [
+      {
+        name: 'Temporary Residence Card (TRC - Thẻ Tạm Trú)',
+        desc: 'Issued for 2 to 3 years to foreign workers holding a valid Vietnam Work Permit (LD1/LD2) or business investors (DT). Grants multi-entry residency, rights to sign long-term residential leases, and open local bank accounts without border runs.',
+        timeframe: '2 to 4 weeks'
+      },
+      {
+        name: 'Work Permit (Giấy Phép Lao Động)',
+        desc: 'Mandatory for direct local employment. Requires recognized bachelor’s degree, 3 years certified foreign work experience in the role, criminal background check (police certificate), and certified health check in Vietnam.',
+        timeframe: '4 to 8 weeks'
+      },
+      {
+        name: '90-Day E-Visa (Multiple / Single Entry)',
+        desc: 'Convenient tourist and remote worker visa applied directly via the official national portal (evisa.xuatnhapcanh.gov.vn). Expats frequently perform border runs via Moc Bai (Cambodia) or Laos to reset their 90-day status.',
+        timeframe: '3 to 5 business days'
+      },
+      {
+        name: 'Business Visa (DN1 / DN2)',
+        desc: 'For entering Vietnam to attend technical meetings, conferences, or work with Vietnamese corporate partners, sponsored by a Vietnamese business entity.',
+        timeframe: '1 to 2 weeks'
+      }
+    ],
+    strictRulesAndLaws: [
+      {
+        title: 'Temporary Residence Registration (Khai Báo Tạm Trú)',
+        desc: 'Within 12 hours of move-in, your landlord or hotel MUST register your stay with the local Ward Police (Công an Phường) online. Without this police confirmation slip (Giấy Xác Nhận Tạm Trú), you cannot apply for a TRC, renew visas, or extend contracts.',
+        severity: 'critical'
+      },
+      {
+        title: 'Zero Tolerance Drunk Driving (Decree 100/2019)',
+        desc: 'Vietnam enforces a strict 0.00% blood alcohol concentration (BAC) limit for operating motorbikes and cars. Police breathalyzer checkpoints impose heavy fines (up to 40,000,000 VND) and driver license suspensions up to 24 months.',
+        severity: 'critical'
+      },
+      {
+        title: 'Drone / UAS Flight Ban Without Defense Permit',
+        desc: 'Operating any recreational or commercial drone without an advance flight permit issued by the Ministry of National Defense (Decree 36/2008) is illegal. Customs at Tan Son Nhat or Noi Bai airport will confiscate drones at luggage inspection.',
+        severity: 'high'
+      },
+      {
+        title: 'SIM Card Passport Registration',
+        desc: 'Decree 49 mandates biometric and passport registration for all SIM cards (Viettel, Vinaphone, Mobifone). Buying pre-activated tourist SIMs from street hawkers risks sudden suspension within 30 days.',
+        severity: 'medium'
+      },
+      {
+        title: 'Pedestrian Street Crossing Etiquette',
+        desc: 'Motorbike traffic in Saigon and Hanoi is continuous. Cross slowly, calmly, and predictably at a steady pace without stopping abruptly or running backwards so motorbike drivers can navigate around you.',
+        severity: 'medium'
+      }
+    ],
+    houseHunting: {
+      topPortals: [
+        { name: 'Batdongsan.com.vn', url: 'https://batdongsan.com.vn', note: 'Largest real estate classifieds portal in Vietnam across all major provinces.' },
+        { name: 'Dot Property Vietnam', url: 'https://www.dotproperty.com.vn', note: 'Expat-friendly condo listings in HCMC (District 2 Thao Dien, Binh Thanh) and Da Nang.' },
+        { name: 'Rentapartments.vn', url: 'https://rentapartments.vn', note: 'Serviced apartment specialists catering to expats with English lease agreements.' },
+        { name: 'Facebook Expat Groups', url: 'https://facebook.com', note: 'Expats in Saigon, Expats in Da Nang, and Housing in Thao Dien are prime channels for direct-lease apartments.' }
+      ],
+      scamWarnings: [
+        'Check that the landlord actually owns the property by asking to see the "Sổ Hồng" (Pink Book / Property Ownership Certificate).',
+        'Check utility billing terms: the state EVN electricity rate is ~2,500 to 3,500 VND/kWh. Many rogue landlords charge 4,500 to 5,500 VND/kWh on private submeters, inflating monthly bills.',
+        'Deposit terms: standard is 1 month rent for 1-year leases or 2 months for high-end villas. Never wire deposits prior to in-person walkthrough.'
+      ],
+      keyConcepts: [
+        { term: 'Sổ Hồng (Pink Book)', meaning: 'Certificate of land use and residential property ownership.' },
+        { term: 'Phí Quản Lý', meaning: 'Monthly condominium management and amenity service fee (often paid separately from rent).' },
+        { term: 'Công An Phường', meaning: 'Local Ward Police station responsible for your mandatory residential registration.' },
+        { term: 'Thảo Điền / District 2', meaning: 'The premier expat enclave in Ho Chi Minh City, full of international schools, craft breweries, and cafes.' }
+      ]
+    },
+    healthcare: {
+      type: 'Dual Public/Private with International Expat Hospitals',
+      details: 'While public hospitals are crowded and operate predominantly in Vietnamese, international private hospitals provide Western-trained doctors and bilingual nurses.',
+      englishFriendlyInsurers: ['Pacific Cross Vietnam', 'Liberty Insurance Vietnam', 'Bảo Việt InterCare', 'Allianz Care', 'Cigna Global'],
+      generalPractitioner: 'Visit international clinics for outpatient consultations. Renowned facilities include FV Hospital (District 7 HCMC), Vinmec International Hospital (Central Park HCMC & Times City Hanoi), Family Medical Practice, and Raffles Medical.',
+      prescriptions: 'Pharmacies (Pharmacity, Long Châu, An Khang) are found on almost every street corner. Most standard medications and antibiotics can be purchased easily over the counter at low prices.'
+    },
+    dietaryGuide: {
+      vegetarianStatus: 'Strong Buddhist tradition means "Ăn Chay" (Vegetarian) is widely respected, recognized, and available on every street.',
+      chayLabel: 'Look for signs displaying "Cơm Chay" or "Quán Chay" for pure vegetarian and vegan restaurants serving tofu, mock meats, fresh mushrooms, and vegetables.',
+      hiddenIngredientsVietnamese: [
+        { vi: 'Nước mắm', en: 'Fish sauce (the cornerstone of Vietnamese broths, marinades, and dipping sauces)' },
+        { vi: 'Mắm tôm', en: 'Fermented shrimp paste (intense purple paste in northern dishes like bún đậu)' },
+        { vi: 'Mỡ heo', en: 'Pork lard (traditionally used to fry shallots and coat noodles)' },
+        { vi: 'Hạt nêm thịt heo / bò', en: 'Meat seasoning granules used in vegetable broths' }
+      ],
+      phrases: [
+        { vi: 'Tôi ăn chay (Ăn Chay)', en: 'I eat vegetarian / Buddhist vegan' },
+        { vi: 'Không nước mắm', en: 'No fish sauce' },
+        { vi: 'Không thịt, không tôm', en: 'No meat, no shrimp' }
+      ],
+      supermarkets: 'Annam Gourmet (premier high-end French and international expat grocery), Mega Market (bulk wholesale), WinMart, Co.opmart, Lotte Mart.'
+    },
+    religiousGuide: {
+      overview: 'Folk religions, Mahayana Buddhism, and Roman Catholicism coexist harmoniously. Freedom of religion is constitutionally recognized.',
+      placesOfWorship: 'Historic Buddhist pagodas (Vĩnh Tràng, Trấn Quốc, Jade Emperor Pagoda in HCMC), Catholic churches (Saigon Notre Dame Cathedral, Tân Định Pink Church), and Evangelical fellowships.',
+      hinduCommunity: 'Mariamman Hindu Temple (Đền Bà Mariamman on Trương Định, District 1 HCMC) is a famous historic temple frequented by both Indian expats and Vietnamese locals who revere the Goddess Mariamman. Sri Subramaniam Swamy Temple in District 1 also serves the community with vibrant Deepavali pujas.'
+    }
+  },
+
+  indonesia: {
+    id: 'indonesia',
+    name: 'Indonesia',
+    flag: '🇮🇩',
+    currency: 'IDR',
+    symbol: 'Rp ',
+    language: 'Indonesian (Bahasa Indonesia)',
+    emergencyNumbers: {
+      police: '110',
+      ambulance: '118',
+      searchRescue: '115',
+      fire: '113'
+    },
+    cities: ['Bali (Canggu / Ubud / Seminyak)', 'Jakarta', 'Surabaya', 'Bandung', 'Lombok', 'Yogyakarta'],
+    visaTypes: [
+      {
+        name: 'Remote Worker Visa (E33G)',
+        desc: '1-year digital nomad visa for remote workers employed by offshore entities outside Indonesia. Allows living in Bali/Indonesia legally without local income tax on overseas earnings. Requires proof of $60,000/yr salary and employment contract outside Indonesia.',
+        timeframe: '1 to 2 weeks'
+      },
+      {
+        name: 'Second Home Visa (E33)',
+        desc: '5 or 10-year residency visa for high-net-worth individuals, investors, and retirees. Requires proof of 2 Billion IDR (~$130,000 USD) deposited in an Indonesian state-owned bank (Bank Mandiri, BRI, BNI) or luxury property ownership.',
+        timeframe: '2 to 4 weeks'
+      },
+      {
+        name: 'Working KITAS (E23 / C312)',
+        desc: 'Formal temporary stay permit for foreign professionals employed by Indonesian companies or PT PMAs. Requires approved Manpower Utilization Plan (RPTKA) and employer payment of $1,200/yr DKP-TKA skills fund levy.',
+        timeframe: '4 to 8 weeks'
+      },
+      {
+        name: 'Investor KITAS (E28A / E28B)',
+        desc: '1 to 2-year residency permit for foreign investors holding minimum shares in an Indonesian Foreign Investment Company (PT PMA), exempt from standard DKP-TKA manpower levies.',
+        timeframe: '3 to 6 weeks'
+      }
+    ],
+    strictRulesAndLaws: [
+      {
+        title: 'Zero Tolerance Drug Laws (Law No. 35/2009)',
+        desc: 'Indonesia has some of the strictest narcotics laws on earth. Possession of minor amounts of marijuana, cannabis gummies, or narcotics results in severe prison sentences in notorious facilities (Kerobokan prison), while trafficking carries mandatory capital punishment (death penalty).',
+        severity: 'critical'
+      },
+      {
+        title: 'Working Locally on Tourist Visas',
+        desc: 'Indonesian immigration regularly conducts surprise raids on co-working spaces and villas in Canggu, Ubud, and Seminyak. Conducting local commercial transactions, shooting paid photoshoots, or consulting local clients on a Tourist Visa (VOA) triggers immediate deportation and blacklisting.',
+        severity: 'critical'
+      },
+      {
+        title: 'Balinese Customary Law (Adat & Banjar) & Nyepi',
+        desc: 'In Bali, local Banjar councils govern village safety and conduct. Respecting Balinese ceremonies is paramount. On Nyepi (Balinese Day of Silence), the entire island completely shuts down for 24 hours: no flights land, no outdoor movement is allowed, and no light may be visible from residences.',
+        severity: 'high'
+      },
+      {
+        title: 'Motorbike Helmet & IDP Enforcement',
+        desc: 'Police checkpoints frequently stop foreigners riding scooters in Bali. Driving without a helmet or without a valid International Driving Permit (carrying motorcycle endorsement) results in fines and scooter impoundment.',
+        severity: 'high'
+      },
+      {
+        title: 'Temple Dress Codes',
+        desc: 'Entering Balinese Hindu temples (Pura) requires wearing a sarong and sash (selendang) covering legs and knees. Women who are menstruating are forbidden by traditional custom from entering sacred inner sanctums.',
+        severity: 'medium'
+      }
+    ],
+    houseHunting: {
+      topPortals: [
+        { name: 'Rumah123', url: 'https://www.rumah123.com', note: 'Largest property and real estate portal in Indonesia with extensive listings in Jakarta, Surabaya, and Bali.' },
+        { name: 'Rumah.com', url: 'https://www.rumah.com', note: 'Detailed neighborhood listings with property valuation insights.' },
+        { name: 'Bali Real Estate Villa Portals', url: 'https://balirealestate.com', note: 'Specialist agencies handling short and long-term leaseholds for expat villas in Badung and Gianyar.' },
+        { name: 'Airbnb Monthly Stays', url: 'https://airbnb.com', note: 'Standard launchpad for the first 30 days while scouting local villa leaseholds in person.' }
+      ],
+      scamWarnings: [
+        'Foreigners cannot legally hold "Hak Milik" (Freehold) in Indonesia. Avoid illegal nominee schemes where an Indonesian citizen holds title on your behalf.',
+        'Always check the remaining duration on "Hak Sewa" (Leasehold) agreements (e.g. 25-year lease) and have a licensed Indonesian notary (PPAT) inspect the original certificates.',
+        'Zoning laws in Bali: ensure the villa sits on a Yellow Zone (Residential) or Pink Zone (Tourism). Properties built on Green Zones (Agricultural/Rice fields) cannot obtain building permits (PBG) and face demolition.'
+      ],
+      keyConcepts: [
+        { term: 'Hak Sewa (Leasehold)', meaning: 'Right of lease for a defined duration (typically 20–30 years), the safest legal mechanism for expats in Bali.' },
+        { term: 'Hak Milik (Freehold)', meaning: 'Full freehold ownership, strictly restricted to Indonesian citizens only.' },
+        { term: 'PPAT (Pejabat Pembuat Akta Tanah)', meaning: 'Government-appointed land deed official and notary who legally executes property lease contracts.' },
+        { term: 'Banjar Fee', meaning: 'Small monthly community dues paid to the local village neighborhood association for security and waste disposal.' }
+      ]
+    },
+    healthcare: {
+      type: 'National BPJS Kesehatan with Comprehensive Expat Private Facilities',
+      details: 'While BPJS covers citizens and formal KITAS holders, expats and digital nomads rely heavily on modern private hospitals and clinics. For critical life-threatening conditions, medical evacuation (Medevac) coverage to Singapore or Australia is strongly advised.',
+      englishFriendlyInsurers: ['SafetyWing Nomad Insurance', 'Cigna Global', 'Allianz Worldwide Care', 'Prudential Indonesia', 'Manulife Indonesia'],
+      generalPractitioner: 'Bali has modern international medical centers: BIMC Hospital Nusa Dua (24/7 ER and Western-trained staff), Siloam Hospitals Denpasar, and Kasih Ibu Hospital. In Jakarta: RS Pondok Indah, Medistra Hospital, and Siloam MRCCC.',
+      prescriptions: 'Apotek (Apotek Kimia Farma, Century Healthcare, Guardian) are widespread across all cities. Common over-the-counter and prescription treatments are readily accessible.'
+    },
+    dietaryGuide: {
+      vegetarianStatus: 'Bali is a global epicenter for vegetarian, vegan, gluten-free, and plant-based organic cafes. Jakarta has diverse Indonesian, Indian, and international offerings.',
+      halalAwareness: 'Across Java and Muslim-majority provinces, almost all food is 100% Halal certified. In Bali, Balinese cuisine features roast pork (Babi Guling).',
+      hiddenIngredientsIndonesian: [
+        { id: 'Terasi / Belacan', en: 'Shrimp paste (common in sambal chili pastes, fried rice, and stir-fries)' },
+        { id: 'Kaldu ayam / sapi (Royco / Masako)', en: 'Chicken or beef bouillon powder heavily used in soups and seasonings' },
+        { id: 'Bawang merah / Bawang putih', en: 'Shallots and garlic (crucial for Jain diners to flag)' },
+        { id: 'Minyak babi', en: 'Pork lard (used in traditional Chinese-Indonesian noodle stalls)' }
+      ],
+      phrases: [
+        { id: 'Saya vegetarian (Saya tidak makan daging)', en: 'I am vegetarian (I do not eat meat)' },
+        { id: 'Tanpa terasi dan tanpa kaldu daging', en: 'Without shrimp paste and without meat bouillon' },
+        { id: 'Hanya sayuran dan telur/tahu/tempe', en: 'Only vegetables, eggs, tofu, and tempeh' }
+      ],
+      supermarkets: 'Grand Lucky (fabulous expat grocery selection in Jakarta & Bali), Pepito Market (Bali expat staple with imported cheeses and wines), Ranch Market, Food Hall.'
+    },
+    religiousGuide: {
+      overview: 'Indonesia officially recognizes six religions: Islam, Protestantism, Catholicism, Hinduism, Buddhism, and Confucianism. Bali is uniquely 87% Balinese Hindu.',
+      placesOfWorship: 'Historic Balinese temples (Pura Besakih, Uluwatu, Tanah Lot), Grand Istiqlal Mosque in Jakarta (largest in Southeast Asia), Jakarta Cathedral (Gereja Katedral), and Buddhist viharas.',
+      hinduCommunity: 'Balinese Hinduism (Agama Hindu Dharma) permeates daily life with incense, canang sari daily flower offerings, and gamelan music. In Jakarta, the Indian diaspora gathers at Shri Sanathana Dharma Aalayam, Gurudwara Mission, and ISKCON centres with grand Janmashtami and Diwali festivals.'
+    }
+  },
+
+  mexico: {
+    id: 'mexico',
+    name: 'Mexico',
+    flag: '🇲🇽',
+    currency: 'MXN',
+    symbol: 'Mex$',
+    language: 'Spanish',
+    emergencyNumbers: {
+      police: '911',
+      redCross: '065',
+      touristAssistance: '078',
+      fire: '911'
+    },
+    cities: ['Mexico City (CDMX)', 'Playa del Carmen', 'Guadalajara', 'Monterrey', 'Cancún', 'Puerto Vallarta', 'Querétaro'],
+    visaTypes: [
+      {
+        name: 'Residente Temporal (Temporary Resident Visa)',
+        desc: '1 to 4-year stay permit for digital nomads, remote workers, freelancers, and retirees. Requires proof of economic solvency (~$3,500 to $4,300 USD/month net income over the past 6 months or ~$65,000 to $70,000 USD bank savings balance over the past 12 months). Can be converted directly to Permanent Residency after 4 years.',
+        timeframe: '2 to 4 weeks'
+      },
+      {
+        name: 'Residente Temporal con Permiso de Trabajo',
+        desc: 'Employer-sponsored work resident visa where a registered Mexican company (holding an INM Constancia de Empleador) sponsors the candidate with a formal job contract.',
+        timeframe: '4 to 8 weeks'
+      },
+      {
+        name: 'Residente Permanente (Permanent Resident)',
+        desc: 'Direct permanent residency granted to retirees meeting higher financial thresholds (~$5,500+/month or ~$250,000 USD savings) or through family unity with Mexican citizens.',
+        timeframe: '2 to 4 weeks'
+      },
+      {
+        name: 'FMM Tourist Permit (Forma Migratoria Múltiple)',
+        desc: 'Up to 180 days granted upon arrival for tourism and business exploratory visits. Note that immigration officers (INM) at airports now frequently ask for return flight tickets and confirmed lodging before determining the number of days stamped.',
+        timeframe: 'Instant at border'
+      }
+    ],
+    strictRulesAndLaws: [
+      {
+        title: 'INM Canje Process within 30 Days of Landing',
+        desc: 'The visa sticker placed in your passport by the Mexican consulate is only a single-entry entry permit! You MUST visit your local INM (Instituto Nacional de Migración) office within 30 days of arrival to complete the "Canje" (biometrics swap) to receive your physical plastic Green Resident Card.',
+        severity: 'critical'
+      },
+      {
+        title: 'RFC (Registro Federal de Contribuyentes) & CURP',
+        desc: 'Obtaining your RFC tax ID and CURP population code from SAT (Servicio de Administración Tributaria) is legally required to open premier bank accounts, buy vehicles, register utilities, or invest locally.',
+        severity: 'high'
+      },
+      {
+        title: 'Drinking Alcohol in Public Streets',
+        desc: 'Consuming alcoholic beverages on public sidewalks, parks, or streets outside licensed restaurant terraces is strictly illegal across Mexican municipalities and will lead to fines or detention by Municipal Police.',
+        severity: 'medium'
+      },
+      {
+        title: 'Drinking Water Caution (Agua de la Llave)',
+        desc: 'Tap water across Mexico is NOT safe for direct drinking due to municipal piping. Always drink purified bottled water or subscribe to 20-liter water jug delivery services (Garrafón - Bonafont, Ciel, or Epura).',
+        severity: 'high'
+      },
+      {
+        title: 'SPEI Electronic Transfers Dominance',
+        desc: 'Mexico runs on SPEI (Sistema de Pagos Electrónicos Interbancarios). Almost all rents, utility bills, and merchant transfers are paid instantly 24/7 using an 18-digit CLABE number.',
+        severity: 'medium'
+      }
+    ],
+    houseHunting: {
+      topPortals: [
+        { name: 'Inmuebles24', url: 'https://www.inmuebles24.com', note: 'Mexico’s leading real estate portal for apartments, houses, and corporate rentals.' },
+        { name: 'Vivanuncios', url: 'https://www.vivanuncios.com.mx', note: 'Extensive classifieds platform across Mexico City, Guadalajara, and Monterrey.' },
+        { name: 'Homie.mx', url: 'https://homie.mx', note: 'Modern tech-enabled rental portal that eliminates the traditional need for a local property guarantor (fiador).' },
+        { name: 'Metros Cúbicos', url: 'https://www.metroscubicos.com', note: 'Popular property search engine backed by Mercado Libre.' }
+      ],
+      scamWarnings: [
+        'Traditional Mexican rental contracts usually demand an "Aval con bien raíz" (a local guarantor who owns unmortgaged property in the same state). Never pay shady brokers promising fake guarantor deeds.',
+        'If you do not have an Aval, ask the landlord or agent if they accept a "Póliza Jurídica" (legal rental insurance, costs ~3,000 to 5,000 MXN) or use platforms like Homie.',
+        'Never wire security deposits before seeing the apartment in person with the building administrator.'
+      ],
+      keyConcepts: [
+        { term: 'Aval / Fiador', meaning: 'Local guarantor who co-signs the lease and owns real estate in the city.' },
+        { term: 'Póliza Jurídica', meaning: 'Legal rental insurance contract policy that acts in place of a traditional guarantor.' },
+        { term: 'Mantenimiento', meaning: 'Monthly building maintenance and security charge (often 1,500 to 4,000 MXN; verify if included in rent).' },
+        { term: 'CLABE', meaning: '18-digit standardized interbank code required to transfer rent payments via SPEI.' }
+      ]
+    },
+    healthcare: {
+      type: 'Dual Public (IMSS/ISSSTE) and World-Class Affordable Private Healthcare',
+      details: 'Mexico is a premier destination for healthcare with modern facilities, US-trained English-speaking doctors, and hospital costs at a fraction of US prices. Expats utilize private health insurance (GNP Seguros, AXA México, MetLife México, or international expat plans).',
+      englishFriendlyInsurers: ['GNP Seguros', 'AXA México', 'Seguros Monterrey New York Life', 'Bupa Global Latin America', 'Allianz Care'],
+      generalPractitioner: 'Visit private medical centers and hospital outpatient clinics: ABC Medical Center (Santa Fe & Observatorio in CDMX), Hospital Español, and Hospital Ángeles network nationwide.',
+      prescriptions: 'Pharmacies (Farmacias San Pablo, Farmacias del Ahorro, Farmacias Benavides, Farmacias Similares) are on every corner. Most standard maintenance medications, pain relievers, and treatments are sold over the counter at low prices; antibiotics and sedatives require a Mexican doctor’s written script.'
+    },
+    dietaryGuide: {
+      vegetarianStatus: 'Mexican cuisine is filled with fresh avocado, beans, salsa, nopales (cactus), corn tortillas, and tropical fruits. However, watch out for animal fats in traditional cooking.',
+      mantecaAlert: 'Always verify whether beans or tortillas are prepared with "Manteca de cerdo" (pork lard).',
+      hiddenIngredientsSpanish: [
+        { es: 'Manteca de cerdo', en: 'Pork lard (widely used in traditional refried beans and tamales)' },
+        { es: 'Caldo de pollo', en: 'Chicken bouillon powder (used to season traditional red Mexican rice)' },
+        { es: 'Chicharrón', en: 'Pork cracklings / rinds (often used as garnish in soups and guacamole)' },
+        { es: 'Grasa animal', en: 'Animal fat in pastries and baked goods' }
+      ],
+      phrases: [
+        { es: '¿Los frijoles están hechos con manteca de cerdo?', en: 'Are the beans made with pork lard?' },
+        { es: '¿El arroz tiene caldo de pollo?', en: 'Does the rice have chicken broth?' },
+        { es: 'Soy vegetariano / vegano estricto', en: 'I am strict vegetarian / vegan' }
+      ],
+      supermarkets: 'City Market (ultra-luxury gourmet expat grocery with organic & imported food), Chedraui Selecto, Superama / Walmart Express, Soriana Híper.'
+    },
+    religiousGuide: {
+      overview: 'Predominantly Roman Catholic (~78%) with rich syncretic traditions and constitutional freedom of worship.',
+      placesOfWorship: 'Basílica de Santa María de Guadalupe in Mexico City (one of the most visited Catholic pilgrimage sites in the world), Metropolitan Cathedral, Jewish synagogues (Polanco), and Protestant churches.',
+      hinduCommunity: 'Vibrant and growing Indian expat community in CDMX, Guadalajara, and Querétaro. ISKCON México (Colonia San Pedro de los Pinos, CDMX) holds Sunday feasts and kirtans. The Indian Embassy in Polanco hosts regular cultural workshops, Hindi classes, and grand community Diwali and Holi celebrations.'
+    }
   }
 };

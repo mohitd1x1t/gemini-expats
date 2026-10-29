@@ -18,38 +18,44 @@ import {
   Users,
   Baby,
   User,
-  ChevronDown
+  ChevronDown,
+  Globe2
 } from 'lucide-react';
 import { COUNTRY_VISA_DETAILS } from '../data/visaData';
+import { GLOBAL_DISPLAY_CURRENCIES, formatDualCurrency } from '../utils/currencyConverter';
 
 export default function BudgetCalculator({
   budgetData,
   countryData,
   userProfile,
-  onUpdatePersona
+  onUpdatePersona,
+  displayCurrency = 'LOCAL',
+  onUpdateDisplayCurrency
 }) {
   // Driven 100% by Global Persona!
-  const isFamily = userProfile.persona.toLowerCase().includes('family');
-  const personaType = isFamily ? 'family' : 'bachelor';
+  const persona = userProfile.persona?.toLowerCase() || 'bachelor';
+  const isFamily = persona.includes('family');
+  const isCouple = persona.includes('couple');
+  const personaType = isFamily ? 'family' : isCouple ? 'couple' : 'bachelor';
 
   // Get active defaults
-  const cityDefaults = budgetData?.[personaType] || {
-    rent: isFamily ? 2200 : 1200,
-    groceries: isFamily ? 850 : 350,
-    transport: isFamily ? 120 : 50,
-    healthInsurance: isFamily ? 350 : 180,
-    utilities: isFamily ? 300 : 150,
+  const cityDefaults = budgetData?.[personaType] || budgetData?.bachelor || {
+    rent: isFamily ? 2200 : isCouple ? 1600 : 1200,
+    groceries: isFamily ? 850 : isCouple ? 600 : 350,
+    transport: isFamily ? 120 : isCouple ? 100 : 50,
+    healthInsurance: isFamily ? 350 : isCouple ? 300 : 180,
+    utilities: isFamily ? 300 : isCouple ? 220 : 150,
     childcare: isFamily ? 500 : 0,
-    leisure: isFamily ? 600 : 300,
-    contingency: isFamily ? 400 : 200
+    leisure: isFamily ? 600 : isCouple ? 450 : 300,
+    contingency: isFamily ? 400 : isCouple ? 300 : 200
   };
 
   const upfrontDefaults = budgetData?.upfrontRelocation || {
-    flights: isFamily ? 1800 : 700,
-    visaAndApostilles: isFamily ? 800 : 400,
-    temporaryStay1Month: isFamily ? 2600 : 1600,
+    flights: isFamily ? 1800 : isCouple ? 1400 : 700,
+    visaAndApostilles: isFamily ? 800 : isCouple ? 700 : 400,
+    temporaryStay1Month: isFamily ? 2600 : isCouple ? 2100 : 1600,
     depositRentMultiplier: 2.5,
-    starterFurniture: isFamily ? 2200 : 1200,
+    starterFurniture: isFamily ? 2200 : isCouple ? 1700 : 1200,
     miscellaneousSetup: 500
   };
 
@@ -71,22 +77,22 @@ export default function BudgetCalculator({
 
   // Sync state whenever country, city, or global persona changes!
   useEffect(() => {
-    const currentCityData = budgetData?.[personaType] || {
-      rent: isFamily ? 2200 : 1200,
-      groceries: isFamily ? 850 : 350,
-      transport: isFamily ? 120 : 50,
-      healthInsurance: isFamily ? 350 : 180,
-      utilities: isFamily ? 300 : 150,
+    const currentCityData = budgetData?.[personaType] || budgetData?.bachelor || {
+      rent: isFamily ? 2200 : isCouple ? 1600 : 1200,
+      groceries: isFamily ? 850 : isCouple ? 600 : 350,
+      transport: isFamily ? 120 : isCouple ? 100 : 50,
+      healthInsurance: isFamily ? 350 : isCouple ? 300 : 180,
+      utilities: isFamily ? 300 : isCouple ? 220 : 150,
       childcare: isFamily ? 500 : 0,
-      leisure: isFamily ? 600 : 300,
-      contingency: isFamily ? 400 : 200
+      leisure: isFamily ? 600 : isCouple ? 450 : 300,
+      contingency: isFamily ? 400 : isCouple ? 300 : 200
     };
     const currentUpfront = budgetData?.upfrontRelocation || {
-      flights: isFamily ? 1800 : 700,
-      visaAndApostilles: isFamily ? 800 : 400,
-      temporaryStay1Month: isFamily ? 2600 : 1600,
+      flights: isFamily ? 1800 : isCouple ? 1400 : 700,
+      visaAndApostilles: isFamily ? 800 : isCouple ? 700 : 400,
+      temporaryStay1Month: isFamily ? 2600 : isCouple ? 2100 : 1600,
       depositRentMultiplier: 2.5,
-      starterFurniture: isFamily ? 2200 : 1200,
+      starterFurniture: isFamily ? 2200 : isCouple ? 1700 : 1200,
       miscellaneousSetup: 500
     };
 
@@ -103,7 +109,7 @@ export default function BudgetCalculator({
     setVisaFees(currentUpfront.visaAndApostilles);
     setTempStay(currentUpfront.temporaryStay1Month);
     setFurniture(currentUpfront.starterFurniture);
-  }, [userProfile.destinationCity, userProfile.destinationCountry, userProfile.persona, budgetData]);
+  }, [userProfile.destinationCity, userProfile.destinationCountry, userProfile.persona, budgetData, personaType]);
 
   // Visa Process & Fees integration
   const countryVisas = COUNTRY_VISA_DETAILS[countryData.id] || COUNTRY_VISA_DETAILS.germany;
@@ -138,6 +144,11 @@ export default function BudgetCalculator({
   const currencySymbol = countryData?.symbol || '€';
   const currencyCode = countryData?.currency || 'EUR';
 
+  // Dual Currency Conversions
+  const upfrontFmt = formatDualCurrency(totalUpfrontCost, currencyCode, displayCurrency);
+  const monthlyFmt = formatDualCurrency(totalMonthlyLiving, currencyCode, displayCurrency);
+  const runwayFmt = formatDualCurrency(recommendedRunway3Months, currencyCode, displayCurrency);
+
   // Dynamic slider limits helper
   const getSliderLimits = (baseValue) => {
     const min = 0;
@@ -151,8 +162,13 @@ export default function BudgetCalculator({
       {/* Header & Global Persona Sync Bar — Minimalist Ledger */}
       <div className="p-6 sm:p-8 rounded-3xl bg-white border border-stone-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <div className="text-[10px] uppercase font-mono tracking-[0.22em] text-stone-400 mb-1">
-            FINANCIAL INTELLIGENCE · {countryData.currency} ({countryData.symbol})
+          <div className="text-[10px] uppercase font-mono tracking-[0.22em] text-stone-400 mb-1 flex items-center gap-1.5">
+            <span>FINANCIAL INTELLIGENCE · {countryData.currency} ({countryData.symbol})</span>
+            {displayCurrency !== 'LOCAL' && (
+              <span className="text-terracotta-600 bg-terracotta-50 px-2 py-0.5 rounded border border-terracotta-200">
+                DISPLAY: {displayCurrency}
+              </span>
+            )}
           </div>
           <h2 className="font-serif text-2xl sm:text-3xl font-normal text-stone-900">
             Relocation & Living Budget Projections
@@ -162,31 +178,67 @@ export default function BudgetCalculator({
           </p>
         </div>
 
-        {/* Global Persona Selector Dropdown */}
-        <div className="flex items-center gap-2 bg-[#faf9f5] px-3.5 py-1.5 rounded-full border border-stone-200">
-          <label className="text-xs text-stone-500 font-medium flex items-center gap-1.5">
-            <Users className="w-3.5 h-3.5 text-stone-700" />
-            <span>Party:</span>
-          </label>
-          <div className="relative">
-            <select
-              value={userProfile.persona}
-              onChange={(e) => onUpdatePersona(e.target.value)}
-              className="appearance-none bg-white border border-stone-200 hover:border-stone-400 text-stone-900 font-medium text-xs rounded-full pl-3 pr-8 py-1 focus:outline-none focus:ring-1 focus:ring-stone-400 cursor-pointer shadow-sm transition-all"
-            >
-              <option value="bachelor">🎒 Bachelor / Solo</option>
-              <option value="couple">👫 Couple</option>
-              <option value="family_kids">👨‍👩‍👧‍👦 Family with Kids</option>
-              <option value="family_pets">🐾 Traveling with Pets</option>
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-stone-400">
-              <ChevronDown className="w-3.5 h-3.5" />
+        {/* Global Currency & Persona Controls */}
+        <div className="flex flex-wrap items-center gap-2.5">
+          {/* Universal Currency Selector */}
+          <div className="flex items-center gap-1.5 bg-[#faf9f5] px-3 py-1.5 rounded-full border border-stone-200 shadow-sm">
+            <Globe2 className="w-3.5 h-3.5 text-stone-700" />
+            <span className="text-xs text-stone-500 font-medium hidden sm:inline">Currency:</span>
+            <div className="relative">
+              <select
+                value={displayCurrency}
+                onChange={(e) => onUpdateDisplayCurrency && onUpdateDisplayCurrency(e.target.value)}
+                className="appearance-none bg-white border border-stone-200 hover:border-stone-400 text-stone-900 font-semibold text-xs rounded-full pl-2.5 pr-7 py-1 focus:outline-none focus:ring-1 focus:ring-stone-400 cursor-pointer shadow-sm transition-all"
+                title="Select Reference Display Currency"
+              >
+                {GLOBAL_DISPLAY_CURRENCIES.map(curr => (
+                  <option key={curr.code} value={curr.code}>
+                    {curr.code === 'LOCAL' ? `${countryData.currency} (${countryData.symbol}) Local` : curr.label}
+                  </option>
+                ))}
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-stone-400">
+                <ChevronDown className="w-3.5 h-3.5" />
+              </div>
+            </div>
+          </div>
+
+          {/* Global Persona Selector Dropdown */}
+          <div className="flex items-center gap-2 bg-[#faf9f5] px-3.5 py-1.5 rounded-full border border-stone-200 shadow-sm">
+            <label className="text-xs text-stone-500 font-medium flex items-center gap-1.5">
+              <Users className="w-3.5 h-3.5 text-stone-700" />
+              <span className="hidden sm:inline">Party:</span>
+            </label>
+            <div className="relative">
+              <select
+                value={userProfile.persona}
+                onChange={(e) => onUpdatePersona(e.target.value)}
+                className="appearance-none bg-white border border-stone-200 hover:border-stone-400 text-stone-900 font-semibold text-xs rounded-full pl-3 pr-8 py-1 focus:outline-none focus:ring-1 focus:ring-stone-400 cursor-pointer shadow-sm transition-all"
+              >
+                <option value="bachelor">🎒 Bachelor / Solo</option>
+                <option value="couple">👫 Couple</option>
+                <option value="family_kids">👨‍👩‍👧‍👦 Family with Kids</option>
+                <option value="family_pets">🐾 Traveling with Pets</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-stone-400">
+                <ChevronDown className="w-3.5 h-3.5" />
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Global Filter Active Indicator Alert */}
+      {/* Global Filter Active Indicator Alerts */}
+      {isCouple && (
+        <div className="p-4 px-5 rounded-2xl bg-white border border-stone-200/90 text-xs text-stone-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 shadow-sm">
+          <div className="flex items-center gap-2 font-medium">
+            <Users className="w-4 h-4 text-stone-800 shrink-0" />
+            <span><strong>Couple Mode Active:</strong> Benchmarked for dual relocation (1–2 bedroom apartment rental, groceries for two, dual transit passes, and couple health cover).</span>
+          </div>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-stone-500 bg-stone-100 px-2.5 py-0.5 rounded-full border border-stone-200 shrink-0 self-start sm:self-auto">Synced Across All Tabs</span>
+        </div>
+      )}
+
       {isFamily && (
         <div className="p-4 px-5 rounded-2xl bg-white border border-stone-200/90 text-xs text-stone-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 shadow-sm">
           <div className="flex items-center gap-2 font-medium">
@@ -206,8 +258,13 @@ export default function BudgetCalculator({
             <PiggyBank className="w-4 h-4 text-stone-400" />
           </div>
           <div className="font-serif text-3xl font-normal text-stone-900 tracking-tight">
-            {currencySymbol}{Math.round(totalUpfrontCost).toLocaleString()}
+            {upfrontFmt.primary}
           </div>
+          {upfrontFmt.secondary && (
+            <div className="text-xs font-mono text-terracotta-700 bg-terracotta-50/60 px-2 py-0.5 rounded inline-block">
+              {upfrontFmt.secondary}
+            </div>
+          )}
           <div className="text-[11px] text-stone-500 pt-2 border-t border-stone-100 space-y-1 font-sans">
             <div>• Security Deposit ({depositMultiplier}x): <strong className="text-stone-900">{currencySymbol}{Math.round(securityDeposit).toLocaleString()}</strong></div>
             <div>• Temp Stay + Flights + Setup: <strong className="text-stone-900">{currencySymbol}{Math.round(tempStay + flights + furniture).toLocaleString()}</strong></div>
@@ -222,12 +279,17 @@ export default function BudgetCalculator({
             <Calculator className="w-4 h-4 text-stone-400" />
           </div>
           <div className="font-serif text-3xl font-normal text-stone-900 tracking-tight">
-            {currencySymbol}{Math.round(totalMonthlyLiving).toLocaleString()} <span className="text-xs text-stone-400 font-sans">/mo</span>
+            {monthlyFmt.primary} <span className="text-xs text-stone-400 font-sans">/mo</span>
           </div>
+          {monthlyFmt.secondary && (
+            <div className="text-xs font-mono text-terracotta-700 bg-terracotta-50/60 px-2 py-0.5 rounded inline-block">
+              {monthlyFmt.secondary} /mo
+            </div>
+          )}
           <div className="text-[11px] text-stone-500 pt-2 border-t border-stone-100 space-y-1 font-sans">
             <div>• Rent & Utilities: <strong className="text-stone-900">{currencySymbol}{Math.round(rent + utilities).toLocaleString()}</strong></div>
             <div>• Groceries, Transit, Health: <strong className="text-stone-900">{currencySymbol}{Math.round(groceries + transport + healthInsurance).toLocaleString()}</strong></div>
-            <div>• Leisure & Childcare Buffer: <strong className="text-stone-900">{currencySymbol}{Math.round(leisure + contingency + (isFamily ? childcare : 0)).toLocaleString()}</strong></div>
+            <div>• Leisure & Contingency Buffer: <strong className="text-stone-900">{currencySymbol}{Math.round(leisure + contingency + (isFamily ? childcare : 0)).toLocaleString()}</strong></div>
           </div>
         </div>
 
@@ -238,10 +300,15 @@ export default function BudgetCalculator({
             <ShieldCheck className="w-4 h-4 text-stone-700" />
           </div>
           <div className="font-serif text-3xl font-normal text-stone-900 tracking-tight">
-            {currencySymbol}{Math.round(recommendedRunway3Months).toLocaleString()}
+            {runwayFmt.primary}
           </div>
+          {runwayFmt.secondary && (
+            <div className="text-xs font-mono text-stone-600 bg-stone-100 px-2 py-0.5 rounded inline-block">
+              {runwayFmt.secondary}
+            </div>
+          )}
           <div className="text-[11px] text-stone-600 pt-2 border-t border-stone-200/70 font-sans leading-relaxed">
-            Target liquid savings = (3 × Monthly Burn of {currencySymbol}{Math.round(totalMonthlyLiving).toLocaleString()}) + Upfront Capital of {currencySymbol}{Math.round(totalUpfrontCost).toLocaleString()}.
+            Target liquid savings = (3 × Monthly Burn of {monthlyFmt.primary}) + Upfront Capital of {upfrontFmt.primary}.
           </div>
         </div>
       </div>

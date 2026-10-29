@@ -70,6 +70,7 @@ import {
 const STORAGE_KEY_PROFILE = 'expat_compass_profile';
 const STORAGE_KEY_TASKS = 'expat_compass_tasks';
 const STORAGE_KEY_API_KEY = 'expat_compass_gemini_key';
+const STORAGE_KEY_CURRENCY = 'expat_compass_display_currency';
 
 export default function App() {
   // 1. Relocation Profile State (Supports Shareable Scenario Links from URL)
@@ -94,6 +95,11 @@ export default function App() {
       hasPets: false,
       hasCar: false
     };
+  });
+
+  // Global Universal Display Currency Preference (LOCAL, USD, CAD, AUD, EUR, GBP, INR, BRL)
+  const [displayCurrency, setDisplayCurrency] = useState(() => {
+    return localStorage.getItem(STORAGE_KEY_CURRENCY) || 'LOCAL';
   });
 
   // 2. Checklists & Tasks State
@@ -124,6 +130,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY_TASKS, JSON.stringify(completedTasks));
   }, [completedTasks]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY_CURRENCY, displayCurrency);
+  }, [displayCurrency]);
 
   const handleSaveApiKey = (newKey) => {
     setApiKey(newKey);
@@ -247,6 +257,8 @@ export default function App() {
         completionStats={completionStats}
         onUpdatePersona={updateGlobalPersona}
         onGetEstimate={handleGetEstimate}
+        displayCurrency={displayCurrency}
+        onUpdateDisplayCurrency={setDisplayCurrency}
       />
 
       {/* 2. SaaS Hero Section (Matching Image 1: headline, subhead, trust badges, and floating estimate card) */}
@@ -256,6 +268,7 @@ export default function App() {
         budgetData={budgetData}
         onGetEstimate={handleGetEstimate}
         onOpenProfile={() => setIsProfileModalOpen(true)}
+        displayCurrency={displayCurrency}
       />
 
       {/* 3. How It Works Section (Matching Image 2: 4 cards with terracotta number circles + info callout) */}
@@ -334,6 +347,7 @@ export default function App() {
                 completedTasks={completedTasks}
                 onToggleTask={toggleTask}
                 onExportPDF={handleExportPDF}
+                displayCurrency={displayCurrency}
               />
             )}
 
@@ -421,6 +435,8 @@ export default function App() {
                 userProfile={userProfile}
                 onUpdatePersona={updateGlobalPersona}
                 onOpenVisaTab={() => setActiveTab('visa')}
+                displayCurrency={displayCurrency}
+                onUpdateDisplayCurrency={setDisplayCurrency}
               />
             )}
 

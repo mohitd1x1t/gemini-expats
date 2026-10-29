@@ -61,6 +61,30 @@ const COUNTRY_HEALTHCARE_META = {
     pediatrician: 'Local pediatric clinics (Shōnika) handle routine illnesses; ward health centers conduct mandatory infant checkups at 4 months, 1.5 years, and 3 years.',
     vaccinations: 'Municipal ward offices issue vaccination voucher coupons (Yobō Sesshuken) for free standard childhood immunizations.',
     portalTip: 'Use Tokyo Medical Information Service Himawari or Japan Healthcare Info (JHI) for English-speaking clinics.'
+  },
+  thailand: {
+    dependentCover: 'Dependents should be enrolled in private expat family health plans (Luma Health, AXA Thailand, Allianz). World-class private hospital networks provide immediate English-speaking pediatric care.',
+    pediatrician: 'Visit pediatric outpatient departments directly at top hospitals (Bumrungrad International, Samitivej Children’s Hospital, Bangkok Hospital) without needing a GP referral.',
+    vaccinations: 'Submit certified international immunization records adhering to the Thai Ministry of Public Health pediatric schedule for international school enrollment.',
+    portalTip: 'Book directly via hospital apps (Bumrungrad App, MySamitivej) or DoctorAnywhere Thailand.'
+  },
+  vietnam: {
+    dependentCover: 'Expat families purchase comprehensive private medical insurance (Pacific Cross, Liberty Insurance, Bảo Việt InterCare) giving direct cashless billing at premier private hospitals.',
+    pediatrician: 'Consult specialized pediatric units at Vinmec Central Park/Times City, FV Hospital (District 7 HCMC), and Family Medical Practice.',
+    vaccinations: 'Provide translated child vaccination booklet to international school admissions adhering to standard EPI (Expanded Program on Immunization).',
+    portalTip: 'Use Vinmec app or call international hospital concierge desks directly for English-speaking pediatricians.'
+  },
+  indonesia: {
+    dependentCover: 'Expats and digital nomads in Bali or Jakarta rely on international private health insurance (SafetyWing, Cigna, Allianz) with medical evacuation (Medevac) riders for peace of mind.',
+    pediatrician: 'In Bali: BIMC Hospital Nusa Dua, Siloam Denpasar, and Kasih Ibu. In Jakarta: RS Pondok Indah and Medistra Hospital pediatric departments.',
+    vaccinations: 'Submit verified immunization history to school administrators covering mandatory childhood schedules (BCG, Polio, DTaP, MMR).',
+    portalTip: 'Use the Halodoc app for instant telemedicine, home doctor visits, and 1-hour prescription deliveries.'
+  },
+  mexico: {
+    dependentCover: 'Expats universally utilize Gastos Médicos Mayores (GMM) private insurance (GNP Seguros, AXA México, Seguros Monterrey) covering top-tier private hospital networks.',
+    pediatrician: 'Consult pediatric specialists at ABC Medical Center (Santa Fe / Observatorio in CDMX), Hospital Español, and Hospital Ángeles network.',
+    vaccinations: 'Cartilla Nacional de Vacunación (National Vaccination Card) records required for kindergarten (kínder) and primary school admissions.',
+    portalTip: 'Use Doctoralia.com.mx to find top-rated English-speaking pediatricians and book instant appointments.'
   }
 };
 

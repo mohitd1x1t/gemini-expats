@@ -11,15 +11,19 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { calculateMonthlyBurn, calculateUpfrontLandingCost } from '../data/budgetDefaults';
+import { formatDualCurrency } from '../utils/currencyConverter';
 
 export default function SaaSHero({
   userProfile,
   countryData,
   budgetData,
   onGetEstimate,
-  onOpenProfile
+  onOpenProfile,
+  displayCurrency = 'LOCAL'
 }) {
-  const personaKey = userProfile.persona?.toLowerCase().includes('family') ? 'family' : 'bachelor';
+  const isFamily = userProfile.persona?.toLowerCase().includes('family');
+  const isCouple = userProfile.persona?.toLowerCase().includes('couple');
+  const personaKey = isFamily ? 'family' : isCouple ? 'couple' : 'bachelor';
   const currencySymbol = countryData?.symbol || '€';
   const currencyCode = countryData?.currency || 'EUR';
 
@@ -36,6 +40,14 @@ export default function SaaSHero({
 
   const housingPercent = Math.min(Math.max(Math.round((housingAndUtilities / (monthlyBurn || 1)) * 100), 25), 75);
   const livingPercent = 100 - housingPercent;
+
+  // Dual Currency Formatted Values
+  const monthlyBurnFmt = formatDualCurrency(monthlyBurn, currencyCode, displayCurrency);
+  const rangeLowFmt = formatDualCurrency(rangeLow, currencyCode, displayCurrency);
+  const rangeHighFmt = formatDualCurrency(rangeHigh, currencyCode, displayCurrency);
+  const housingFmt = formatDualCurrency(housingAndUtilities, currencyCode, displayCurrency);
+  const livingFmt = formatDualCurrency(livingGroceriesTransport, currencyCode, displayCurrency);
+  const upfrontFmt = formatDualCurrency(upfrontData.totalUpfront, currencyCode, displayCurrency);
 
   return (
     <section className="relative overflow-hidden pt-8 pb-14 md:pt-14 md:pb-20 bg-[#faf9f6] bg-grid-pattern border-b border-stone-200/70">
@@ -110,7 +122,7 @@ export default function SaaSHero({
               </div>
               <div className="flex items-center gap-2">
                 <Globe2 className="w-4 h-4 text-terracotta-500 shrink-0" />
-                <span className="font-medium">10 destination hubs supported</span>
+                <span className="font-medium">14 destination hubs supported</span>
               </div>
             </div>
 
@@ -149,10 +161,15 @@ export default function SaaSHero({
                   </span>
                 </div>
                 <div className="text-3xl sm:text-5xl font-extrabold font-sans text-stone-900 tracking-tight">
-                  {currencySymbol}{monthlyBurn.toLocaleString()} <span className="text-base font-normal text-stone-500">/mo</span>
+                  {monthlyBurnFmt.primary} <span className="text-base font-normal text-stone-500">/mo</span>
                 </div>
+                {monthlyBurnFmt.secondary && (
+                  <div className="text-xs font-mono text-terracotta-700 bg-terracotta-50/70 px-2 py-0.5 rounded inline-block">
+                    {monthlyBurnFmt.secondary} /mo
+                  </div>
+                )}
                 <div className="text-xs font-mono text-stone-500">
-                  Range: {currencySymbol}{rangeLow.toLocaleString()} – {currencySymbol}{rangeHigh.toLocaleString()} {currencyCode}
+                  Range: {rangeLowFmt.primary} – {rangeHighFmt.primary}
                 </div>
               </div>
 
@@ -161,7 +178,7 @@ export default function SaaSHero({
                 <div>
                   <div className="flex items-center justify-between gap-2 text-xs font-medium text-stone-700 mb-1.5">
                     <span className="truncate">Rent & Housing Utilities</span>
-                    <span className="font-mono text-stone-900 shrink-0">{currencySymbol}{housingAndUtilities.toLocaleString()}/mo</span>
+                    <span className="font-mono text-stone-900 shrink-0">{housingFmt.primary}/mo</span>
                   </div>
                   <div className="w-full h-2 bg-stone-100 rounded-full overflow-hidden">
                     <div
@@ -174,7 +191,7 @@ export default function SaaSHero({
                 <div>
                   <div className="flex items-center justify-between gap-2 text-xs font-medium text-stone-700 mb-1.5">
                     <span className="truncate">Groceries, Health, Commute & Buffer</span>
-                    <span className="font-mono text-stone-900 shrink-0">{currencySymbol}{livingGroceriesTransport.toLocaleString()}/mo</span>
+                    <span className="font-mono text-stone-900 shrink-0">{livingFmt.primary}/mo</span>
                   </div>
                   <div className="w-full h-2 bg-stone-100 rounded-full overflow-hidden">
                     <div
@@ -190,7 +207,7 @@ export default function SaaSHero({
                 <div>
                   <div className="text-[10px] uppercase font-mono text-stone-400">Upfront Sunk Setup & Deposit</div>
                   <div className="font-mono font-bold text-stone-800">
-                    ~{currencySymbol}{upfrontData.totalUpfront.toLocaleString()} {currencyCode}
+                    ~{upfrontFmt.primary}
                   </div>
                 </div>
                 <span className="shrink-0 inline-flex items-center px-2.5 sm:px-3 py-1 rounded-lg bg-terracotta-500 text-white text-[11px] sm:text-xs font-bold shadow-sm">

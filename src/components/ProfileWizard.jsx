@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X, Globe2, Users, Utensils, HeartHandshake, Sparkles, Calendar, Briefcase } from 'lucide-react';
 import { COUNTRIES_DATA } from '../data/countries';
 
-export const POPULAR_ORIGINS = ['India', 'United States', 'United Kingdom', 'Canada', 'Australia', 'South Africa', 'Philippines', 'Nigeria', 'Brazil', 'Pakistan', 'Germany', 'France'];
+export const POPULAR_ORIGINS = ['India', 'United States', 'United Kingdom', 'Canada', 'Australia', 'South Africa', 'Philippines', 'Nigeria', 'Brazil', 'Pakistan', 'Germany', 'France', 'Thailand', 'Vietnam', 'Indonesia', 'Mexico'];
 
 export default function ProfileWizard({ isOpen, onClose, currentProfile, onSaveProfile }) {
   const [profile, setProfile] = useState({

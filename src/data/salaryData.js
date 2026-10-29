@@ -314,6 +314,123 @@ export const COUNTRY_SALARY_BENCHMARKS = {
       'Flight tickets to Tokyo + shipping subsidy',
       'Housing allowance (Yachin hojo) or corporate leased housing'
     ]
+  },
+  thailand: {
+    id: 'thailand',
+    name: 'Thailand',
+    currency: 'THB',
+    symbol: '฿',
+    seniorMedianBase: 1440000, // ~120,000 THB/month
+    cityMultipliers: {
+      'Bangkok': 1.0,
+      'Chiang Mai': 0.82,
+      'Phuket': 0.90,
+      'Pattaya': 0.85,
+      'Koh Samui': 0.88,
+      'Hua Hin': 0.84
+    },
+    visaThresholdAnnual: 600000,
+    visaName: 'Non-Immigrant B / BOI Specialist (50k THB/mo)',
+    regularVisaThreshold: 600000,
+    taxEstimate: {
+      singleTaxRate: 0.20,
+      familyTaxRate: 0.16,
+      notes: 'Progressive personal income tax from 5% to 35%. Long-Term Resident (LTR) visa holders enjoy a flat 17% tax ceiling. Social security is capped at 750 THB/month.'
+    },
+    relocationPerks: [
+      'Relocation flight to Bangkok + 1 month serviced condo near BTS/MRT',
+      'BOI fast-track visa and digital work permit facilitation',
+      'Premium private health insurance (Luma / AXA direct billing)',
+      'Provident fund employer matching (3%–15%)'
+    ]
+  },
+  vietnam: {
+    id: 'vietnam',
+    name: 'Vietnam',
+    currency: 'VND',
+    symbol: '₫',
+    seniorMedianBase: 780000000, // ~65,000,000 VND/month
+    cityMultipliers: {
+      'Ho Chi Minh City': 1.0,
+      'Hanoi': 0.96,
+      'Da Nang': 0.84,
+      'Nha Trang': 0.80,
+      'Hoi An': 0.80,
+      'Vung Tau': 0.85
+    },
+    visaThresholdAnnual: 360000000,
+    visaName: 'Work Permit & TRC LD2',
+    regularVisaThreshold: 300000000,
+    taxEstimate: {
+      singleTaxRate: 0.22,
+      familyTaxRate: 0.18,
+      notes: 'Progressive PIT from 5% to 35% on global income for residents. Compulsory social, health, and unemployment insurance contributions capped by national decree.'
+    },
+    relocationPerks: [
+      'Mandatory 13th month Tet salary bonus (statutory standard in Vietnam tech)',
+      'Relocation lump-sum and temporary serviced apartment in District 1/2 or Tay Ho',
+      'Private health insurance (FV Hospital & Vinmec direct billing)',
+      'Annual flight ticket home allowance'
+    ]
+  },
+  indonesia: {
+    id: 'indonesia',
+    name: 'Indonesia',
+    currency: 'IDR',
+    symbol: 'Rp ',
+    seniorMedianBase: 420000000, // ~35,000,000 IDR/month
+    cityMultipliers: {
+      'Jakarta': 1.0,
+      'Bali (Canggu / Ubud / Seminyak)': 0.92,
+      'Surabaya': 0.85,
+      'Bandung': 0.82,
+      'Lombok': 0.80,
+      'Yogyakarta': 0.78
+    },
+    visaThresholdAnnual: 240000000,
+    visaName: 'Working KITAS (Index E23)',
+    regularVisaThreshold: 200000000,
+    taxEstimate: {
+      singleTaxRate: 0.22,
+      familyTaxRate: 0.17,
+      notes: 'Progressive income tax rates up to 35%. Remote Worker E33G digital nomads pay 0% Indonesian tax on offshore revenue.'
+    },
+    relocationPerks: [
+      'THR (Tunjangan Hari Raya) statutory religious holiday annual bonus (1 month salary)',
+      'Private medical insurance (BIMC / Siloam comprehensive coverage)',
+      'Visa and KITAS agent processing fees 100% paid by sponsor',
+      'Corporate housing allowance or flight subsidy'
+    ]
+  },
+  mexico: {
+    id: 'mexico',
+    name: 'Mexico',
+    currency: 'MXN',
+    symbol: 'Mex$',
+    seniorMedianBase: 840000, // ~70,000 MXN/month
+    cityMultipliers: {
+      'Mexico City (CDMX)': 1.0,
+      'Monterrey': 0.98,
+      'Guadalajara': 0.92,
+      'Playa del Carmen': 0.88,
+      'Cancún': 0.88,
+      'Puerto Vallarta': 0.86,
+      'Querétaro': 0.90
+    },
+    visaThresholdAnnual: 480000,
+    visaName: 'Residente Temporal con Permiso de Trabajo',
+    regularVisaThreshold: 420000,
+    taxEstimate: {
+      singleTaxRate: 0.24,
+      familyTaxRate: 0.20,
+      notes: 'ISR progressive tax up to 35% on Mexican income. Residente Temporal remote workers living on foreign clients are exempt from Mexican ISR if unpegged to Mexican permanent establishment.'
+    },
+    relocationPerks: [
+      'Aguinaldo (mandatory minimum 15-day Christmas bonus, tech pays 30 days)',
+      'Gastos Médicos Mayores (GMM - major private medical insurance)',
+      'Vales de despensa (tax-free grocery card vouchers ~3,000 MXN/mo)',
+      'Fondo de Ahorro (employer savings fund matching up to 13%)'
+    ]
   }
 };
 

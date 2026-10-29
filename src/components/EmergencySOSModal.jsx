@@ -80,7 +80,11 @@ export default function EmergencySOSModal({ isOpen, onClose, countryData }) {
                 countryData.id === 'usa' ? '311' :
                 countryData.id === 'japan' ? '#7119' :
                 countryData.id === 'netherlands' ? '0900-8844' :
-                countryData.id === 'brazil' ? '136' : 'Local Clinic')}
+                countryData.id === 'brazil' ? '136' :
+                countryData.id === 'thailand' ? '1155' :
+                countryData.id === 'mexico' ? '078' :
+                countryData.id === 'indonesia' ? '110' :
+                countryData.id === 'vietnam' ? '113' : 'Local Clinic')}
             </div>
           </div>
         </div>

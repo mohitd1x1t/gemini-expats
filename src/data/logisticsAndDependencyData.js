@@ -386,7 +386,11 @@ export const COUNTRY_ELECTRICAL_STANDARDS = {
   brazil: { voltage: '127V / 220V (Split)', frequency: 60, plugs: ['Type N (IEC 60906-1)', 'Type C'], plugImg: '🔌' },
   japan: { voltage: 100, frequency: '50Hz (Tokyo) / 60Hz (Osaka)', plugs: ['Type A', 'Type B'], plugImg: '🔌' },
   australia: { voltage: 230, frequency: 50, plugs: ['Type I'], plugImg: '🔌' },
-  canada: { voltage: 120, frequency: 60, plugs: ['Type A', 'Type B'], plugImg: '🔌' }
+  canada: { voltage: 120, frequency: 60, plugs: ['Type A', 'Type B'], plugImg: '🔌' },
+  thailand: { voltage: 230, frequency: 50, plugs: ['Type A', 'Type B', 'Type C', 'Type O'], plugImg: '🔌' },
+  vietnam: { voltage: 220, frequency: 50, plugs: ['Type A', 'Type C', 'Type F'], plugImg: '🔌' },
+  indonesia: { voltage: 230, frequency: 50, plugs: ['Type C', 'Type F (Schuko)'], plugImg: '🔌' },
+  mexico: { voltage: 127, frequency: 60, plugs: ['Type A', 'Type B'], plugImg: '🔌' }
 };
 
 /**
@@ -519,6 +523,162 @@ export const SURVIVAL_PHRASEBOOK = {
             phonetic: 'pohr fah-VOHR, mee ah-ZHOO-jee! EH OO-mah eh-mair-ZHEN-see-ah MEH-jee-cah, SHAH-mee oo SAH-moo!',
             english: 'Please help me! It is a medical emergency, call the ambulance (192)!',
             context: 'Health emergency.'
+          }
+        ]
+      }
+    ]
+  },
+  thailand: {
+    langCode: 'th-TH',
+    languageName: 'Thai (ภาษาไทย)',
+    categories: [
+      {
+        name: 'Arrival & Ride Services',
+        phrases: [
+          {
+            phrase: 'สวัสดีครับ/ค่ะ ไปที่คอนโดนี้ได้ไหมครับ/ค่ะ (เปิดมิเตอร์ด้วยครับ)',
+            phonetic: 'Sawatdee khrap/kha, bpai tee condo nee dai mai khrap/kha? (Bpoet meter duay khrap)',
+            english: 'Hello, can you take me to this condominium? (Please turn on the taxi meter)',
+            context: 'Taking a taxi from Suvarnabhumi or Don Mueang.'
+          }
+        ]
+      },
+      {
+        name: 'Dietary & Street Food',
+        phrases: [
+          {
+            phrase: 'กินเจครับ/ค่ะ ไม่ใส่น้ำปลาและไม่ใส่เนื้อสัตว์เลยครับ',
+            phonetic: 'Gin jay khrap/kha, mai sai nam pla lae mai sai nuea sat loei khrap',
+            english: 'I eat strictly vegan/Jay. Please do not put any fish sauce or any meat at all.',
+            context: 'Ordering street food or at local Thai markets.'
+          }
+        ]
+      },
+      {
+        name: 'Emergency & Urgent',
+        phrases: [
+          {
+            phrase: 'ช่วยด้วยครับ! มีเหตุฉุกเฉิน กรุณาเรียกรถพยาบาล (1669) ให้หน่อย!',
+            phonetic: 'Chuay duay khrap! Mee het chuk-choen, karuna riak rot phayaban (neung-hok-hok-kao) hai noi!',
+            english: 'Help me! There is an emergency, please call an ambulance (1669)!',
+            context: 'Life-threatening medical emergency.'
+          }
+        ]
+      }
+    ]
+  },
+  vietnam: {
+    langCode: 'vi-VN',
+    languageName: 'Vietnamese (Tiếng Việt)',
+    categories: [
+      {
+        name: 'Arrival & Ride Services',
+        phrases: [
+          {
+            phrase: 'Xin chào, làm ơn chở tôi đến địa chỉ này theo đồng hồ tính cước nhé.',
+            phonetic: 'Sin chow, lahm uhn chuh toy den dee-ah chee nai theo dong hoh tin kuoc nye.',
+            english: 'Hello, please take me to this address using the meter.',
+            context: 'Airport taxi or Grab ride.'
+          }
+        ]
+      },
+      {
+        name: 'Dietary & Street Food',
+        phrases: [
+          {
+            phrase: 'Tôi ăn chay thanh tịnh, xin đừng bỏ nước mắm hay mỡ heo nhé.',
+            phonetic: 'Toy ahn chai tahnh tin, sin doong baw nuok mahm hai muh heo nye.',
+            english: 'I eat pure vegetarian, please do not include fish sauce or pork lard.',
+            context: 'Dining at local noodle houses and street stalls.'
+          }
+        ]
+      },
+      {
+        name: 'Emergency & Urgent',
+        phrases: [
+          {
+            phrase: 'Cứu tôi với! Trường hợp khẩn cấp, làm ơn gọi cấp cứu (115)!',
+            phonetic: 'Koo toy voy! Truong hop kahn kahp, lahm uhn goy kahp koo (mot-mot-nam)!',
+            english: 'Help me! Emergency, please call an ambulance (115)!',
+            context: 'Accident or emergency.'
+          }
+        ]
+      }
+    ]
+  },
+  indonesia: {
+    langCode: 'id-ID',
+    languageName: 'Indonesian (Bahasa Indonesia)',
+    categories: [
+      {
+        name: 'Arrival & Ride Services',
+        phrases: [
+          {
+            phrase: 'Halo Pak, tolong antar saya ke villa/hotel ini sesuai argo ya.',
+            phonetic: 'HAH-loh pahk, TOH-long AHN-tahr SAH-yah keh VIL-lah/hoh-TEHL EE-nee seh-soo-EYE AHR-goh yah.',
+            english: 'Hello sir, please take me to this villa/hotel using the meter.',
+            context: 'Airport taxi or Gojek/Grab driver.'
+          }
+        ]
+      },
+      {
+        name: 'Dietary & Food',
+        phrases: [
+          {
+            phrase: 'Saya vegetarian. Tolong tanpa terasi, tanpa kaldu ayam, dan tanpa daging ya.',
+            phonetic: 'SAH-yah veh-geh-tah-ree-AHN. TOH-long TAHN-pah teh-RAH-see, TAHN-pah KAHL-doo AH-yahm, dahn TAHN-pah DAH-ging yah.',
+            english: 'I am vegetarian. Please no shrimp paste, no chicken bouillon, and no meat.',
+            context: 'Warungs and local restaurants in Bali and Java.'
+          }
+        ]
+      },
+      {
+        name: 'Emergency & Urgent',
+        phrases: [
+          {
+            phrase: 'Tolong! Ada keadaan darurat medis, panggil ambulans (118)!',
+            phonetic: 'TOH-long! AH-dah keh-ah-DAH-ahn dah-ROO-raht MEH-dis, PAHN-gil ahm-boo-LAHNS (sah-too sah-too deh-lah-pahn)!',
+            english: 'Help! Medical emergency, call an ambulance (118)!',
+            context: 'Immediate assistance.'
+          }
+        ]
+      }
+    ]
+  },
+  mexico: {
+    langCode: 'es-MX',
+    languageName: 'Spanish (Español Mexicano)',
+    categories: [
+      {
+        name: 'Arrival & Ride Services',
+        phrases: [
+          {
+            phrase: 'Hola, buenas tardes. ¿Me lleva a esta dirección por favor? Ponga el taxímetro.',
+            phonetic: 'OH-lah, BWEH-nahs TAHR-des. Meh YEH-vah ah EHS-tah dee-rek-see-OHN pohr fah-VOHR? POHN-gah ehl tahk-SEE-meh-troh.',
+            english: 'Hello, good afternoon. Can you take me to this address please? Turn on the meter.',
+            context: 'Authorized taxi or rideshare.'
+          }
+        ]
+      },
+      {
+        name: 'Dietary & Food',
+        phrases: [
+          {
+            phrase: 'Soy vegetariano estricto. ¿Los frijoles no tienen manteca de cerdo ni caldo de pollo?',
+            phonetic: 'Soy veh-heh-tah-ree-AH-noh ehs-TREEK-toh. ¿Lohs free-HOH-lehs noh tee-EH-nehn mahn-TEH-kah deh SEHR-doh nee KAHL-doh deh POH-yoh?',
+            english: 'I am strict vegetarian. Do the beans have no pork lard and no chicken broth?',
+            context: 'Ordering Mexican food (tacos, fondas, restaurants).'
+          }
+        ]
+      },
+      {
+        name: 'Emergency & Urgent',
+        phrases: [
+          {
+            phrase: '¡Ayuda por favor! Es una emergencia médica, ¡llamen al 911 de inmediato!',
+            phonetic: 'ah-YOO-dah pohr fah-VOHR! Ehs OO-nah eh-mair-HEN-see-ah MEH-dee-kah, YAH-mehn ahl noo-EH-veh ooh-noh ooh-noh deh een-meh-dee-AH-toh!',
+            english: 'Help please! It is a medical emergency, call 911 immediately!',
+            context: 'Emergency in Mexico.'
           }
         ]
       }

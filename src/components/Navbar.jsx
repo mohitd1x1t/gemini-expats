@@ -11,6 +11,7 @@ import {
   Siren,
   Globe2
 } from 'lucide-react';
+import { GLOBAL_DISPLAY_CURRENCIES } from '../utils/currencyConverter';
 
 export default function Navbar({
   userProfile,
@@ -23,7 +24,9 @@ export default function Navbar({
   setActiveTab,
   completionStats,
   onUpdatePersona,
-  onGetEstimate
+  onGetEstimate,
+  displayCurrency = 'LOCAL',
+  onUpdateDisplayCurrency
 }) {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-stone-200/90 bg-[#faf9f6]/95 backdrop-blur-md transition-all">
@@ -87,6 +90,23 @@ export default function Navbar({
         {/* Right Action Bar */}
         <div className="flex items-center space-x-1.5 sm:space-x-2.5 shrink-0">
           
+          {/* Universal Currency Selector Pill */}
+          <div className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-white border border-stone-200 hover:border-stone-400 text-xs text-stone-700 transition-colors shadow-sm">
+            <Globe2 className="w-3.5 h-3.5 text-stone-500 shrink-0" />
+            <select
+              value={displayCurrency}
+              onChange={(e) => onUpdateDisplayCurrency && onUpdateDisplayCurrency(e.target.value)}
+              className="appearance-none bg-transparent font-bold text-stone-800 text-[11px] cursor-pointer focus:outline-none pr-1"
+              title="Display Currency Preference"
+            >
+              {GLOBAL_DISPLAY_CURRENCIES.map(c => (
+                <option key={c.code} value={c.code}>
+                  {c.code === 'LOCAL' ? `${countryData?.currency || 'EUR'} (Local)` : c.code}
+                </option>
+              ))}
+            </select>
+          </div>
+
           {/* Destination Route Pill */}
           <button
             onClick={onOpenProfile}
